@@ -12,7 +12,7 @@
     <artifactId>ruoyi-workflow</artifactId>
 
     <description>
-        ruoyi-modules-system工作流模块
+        ruoyi-modules-workflow工作流模块
     </description>
 
     <dependencies>
