@@ -21,7 +21,7 @@
 
 ~~~
 com.ruoyi     
-├── ruoyi-ui              // 前端框架 [80]
+├── web-and-app           // 前端、APP、小程序 [80]
 ├── ruoyi-gateway         // 网关模块 [8080]
 ├── ruoyi-auth            // 认证中心 [9200]
 ├── ruoyi-api             // 接口模块
