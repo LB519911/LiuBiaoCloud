@@ -11,6 +11,9 @@
 * 后端采用Spring Boot、Spring Cloud & Alibaba。
 * 注册中心、配置中心选型Nacos，权限认证使用Redis。
 * 流量控制框架选型Sentinel，分布式事务选型Seata。
+* 添加Activiti7工作流支持。
+* 支持UNIAPP小程序或APP。
+* CICD支持。
 ## 系统模块
 
 ~~~
