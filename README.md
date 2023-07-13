@@ -14,6 +14,7 @@
 * 添加Activiti7工作流支持。
 * 支持UNIAPP小程序或APP。
 * CICD支持。
+
 ## 系统模块
 
 ~~~
@@ -37,6 +38,7 @@ com.ruoyi
 │       └── ruoyi-gen                                 // 代码生成 [9202]
 │       └── ruoyi-job                                 // 定时任务 [9203]
 │       └── ruoyi-file                                // 文件服务 [9300]
+        └── ruoyi-workflow                            // 工作流服务 [9400]
 ├── ruoyi-visual          // 图形化管理模块
 │       └── ruoyi-visual-monitor                      // 监控中心 [9100]
 ├──pom.xml                // 公共依赖
