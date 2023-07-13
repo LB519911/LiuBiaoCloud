@@ -1,0 +1,78 @@
+pipeline {
+    agent any
+
+    tools {
+        go 'liubiao-go1.19.5'
+        jdk 'liubiao-jdk-8'
+        nodejs 'liubiao-node18.10.0'
+        maven 'liubiao-mvn-3'
+    }
+
+    stages {
+
+        stage('开始构建') {
+            steps {
+                echo '开始构建'
+            }
+        }
+
+        stage('检出代码') {
+            steps {
+                echo '检出代码完毕'
+                sh 'ls -al'
+            }
+        }
+
+        stage('编译代码') {
+            steps {
+                echo '开始编译代码'
+                sh '''
+                        mvn clean package -Dmaven.test.skip=true -f pom.xml -Pdev
+                   '''
+            }
+        }
+
+        stage('构建镜像') {
+            steps {
+                echo '开始构建镜像'
+                sh 'docker build -f Dockerfile -t $APP_NAME .'
+            }
+        }
+
+        stage('推送镜像') {
+            steps {
+                echo "推送镜像"
+                withCredentials([usernamePassword(credentialsId: 'docker_aliyun_registry', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD',)]) {
+                    sh 'echo "$PASSWORD" | docker login $REGISTRY -u "$USERNAME" --password-stdin'
+                    sh 'docker tag $APP_NAME:latest $REGISTRY/$DOCKERHUB_NAMESPACE/$STORE:$APP_NAME-pipeline-v1.0.0.$BUILD_NUMBER'
+                    sh 'docker push $REGISTRY/$DOCKERHUB_NAMESPACE/$STORE:$APP_NAME-pipeline-v1.0.0.$BUILD_NUMBER'
+                }
+            }
+        }
+
+        stage("删除本地Docker镜像") {
+            parallel {
+                stage('删除本地Docker镜像') {
+                    steps {
+                        echo "删除本地Docker镜像"
+                        sh 'docker rmi $REGISTRY/$DOCKERHUB_NAMESPACE/$STORE:$APP_NAME-pipeline-v1.0.0.$BUILD_NUMBER'
+                        sh 'docker rmi $APP_NAME:latest'
+                    }
+                }
+            }
+        }
+
+        stage('构建结束') {
+            steps {
+                echo '构建结束'
+            }
+        }
+    }
+
+    environment {
+        REGISTRY = 'registry.cn-hangzhou.aliyuncs.com'
+        DOCKERHUB_NAMESPACE = 'liubiao_dev'
+        STORE = 'dev'
+        APP_NAME = 'app-all'
+    }
+}
