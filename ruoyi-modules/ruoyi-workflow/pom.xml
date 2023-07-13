@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>ruoyi-workflow</artifactId>
+    <artifactId>ruoyi-modules-workflow</artifactId>
 
     <description>
         ruoyi-modules-workflow工作流模块
