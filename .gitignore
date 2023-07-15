@@ -48,3 +48,4 @@ nbdist/
 ######################################################################
 docker/mysql/data/*
 docker/nacos/logs/*
+/docker/redis/data/dump.rdb
