@@ -24,19 +24,19 @@
           <i class="el-icon-caret-bottom"/>
         </div>
         <el-dropdown-menu slot="dropdown">
-          <el-dropdown-item @click.native="setting = true">
+          <el-dropdown-item>
             <span>网络部</span>
           </el-dropdown-item>
-          <el-dropdown-item @click.native="setting = true">
+          <el-dropdown-item>
             <span>财务部</span>
           </el-dropdown-item>
-          <el-dropdown-item @click.native="setting = true">
+          <el-dropdown-item>
             <span>后勤部</span>
           </el-dropdown-item>
-          <el-dropdown-item @click.native="setting = true">
+          <el-dropdown-item>
             <span>申论院</span>
           </el-dropdown-item>
-          <el-dropdown-item @click.native="setting = true">
+          <el-dropdown-item>
             <span>教务部</span>
           </el-dropdown-item>
           <router-link to="/user/profile">
