@@ -162,7 +162,7 @@ export default {
   justify-content: center;
   align-items: center;
   height: 100%;
-  background-color: #2f2fe7;
+  background-image: linear-gradient(to bottom, #1b3de0, #5f7ce3);
   background-size: cover;
 }
 
