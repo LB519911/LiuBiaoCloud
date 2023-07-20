@@ -24,6 +24,9 @@
           <i class="el-icon-caret-bottom"/>
         </div>
         <el-dropdown-menu slot="dropdown">
+          <el-input
+            type="text"
+            placeholder="搜索部门名称"/>
           <el-dropdown-item>
             <span>网络部</span>
           </el-dropdown-item>
