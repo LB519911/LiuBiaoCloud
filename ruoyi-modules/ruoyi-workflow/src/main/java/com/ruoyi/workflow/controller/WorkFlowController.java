@@ -3,8 +3,7 @@ package com.ruoyi.workflow.controller;
 import cn.hutool.core.date.DateUtil;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
-import com.ruoyi.common.core.web.controller.BaseController;
-import com.ruoyi.common.core.web.domain.AjaxResult;
+import com.ruoyi.common.core.domain.R;
 import com.ruoyi.workflow.service.activiti.ProcessImageService;
 import lombok.Data;
 import lombok.extern.log4j.Log4j2;
@@ -26,7 +25,6 @@ import org.activiti.engine.task.Task;
 import org.activiti.engine.task.TaskQuery;
 import org.activiti.image.impl.DefaultProcessDiagramGenerator;
 import org.apache.commons.io.IOUtils;
-import org.aspectj.weaver.loadtime.Aj;
 import org.springframework.beans.BeanUtils;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
@@ -49,7 +47,7 @@ import java.util.Map;
 @RestController
 @RequestMapping("/workflow")
 @Transactional(rollbackFor = Exception.class)
-public class WorkFlowController extends BaseController {
+public class WorkFlowController {
 
     public static final String TERMINATE_END = "terminateEndEvent".toLowerCase();
     public static final String CANCEL_END = "cancelEnd".toLowerCase();
@@ -85,11 +83,11 @@ public class WorkFlowController extends BaseController {
      * @throws IOException 异常
      */
     @PostMapping("/deploy")
-    public AjaxResult deploy(@RequestParam String definitionName,
-                             @RequestParam String tenantId,
-                             MultipartFile bpmn) throws IOException {
+    public R<String> deploy(@RequestParam String definitionName,
+                            @RequestParam String tenantId,
+                            MultipartFile bpmn) throws IOException {
         if (bpmn == null || bpmn.isEmpty()) {
-            return AjaxResult.error("没有bpmn文件!");
+            return R.fail("没有bpmn文件!");
         }
 
         Deployment deploy = repositoryService.createDeployment()
@@ -99,9 +97,9 @@ public class WorkFlowController extends BaseController {
                 .deploy();
 
         if (deploy == null) {
-            return AjaxResult.error("部署不成功!");
+            return R.fail("部署不成功!");
         }
-        return AjaxResult.success("部署成功!");
+        return R.ok("部署成功!");
     }
     //end *****************************部署部分结束*********************************
 
@@ -119,11 +117,11 @@ public class WorkFlowController extends BaseController {
      * @return ProcessDefinitionPojoPage 分页信息
      */
     @GetMapping("/getDeployListByName")
-    public AjaxResult getDeployListByName(@RequestParam String definitionName,
-                                          @RequestParam Integer currentPage,
-                                          @RequestParam Integer maxResults,
-                                          @RequestParam String tenantId,
-                                          @RequestParam String processDefinitionKey) {
+    public R<ProcessDefinitionPojoPage> getDeployListByName(@RequestParam String definitionName,
+                                                            @RequestParam Integer currentPage,
+                                                            @RequestParam Integer maxResults,
+                                                            @RequestParam String tenantId,
+                                                            @RequestParam String processDefinitionKey) {
         //返回值
 
         ProcessDefinitionPojoPage result = new ProcessDefinitionPojoPage();
@@ -172,7 +170,7 @@ public class WorkFlowController extends BaseController {
         if (totalRecords % pageSize > 0) {
             result.setPageCount(pageCount + 1);
         }
-        return AjaxResult.success(result);
+        return R.ok(result);
     }
 
     /**
@@ -184,9 +182,9 @@ public class WorkFlowController extends BaseController {
      * @return ProcessDefinitionPojo
      */
     @GetMapping("/deployLatestListByName")
-    public AjaxResult getDeployLatestListByName(@RequestParam String definitionName,
-                                                @RequestParam String tenantId,
-                                                @RequestParam String processDefinitionKey) {
+    public R<ProcessDefinitionPojo> getDeployLatestListByName(@RequestParam String definitionName,
+                                                              @RequestParam String tenantId,
+                                                              @RequestParam String processDefinitionKey) {
         //返回值
         ProcessDefinitionPojo result = new ProcessDefinitionPojo();
 
@@ -205,9 +203,9 @@ public class WorkFlowController extends BaseController {
 
         if (processDefinition != null) {
             BeanUtils.copyProperties(processDefinition, result);
-            return AjaxResult.success(result);
+            return R.ok(result);
         } else {
-            return AjaxResult.error("没有该流程定义");
+            return R.fail("没有该流程定义");
         }
     }
 
@@ -218,11 +216,11 @@ public class WorkFlowController extends BaseController {
      * @param processDefinitionId  流程定义ID
      */
     @GetMapping("/getDeployImage")
-    public AjaxResult getDeployImage(@RequestParam String definitionName,
-                                     @RequestParam String tenantId,
-                                     @RequestParam String processDefinitionKey,
-                                     @RequestParam String processDefinitionId,
-                                     HttpServletResponse httpServletResponse) {
+    public R<String> getDeployImage(@RequestParam String definitionName,
+                                    @RequestParam String tenantId,
+                                    @RequestParam String processDefinitionKey,
+                                    @RequestParam String processDefinitionId,
+                                    HttpServletResponse httpServletResponse) {
 
         ProcessDefinitionQuery processDefinitionQuery = repositoryService.createProcessDefinitionQuery()
                 .processDefinitionTenantId(tenantId)
@@ -238,7 +236,7 @@ public class WorkFlowController extends BaseController {
                 .singleResult();
 
         if (processDefinition == null) {
-            return AjaxResult.error("没有该流程定义");
+            return R.fail("没有该流程定义");
         }
 
         BpmnModel bpmnModel = repositoryService.getBpmnModel(processDefinition.getId());
@@ -252,12 +250,12 @@ public class WorkFlowController extends BaseController {
                 httpServletResponse.setContentType("image/svg+xml");
                 outputStream.write(bytes);
                 outputStream.flush();
-                return AjaxResult.success("成功");
+                return R.ok("成功");
             } catch (Exception e) {
-                return AjaxResult.error(e.getMessage());
+                return R.fail(e.getMessage());
             }
         } else {
-            return AjaxResult.error("没有该流程定义");
+            return R.fail("没有该流程定义");
         }
     }
     //end *****************************查看部署部分结束*********************************
@@ -272,8 +270,8 @@ public class WorkFlowController extends BaseController {
      * @return String
      */
     @GetMapping("/deleteProcessDefinitionAllInfo")
-    public AjaxResult deleteProcessDefinitionAllInfo(@RequestParam String processDefinitionId,
-                                                     @RequestParam String tenantId) {
+    public R<String> deleteProcessDefinitionAllInfo(@RequestParam String processDefinitionId,
+                                                    @RequestParam String tenantId) {
         // 删除流程定义及相关数据
         try {
             ProcessDefinition processDefinition = repositoryService.createProcessDefinitionQuery()
@@ -282,9 +280,9 @@ public class WorkFlowController extends BaseController {
                     .singleResult();
             repositoryService.deleteDeployment(processDefinition.getDeploymentId(), true);
         } catch (Exception e) {
-            return AjaxResult.error(e.getMessage());
+            return R.fail(e.getMessage());
         }
-        return AjaxResult.success("成功!");
+        return R.ok("成功!");
     }
 
     /**
@@ -294,8 +292,8 @@ public class WorkFlowController extends BaseController {
      * @return String
      */
     @GetMapping("/deleteProcessDefinitionByName")
-    public AjaxResult deleteProcessDefinitionByName(@RequestParam String processDefinitionName,
-                                                    @RequestParam String tenantId) {
+    public R<String> deleteProcessDefinitionByName(@RequestParam String processDefinitionName,
+                                                   @RequestParam String tenantId) {
         // 删除流程定义及相关数据
         try {
             List<ProcessDefinition> processDefinitions = repositoryService.createProcessDefinitionQuery()
@@ -307,9 +305,9 @@ public class WorkFlowController extends BaseController {
                 repositoryService.deleteDeployment(processDefinition.getDeploymentId(), true);
             }
         } catch (Exception e) {
-            return AjaxResult.error(e.getMessage());
+            return R.fail(e.getMessage());
         }
-        return AjaxResult.success("成功!");
+        return R.ok("成功!");
     }
 
     /**
@@ -319,8 +317,8 @@ public class WorkFlowController extends BaseController {
      * @return String
      */
     @GetMapping("/deleteProcessDefinitionByKey")
-    public AjaxResult deleteProcessDefinitionByKey(@RequestParam String processDefinitionKey,
-                                                   @RequestParam String tenantId) {
+    public R<String> deleteProcessDefinitionByKey(@RequestParam String processDefinitionKey,
+                                                  @RequestParam String tenantId) {
         // 删除流程定义及相关数据
         try {
             List<ProcessDefinition> processDefinitions = repositoryService.createProcessDefinitionQuery()
@@ -332,9 +330,9 @@ public class WorkFlowController extends BaseController {
                 repositoryService.deleteDeployment(processDefinition.getDeploymentId(), true);
             }
         } catch (Exception e) {
-            return AjaxResult.error(e.getMessage());
+            return R.fail(e.getMessage());
         }
-        return AjaxResult.success("成功!");
+        return R.ok("成功!");
     }
     //end *****************************根据流程定义ID删除所有流程部分结束*********************************
 
@@ -348,7 +346,7 @@ public class WorkFlowController extends BaseController {
      * @return String
      */
     @PostMapping("/startProcessInstanceByKey")
-    public AjaxResult startProcessInstanceByKey(@RequestBody StartProcessInstanceByIdRequestBody requestBody) {
+    public R<String> startProcessInstanceByKey(@RequestBody StartProcessInstanceByIdRequestBody requestBody) {
         //流程ID为空则默认取最新的流程
         if ("".equals(requestBody.getProcessDefinitionId())) {
             ProcessDefinition processDefinition = repositoryService.createProcessDefinitionQuery()
@@ -366,7 +364,7 @@ public class WorkFlowController extends BaseController {
                 .singleResult();
 
         if (processDefinition == null) {
-            return AjaxResult.error("没有该流程定义!");
+            return R.fail("没有该流程定义!");
         }
 
         //校验业务主键是否处于正在发起到结束之间,处于的话不能发起任务
@@ -378,7 +376,7 @@ public class WorkFlowController extends BaseController {
 
         List<Task> tasks = taskQuery.list();
         if (!tasks.isEmpty()) {
-            return AjaxResult.error("该业务ID正在审批当中,禁止重新发起任务");
+            return R.fail("该业务ID正在审批当中,禁止重新发起任务");
         }
 
         ProcessInstance processInstance = runtimeService.startProcessInstanceById(
@@ -388,9 +386,9 @@ public class WorkFlowController extends BaseController {
         );
 
         if (processInstance == null) {
-            return AjaxResult.success("任务发起失败!");
+            return R.ok("任务发起失败!");
         }
-        return AjaxResult.success(processInstance.getProcessInstanceId());
+        return R.ok(processInstance.getProcessInstanceId());
     }
     //end *****************************发起审批部分结束*********************************
 
@@ -401,10 +399,10 @@ public class WorkFlowController extends BaseController {
      * 查询组任务
      *
      * @param requestBody 请求
-     * @return AjaxResult 结果
+     * @return R<TaskBusinessKeys> 结果
      */
     @PostMapping("/findGroupTaskList")
-    public AjaxResult findGroupTaskList(@RequestBody GroupTaskRequestBody requestBody) {
+    public R<TaskBusinessKeys> findGroupTaskList(@RequestBody GroupTaskRequestBody requestBody) {
         // 返回值
         TaskBusinessKeys result = new TaskBusinessKeys();
         ArrayList<String> businessKeys = Lists.newArrayList();
@@ -449,17 +447,17 @@ public class WorkFlowController extends BaseController {
             result.setPageCount(pageCount + 1);
         }
 
-        return AjaxResult.success(result);
+        return R.ok(result);
     }
 
     /**
      * 查询候选任务
      *
      * @param requestBody 请求
-     * @return AjaxResult 结果
+     * @return R<TaskBusinessKeys> 结果
      */
     @PostMapping("/findTaskCandidateUserList")
-    public AjaxResult findTaskCandidateUserList(@RequestBody GroupTaskRequestBody requestBody) {
+    public R<TaskBusinessKeys> findTaskCandidateUserList(@RequestBody GroupTaskRequestBody requestBody) {
         // 返回值
         TaskBusinessKeys result = new TaskBusinessKeys();
         ArrayList<String> businessKeys = Lists.newArrayList();
@@ -504,7 +502,7 @@ public class WorkFlowController extends BaseController {
             result.setPageCount(pageCount + 1);
         }
 
-        return AjaxResult.success(result);
+        return R.ok(result);
     }
 
 
@@ -515,7 +513,7 @@ public class WorkFlowController extends BaseController {
      * @return String
      */
     @PostMapping("/claimTaskFormGroup")
-    public AjaxResult claimTaskFormGroup(@RequestBody GroupTaskRequestBody requestBody) {
+    public R<String> claimTaskFormGroup(@RequestBody GroupTaskRequestBody requestBody) {
         TaskQuery taskQuery = taskService.createTaskQuery()
                 .active()
                 .processDefinitionKey(requestBody.getProcessDefinitionKey())
@@ -530,11 +528,11 @@ public class WorkFlowController extends BaseController {
         Task task = taskQuery.singleResult();
 
         if (task == null) {
-            return AjaxResult.error("没有该任务");
+            return R.fail("没有该任务");
         }
 
         taskService.claim(task.getId(), requestBody.getTaskAssignee());
-        return AjaxResult.success("成功");
+        return R.ok("成功");
     }
 
     /**
@@ -544,7 +542,7 @@ public class WorkFlowController extends BaseController {
      * @return String
      */
     @PostMapping("/claimTaskFromCandidateUser")
-    public AjaxResult claimTaskFromCandidateUser(@RequestBody GroupTaskRequestBody requestBody) {
+    public R<String> claimTaskFromCandidateUser(@RequestBody GroupTaskRequestBody requestBody) {
         TaskQuery taskQuery = taskService.createTaskQuery()
                 .active()
                 .processDefinitionKey(requestBody.getProcessDefinitionKey())
@@ -559,11 +557,11 @@ public class WorkFlowController extends BaseController {
         Task task = taskQuery.singleResult();
 
         if (task == null) {
-            return AjaxResult.error("没有该任务");
+            return R.fail("没有该任务");
         }
 
         taskService.claim(task.getId(), requestBody.getCandidateUser());
-        return AjaxResult.success("成功");
+        return R.ok("成功");
     }
 
     /**
@@ -573,7 +571,7 @@ public class WorkFlowController extends BaseController {
      * @return String
      */
     @PostMapping("/setAssigneeToGroupTask")
-    public AjaxResult setAssigneeToGroupTask(@RequestBody GroupTaskRequestBody requestBody) {
+    public R<String> setAssigneeToGroupTask(@RequestBody GroupTaskRequestBody requestBody) {
         TaskQuery taskQuery = taskService.createTaskQuery()
                 .active()
                 .processDefinitionKey(requestBody.getProcessDefinitionKey())
@@ -588,11 +586,11 @@ public class WorkFlowController extends BaseController {
         Task task = taskQuery.singleResult();
 
         if (task == null) {
-            return AjaxResult.error("没有该任务");
+            return R.fail("没有该任务");
         }
 
         taskService.setAssignee(task.getId(), null);
-        return AjaxResult.success("成功");
+        return R.ok("成功");
     }
 
     /**
@@ -602,7 +600,7 @@ public class WorkFlowController extends BaseController {
      * @return String
      */
     @PostMapping("/setAssigneeToTaskCandidateUser")
-    public AjaxResult setAssigneeToTaskCandidateUser(@RequestBody GroupTaskRequestBody requestBody) {
+    public R<String> setAssigneeToTaskCandidateUser(@RequestBody GroupTaskRequestBody requestBody) {
         TaskQuery taskQuery = taskService.createTaskQuery()
                 .active()
                 .processDefinitionKey(requestBody.getProcessDefinitionKey())
@@ -617,11 +615,11 @@ public class WorkFlowController extends BaseController {
         Task task = taskQuery.singleResult();
 
         if (task == null) {
-            return AjaxResult.error("没有该任务");
+            return R.fail("没有该任务");
         }
 
         taskService.setAssignee(task.getId(), null);
-        return AjaxResult.success("成功");
+        return R.ok("成功");
     }
 
 
@@ -632,7 +630,7 @@ public class WorkFlowController extends BaseController {
      * @return String
      */
     @PostMapping("/setAssigneeToCandidateUser")
-    public AjaxResult setAssigneeToCandidateUser(@RequestBody GroupTaskRequestBody requestBody) {
+    public R<String> setAssigneeToCandidateUser(@RequestBody GroupTaskRequestBody requestBody) {
         TaskQuery taskQuery = taskService.createTaskQuery()
                 .active()
                 .processDefinitionKey(requestBody.getProcessDefinitionKey())
@@ -647,11 +645,11 @@ public class WorkFlowController extends BaseController {
         Task task = taskQuery.singleResult();
 
         if (task == null) {
-            return AjaxResult.error("没有该任务");
+            return R.fail("没有该任务");
         }
 
         taskService.setAssignee(task.getId(), requestBody.getTaskAssigneeAnther());
-        return AjaxResult.success("成功");
+        return R.ok("成功");
     }
     //end *****************************拾取、交接、归还任务部分结束*********************************
 
@@ -665,7 +663,7 @@ public class WorkFlowController extends BaseController {
      * @return TaskBusinessKeys  返回
      */
     @PostMapping("/getTaskBusinessKeys")
-    public AjaxResult getTaskBusinessKeys(@RequestBody TaskCompleteRequestBody requestBody) {
+    public R<TaskBusinessKeys> getTaskBusinessKeys(@RequestBody TaskCompleteRequestBody requestBody) {
         //返回值
         TaskBusinessKeys result = new TaskBusinessKeys();
         ArrayList<String> businessKeys = Lists.newArrayList();
@@ -710,7 +708,7 @@ public class WorkFlowController extends BaseController {
             result.setPageCount(pageCount + 1);
         }
 
-        return AjaxResult.success(result);
+        return R.ok(result);
     }
     //end *****************************查询可审批列表部分结束*********************************
 
@@ -724,7 +722,7 @@ public class WorkFlowController extends BaseController {
      * @return TaskCompleteResponseBody 返回值
      */
     @PostMapping("/taskComplete")
-    public AjaxResult taskComplete(@RequestBody TaskCompleteRequestBody requestBody) {
+    public R<TaskCompleteResponseBody> taskComplete(@RequestBody TaskCompleteRequestBody requestBody) {
         TaskCompleteResponseBody responseBody = new TaskCompleteResponseBody();
 
         TaskQuery taskQuery = taskService.createTaskQuery()
@@ -761,12 +759,12 @@ public class WorkFlowController extends BaseController {
                         requestBody.getTenantId(), task.getProcessInstanceId(), requestBody.getProcessDefinitionKey());
                 responseBody.setApproveStatus(approveStatus);
             } catch (Exception e) {
-                return AjaxResult.error(e.getMessage());
+                return R.fail(e.getMessage());
             }
         } else {
-            return AjaxResult.error("没有该Task");
+            return R.fail("没有该Task");
         }
-        return AjaxResult.success(responseBody);
+        return R.ok(responseBody);
     }
 
     /**
@@ -776,7 +774,7 @@ public class WorkFlowController extends BaseController {
      * @return TaskCompleteResponseBody 返回值
      */
     @PostMapping("/taskClaimAndComplete")
-    public AjaxResult taskClaimAndComplete(@RequestBody TaskCompleteRequestBody requestBody) {
+    public R<TaskCompleteResponseBody> taskClaimAndComplete(@RequestBody TaskCompleteRequestBody requestBody) {
         TaskCompleteResponseBody responseBody = new TaskCompleteResponseBody();
 
         TaskQuery taskQuery = taskService.createTaskQuery()
@@ -817,12 +815,12 @@ public class WorkFlowController extends BaseController {
                         requestBody.getTenantId(), task.getProcessInstanceId(), requestBody.getProcessDefinitionKey());
                 responseBody.setApproveStatus(approveStatus);
             } catch (Exception e) {
-                return AjaxResult.error(e.getMessage());
+                return R.fail(e.getMessage());
             }
         } else {
-            return AjaxResult.error("没有该Task");
+            return R.fail("没有该Task");
         }
-        return AjaxResult.success(responseBody);
+        return R.ok(responseBody);
     }
 
     /**
@@ -832,7 +830,7 @@ public class WorkFlowController extends BaseController {
      * @return TaskCompleteResponseBody 返回值
      */
     @PostMapping("/taskCandidateUserClaimAndComplete")
-    public AjaxResult taskCandidateUserClaimAndComplete(@RequestBody TaskCompleteRequestBody requestBody) {
+    public R<TaskCompleteResponseBody> taskCandidateUserClaimAndComplete(@RequestBody TaskCompleteRequestBody requestBody) {
         TaskCompleteResponseBody responseBody = new TaskCompleteResponseBody();
 
         TaskQuery taskQuery = taskService.createTaskQuery()
@@ -873,12 +871,12 @@ public class WorkFlowController extends BaseController {
                         requestBody.getTenantId(), task.getProcessInstanceId(), requestBody.getProcessDefinitionKey());
                 responseBody.setApproveStatus(approveStatus);
             } catch (Exception e) {
-                return AjaxResult.error(e.getMessage());
+                return R.fail(e.getMessage());
             }
         } else {
-            return AjaxResult.error("没有该Task");
+            return R.fail("没有该Task");
         }
-        return AjaxResult.success(responseBody);
+        return R.ok(responseBody);
     }
     //end *****************************审批部分(驳回和通过)结束*********************************
 
@@ -896,12 +894,12 @@ public class WorkFlowController extends BaseController {
      * @return R<List < BusinessKeysAndProcessInfos>> 结果
      */
     @GetMapping("getBusinessKeysAndProcessInfos")
-    public AjaxResult getBusinessKeysAndProcessInfos(@RequestParam String assignee,
-                                                     @RequestParam String tenantId,
-                                                     @RequestParam String processDefinitionId,
-                                                     @RequestParam String processDefinitionKey,
-                                                     @RequestParam String processInstanceId,
-                                                     @RequestParam String businessKey) {
+    public R<List<BusinessKeysAndProcessInfos>> getBusinessKeysAndProcessInfos(@RequestParam String assignee,
+                                                                               @RequestParam String tenantId,
+                                                                               @RequestParam String processDefinitionId,
+                                                                               @RequestParam String processDefinitionKey,
+                                                                               @RequestParam String processInstanceId,
+                                                                               @RequestParam String businessKey) {
         //返回体
         List<BusinessKeysAndProcessInfos> businessKeysAndProcessInfos = Lists.newArrayList();
 
@@ -961,7 +959,7 @@ public class WorkFlowController extends BaseController {
             businessKeysAndProcessInfos.add(info);
         }
 
-        return AjaxResult.success(businessKeysAndProcessInfos);
+        return R.ok(businessKeysAndProcessInfos);
     }
 
     /**
@@ -975,12 +973,12 @@ public class WorkFlowController extends BaseController {
      * @return List<BusinessKeysAndProcessInfos> 返回体
      */
     @GetMapping("getBusinessKeysAndProcessInfosWithVar")
-    public AjaxResult getBusinessKeysAndProcessInfosWithVar(@RequestParam String assignee,
-                                                            @RequestParam String tenantId,
-                                                            @RequestParam String processDefinitionId,
-                                                            @RequestParam String processDefinitionKey,
-                                                            @RequestParam String processInstanceId,
-                                                            @RequestParam String businessKey) {
+    public R<List<BusinessKeysAndProcessInfos>> getBusinessKeysAndProcessInfosWithVar(@RequestParam String assignee,
+                                                                                      @RequestParam String tenantId,
+                                                                                      @RequestParam String processDefinitionId,
+                                                                                      @RequestParam String processDefinitionKey,
+                                                                                      @RequestParam String processInstanceId,
+                                                                                      @RequestParam String businessKey) {
         //返回体
         List<BusinessKeysAndProcessInfos> businessKeysAndProcessInfos = Lists.newArrayList();
 
@@ -1057,7 +1055,7 @@ public class WorkFlowController extends BaseController {
             businessKeysAndProcessInfos.add(info);
         }
 
-        return AjaxResult.success(businessKeysAndProcessInfos);
+        return R.ok(businessKeysAndProcessInfos);
     }
     //end *****************************审批历史部分结束*********************************
 
@@ -1089,10 +1087,10 @@ public class WorkFlowController extends BaseController {
      * @return R<List < BusinessKeyInfo>> 结果
      */
     @GetMapping(value = "/getBusinessKeyInfos")
-    public AjaxResult getBusinessKeyInfos(@RequestParam String tenantId,
-                                          @RequestParam String processDefinitionId,
-                                          @RequestParam String processDefinitionKey,
-                                          @RequestParam String businessKey) {
+    public R<List<BusinessKeyInfo>> getBusinessKeyInfos(@RequestParam String tenantId,
+                                                        @RequestParam String processDefinitionId,
+                                                        @RequestParam String processDefinitionKey,
+                                                        @RequestParam String businessKey) {
         //返回结果
         List<BusinessKeyInfo> results = Lists.newArrayList();
 
@@ -1131,7 +1129,7 @@ public class WorkFlowController extends BaseController {
 
             results.add(businessKeyInfo);
         }
-        return AjaxResult.success(results);
+        return R.ok(results);
     }
     //end *****************************查看审批进度部分结束*********************************
 
@@ -1148,7 +1146,7 @@ public class WorkFlowController extends BaseController {
      * @return R 返回
      */
     @GetMapping("/suspendProcessInstance")
-    public AjaxResult suspendProcessInstance(
+    public R<String> suspendProcessInstance(
             @RequestParam String tenantId,
             @RequestParam String processDefinitionId,
             @RequestParam String processDefinitionKey,
@@ -1166,7 +1164,7 @@ public class WorkFlowController extends BaseController {
                 .singleResult();
 
         if (processDefinition == null) {
-            return AjaxResult.error("没有该流程定义或者流程定义以终止");
+            return R.fail("没有该流程定义或者流程定义以终止");
         }
 
         ProcessInstanceQuery processInstanceQuery = runtimeService.createProcessInstanceQuery()
@@ -1182,18 +1180,18 @@ public class WorkFlowController extends BaseController {
                 .singleResult();
 
         if (processInstance == null) {
-            return AjaxResult.error("没有该流程实例");
+            return R.fail("没有该流程实例");
         }
 
         if (processInstance.isSuspended()) {
             //如果是暂停，可以执行激活操作 ,参数：流程定义id
             /// runtimeService.activateProcessInstanceById(processInstance.getId());
-            return AjaxResult.error("流程实例已经被暂停禁止重复暂停");
+            return R.fail("流程实例已经被暂停禁止重复暂停");
         } else {
             //如果是激活状态，可以暂停，参数：流程定义id
             runtimeService.suspendProcessInstanceById(processInstance.getId());
         }
-        return AjaxResult.success("成功");
+        return R.ok("成功");
     }
 
     /**
@@ -1206,7 +1204,7 @@ public class WorkFlowController extends BaseController {
      * @return R 返回
      */
     @GetMapping("/suspendProcessDefinition")
-    public AjaxResult suspendProcessDefinition(
+    public R<String> suspendProcessDefinition(
             @RequestParam String tenantId,
             @RequestParam String processDefinitionId,
             @RequestParam String processDefinitionKey,
@@ -1224,7 +1222,7 @@ public class WorkFlowController extends BaseController {
                 .singleResult();
 
         if (processDefinition == null) {
-            return AjaxResult.error("没有该流程定义或者流程定义以终止");
+            return R.fail("没有该流程定义或者流程定义以终止");
         }
 
         if (processDefinition.isSuspended()) {
@@ -1234,7 +1232,7 @@ public class WorkFlowController extends BaseController {
             /// cascade,
             /// DateUtil.date()
             /// );
-            return AjaxResult.error("流程已经被暂停禁止重复暂停");
+            return R.fail("流程已经被暂停禁止重复暂停");
         } else {
             //如果是激活状态，可以暂停，参数1 ：流程定义id ，参数2：是否暂停，参数3：暂停时间
             repositoryService.suspendProcessDefinitionById(
@@ -1243,7 +1241,7 @@ public class WorkFlowController extends BaseController {
                     DateUtil.date());
         }
 
-        return AjaxResult.success("成功");
+        return R.ok("成功");
     }
     //end *****************************暂停审批流程部分结束*********************************
 
@@ -1260,7 +1258,7 @@ public class WorkFlowController extends BaseController {
      * @return R 返回
      */
     @GetMapping("/notSuspendProcessInstance")
-    public AjaxResult notSuspendProcessInstance(
+    public R<String> notSuspendProcessInstance(
             @RequestParam String tenantId,
             @RequestParam String processDefinitionId,
             @RequestParam String processDefinitionKey,
@@ -1279,7 +1277,7 @@ public class WorkFlowController extends BaseController {
                 .singleResult();
 
         if (processDefinition == null) {
-            return AjaxResult.error("没有该流程定义或者流程定义以终止");
+            return R.fail("没有该流程定义或者流程定义以终止");
         }
 
         ProcessInstanceQuery processInstanceQuery = runtimeService.createProcessInstanceQuery()
@@ -1294,7 +1292,7 @@ public class WorkFlowController extends BaseController {
                 .singleResult();
 
         if (processInstance == null) {
-            return AjaxResult.error("没有该流程实例");
+            return R.fail("没有该流程实例");
         }
 
         if (processInstance.isSuspended()) {
@@ -1303,9 +1301,9 @@ public class WorkFlowController extends BaseController {
         } else {
             //如果是激活状态，可以暂停，参数：流程定义id
             /// runtimeService.suspendProcessInstanceById(processInstance.getId());
-            return AjaxResult.error("流程实例已经被开启禁止重复开启");
+            return R.fail("流程实例已经被开启禁止重复开启");
         }
-        return AjaxResult.success("成功");
+        return R.ok("成功");
     }
 
     /**
@@ -1318,7 +1316,7 @@ public class WorkFlowController extends BaseController {
      * @return R 返回
      */
     @GetMapping("/notSuspendProcessDefinition")
-    public AjaxResult notSuspendProcessDefinition(
+    public R<String> notSuspendProcessDefinition(
             @RequestParam String tenantId,
             @RequestParam String processDefinitionId,
             @RequestParam String processDefinitionKey,
@@ -1336,7 +1334,7 @@ public class WorkFlowController extends BaseController {
                 .singleResult();
 
         if (processDefinition == null) {
-            return AjaxResult.error("没有该流程定义或者流程定义以终止");
+            return R.fail("没有该流程定义或者流程定义以终止");
         }
 
         if (processDefinition.isSuspended()) {
@@ -1352,10 +1350,10 @@ public class WorkFlowController extends BaseController {
             /// processDefinition.getId(),
             /// cascade,
             /// DateUtil.date());
-            return AjaxResult.error("流程已经被开启禁止重复开启");
+            return R.fail("流程已经被开启禁止重复开启");
         }
 
-        return AjaxResult.success("成功");
+        return R.ok("成功");
     }
     //end *****************************重新开始审批流程部分结束*********************************
 
