@@ -6,7 +6,6 @@ import com.google.common.collect.Maps;
 import com.ruoyi.common.core.domain.R;
 import com.ruoyi.workflow.service.activiti.ProcessImageService;
 import lombok.Data;
-import lombok.extern.log4j.Log4j2;
 import org.activiti.bpmn.model.BpmnModel;
 import org.activiti.bpmn.model.FlowNode;
 import org.activiti.bpmn.model.SequenceFlow;
@@ -25,6 +24,8 @@ import org.activiti.engine.task.Task;
 import org.activiti.engine.task.TaskQuery;
 import org.activiti.image.impl.DefaultProcessDiagramGenerator;
 import org.apache.commons.io.IOUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
@@ -43,11 +44,12 @@ import java.util.Map;
 /**
  * @author 刘彪
  */
-@Log4j2
 @RestController
 @RequestMapping("/workflow")
 @Transactional(rollbackFor = Exception.class)
 public class WorkFlowController {
+
+    private static final Logger log = LoggerFactory.getLogger(WorkFlowController.class);
 
     public static final String TERMINATE_END = "terminateEndEvent".toLowerCase();
     public static final String CANCEL_END = "cancelEnd".toLowerCase();
