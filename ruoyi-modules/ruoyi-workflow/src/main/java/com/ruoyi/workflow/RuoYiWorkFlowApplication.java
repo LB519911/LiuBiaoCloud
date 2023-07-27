@@ -1,5 +1,7 @@
 package com.ruoyi.workflow;
 
+import com.ruoyi.common.security.annotation.EnableCustomConfig;
+import com.ruoyi.common.security.annotation.EnableRyFeignClients;
 import com.ruoyi.common.swagger.annotation.EnableCustomSwagger2;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -10,8 +12,10 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
  *
  * @author ruoyi
  */
+@EnableCustomConfig
 @EnableCustomSwagger2
-@SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
+@EnableRyFeignClients
+@SpringBootApplication
 public class RuoYiWorkFlowApplication {
     public static void main(String[] args) {
         SpringApplication.run(RuoYiWorkFlowApplication.class, args);
