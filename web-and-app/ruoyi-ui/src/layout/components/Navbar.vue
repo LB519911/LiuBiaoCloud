@@ -24,8 +24,26 @@
           <i class="el-icon-caret-bottom"/>
         </div>
         <el-dropdown-menu slot="dropdown">
+          <el-input
+            type="text"
+            placeholder="搜索部门名称"/>
+          <el-dropdown-item>
+            <span>网络部</span>
+          </el-dropdown-item>
+          <el-dropdown-item>
+            <span>财务部</span>
+          </el-dropdown-item>
+          <el-dropdown-item>
+            <span>后勤部</span>
+          </el-dropdown-item>
+          <el-dropdown-item>
+            <span>申论院</span>
+          </el-dropdown-item>
+          <el-dropdown-item>
+            <span>教务部</span>
+          </el-dropdown-item>
           <router-link to="/user/profile">
-            <el-dropdown-item>个人中心</el-dropdown-item>
+            <el-dropdown-item divided>个人中心</el-dropdown-item>
           </router-link>
           <el-dropdown-item @click.native="setting = true">
             <span>布局设置</span>
