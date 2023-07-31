@@ -25,7 +25,7 @@ pipeline {
             steps {
                 echo '开始编译代码'
                 sh '''
-                        mvn clean package -Dmaven.test.skip=true -f ../pom.xml -Pdev
+                        mvn clean package -Dmaven.test.skip=true -f ./pom.xml -Pdev
                    '''
             }
         }
