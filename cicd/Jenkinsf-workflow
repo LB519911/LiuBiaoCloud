@@ -33,7 +33,7 @@ pipeline {
         stage('构建镜像') {
             steps {
                 echo '开始构建镜像'
-                sh 'docker build -f Dockerfile-workflow -t $APP_NAME .'
+                sh 'docker build -f $Dockerfile -t $APP_NAME .'
             }
         }
 
@@ -72,5 +72,6 @@ pipeline {
         DOCKERHUB_NAMESPACE = 'liubiao_dev'
         STORE = 'dev'
         APP_NAME = 'xtj-workflow'
+        Dockerfile=cicd/Dockerfile-workflow
     }
 }
