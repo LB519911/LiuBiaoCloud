@@ -3,7 +3,6 @@ package com.ruoyi.workflow.api.factory;
 import com.ruoyi.common.core.domain.R;
 import com.ruoyi.workflow.api.RemoteWorkFlowService;
 import com.ruoyi.workflow.api.model.*;
-import com.ruoyi.workflow.api.model.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.cloud.openfeign.FallbackFactory;
