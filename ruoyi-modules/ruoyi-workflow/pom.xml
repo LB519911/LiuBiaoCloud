@@ -109,7 +109,6 @@
             <groupId>com.ruoyi</groupId>
             <artifactId>ruoyi-api-workflow</artifactId>
             <version>3.6.3</version>
-            <scope>compile</scope>
         </dependency>
     </dependencies>
 
