@@ -2,9 +2,7 @@ pipeline {
     agent any
 
     tools {
-        go 'liubiao-go1.19.5'
         jdk 'liubiao-jdk-8'
-        nodejs 'liubiao-node18.10.0'
         maven 'liubiao-mvn-3'
     }
 
@@ -27,7 +25,7 @@ pipeline {
             steps {
                 echo '开始编译代码'
                 sh '''
-                        mvn clean package -Dmaven.test.skip=true -f pom.xml -Pdev
+                        mvn clean package -Dmaven.test.skip=true -f ../pom.xml -Pdev
                    '''
             }
         }
@@ -35,7 +33,7 @@ pipeline {
         stage('构建镜像') {
             steps {
                 echo '开始构建镜像'
-                sh 'docker build -f Dockerfile -t $APP_NAME .'
+                sh 'docker build -f Dockerfile-workflow -t $APP_NAME .'
             }
         }
 
@@ -73,6 +71,6 @@ pipeline {
         REGISTRY = 'registry.cn-hangzhou.aliyuncs.com'
         DOCKERHUB_NAMESPACE = 'liubiao_dev'
         STORE = 'dev'
-        APP_NAME = 'app-all'
+        APP_NAME = 'xtj-workflow'
     }
 }
