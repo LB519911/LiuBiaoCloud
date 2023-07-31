@@ -24,5 +24,5 @@ public class ServiceNameConstants {
     /**
      * 工作流服务
      */
-    public static final String WORKFLOW = "ruoyi-workflow";
+    public static final String WORKFLOW_SERVICE = "ruoyi-workflow";
 }

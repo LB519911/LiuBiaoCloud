@@ -9,10 +9,10 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>ruoyi-api-system</artifactId>
+    <artifactId>ruoyi-api-workflow</artifactId>
 
     <description>
-        ruoyi-api-system系统接口模块
+        ruoyi-api-workflow工作流接口模块
     </description>
 
     <dependencies>
