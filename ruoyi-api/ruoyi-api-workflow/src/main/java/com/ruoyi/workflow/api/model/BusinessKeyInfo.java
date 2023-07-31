@@ -1,27 +1,23 @@
-package com.ruoyi.sorkflow.api.model;
+package com.ruoyi.workflow.api.model;
 
 import lombok.Data;
 
 import java.io.Serializable;
-import java.util.Map;
 
 /**
  * @author liubiao
  */
 @Data
-public class BusinessKeysAndProcessInfos implements Serializable {
+public class BusinessKeyInfo implements Serializable {
     private static final long serialVersionUID = 1L;
+
     String businessKey;
-    String activityId;
     String processDefinitionId;
     String processDefinitionKey;
+    String processDefinitionName;
     String tenantId;
     String processInstanceId;
-    String executionId;
-    String taskId;
-    String time;
-    String startTime;
     String endTime;
-    String claimTime;
-    Map<String, Object> var;
+    String startTime;
+    boolean isEnd = false;
 }

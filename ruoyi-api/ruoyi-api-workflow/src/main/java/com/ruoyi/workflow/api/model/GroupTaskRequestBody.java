@@ -1,4 +1,4 @@
-package com.ruoyi.sorkflow.api.model;
+package com.ruoyi.workflow.api.model;
 
 import lombok.Data;
 

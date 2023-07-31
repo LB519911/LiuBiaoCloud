@@ -1,1 +1,1 @@
-com.ruoyi.system.api.factory.RemoteWorkFlowFallbackFactory
+com.ruoyi.workflow.api.factory.RemoteWorkFlowFallbackFactory
