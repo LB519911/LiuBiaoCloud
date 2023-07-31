@@ -68,9 +68,9 @@ pipeline {
     }
 
     environment {
-        REGISTRY = 'registry.cn-hangzhou.aliyuncs.com'
-        DOCKERHUB_NAMESPACE = 'liubiao_dev'
-        STORE = 'dev'
+        REGISTRY = 'registry.apps.okd.ct-hs-1.xtj.zone'
+        DOCKERHUB_NAMESPACE = 'liubiao'
+        STORE = 'course'
         APP_NAME = 'xtj-workflow'
         Dockerfile = 'cicd/Dockerfile-workflow'
     }
