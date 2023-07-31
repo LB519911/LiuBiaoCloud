@@ -4,8 +4,8 @@ import cn.hutool.core.date.DateUtil;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.ruoyi.common.core.domain.R;
+import com.ruoyi.sorkflow.api.model.*;
 import com.ruoyi.workflow.service.activiti.ProcessImageService;
-import lombok.Data;
 import org.activiti.bpmn.model.BpmnModel;
 import org.activiti.bpmn.model.FlowNode;
 import org.activiti.bpmn.model.SequenceFlow;
@@ -37,7 +37,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -1424,132 +1423,4 @@ public class WorkFlowController {
         return approveStatus;
     }
     //end *****************************工具方法部分结束*********************************
-}
-
-@Data
-class StartProcessInstanceByIdRequestBody {
-    String businessKey;
-    String processDefinitionId;
-    String processDefinitionKey;
-    String definitionName;
-    String tenantId;
-    HashMap<String, Object> globalVar = Maps.newHashMap();
-}
-
-@Data
-class TaskCompleteRequestBody {
-    String businessKey;
-    String processDefinitionId;
-    String taskAssigneeGroup;
-    String processDefinitionKey;
-    String tenantId;
-    String taskAssignee;
-    String candidateUser;
-    Integer currentPage;
-    Integer maxResults;
-    HashMap<String, Object> localVars = Maps.newHashMap();
-}
-
-@Data
-class GroupTaskRequestBody {
-    String taskId;
-    String businessKey;
-    String processDefinitionId;
-    String processDefinitionKey;
-    String taskAssigneeGroup;
-    String candidateUser;
-    String tenantId;
-    String taskAssignee;
-    String taskAssigneeAnther;
-    Integer currentPage;
-    Integer maxResults;
-}
-
-@Data
-class TaskCompleteResponseBody {
-    /**
-     * 是否结束
-     */
-    ApproveStatus approveStatus;
-}
-
-@Data
-class ProcessDefinitionPojo {
-    String id;
-    String name;
-    String description;
-    String key;
-    Integer version;
-    String deploymentId;
-    String resourceName;
-    Integer suspensionState;
-    Integer revision;
-    boolean isInserted;
-    boolean isUpdated;
-    boolean isDeleted;
-    boolean isSuspended;
-    String tenantId;
-}
-
-@Data
-class TaskBusinessKeys {
-    List<String> businessKeys;
-    Long currentPage;
-    Long pageSize;
-    Long pageCount;
-    boolean hasNextPage;
-    boolean hasPreviousPage;
-}
-
-@Data
-class ProcessDefinitionPojoPage {
-    List<ProcessDefinitionPojo> processDefinitionPojoList;
-    Long currentPage;
-    Long pageSize;
-    Long pageCount;
-    boolean hasNextPage;
-    boolean hasPreviousPage;
-}
-
-@Data
-class ApproveStatus {
-    boolean isEnd;
-    String activityId;
-    String endType;
-    String processDefinitionId;
-    String processDefinitionKey;
-    String tenantId;
-    String processInstanceId;
-    String executionId;
-    String taskId;
-}
-
-@Data
-class BusinessKeysAndProcessInfos {
-    String businessKey;
-    String activityId;
-    String processDefinitionId;
-    String processDefinitionKey;
-    String tenantId;
-    String processInstanceId;
-    String executionId;
-    String taskId;
-    String time;
-    String startTime;
-    String endTime;
-    String claimTime;
-    Map<String, Object> var;
-}
-
-@Data
-class BusinessKeyInfo {
-    String businessKey;
-    String processDefinitionId;
-    String processDefinitionKey;
-    String processDefinitionName;
-    String tenantId;
-    String processInstanceId;
-    String endTime;
-    String startTime;
-    boolean isEnd = false;
 }
