@@ -1,4 +1,4 @@
-package com.ruoyi.sorkflow.api.model;
+package com.ruoyi.workflow.api.model;
 
 import com.google.common.collect.Maps;
 import lombok.Data;
@@ -10,16 +10,12 @@ import java.util.HashMap;
  * @author liubiao
  */
 @Data
-public class TaskCompleteRequestBody implements Serializable {
+public class StartProcessInstanceByIdRequestBody implements Serializable {
     private static final long serialVersionUID = 1L;
     String businessKey;
     String processDefinitionId;
-    String taskAssigneeGroup;
     String processDefinitionKey;
+    String definitionName;
     String tenantId;
-    String taskAssignee;
-    String candidateUser;
-    Integer currentPage;
-    Integer maxResults;
-    HashMap<String, Object> localVars = Maps.newHashMap();
+    HashMap<String, Object> globalVar = Maps.newHashMap();
 }
