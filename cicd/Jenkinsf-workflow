@@ -72,6 +72,6 @@ pipeline {
         DOCKERHUB_NAMESPACE = 'liubiao_dev'
         STORE = 'dev'
         APP_NAME = 'xtj-workflow'
-        Dockerfile=cicd/Dockerfile-workflow
+        Dockerfile = 'cicd/Dockerfile-workflow'
     }
 }
