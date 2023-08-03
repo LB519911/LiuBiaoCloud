@@ -11,7 +11,7 @@
  Target Server Version : 80033
  File Encoding         : 65001
 
- Date: 03/08/2023 15:44:36
+ Date: 03/08/2023 16:23:15
 */
 
 SET NAMES utf8mb4;
@@ -368,6 +368,7 @@ BEGIN;
 INSERT INTO `act_re_deployment` (`ID_`, `NAME_`, `CATEGORY_`, `KEY_`, `TENANT_ID_`, `DEPLOY_TIME_`, `ENGINE_VERSION_`, `VERSION_`, `PROJECT_RELEASE_VERSION_`) VALUES ('1cdec77d-31ce-11ee-8431-d290baac26fb', 'SpringAutoDeployment', NULL, NULL, '', '2023-08-03 15:19:41.242', NULL, 3, NULL);
 INSERT INTO `act_re_deployment` (`ID_`, `NAME_`, `CATEGORY_`, `KEY_`, `TENANT_ID_`, `DEPLOY_TIME_`, `ENGINE_VERSION_`, `VERSION_`, `PROJECT_RELEASE_VERSION_`) VALUES ('5ce0f520-31a7-11ee-bc12-c618c8103f92', 'SpringAutoDeployment', NULL, NULL, '', '2023-08-03 10:42:18.257', NULL, 1, NULL);
 INSERT INTO `act_re_deployment` (`ID_`, `NAME_`, `CATEGORY_`, `KEY_`, `TENANT_ID_`, `DEPLOY_TIME_`, `ENGINE_VERSION_`, `VERSION_`, `PROJECT_RELEASE_VERSION_`) VALUES ('8f8b238f-31c6-11ee-bd0c-2a9faabbe7bc', 'SpringAutoDeployment', NULL, NULL, '', '2023-08-03 14:25:37.658', NULL, 2, NULL);
+INSERT INTO `act_re_deployment` (`ID_`, `NAME_`, `CATEGORY_`, `KEY_`, `TENANT_ID_`, `DEPLOY_TIME_`, `ENGINE_VERSION_`, `VERSION_`, `PROJECT_RELEASE_VERSION_`) VALUES ('ae4853c4-31d3-11ee-9846-d290baac26fb', 'SpringAutoDeployment', NULL, NULL, '', '2023-08-03 15:59:32.687', NULL, 4, NULL);
 COMMIT;
 
 -- ----------------------------
@@ -1984,7 +1985,7 @@ CREATE TABLE `sys_logininfor` (
   PRIMARY KEY (`info_id`),
   KEY `idx_sys_logininfor_s` (`status`),
   KEY `idx_sys_logininfor_lt` (`access_time`)
-) ENGINE=InnoDB AUTO_INCREMENT=111 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='系统访问记录';
+) ENGINE=InnoDB AUTO_INCREMENT=115 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='系统访问记录';
 
 -- ----------------------------
 -- Records of sys_logininfor
@@ -2001,6 +2002,10 @@ INSERT INTO `sys_logininfor` (`info_id`, `user_name`, `ipaddr`, `status`, `msg`,
 INSERT INTO `sys_logininfor` (`info_id`, `user_name`, `ipaddr`, `status`, `msg`, `access_time`) VALUES (108, 'admin', '127.0.0.1', '0', '登录成功', '2023-08-03 14:55:14');
 INSERT INTO `sys_logininfor` (`info_id`, `user_name`, `ipaddr`, `status`, `msg`, `access_time`) VALUES (109, 'admin', '127.0.0.1', '0', '退出成功', '2023-08-03 15:31:28');
 INSERT INTO `sys_logininfor` (`info_id`, `user_name`, `ipaddr`, `status`, `msg`, `access_time`) VALUES (110, 'admin', '127.0.0.1', '0', '登录成功', '2023-08-03 15:31:32');
+INSERT INTO `sys_logininfor` (`info_id`, `user_name`, `ipaddr`, `status`, `msg`, `access_time`) VALUES (111, 'admin', '127.0.0.1', '0', '退出成功', '2023-08-03 16:00:11');
+INSERT INTO `sys_logininfor` (`info_id`, `user_name`, `ipaddr`, `status`, `msg`, `access_time`) VALUES (112, 'admin', '127.0.0.1', '0', '登录成功', '2023-08-03 16:00:15');
+INSERT INTO `sys_logininfor` (`info_id`, `user_name`, `ipaddr`, `status`, `msg`, `access_time`) VALUES (113, 'admin', '127.0.0.1', '0', '退出成功', '2023-08-03 16:05:33');
+INSERT INTO `sys_logininfor` (`info_id`, `user_name`, `ipaddr`, `status`, `msg`, `access_time`) VALUES (114, 'admin', '127.0.0.1', '0', '登录成功', '2023-08-03 16:05:38');
 COMMIT;
 
 -- ----------------------------
