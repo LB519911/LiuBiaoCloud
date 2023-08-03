@@ -82,7 +82,6 @@
     </el-row>
 
     <el-table v-loading="loading" :data="schoolList" @selection-change="handleSelectionChange">
-      <el-table-column type="selection" width="55" align="center"/>
       <el-table-column label="校区名称" align="center" prop="name"/>
       <el-table-column label="地址" align="center" prop="address"/>
       <el-table-column label="建校时间" align="center" prop="date" width="180">
@@ -94,6 +93,7 @@
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
         <template slot-scope="scope">
           <el-button
+            v-if="scope.row.workflowStatus==0"
             size="mini"
             type="text"
             icon="el-icon-s-comment"
@@ -101,6 +101,7 @@
             v-hasPermi="['school:school:edit']">发起审批
           </el-button>
           <el-button
+            v-if="scope.row.workflowStatus==1"
             size="mini"
             type="text"
             icon="el-icon-s-comment"
@@ -108,6 +109,7 @@
             v-hasPermi="['school:school:edit']">审批进度
           </el-button>
           <el-button
+            v-if="scope.row.workflowStatus==0"
             size="mini"
             type="text"
             icon="el-icon-edit"
@@ -115,6 +117,7 @@
             v-hasPermi="['school:school:edit']">修改
           </el-button>
           <el-button
+            v-if="scope.row.workflowStatus==0"
             size="mini"
             type="text"
             icon="el-icon-delete"
@@ -136,7 +139,7 @@
     <!-- 添加或修改分校成立对话框 -->
     <el-dialog :title="title" :visible.sync="open" width="500px" append-to-body>
       <el-form ref="form" :model="form" :rules="rules" label-width="80px">
-        <el-form-item label="" prop="name">
+        <el-form-item label="校区名称" prop="name">
           <el-input v-model="form.name" placeholder="请输入"/>
         </el-form-item>
         <el-form-item label="地址" prop="address">
@@ -163,7 +166,7 @@
 </template>
 
 <script>
-import {listSchool, getSchool, delSchool, addSchool, updateSchool} from "@/api/school/school";
+import {listSchool, getSchool, delSchool, addSchool, updateSchool, startFlow} from "@/api/school/school";
 
 export default {
   name: "School",
@@ -299,10 +302,10 @@ export default {
     startWorkFlow(row) {
       this.reset();
       const id = row.id || this.ids
-      getSchool(id).then(response => {
+      startFlow(id).then(response => {
         this.form = response.data;
-        this.open = true;
-        this.title = "修改分校成立";
+        row.workflowStatus = 1
+        this.$modal.msgSuccess("流程发起成功");
       });
     },
     /** 提交按钮 */
