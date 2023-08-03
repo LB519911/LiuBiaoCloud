@@ -82,7 +82,6 @@
     </el-row>
 
     <el-table v-loading="loading" :data="schoolList" @selection-change="handleSelectionChange">
-      <el-table-column type="selection" width="55" align="center"/>
       <el-table-column label="校区名称" align="center" prop="name"/>
       <el-table-column label="地址" align="center" prop="address"/>
       <el-table-column label="建校时间" align="center" prop="date" width="180">
@@ -93,6 +92,7 @@
       <el-table-column label="简介" align="center" prop="brief"/>
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
         <template slot-scope="scope">
+          值： <br/>
           <el-button
             size="mini"
             type="text"
