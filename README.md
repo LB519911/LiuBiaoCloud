@@ -42,7 +42,7 @@ com.ruoyi
 │       └── ruoyi-job                                 // 定时任务 [9203]
 │       └── ruoyi-file                                // 文件服务 [9300]
         └── ruoyi-workflow                            // 工作流服务 [9400]
-        └── ruoyi-school                            // 工作流演示服务 [9500]
+        └── ruoyi-school                              // 工作流演示服务 [9500]
 ├── ruoyi-visual          // 图形化管理模块
 │       └── ruoyi-visual-monitor                      // 监控中心 [9100]
 ├──pom.xml                // 公共依赖
