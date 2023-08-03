@@ -1,7 +1,7 @@
 <template>
   <div class="app-container">
     <el-form :model="queryParams" ref="queryForm" size="small" :inline="true" v-show="showSearch" label-width="68px">
-      <el-form-item label="" prop="name">
+      <el-form-item label="校区名称" prop="name">
         <el-input
           v-model="queryParams.name"
           placeholder="请输入"
@@ -19,10 +19,10 @@
       </el-form-item>
       <el-form-item label="建校时间" prop="date">
         <el-date-picker clearable
-          v-model="queryParams.date"
-          type="date"
-          value-format="yyyy-MM-dd"
-          placeholder="请选择建校时间">
+                        v-model="queryParams.date"
+                        type="date"
+                        value-format="yyyy-MM-dd"
+                        placeholder="请选择建校时间">
         </el-date-picker>
       </el-form-item>
       <el-form-item>
@@ -40,7 +40,8 @@
           size="mini"
           @click="handleAdd"
           v-hasPermi="['school:school:add']"
-        >新增</el-button>
+        >新增
+        </el-button>
       </el-col>
       <el-col :span="1.5">
         <el-button
@@ -51,7 +52,8 @@
           :disabled="single"
           @click="handleUpdate"
           v-hasPermi="['school:school:edit']"
-        >修改</el-button>
+        >修改
+        </el-button>
       </el-col>
       <el-col :span="1.5">
         <el-button
@@ -62,7 +64,8 @@
           :disabled="multiple"
           @click="handleDelete"
           v-hasPermi="['school:school:remove']"
-        >删除</el-button>
+        >删除
+        </el-button>
       </el-col>
       <el-col :span="1.5">
         <el-button
@@ -72,27 +75,22 @@
           size="mini"
           @click="handleExport"
           v-hasPermi="['school:school:export']"
-        >导出</el-button>
+        >导出
+        </el-button>
       </el-col>
       <right-toolbar :showSearch.sync="showSearch" @queryTable="getList"></right-toolbar>
     </el-row>
 
     <el-table v-loading="loading" :data="schoolList" @selection-change="handleSelectionChange">
-      <el-table-column type="selection" width="55" align="center" />
-      <el-table-column label="" align="center" prop="id" />
-      <el-table-column label="" align="center" prop="name" />
-      <el-table-column label="地址" align="center" prop="address" />
+      <el-table-column type="selection" width="55" align="center"/>
+      <el-table-column label="校区名称" align="center" prop="name"/>
+      <el-table-column label="地址" align="center" prop="address"/>
       <el-table-column label="建校时间" align="center" prop="date" width="180">
         <template slot-scope="scope">
           <span>{{ parseTime(scope.row.date, '{y}-{m}-{d}') }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="运营方式：1第三种方式 2省级加盟总校 3省级直营市级 4市级加盟总校 5市级直营县级 6县级加盟总校 7总校直营 8县级加盟市级 9试运营 16外机构" align="center" prop="yyMode" />
-      <el-table-column label="运营类型 1直营 2加盟 3第三种 4外机构" align="center" prop="yyType" />
-      <el-table-column label="简介" align="center" prop="brief" />
-      <el-table-column label="运营状态：1正常，2删除，3未完善，4停业" align="center" prop="status" />
-      <el-table-column label="停课状态" align="center" prop="state" />
-      <el-table-column label="类型，school校区，depart部门" align="center" prop="category" />
+      <el-table-column label="简介" align="center" prop="brief"/>
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
         <template slot-scope="scope">
           <el-button
@@ -101,18 +99,20 @@
             icon="el-icon-edit"
             @click="handleUpdate(scope.row)"
             v-hasPermi="['school:school:edit']"
-          >修改</el-button>
+          >修改
+          </el-button>
           <el-button
             size="mini"
             type="text"
             icon="el-icon-delete"
             @click="handleDelete(scope.row)"
             v-hasPermi="['school:school:remove']"
-          >删除</el-button>
+          >删除
+          </el-button>
         </template>
       </el-table-column>
     </el-table>
-    
+
     <pagination
       v-show="total>0"
       :total="total"
@@ -125,21 +125,21 @@
     <el-dialog :title="title" :visible.sync="open" width="500px" append-to-body>
       <el-form ref="form" :model="form" :rules="rules" label-width="80px">
         <el-form-item label="" prop="name">
-          <el-input v-model="form.name" placeholder="请输入" />
+          <el-input v-model="form.name" placeholder="请输入"/>
         </el-form-item>
         <el-form-item label="地址" prop="address">
-          <el-input v-model="form.address" placeholder="请输入地址" />
+          <el-input v-model="form.address" placeholder="请输入地址"/>
         </el-form-item>
         <el-form-item label="建校时间" prop="date">
           <el-date-picker clearable
-            v-model="form.date"
-            type="date"
-            value-format="yyyy-MM-dd"
-            placeholder="请选择建校时间">
+                          v-model="form.date"
+                          type="date"
+                          value-format="yyyy-MM-dd"
+                          placeholder="请选择建校时间">
           </el-date-picker>
         </el-form-item>
         <el-form-item label="简介" prop="brief">
-          <el-input v-model="form.brief" type="textarea" placeholder="请输入内容" />
+          <el-input v-model="form.brief" type="textarea" placeholder="请输入内容"/>
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
@@ -151,7 +151,7 @@
 </template>
 
 <script>
-import { listSchool, getSchool, delSchool, addSchool, updateSchool } from "@/api/school/school";
+import {listSchool, getSchool, delSchool, addSchool, updateSchool} from "@/api/school/school";
 
 export default {
   name: "School",
@@ -191,8 +191,7 @@ export default {
       // 表单参数
       form: {},
       // 表单校验
-      rules: {
-      }
+      rules: {}
     };
   },
   created() {
@@ -265,7 +264,7 @@ export default {
     // 多选框选中数据
     handleSelectionChange(selection) {
       this.ids = selection.map(item => item.id)
-      this.single = selection.length!==1
+      this.single = selection.length !== 1
       this.multiple = !selection.length
     },
     /** 新增按钮操作 */
@@ -307,12 +306,13 @@ export default {
     /** 删除按钮操作 */
     handleDelete(row) {
       const ids = row.id || this.ids;
-      this.$modal.confirm('是否确认删除分校成立编号为"' + ids + '"的数据项？').then(function() {
+      this.$modal.confirm('是否确认删除分校成立编号为"' + ids + '"的数据项？').then(function () {
         return delSchool(ids);
       }).then(() => {
         this.getList();
         this.$modal.msgSuccess("删除成功");
-      }).catch(() => {});
+      }).catch(() => {
+      });
     },
     /** 导出按钮操作 */
     handleExport() {
