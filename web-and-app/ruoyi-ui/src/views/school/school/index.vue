@@ -96,18 +96,30 @@
           <el-button
             size="mini"
             type="text"
+            icon="el-icon-s-comment"
+            @click="startWorkFlow(scope.row)"
+            v-hasPermi="['school:school:edit']">发起审批
+          </el-button>
+          <el-button
+            size="mini"
+            type="text"
+            icon="el-icon-s-comment"
+            @click="startWorkFlow(scope.row)"
+            v-hasPermi="['school:school:edit']">审批进度
+          </el-button>
+          <el-button
+            size="mini"
+            type="text"
             icon="el-icon-edit"
             @click="handleUpdate(scope.row)"
-            v-hasPermi="['school:school:edit']"
-          >修改
+            v-hasPermi="['school:school:edit']">修改
           </el-button>
           <el-button
             size="mini"
             type="text"
             icon="el-icon-delete"
             @click="handleDelete(scope.row)"
-            v-hasPermi="['school:school:remove']"
-          >删除
+            v-hasPermi="['school:school:remove']">删除
           </el-button>
         </template>
       </el-table-column>
@@ -275,6 +287,16 @@ export default {
     },
     /** 修改按钮操作 */
     handleUpdate(row) {
+      this.reset();
+      const id = row.id || this.ids
+      getSchool(id).then(response => {
+        this.form = response.data;
+        this.open = true;
+        this.title = "修改分校成立";
+      });
+    },
+    /** 发起审批按钮操作 */
+    startWorkFlow(row) {
       this.reset();
       const id = row.id || this.ids
       getSchool(id).then(response => {
