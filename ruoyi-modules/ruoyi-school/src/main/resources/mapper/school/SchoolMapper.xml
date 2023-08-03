@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.school.mapper.SchoolMapper">
+    
+    <resultMap type="School" id="SchoolResult">
+        <result property="id"    column="id"    />
+        <result property="name"    column="name"    />
+        <result property="alias"    column="alias"    />
+        <result property="province"    column="province"    />
+        <result property="provinceCode"    column="province_code"    />
+        <result property="city"    column="city"    />
+        <result property="cityCode"    column="city_code"    />
+        <result property="area"    column="area"    />
+        <result property="areaCode"    column="area_code"    />
+        <result property="address"    column="address"    />
+        <result property="date"    column="date"    />
+        <result property="type"    column="type"    />
+        <result property="yyMode"    column="yy_mode"    />
+        <result property="yyType"    column="yy_type"    />
+        <result property="brief"    column="brief"    />
+        <result property="status"    column="status"    />
+        <result property="state"    column="state"    />
+        <result property="category"    column="category"    />
+        <result property="addressId"    column="address_id"    />
+        <result property="adminId"    column="admin_id"    />
+        <result property="pid"    column="pid"    />
+        <result property="directlyId"    column="directly_id"    />
+        <result property="classId"    column="class_id"    />
+        <result property="crmId"    column="crm_id"    />
+        <result property="originId"    column="origin_id"    />
+        <result property="createdAt"    column="created_at"    />
+        <result property="updatedAt"    column="updated_at"    />
+        <result property="deletedAt"    column="deleted_at"    />
+        <result property="doorHeadPhoto"    column="door_head_photo"    />
+        <result property="businessLicense"    column="business_license"    />
+        <result property="workflowId"    column="workflow_id"    />
+        <result property="workflowTaskNode"    column="workflow_task_node"    />
+        <result property="workflowStatus"    column="workflow_status"    />
+    </resultMap>
+
+    <sql id="selectSchoolVo">
+        select id, name, alias, province, province_code, city, city_code, area, area_code, address, date, type, yy_mode, yy_type, brief, status, state, category, address_id, admin_id, pid, directly_id, class_id, crm_id, origin_id, created_at, updated_at, deleted_at, door_head_photo, business_license, workflow_id, workflow_task_node, workflow_status from school
+    </sql>
+
+    <select id="selectSchoolList" parameterType="School" resultMap="SchoolResult">
+        <include refid="selectSchoolVo"/>
+        <where>  
+            <if test="name != null  and name != ''"> and name like concat('%', #{name}, '%')</if>
+            <if test="alias != null  and alias != ''"> and alias = #{alias}</if>
+            <if test="province != null  and province != ''"> and province = #{province}</if>
+            <if test="provinceCode != null  and provinceCode != ''"> and province_code = #{provinceCode}</if>
+            <if test="city != null  and city != ''"> and city = #{city}</if>
+            <if test="cityCode != null  and cityCode != ''"> and city_code = #{cityCode}</if>
+            <if test="area != null  and area != ''"> and area = #{area}</if>
+            <if test="areaCode != null  and areaCode != ''"> and area_code = #{areaCode}</if>
+            <if test="address != null  and address != ''"> and address = #{address}</if>
+            <if test="date != null "> and date = #{date}</if>
+            <if test="type != null "> and type = #{type}</if>
+            <if test="yyMode != null "> and yy_mode = #{yyMode}</if>
+            <if test="yyType != null "> and yy_type = #{yyType}</if>
+            <if test="brief != null  and brief != ''"> and brief = #{brief}</if>
+            <if test="status != null "> and status = #{status}</if>
+            <if test="state != null "> and state = #{state}</if>
+            <if test="category != null  and category != ''"> and category = #{category}</if>
+            <if test="addressId != null "> and address_id = #{addressId}</if>
+            <if test="adminId != null "> and admin_id = #{adminId}</if>
+            <if test="pid != null "> and pid = #{pid}</if>
+            <if test="directlyId != null "> and directly_id = #{directlyId}</if>
+            <if test="classId != null "> and class_id = #{classId}</if>
+            <if test="crmId != null "> and crm_id = #{crmId}</if>
+            <if test="originId != null "> and origin_id = #{originId}</if>
+            <if test="createdAt != null "> and created_at = #{createdAt}</if>
+            <if test="updatedAt != null "> and updated_at = #{updatedAt}</if>
+            <if test="deletedAt != null "> and deleted_at = #{deletedAt}</if>
+            <if test="doorHeadPhoto != null  and doorHeadPhoto != ''"> and door_head_photo = #{doorHeadPhoto}</if>
+            <if test="businessLicense != null  and businessLicense != ''"> and business_license = #{businessLicense}</if>
+            <if test="workflowId != null  and workflowId != ''"> and workflow_id = #{workflowId}</if>
+            <if test="workflowTaskNode != null "> and workflow_task_node = #{workflowTaskNode}</if>
+            <if test="workflowStatus != null "> and workflow_status = #{workflowStatus}</if>
+        </where>
+    </select>
+    
+    <select id="selectSchoolById" parameterType="String" resultMap="SchoolResult">
+        <include refid="selectSchoolVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertSchool" parameterType="School" useGeneratedKeys="true" keyProperty="id">
+        insert into school
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="name != null">name,</if>
+            <if test="alias != null">alias,</if>
+            <if test="province != null">province,</if>
+            <if test="provinceCode != null">province_code,</if>
+            <if test="city != null">city,</if>
+            <if test="cityCode != null">city_code,</if>
+            <if test="area != null">area,</if>
+            <if test="areaCode != null">area_code,</if>
+            <if test="address != null">address,</if>
+            <if test="date != null">date,</if>
+            <if test="type != null">type,</if>
+            <if test="yyMode != null">yy_mode,</if>
+            <if test="yyType != null">yy_type,</if>
+            <if test="brief != null">brief,</if>
+            <if test="status != null">status,</if>
+            <if test="state != null">state,</if>
+            <if test="category != null">category,</if>
+            <if test="addressId != null">address_id,</if>
+            <if test="adminId != null">admin_id,</if>
+            <if test="pid != null">pid,</if>
+            <if test="directlyId != null">directly_id,</if>
+            <if test="classId != null">class_id,</if>
+            <if test="crmId != null">crm_id,</if>
+            <if test="originId != null">origin_id,</if>
+            <if test="createdAt != null">created_at,</if>
+            <if test="updatedAt != null">updated_at,</if>
+            <if test="deletedAt != null">deleted_at,</if>
+            <if test="doorHeadPhoto != null">door_head_photo,</if>
+            <if test="businessLicense != null">business_license,</if>
+            <if test="workflowId != null">workflow_id,</if>
+            <if test="workflowTaskNode != null">workflow_task_node,</if>
+            <if test="workflowStatus != null">workflow_status,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="name != null">#{name},</if>
+            <if test="alias != null">#{alias},</if>
+            <if test="province != null">#{province},</if>
+            <if test="provinceCode != null">#{provinceCode},</if>
+            <if test="city != null">#{city},</if>
+            <if test="cityCode != null">#{cityCode},</if>
+            <if test="area != null">#{area},</if>
+            <if test="areaCode != null">#{areaCode},</if>
+            <if test="address != null">#{address},</if>
+            <if test="date != null">#{date},</if>
+            <if test="type != null">#{type},</if>
+            <if test="yyMode != null">#{yyMode},</if>
+            <if test="yyType != null">#{yyType},</if>
+            <if test="brief != null">#{brief},</if>
+            <if test="status != null">#{status},</if>
+            <if test="state != null">#{state},</if>
+            <if test="category != null">#{category},</if>
+            <if test="addressId != null">#{addressId},</if>
+            <if test="adminId != null">#{adminId},</if>
+            <if test="pid != null">#{pid},</if>
+            <if test="directlyId != null">#{directlyId},</if>
+            <if test="classId != null">#{classId},</if>
+            <if test="crmId != null">#{crmId},</if>
+            <if test="originId != null">#{originId},</if>
+            <if test="createdAt != null">#{createdAt},</if>
+            <if test="updatedAt != null">#{updatedAt},</if>
+            <if test="deletedAt != null">#{deletedAt},</if>
+            <if test="doorHeadPhoto != null">#{doorHeadPhoto},</if>
+            <if test="businessLicense != null">#{businessLicense},</if>
+            <if test="workflowId != null">#{workflowId},</if>
+            <if test="workflowTaskNode != null">#{workflowTaskNode},</if>
+            <if test="workflowStatus != null">#{workflowStatus},</if>
+         </trim>
+    </insert>
+
+    <update id="updateSchool" parameterType="School">
+        update school
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="name != null">name = #{name},</if>
+            <if test="alias != null">alias = #{alias},</if>
+            <if test="province != null">province = #{province},</if>
+            <if test="provinceCode != null">province_code = #{provinceCode},</if>
+            <if test="city != null">city = #{city},</if>
+            <if test="cityCode != null">city_code = #{cityCode},</if>
+            <if test="area != null">area = #{area},</if>
+            <if test="areaCode != null">area_code = #{areaCode},</if>
+            <if test="address != null">address = #{address},</if>
+            <if test="date != null">date = #{date},</if>
+            <if test="type != null">type = #{type},</if>
+            <if test="yyMode != null">yy_mode = #{yyMode},</if>
+            <if test="yyType != null">yy_type = #{yyType},</if>
+            <if test="brief != null">brief = #{brief},</if>
+            <if test="status != null">status = #{status},</if>
+            <if test="state != null">state = #{state},</if>
+            <if test="category != null">category = #{category},</if>
+            <if test="addressId != null">address_id = #{addressId},</if>
+            <if test="adminId != null">admin_id = #{adminId},</if>
+            <if test="pid != null">pid = #{pid},</if>
+            <if test="directlyId != null">directly_id = #{directlyId},</if>
+            <if test="classId != null">class_id = #{classId},</if>
+            <if test="crmId != null">crm_id = #{crmId},</if>
+            <if test="originId != null">origin_id = #{originId},</if>
+            <if test="createdAt != null">created_at = #{createdAt},</if>
+            <if test="updatedAt != null">updated_at = #{updatedAt},</if>
+            <if test="deletedAt != null">deleted_at = #{deletedAt},</if>
+            <if test="doorHeadPhoto != null">door_head_photo = #{doorHeadPhoto},</if>
+            <if test="businessLicense != null">business_license = #{businessLicense},</if>
+            <if test="workflowId != null">workflow_id = #{workflowId},</if>
+            <if test="workflowTaskNode != null">workflow_task_node = #{workflowTaskNode},</if>
+            <if test="workflowStatus != null">workflow_status = #{workflowStatus},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteSchoolById" parameterType="String">
+        delete from school where id = #{id}
+    </delete>
+
+    <delete id="deleteSchoolByIds" parameterType="String">
+        delete from school where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>
