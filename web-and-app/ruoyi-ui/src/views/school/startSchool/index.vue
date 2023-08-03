@@ -92,8 +92,8 @@
       <el-table-column label="简介" align="center" prop="brief"/>
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
         <template slot-scope="scope">
-          值： <br/>
           <el-button
+            v-if="scope.row.workflowStatus==0"
             size="mini"
             type="text"
             icon="el-icon-s-comment"
@@ -101,6 +101,7 @@
             v-hasPermi="['school:school:edit']">发起审批
           </el-button>
           <el-button
+            v-if="scope.row.workflowStatus==1"
             size="mini"
             type="text"
             icon="el-icon-s-comment"
@@ -108,6 +109,7 @@
             v-hasPermi="['school:school:edit']">审批进度
           </el-button>
           <el-button
+            v-if="scope.row.workflowStatus==0"
             size="mini"
             type="text"
             icon="el-icon-edit"
@@ -115,6 +117,7 @@
             v-hasPermi="['school:school:edit']">修改
           </el-button>
           <el-button
+            v-if="scope.row.workflowStatus==0"
             size="mini"
             type="text"
             icon="el-icon-delete"
@@ -136,7 +139,7 @@
     <!-- 添加或修改分校成立对话框 -->
     <el-dialog :title="title" :visible.sync="open" width="500px" append-to-body>
       <el-form ref="form" :model="form" :rules="rules" label-width="80px">
-        <el-form-item label="" prop="name">
+        <el-form-item label="校区名称" prop="name">
           <el-input v-model="form.name" placeholder="请输入"/>
         </el-form-item>
         <el-form-item label="地址" prop="address">
