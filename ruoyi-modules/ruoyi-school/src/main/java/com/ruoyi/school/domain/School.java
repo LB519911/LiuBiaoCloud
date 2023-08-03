@@ -8,7 +8,7 @@ import com.ruoyi.common.core.annotation.Excel;
 import com.ruoyi.common.core.web.domain.BaseEntity;
 
 /**
- * 分校管理对象 school
+ * 分校成立对象 school
  * 
  * @author 刘彪
  * @date 2023-08-03
@@ -17,39 +17,32 @@ public class School extends BaseEntity
 {
     private static final long serialVersionUID = 1L;
 
-    /** $column.columnComment */
+    /**  */
     private String id;
 
-    /** $column.columnComment */
-    @Excel(name = "${comment}", readConverterExp = "$column.readConverterExp()")
+    /**  */
+    @Excel(name = "")
     private String name;
 
-    /** $column.columnComment */
-    @Excel(name = "${comment}", readConverterExp = "$column.readConverterExp()")
+    /**  */
     private String alias;
 
-    /** $column.columnComment */
-    @Excel(name = "${comment}", readConverterExp = "$column.readConverterExp()")
+    /**  */
     private String province;
 
-    /** $column.columnComment */
-    @Excel(name = "${comment}", readConverterExp = "$column.readConverterExp()")
+    /**  */
     private String provinceCode;
 
-    /** $column.columnComment */
-    @Excel(name = "${comment}", readConverterExp = "$column.readConverterExp()")
+    /**  */
     private String city;
 
-    /** $column.columnComment */
-    @Excel(name = "${comment}", readConverterExp = "$column.readConverterExp()")
+    /**  */
     private String cityCode;
 
-    /** $column.columnComment */
-    @Excel(name = "${comment}", readConverterExp = "$column.readConverterExp()")
+    /**  */
     private String area;
 
-    /** $column.columnComment */
-    @Excel(name = "${comment}", readConverterExp = "$column.readConverterExp()")
+    /**  */
     private String areaCode;
 
     /** 地址 */
@@ -62,16 +55,14 @@ public class School extends BaseEntity
     private Date date;
 
     /** 类型：1省会级，2市级，3县级 */
-    @Excel(name = "类型：1省会级，2市级，3县级")
     private Long type;
 
     /** 运营方式：1第三种方式 2省级加盟总校 3省级直营市级 4市级加盟总校 5市级直营县级 6县级加盟总校 7总校直营 8县级加盟市级 9试运营 16外机构 */
     @Excel(name = "运营方式：1第三种方式 2省级加盟总校 3省级直营市级 4市级加盟总校 5市级直营县级 6县级加盟总校 7总校直营 8县级加盟市级 9试运营 16外机构")
     private Long yyMode;
 
-    /** 运营类型 1直营 2加盟 3第三种 4外机构
- */
-    @Excel(name = "运营类型 1直营 2加盟 3第三种 4外机构 ")
+    /** 运营类型 1直营 2加盟 3第三种 4外机构 */
+    @Excel(name = "运营类型 1直营 2加盟 3第三种 4外机构")
     private Long yyType;
 
     /** 简介 */
@@ -86,70 +77,53 @@ public class School extends BaseEntity
     @Excel(name = "停课状态", readConverterExp = "暂=定")
     private Long state;
 
-    /** 类型，school校区，depart部门
- */
-    @Excel(name = "类型，school校区，depart部门 ")
+    /** 类型，school校区，depart部门 */
+    @Excel(name = "类型，school校区，depart部门")
     private String category;
 
-    /** $column.columnComment */
-    @Excel(name = "${comment}", readConverterExp = "$column.readConverterExp()")
+    /**  */
     private Long addressId;
 
     /** 当前负责人ID */
-    @Excel(name = "当前负责人ID")
     private Long adminId;
 
-    /** 上级ID
- */
-    @Excel(name = "上级ID ")
+    /** 上级ID */
     private Long pid;
 
     /** 负责的省级校区ID */
-    @Excel(name = "负责的省级校区ID")
     private Long directlyId;
 
     /** 排课校区ID */
-    @Excel(name = "排课校区ID")
     private Long classId;
 
     /** CRM系统ID */
-    @Excel(name = "CRM系统ID")
     private Long crmId;
 
     /** 原始ID */
-    @Excel(name = "原始ID")
     private Long originId;
 
-    /** $column.columnComment */
-    @Excel(name = "${comment}", readConverterExp = "$column.readConverterExp()")
+    /**  */
     private Date createdAt;
 
-    /** $column.columnComment */
-    @Excel(name = "${comment}", readConverterExp = "$column.readConverterExp()")
+    /**  */
     private Date updatedAt;
 
-    /** $column.columnComment */
-    @Excel(name = "${comment}", readConverterExp = "$column.readConverterExp()")
+    /**  */
     private Date deletedAt;
 
     /** 门头照片 */
-    @Excel(name = "门头照片")
     private String doorHeadPhoto;
 
     /** 营业执照 */
-    @Excel(name = "营业执照")
     private String businessLicense;
 
     /** 流程实例ID（审批进度、历史都要用到这个字段） */
-    @Excel(name = "流程实例ID", readConverterExp = "审=批进度、历史都要用到这个字段")
     private String workflowId;
 
     /** 当前审批到哪里（BPMN中的TaskName） */
-    @Excel(name = "当前审批到哪里", readConverterExp = "B=PMN中的TaskName")
     private Long workflowTaskNode;
 
     /** 审批状态（0:待审批、1审批中、2审批不通过、3审批通过、4审批中途不通过) */
-    @Excel(name = "审批状态", readConverterExp = "审批状态（0:待审批、1审批中、2审批不通过、3审批通过、4审批中途不通过)")
     private Long workflowStatus;
 
     public void setId(String id) 
