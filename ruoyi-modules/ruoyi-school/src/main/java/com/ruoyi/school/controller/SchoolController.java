@@ -104,6 +104,14 @@ public class SchoolController extends BaseController {
     @Log(title = "分校成立发起流程", businessType = BusinessType.UPDATE)
     @GetMapping("/startFlow/{id}")
     public AjaxResult startFlow(@PathVariable("id") String id) {
+        School school = new School();
+        school.setId(id);
+        school.setWorkflowStatus(1L);
+        try {
+            schoolService.updateSchool(school);
+        } catch (Exception e) {
+            return error(e.getMessage());
+        }
         return success(schoolService.selectSchoolById(id));
     }
 }

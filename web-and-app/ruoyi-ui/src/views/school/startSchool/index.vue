@@ -166,7 +166,7 @@
 </template>
 
 <script>
-import {listSchool, getSchool, delSchool, addSchool, updateSchool,startFlow} from "@/api/school/school";
+import {listSchool, getSchool, delSchool, addSchool, updateSchool, startFlow} from "@/api/school/school";
 
 export default {
   name: "School",
@@ -304,6 +304,8 @@ export default {
       const id = row.id || this.ids
       startFlow(id).then(response => {
         this.form = response.data;
+        row.workflowStatus = 1
+        this.$modal.msgSuccess("流程发起成功");
       });
     },
     /** 提交按钮 */
