@@ -1,9 +1,11 @@
 package com.ruoyi.school.controller;
 
 import java.util.List;
-import java.io.IOException;
 import javax.servlet.http.HttpServletResponse;
 
+import com.ruoyi.common.core.domain.R;
+import com.ruoyi.workflow.api.RemoteWorkFlowService;
+import com.ruoyi.workflow.api.model.ProcessDefinitionPojo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -34,6 +36,8 @@ import com.ruoyi.common.core.web.page.TableDataInfo;
 public class SchoolController extends BaseController {
     @Autowired
     private ISchoolService schoolService;
+    @Autowired
+    private RemoteWorkFlowService remoteWorkFlowService;
 
     /**
      * 查询分校成立列表
@@ -104,6 +108,10 @@ public class SchoolController extends BaseController {
     @Log(title = "分校成立发起流程", businessType = BusinessType.UPDATE)
     @GetMapping("/startFlow/{id}")
     public AjaxResult startFlow(@PathVariable("id") String id) {
+        //查询流程信息
+        R<ProcessDefinitionPojo> processDefinitions = remoteWorkFlowService
+                .getDeployLatestListByName("x", "xtj", "x");
+
         School school = new School();
         school.setId(id);
         school.setWorkflowStatus(1L);
