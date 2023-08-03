@@ -9,62 +9,6 @@
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
-      <el-form-item label="" prop="alias">
-        <el-input
-          v-model="queryParams.alias"
-          placeholder="请输入"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="" prop="province">
-        <el-input
-          v-model="queryParams.province"
-          placeholder="请输入"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="" prop="provinceCode">
-        <el-input
-          v-model="queryParams.provinceCode"
-          placeholder="请输入"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="" prop="city">
-        <el-input
-          v-model="queryParams.city"
-          placeholder="请输入"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="" prop="cityCode">
-        <el-input
-          v-model="queryParams.cityCode"
-          placeholder="请输入"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="" prop="area">
-        <el-input
-          v-model="queryParams.area"
-          placeholder="请输入"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="" prop="areaCode">
-        <el-input
-          v-model="queryParams.areaCode"
-          placeholder="请输入"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
       <el-form-item label="地址" prop="address">
         <el-input
           v-model="queryParams.address"
@@ -80,134 +24,6 @@
           value-format="yyyy-MM-dd"
           placeholder="请选择建校时间">
         </el-date-picker>
-      </el-form-item>
-      <el-form-item label="运营方式：1第三种方式 2省级加盟总校 3省级直营市级 4市级加盟总校 5市级直营县级 6县级加盟总校 7总校直营 8县级加盟市级 9试运营 16外机构" prop="yyMode">
-        <el-input
-          v-model="queryParams.yyMode"
-          placeholder="请输入运营方式：1第三种方式 2省级加盟总校 3省级直营市级 4市级加盟总校 5市级直营县级 6县级加盟总校 7总校直营 8县级加盟市级 9试运营 16外机构"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="停课状态" prop="state">
-        <el-input
-          v-model="queryParams.state"
-          placeholder="请输入停课状态"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="类型，school校区，depart部门" prop="category">
-        <el-input
-          v-model="queryParams.category"
-          placeholder="请输入类型，school校区，depart部门"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="" prop="addressId">
-        <el-input
-          v-model="queryParams.addressId"
-          placeholder="请输入"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="当前负责人ID" prop="adminId">
-        <el-input
-          v-model="queryParams.adminId"
-          placeholder="请输入当前负责人ID"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="上级ID" prop="pid">
-        <el-input
-          v-model="queryParams.pid"
-          placeholder="请输入上级ID"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="负责的省级校区ID" prop="directlyId">
-        <el-input
-          v-model="queryParams.directlyId"
-          placeholder="请输入负责的省级校区ID"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="排课校区ID" prop="classId">
-        <el-input
-          v-model="queryParams.classId"
-          placeholder="请输入排课校区ID"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="CRM系统ID" prop="crmId">
-        <el-input
-          v-model="queryParams.crmId"
-          placeholder="请输入CRM系统ID"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="原始ID" prop="originId">
-        <el-input
-          v-model="queryParams.originId"
-          placeholder="请输入原始ID"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="" prop="createdAt">
-        <el-date-picker clearable
-          v-model="queryParams.createdAt"
-          type="date"
-          value-format="yyyy-MM-dd"
-          placeholder="请选择">
-        </el-date-picker>
-      </el-form-item>
-      <el-form-item label="" prop="updatedAt">
-        <el-date-picker clearable
-          v-model="queryParams.updatedAt"
-          type="date"
-          value-format="yyyy-MM-dd"
-          placeholder="请选择">
-        </el-date-picker>
-      </el-form-item>
-      <el-form-item label="" prop="deletedAt">
-        <el-date-picker clearable
-          v-model="queryParams.deletedAt"
-          type="date"
-          value-format="yyyy-MM-dd"
-          placeholder="请选择">
-        </el-date-picker>
-      </el-form-item>
-      <el-form-item label="门头照片" prop="doorHeadPhoto">
-        <el-input
-          v-model="queryParams.doorHeadPhoto"
-          placeholder="请输入门头照片"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="营业执照" prop="businessLicense">
-        <el-input
-          v-model="queryParams.businessLicense"
-          placeholder="请输入营业执照"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="当前审批到哪里" prop="workflowTaskNode">
-        <el-input
-          v-model="queryParams.workflowTaskNode"
-          placeholder="请输入当前审批到哪里"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
       </el-form-item>
       <el-form-item>
         <el-button type="primary" icon="el-icon-search" size="mini" @click="handleQuery">搜索</el-button>
@@ -265,53 +81,18 @@
       <el-table-column type="selection" width="55" align="center" />
       <el-table-column label="" align="center" prop="id" />
       <el-table-column label="" align="center" prop="name" />
-      <el-table-column label="" align="center" prop="alias" />
-      <el-table-column label="" align="center" prop="province" />
-      <el-table-column label="" align="center" prop="provinceCode" />
-      <el-table-column label="" align="center" prop="city" />
-      <el-table-column label="" align="center" prop="cityCode" />
-      <el-table-column label="" align="center" prop="area" />
-      <el-table-column label="" align="center" prop="areaCode" />
       <el-table-column label="地址" align="center" prop="address" />
       <el-table-column label="建校时间" align="center" prop="date" width="180">
         <template slot-scope="scope">
           <span>{{ parseTime(scope.row.date, '{y}-{m}-{d}') }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="类型：1省会级，2市级，3县级" align="center" prop="type" />
       <el-table-column label="运营方式：1第三种方式 2省级加盟总校 3省级直营市级 4市级加盟总校 5市级直营县级 6县级加盟总校 7总校直营 8县级加盟市级 9试运营 16外机构" align="center" prop="yyMode" />
       <el-table-column label="运营类型 1直营 2加盟 3第三种 4外机构" align="center" prop="yyType" />
       <el-table-column label="简介" align="center" prop="brief" />
       <el-table-column label="运营状态：1正常，2删除，3未完善，4停业" align="center" prop="status" />
       <el-table-column label="停课状态" align="center" prop="state" />
       <el-table-column label="类型，school校区，depart部门" align="center" prop="category" />
-      <el-table-column label="" align="center" prop="addressId" />
-      <el-table-column label="当前负责人ID" align="center" prop="adminId" />
-      <el-table-column label="上级ID" align="center" prop="pid" />
-      <el-table-column label="负责的省级校区ID" align="center" prop="directlyId" />
-      <el-table-column label="排课校区ID" align="center" prop="classId" />
-      <el-table-column label="CRM系统ID" align="center" prop="crmId" />
-      <el-table-column label="原始ID" align="center" prop="originId" />
-      <el-table-column label="" align="center" prop="createdAt" width="180">
-        <template slot-scope="scope">
-          <span>{{ parseTime(scope.row.createdAt, '{y}-{m}-{d}') }}</span>
-        </template>
-      </el-table-column>
-      <el-table-column label="" align="center" prop="updatedAt" width="180">
-        <template slot-scope="scope">
-          <span>{{ parseTime(scope.row.updatedAt, '{y}-{m}-{d}') }}</span>
-        </template>
-      </el-table-column>
-      <el-table-column label="" align="center" prop="deletedAt" width="180">
-        <template slot-scope="scope">
-          <span>{{ parseTime(scope.row.deletedAt, '{y}-{m}-{d}') }}</span>
-        </template>
-      </el-table-column>
-      <el-table-column label="门头照片" align="center" prop="doorHeadPhoto" />
-      <el-table-column label="营业执照" align="center" prop="businessLicense" />
-      <el-table-column label="流程实例ID" align="center" prop="workflowId" />
-      <el-table-column label="当前审批到哪里" align="center" prop="workflowTaskNode" />
-      <el-table-column label="审批状态" align="center" prop="workflowStatus" />
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
         <template slot-scope="scope">
           <el-button
@@ -346,27 +127,6 @@
         <el-form-item label="" prop="name">
           <el-input v-model="form.name" placeholder="请输入" />
         </el-form-item>
-        <el-form-item label="" prop="alias">
-          <el-input v-model="form.alias" placeholder="请输入" />
-        </el-form-item>
-        <el-form-item label="" prop="province">
-          <el-input v-model="form.province" placeholder="请输入" />
-        </el-form-item>
-        <el-form-item label="" prop="provinceCode">
-          <el-input v-model="form.provinceCode" placeholder="请输入" />
-        </el-form-item>
-        <el-form-item label="" prop="city">
-          <el-input v-model="form.city" placeholder="请输入" />
-        </el-form-item>
-        <el-form-item label="" prop="cityCode">
-          <el-input v-model="form.cityCode" placeholder="请输入" />
-        </el-form-item>
-        <el-form-item label="" prop="area">
-          <el-input v-model="form.area" placeholder="请输入" />
-        </el-form-item>
-        <el-form-item label="" prop="areaCode">
-          <el-input v-model="form.areaCode" placeholder="请输入" />
-        </el-form-item>
         <el-form-item label="地址" prop="address">
           <el-input v-model="form.address" placeholder="请输入地址" />
         </el-form-item>
@@ -378,71 +138,8 @@
             placeholder="请选择建校时间">
           </el-date-picker>
         </el-form-item>
-        <el-form-item label="运营方式：1第三种方式 2省级加盟总校 3省级直营市级 4市级加盟总校 5市级直营县级 6县级加盟总校 7总校直营 8县级加盟市级 9试运营 16外机构" prop="yyMode">
-          <el-input v-model="form.yyMode" placeholder="请输入运营方式：1第三种方式 2省级加盟总校 3省级直营市级 4市级加盟总校 5市级直营县级 6县级加盟总校 7总校直营 8县级加盟市级 9试运营 16外机构" />
-        </el-form-item>
         <el-form-item label="简介" prop="brief">
           <el-input v-model="form.brief" type="textarea" placeholder="请输入内容" />
-        </el-form-item>
-        <el-form-item label="停课状态" prop="state">
-          <el-input v-model="form.state" placeholder="请输入停课状态" />
-        </el-form-item>
-        <el-form-item label="类型，school校区，depart部门" prop="category">
-          <el-input v-model="form.category" placeholder="请输入类型，school校区，depart部门" />
-        </el-form-item>
-        <el-form-item label="" prop="addressId">
-          <el-input v-model="form.addressId" placeholder="请输入" />
-        </el-form-item>
-        <el-form-item label="当前负责人ID" prop="adminId">
-          <el-input v-model="form.adminId" placeholder="请输入当前负责人ID" />
-        </el-form-item>
-        <el-form-item label="上级ID" prop="pid">
-          <el-input v-model="form.pid" placeholder="请输入上级ID" />
-        </el-form-item>
-        <el-form-item label="负责的省级校区ID" prop="directlyId">
-          <el-input v-model="form.directlyId" placeholder="请输入负责的省级校区ID" />
-        </el-form-item>
-        <el-form-item label="排课校区ID" prop="classId">
-          <el-input v-model="form.classId" placeholder="请输入排课校区ID" />
-        </el-form-item>
-        <el-form-item label="CRM系统ID" prop="crmId">
-          <el-input v-model="form.crmId" placeholder="请输入CRM系统ID" />
-        </el-form-item>
-        <el-form-item label="原始ID" prop="originId">
-          <el-input v-model="form.originId" placeholder="请输入原始ID" />
-        </el-form-item>
-        <el-form-item label="" prop="createdAt">
-          <el-date-picker clearable
-            v-model="form.createdAt"
-            type="date"
-            value-format="yyyy-MM-dd"
-            placeholder="请选择">
-          </el-date-picker>
-        </el-form-item>
-        <el-form-item label="" prop="updatedAt">
-          <el-date-picker clearable
-            v-model="form.updatedAt"
-            type="date"
-            value-format="yyyy-MM-dd"
-            placeholder="请选择">
-          </el-date-picker>
-        </el-form-item>
-        <el-form-item label="" prop="deletedAt">
-          <el-date-picker clearable
-            v-model="form.deletedAt"
-            type="date"
-            value-format="yyyy-MM-dd"
-            placeholder="请选择">
-          </el-date-picker>
-        </el-form-item>
-        <el-form-item label="门头照片" prop="doorHeadPhoto">
-          <el-input v-model="form.doorHeadPhoto" placeholder="请输入门头照片" />
-        </el-form-item>
-        <el-form-item label="营业执照" prop="businessLicense">
-          <el-input v-model="form.businessLicense" placeholder="请输入营业执照" />
-        </el-form-item>
-        <el-form-item label="当前审批到哪里" prop="workflowTaskNode">
-          <el-input v-model="form.workflowTaskNode" placeholder="请输入当前审批到哪里" />
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
@@ -483,45 +180,18 @@ export default {
         pageNum: 1,
         pageSize: 10,
         name: null,
-        alias: null,
-        province: null,
-        provinceCode: null,
-        city: null,
-        cityCode: null,
-        area: null,
-        areaCode: null,
         address: null,
         date: null,
-        type: null,
         yyMode: null,
         yyType: null,
-        brief: null,
         status: null,
         state: null,
         category: null,
-        addressId: null,
-        adminId: null,
-        pid: null,
-        directlyId: null,
-        classId: null,
-        crmId: null,
-        originId: null,
-        createdAt: null,
-        updatedAt: null,
-        deletedAt: null,
-        doorHeadPhoto: null,
-        businessLicense: null,
-        workflowId: null,
-        workflowTaskNode: null,
-        workflowStatus: null
       },
       // 表单参数
       form: {},
       // 表单校验
       rules: {
-        adminId: [
-          { required: true, message: "当前负责人ID不能为空", trigger: "blur" }
-        ],
       }
     };
   },

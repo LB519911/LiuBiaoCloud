@@ -48,37 +48,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <include refid="selectSchoolVo"/>
         <where>  
             <if test="name != null  and name != ''"> and name like concat('%', #{name}, '%')</if>
-            <if test="alias != null  and alias != ''"> and alias = #{alias}</if>
-            <if test="province != null  and province != ''"> and province = #{province}</if>
-            <if test="provinceCode != null  and provinceCode != ''"> and province_code = #{provinceCode}</if>
-            <if test="city != null  and city != ''"> and city = #{city}</if>
-            <if test="cityCode != null  and cityCode != ''"> and city_code = #{cityCode}</if>
-            <if test="area != null  and area != ''"> and area = #{area}</if>
-            <if test="areaCode != null  and areaCode != ''"> and area_code = #{areaCode}</if>
             <if test="address != null  and address != ''"> and address = #{address}</if>
             <if test="date != null "> and date = #{date}</if>
-            <if test="type != null "> and type = #{type}</if>
             <if test="yyMode != null "> and yy_mode = #{yyMode}</if>
             <if test="yyType != null "> and yy_type = #{yyType}</if>
-            <if test="brief != null  and brief != ''"> and brief = #{brief}</if>
             <if test="status != null "> and status = #{status}</if>
             <if test="state != null "> and state = #{state}</if>
             <if test="category != null  and category != ''"> and category = #{category}</if>
-            <if test="addressId != null "> and address_id = #{addressId}</if>
-            <if test="adminId != null "> and admin_id = #{adminId}</if>
-            <if test="pid != null "> and pid = #{pid}</if>
-            <if test="directlyId != null "> and directly_id = #{directlyId}</if>
-            <if test="classId != null "> and class_id = #{classId}</if>
-            <if test="crmId != null "> and crm_id = #{crmId}</if>
-            <if test="originId != null "> and origin_id = #{originId}</if>
-            <if test="createdAt != null "> and created_at = #{createdAt}</if>
-            <if test="updatedAt != null "> and updated_at = #{updatedAt}</if>
-            <if test="deletedAt != null "> and deleted_at = #{deletedAt}</if>
-            <if test="doorHeadPhoto != null  and doorHeadPhoto != ''"> and door_head_photo = #{doorHeadPhoto}</if>
-            <if test="businessLicense != null  and businessLicense != ''"> and business_license = #{businessLicense}</if>
-            <if test="workflowId != null  and workflowId != ''"> and workflow_id = #{workflowId}</if>
-            <if test="workflowTaskNode != null "> and workflow_task_node = #{workflowTaskNode}</if>
-            <if test="workflowStatus != null "> and workflow_status = #{workflowStatus}</if>
         </where>
     </select>
     

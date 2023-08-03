@@ -25,31 +25,24 @@ public class School extends BaseEntity
     private String name;
 
     /**  */
-    @Excel(name = "")
     private String alias;
 
     /**  */
-    @Excel(name = "")
     private String province;
 
     /**  */
-    @Excel(name = "")
     private String provinceCode;
 
     /**  */
-    @Excel(name = "")
     private String city;
 
     /**  */
-    @Excel(name = "")
     private String cityCode;
 
     /**  */
-    @Excel(name = "")
     private String area;
 
     /**  */
-    @Excel(name = "")
     private String areaCode;
 
     /** 地址 */
@@ -62,7 +55,6 @@ public class School extends BaseEntity
     private Date date;
 
     /** 类型：1省会级，2市级，3县级 */
-    @Excel(name = "类型：1省会级，2市级，3县级")
     private Long type;
 
     /** 运营方式：1第三种方式 2省级加盟总校 3省级直营市级 4市级加盟总校 5市级直营县级 6县级加盟总校 7总校直营 8县级加盟市级 9试运营 16外机构 */
@@ -90,66 +82,48 @@ public class School extends BaseEntity
     private String category;
 
     /**  */
-    @Excel(name = "")
     private Long addressId;
 
     /** 当前负责人ID */
-    @Excel(name = "当前负责人ID")
     private Long adminId;
 
     /** 上级ID */
-    @Excel(name = "上级ID")
     private Long pid;
 
     /** 负责的省级校区ID */
-    @Excel(name = "负责的省级校区ID")
     private Long directlyId;
 
     /** 排课校区ID */
-    @Excel(name = "排课校区ID")
     private Long classId;
 
     /** CRM系统ID */
-    @Excel(name = "CRM系统ID")
     private Long crmId;
 
     /** 原始ID */
-    @Excel(name = "原始ID")
     private Long originId;
 
     /**  */
-    @JsonFormat(pattern = "yyyy-MM-dd")
-    @Excel(name = "", width = 30, dateFormat = "yyyy-MM-dd")
     private Date createdAt;
 
     /**  */
-    @JsonFormat(pattern = "yyyy-MM-dd")
-    @Excel(name = "", width = 30, dateFormat = "yyyy-MM-dd")
     private Date updatedAt;
 
     /**  */
-    @JsonFormat(pattern = "yyyy-MM-dd")
-    @Excel(name = "", width = 30, dateFormat = "yyyy-MM-dd")
     private Date deletedAt;
 
     /** 门头照片 */
-    @Excel(name = "门头照片")
     private String doorHeadPhoto;
 
     /** 营业执照 */
-    @Excel(name = "营业执照")
     private String businessLicense;
 
     /** 流程实例ID（审批进度、历史都要用到这个字段） */
-    @Excel(name = "流程实例ID", readConverterExp = "审=批进度、历史都要用到这个字段")
     private String workflowId;
 
     /** 当前审批到哪里（BPMN中的TaskName） */
-    @Excel(name = "当前审批到哪里", readConverterExp = "B=PMN中的TaskName")
     private Long workflowTaskNode;
 
     /** 审批状态（0:待审批、1审批中、2审批不通过、3审批通过、4审批中途不通过) */
-    @Excel(name = "审批状态", readConverterExp = "审批状态（0:待审批、1审批中、2审批不通过、3审批通过、4审批中途不通过)")
     private Long workflowStatus;
 
     public void setId(String id) 
