@@ -166,7 +166,7 @@
 </template>
 
 <script>
-import {listSchool, getSchool, delSchool, addSchool, updateSchool} from "@/api/school/school";
+import {listSchool, getSchool, delSchool, addSchool, updateSchool,startFlow} from "@/api/school/school";
 
 export default {
   name: "School",
@@ -302,10 +302,8 @@ export default {
     startWorkFlow(row) {
       this.reset();
       const id = row.id || this.ids
-      getSchool(id).then(response => {
+      startFlow(id).then(response => {
         this.form = response.data;
-        this.open = true;
-        this.title = "修改分校成立";
       });
     },
     /** 提交按钮 */

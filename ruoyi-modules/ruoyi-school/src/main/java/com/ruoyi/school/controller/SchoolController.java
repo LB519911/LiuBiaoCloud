@@ -3,6 +3,7 @@ package com.ruoyi.school.controller;
 import java.util.List;
 import java.io.IOException;
 import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,14 +25,13 @@ import com.ruoyi.common.core.web.page.TableDataInfo;
 
 /**
  * 分校成立Controller
- * 
+ *
  * @author 刘彪
  * @date 2023-08-03
  */
 @RestController
 @RequestMapping("/school")
-public class SchoolController extends BaseController
-{
+public class SchoolController extends BaseController {
     @Autowired
     private ISchoolService schoolService;
 
@@ -40,8 +40,7 @@ public class SchoolController extends BaseController
      */
     @RequiresPermissions("school:school:list")
     @GetMapping("/list")
-    public TableDataInfo list(School school)
-    {
+    public TableDataInfo list(School school) {
         startPage();
         List<School> list = schoolService.selectSchoolList(school);
         return getDataTable(list);
@@ -53,8 +52,7 @@ public class SchoolController extends BaseController
     @RequiresPermissions("school:school:export")
     @Log(title = "分校成立", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
-    public void export(HttpServletResponse response, School school)
-    {
+    public void export(HttpServletResponse response, School school) {
         List<School> list = schoolService.selectSchoolList(school);
         ExcelUtil<School> util = new ExcelUtil<School>(School.class);
         util.exportExcel(response, list, "分校成立数据");
@@ -65,8 +63,7 @@ public class SchoolController extends BaseController
      */
     @RequiresPermissions("school:school:query")
     @GetMapping(value = "/{id}")
-    public AjaxResult getInfo(@PathVariable("id") String id)
-    {
+    public AjaxResult getInfo(@PathVariable("id") String id) {
         return success(schoolService.selectSchoolById(id));
     }
 
@@ -76,8 +73,7 @@ public class SchoolController extends BaseController
     @RequiresPermissions("school:school:add")
     @Log(title = "分校成立", businessType = BusinessType.INSERT)
     @PostMapping
-    public AjaxResult add(@RequestBody School school)
-    {
+    public AjaxResult add(@RequestBody School school) {
         return toAjax(schoolService.insertSchool(school));
     }
 
@@ -87,8 +83,7 @@ public class SchoolController extends BaseController
     @RequiresPermissions("school:school:edit")
     @Log(title = "分校成立", businessType = BusinessType.UPDATE)
     @PutMapping
-    public AjaxResult edit(@RequestBody School school)
-    {
+    public AjaxResult edit(@RequestBody School school) {
         return toAjax(schoolService.updateSchool(school));
     }
 
@@ -97,9 +92,18 @@ public class SchoolController extends BaseController
      */
     @RequiresPermissions("school:school:remove")
     @Log(title = "分校成立", businessType = BusinessType.DELETE)
-	@DeleteMapping("/{ids}")
-    public AjaxResult remove(@PathVariable String[] ids)
-    {
+    @DeleteMapping("/{ids}")
+    public AjaxResult remove(@PathVariable String[] ids) {
         return toAjax(schoolService.deleteSchoolByIds(ids));
+    }
+
+    /**
+     * 分校成立发起流程
+     */
+    @RequiresPermissions("school:school:startAp")
+    @Log(title = "分校成立发起流程", businessType = BusinessType.UPDATE)
+    @GetMapping("/startFlow/{id}")
+    public AjaxResult startFlow(@PathVariable("id") String id) {
+        return success(schoolService.selectSchoolById(id));
     }
 }

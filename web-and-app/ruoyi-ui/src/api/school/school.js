@@ -42,3 +42,11 @@ export function delSchool(id) {
     method: 'delete'
   })
 }
+
+// 修改分校成立
+export function startFlow(id) {
+  return request({
+    url: '/school/school/startFlow/' + id,
+    method: 'get'
+  })
+}
