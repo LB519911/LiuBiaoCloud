@@ -23,7 +23,7 @@ import com.ruoyi.common.core.utils.poi.ExcelUtil;
 import com.ruoyi.common.core.web.page.TableDataInfo;
 
 /**
- * 分校管理Controller
+ * 分校成立Controller
  * 
  * @author 刘彪
  * @date 2023-08-03
@@ -36,7 +36,7 @@ public class SchoolController extends BaseController
     private ISchoolService schoolService;
 
     /**
-     * 查询分校管理列表
+     * 查询分校成立列表
      */
     @RequiresPermissions("school:school:list")
     @GetMapping("/list")
@@ -48,20 +48,20 @@ public class SchoolController extends BaseController
     }
 
     /**
-     * 导出分校管理列表
+     * 导出分校成立列表
      */
     @RequiresPermissions("school:school:export")
-    @Log(title = "分校管理", businessType = BusinessType.EXPORT)
+    @Log(title = "分校成立", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     public void export(HttpServletResponse response, School school)
     {
         List<School> list = schoolService.selectSchoolList(school);
         ExcelUtil<School> util = new ExcelUtil<School>(School.class);
-        util.exportExcel(response, list, "分校管理数据");
+        util.exportExcel(response, list, "分校成立数据");
     }
 
     /**
-     * 获取分校管理详细信息
+     * 获取分校成立详细信息
      */
     @RequiresPermissions("school:school:query")
     @GetMapping(value = "/{id}")
@@ -71,10 +71,10 @@ public class SchoolController extends BaseController
     }
 
     /**
-     * 新增分校管理
+     * 新增分校成立
      */
     @RequiresPermissions("school:school:add")
-    @Log(title = "分校管理", businessType = BusinessType.INSERT)
+    @Log(title = "分校成立", businessType = BusinessType.INSERT)
     @PostMapping
     public AjaxResult add(@RequestBody School school)
     {
@@ -82,10 +82,10 @@ public class SchoolController extends BaseController
     }
 
     /**
-     * 修改分校管理
+     * 修改分校成立
      */
     @RequiresPermissions("school:school:edit")
-    @Log(title = "分校管理", businessType = BusinessType.UPDATE)
+    @Log(title = "分校成立", businessType = BusinessType.UPDATE)
     @PutMapping
     public AjaxResult edit(@RequestBody School school)
     {
@@ -93,10 +93,10 @@ public class SchoolController extends BaseController
     }
 
     /**
-     * 删除分校管理
+     * 删除分校成立
      */
     @RequiresPermissions("school:school:remove")
-    @Log(title = "分校管理", businessType = BusinessType.DELETE)
+    @Log(title = "分校成立", businessType = BusinessType.DELETE)
 	@DeleteMapping("/{ids}")
     public AjaxResult remove(@PathVariable String[] ids)
     {

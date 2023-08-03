@@ -1,6 +1,6 @@
 import request from '@/utils/request'
 
-// 查询分校管理列表
+// 查询分校成立列表
 export function listSchool(query) {
   return request({
     url: '/school/school/list',
@@ -9,7 +9,7 @@ export function listSchool(query) {
   })
 }
 
-// 查询分校管理详细
+// 查询分校成立详细
 export function getSchool(id) {
   return request({
     url: '/school/school/' + id,
@@ -17,7 +17,7 @@ export function getSchool(id) {
   })
 }
 
-// 新增分校管理
+// 新增分校成立
 export function addSchool(data) {
   return request({
     url: '/school/school',
@@ -26,7 +26,7 @@ export function addSchool(data) {
   })
 }
 
-// 修改分校管理
+// 修改分校成立
 export function updateSchool(data) {
   return request({
     url: '/school/school',
@@ -35,7 +35,7 @@ export function updateSchool(data) {
   })
 }
 
-// 删除分校管理
+// 删除分校成立
 export function delSchool(id) {
   return request({
     url: '/school/school/' + id,

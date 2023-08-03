@@ -8,7 +8,7 @@ import com.ruoyi.common.core.annotation.Excel;
 import com.ruoyi.common.core.web.domain.BaseEntity;
 
 /**
- * 分校管理对象 school
+ * 分校成立对象 school
  * 
  * @author 刘彪
  * @date 2023-08-03
@@ -17,39 +17,39 @@ public class School extends BaseEntity
 {
     private static final long serialVersionUID = 1L;
 
-    /** $column.columnComment */
+    /**  */
     private String id;
 
-    /** $column.columnComment */
-    @Excel(name = "${comment}", readConverterExp = "$column.readConverterExp()")
+    /**  */
+    @Excel(name = "")
     private String name;
 
-    /** $column.columnComment */
-    @Excel(name = "${comment}", readConverterExp = "$column.readConverterExp()")
+    /**  */
+    @Excel(name = "")
     private String alias;
 
-    /** $column.columnComment */
-    @Excel(name = "${comment}", readConverterExp = "$column.readConverterExp()")
+    /**  */
+    @Excel(name = "")
     private String province;
 
-    /** $column.columnComment */
-    @Excel(name = "${comment}", readConverterExp = "$column.readConverterExp()")
+    /**  */
+    @Excel(name = "")
     private String provinceCode;
 
-    /** $column.columnComment */
-    @Excel(name = "${comment}", readConverterExp = "$column.readConverterExp()")
+    /**  */
+    @Excel(name = "")
     private String city;
 
-    /** $column.columnComment */
-    @Excel(name = "${comment}", readConverterExp = "$column.readConverterExp()")
+    /**  */
+    @Excel(name = "")
     private String cityCode;
 
-    /** $column.columnComment */
-    @Excel(name = "${comment}", readConverterExp = "$column.readConverterExp()")
+    /**  */
+    @Excel(name = "")
     private String area;
 
-    /** $column.columnComment */
-    @Excel(name = "${comment}", readConverterExp = "$column.readConverterExp()")
+    /**  */
+    @Excel(name = "")
     private String areaCode;
 
     /** 地址 */
@@ -69,9 +69,8 @@ public class School extends BaseEntity
     @Excel(name = "运营方式：1第三种方式 2省级加盟总校 3省级直营市级 4市级加盟总校 5市级直营县级 6县级加盟总校 7总校直营 8县级加盟市级 9试运营 16外机构")
     private Long yyMode;
 
-    /** 运营类型 1直营 2加盟 3第三种 4外机构
- */
-    @Excel(name = "运营类型 1直营 2加盟 3第三种 4外机构 ")
+    /** 运营类型 1直营 2加盟 3第三种 4外机构 */
+    @Excel(name = "运营类型 1直营 2加盟 3第三种 4外机构")
     private Long yyType;
 
     /** 简介 */
@@ -86,22 +85,20 @@ public class School extends BaseEntity
     @Excel(name = "停课状态", readConverterExp = "暂=定")
     private Long state;
 
-    /** 类型，school校区，depart部门
- */
-    @Excel(name = "类型，school校区，depart部门 ")
+    /** 类型，school校区，depart部门 */
+    @Excel(name = "类型，school校区，depart部门")
     private String category;
 
-    /** $column.columnComment */
-    @Excel(name = "${comment}", readConverterExp = "$column.readConverterExp()")
+    /**  */
+    @Excel(name = "")
     private Long addressId;
 
     /** 当前负责人ID */
     @Excel(name = "当前负责人ID")
     private Long adminId;
 
-    /** 上级ID
- */
-    @Excel(name = "上级ID ")
+    /** 上级ID */
+    @Excel(name = "上级ID")
     private Long pid;
 
     /** 负责的省级校区ID */
@@ -120,16 +117,19 @@ public class School extends BaseEntity
     @Excel(name = "原始ID")
     private Long originId;
 
-    /** $column.columnComment */
-    @Excel(name = "${comment}", readConverterExp = "$column.readConverterExp()")
+    /**  */
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    @Excel(name = "", width = 30, dateFormat = "yyyy-MM-dd")
     private Date createdAt;
 
-    /** $column.columnComment */
-    @Excel(name = "${comment}", readConverterExp = "$column.readConverterExp()")
+    /**  */
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    @Excel(name = "", width = 30, dateFormat = "yyyy-MM-dd")
     private Date updatedAt;
 
-    /** $column.columnComment */
-    @Excel(name = "${comment}", readConverterExp = "$column.readConverterExp()")
+    /**  */
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    @Excel(name = "", width = 30, dateFormat = "yyyy-MM-dd")
     private Date deletedAt;
 
     /** 门头照片 */
