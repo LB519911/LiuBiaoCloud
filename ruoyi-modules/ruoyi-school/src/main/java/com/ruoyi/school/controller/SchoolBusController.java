@@ -37,6 +37,15 @@ public class SchoolBusController extends BaseController {
     public static final String FXCL = "fxcl";
     public static final String XTJ = "xtj";
     public static final String DEFINITION_NAME = "分校成立流程";
+    public static final String TERMINATE_END = "terminateEndEvent".toLowerCase();
+    public static final String CANCEL_END = "cancelEnd".toLowerCase();
+    public static final String EXCEPTION_END = "exceptionEnd".toLowerCase();
+    public static final String END = "end".toLowerCase();
+    public static final String TO = "to".toLowerCase();
+    public static final String BACK = "back".toLowerCase();
+    public static final String NEXT = "next".toLowerCase();
+    public static final String GO = "go".toLowerCase();
+
     @Autowired
     private ISchoolService schoolService;
     @Autowired
@@ -216,6 +225,24 @@ public class SchoolBusController extends BaseController {
         if (taskCompleteResponseBodyR.getCode() != SUCCESS_CODE) {
             return R.fail(taskCompleteResponseBodyR.getMsg());
         }
+
+        //更新审批人node名称，这一步可选
+        school.setWorkflowTaskNode(taskCompleteResponseBodyR.getData().getApproveStatus().getActivityId());
+
+        //判断流程是否结束
+        if (taskCompleteResponseBodyR.getData().getApproveStatus().isEnd()) {
+            if (taskCompleteResponseBodyR.getData().getApproveStatus().getEndType().equals(TERMINATE_END)) {
+                //中途取消或者驳回
+                school.setWorkflowStatus(2L);
+            }
+
+            if (taskCompleteResponseBodyR.getData().getApproveStatus().getEndType().equals(END)) {
+                //正常结束
+                school.setWorkflowStatus(3L);
+            }
+        }
+
+        schoolService.updateSchool(school);
         return R.ok();
     }
 }
