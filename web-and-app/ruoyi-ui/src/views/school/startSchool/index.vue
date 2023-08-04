@@ -308,6 +308,16 @@ export default {
         this.$modal.msgSuccess("流程发起成功");
       });
     },
+    /** 发起审批按钮操作 */
+    startWorkFlow(row) {
+      this.reset();
+      const id = row.id || this.ids
+      startFlow(id).then(response => {
+        this.form = response.data;
+        row.workflowStatus = 1
+        this.$modal.msgSuccess("流程发起成功");
+      });
+    },
     /** 提交按钮 */
     submitForm() {
       this.$refs["form"].validate(valid => {
