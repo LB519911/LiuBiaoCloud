@@ -124,7 +124,7 @@ public class SchoolBusController extends BaseController {
      */
     @RequiresPermissions("school:school:apList")
     @GetMapping("/apList")
-    public TableDataInfo apList(School school) {
+    public TableDataInfo apList() {
         //获取流程里的业务主键
         GroupTaskRequestBody groupTaskRequestBody = new GroupTaskRequestBody();
         //流程定义KEY
