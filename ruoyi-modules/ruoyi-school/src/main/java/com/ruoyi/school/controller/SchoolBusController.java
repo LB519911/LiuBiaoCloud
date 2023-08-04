@@ -1,6 +1,7 @@
 package com.ruoyi.school.controller;
 
 import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 import com.ruoyi.common.core.domain.R;
 import com.ruoyi.common.core.web.controller.BaseController;
 import com.ruoyi.common.core.web.domain.AjaxResult;
@@ -10,17 +11,16 @@ import com.ruoyi.common.core.web.page.TableSupport;
 import com.ruoyi.common.log.annotation.Log;
 import com.ruoyi.common.log.enums.BusinessType;
 import com.ruoyi.common.security.annotation.RequiresPermissions;
+import com.ruoyi.common.security.utils.SecurityUtils;
 import com.ruoyi.school.domain.School;
 import com.ruoyi.school.service.IApSchoolService;
 import com.ruoyi.school.service.ISchoolService;
 import com.ruoyi.workflow.api.RemoteWorkFlowService;
-import com.ruoyi.workflow.api.model.GroupTaskRequestBody;
-import com.ruoyi.workflow.api.model.ProcessDefinitionPojo;
-import com.ruoyi.workflow.api.model.StartProcessInstanceByIdRequestBody;
-import com.ruoyi.workflow.api.model.TaskBusinessKeys;
+import com.ruoyi.workflow.api.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -37,6 +37,15 @@ public class SchoolBusController extends BaseController {
     public static final String FXCL = "fxcl";
     public static final String XTJ = "xtj";
     public static final String DEFINITION_NAME = "分校成立流程";
+    public static final String TERMINATE_END = "terminateEndEvent".toLowerCase();
+    public static final String CANCEL_END = "cancelEnd".toLowerCase();
+    public static final String EXCEPTION_END = "exceptionEnd".toLowerCase();
+    public static final String END = "end".toLowerCase();
+    public static final String TO = "to".toLowerCase();
+    public static final String BACK = "back".toLowerCase();
+    public static final String NEXT = "next".toLowerCase();
+    public static final String GO = "go".toLowerCase();
+
     @Autowired
     private ISchoolService schoolService;
     @Autowired
@@ -77,10 +86,20 @@ public class SchoolBusController extends BaseController {
             //向工作流设置流程变量（审批人、流程走向参数请放到这个里，自己建表，此处为了演示直接写到map）
             HashMap<String, Object> vars = new HashMap();
             //主管组
-            vars.put("zg_group", "zg_group");
-            //财务负责人组
-            vars.put("cwfzr_group", "cwfzr_group");
+            ArrayList<Object> zgs = Lists.newArrayList();
+            zgs.add("zg_group");
+            //超级用户
+            zgs.add("super_group");
+            vars.put("zg_group", zgs);
+
+            //主管组
+            ArrayList<Object> cws = Lists.newArrayList();
+            cws.add("cw_group");
+            //超级用户
+            cws.add("super_group");
+            vars.put("cwfzr_group", cws);
             requestBody.setGlobalVar(vars);
+
             //向工作流设置租户ID
             requestBody.setTenantId(XTJ);
 
@@ -124,13 +143,11 @@ public class SchoolBusController extends BaseController {
      */
     @RequiresPermissions("school:school:apList")
     @GetMapping("/apList")
-    public TableDataInfo apList(School school) {
+    public TableDataInfo apList() {
         //获取流程里的业务主键
         GroupTaskRequestBody groupTaskRequestBody = new GroupTaskRequestBody();
         //流程定义KEY
         groupTaskRequestBody.setProcessDefinitionKey(FXCL);
-        //审批组ID
-        groupTaskRequestBody.setTaskAssigneeGroup("zg_group");
         groupTaskRequestBody.setTenantId(XTJ);
         //分页信息
         PageDomain pageDomain = TableSupport.buildPageRequest();
@@ -139,11 +156,93 @@ public class SchoolBusController extends BaseController {
         groupTaskRequestBody.setCurrentPage(pageNum);
         groupTaskRequestBody.setMaxResults(pageSize);
 
+        String username = SecurityUtils.getUsername();
+        //审批组ID,这个里需要找到这个人在那个审批组，自己建表，此处为了演示直接使用if判断
+        if (username.startsWith("zg")) {
+            groupTaskRequestBody.setTaskAssigneeGroup("zg_group");
+        }
+        //审批组ID,这个里需要找到这个人在那个审批组，自己建表，此处为了演示直接使用if判断
+        if (username.startsWith("cw")) {
+            groupTaskRequestBody.setTaskAssigneeGroup("cw_group");
+        }
+        //审批组ID,这个里需要找到这个人在那个审批组，自己建表，此处为了演示直接使用if判断
+        if (username.startsWith("admin")) {
+            groupTaskRequestBody.setTaskAssigneeGroup("super_group");
+        }
+
         //得到审批列表
         R<TaskBusinessKeys> taskLists = remoteWorkFlowService.findGroupTaskList(groupTaskRequestBody);
 
         startPage();
         List<School> list = apSchoolService.selectSchoolList(taskLists.getData().getBusinessKeys());
         return getDataTable(list);
+    }
+
+    /**
+     * 审批
+     */
+    @RequiresPermissions("school:school:apList")
+    @GetMapping("/apSchool/{id}/{to}")
+    public R<String> apSchool(@PathVariable("id") String id, @PathVariable("to") String to) {
+        //根据业务主键查询流程实例ID
+        School school = schoolService.selectSchoolById(id);
+        if (school == null) {
+            return R.fail("没有该校区");
+        }
+
+        //完成任务准备参数
+        TaskCompleteRequestBody taskCompleteRequestBody = new TaskCompleteRequestBody();
+        //流程定义KEY
+        taskCompleteRequestBody.setProcessDefinitionKey(FXCL);
+        taskCompleteRequestBody.setProcessDefinitionId("");
+        String username = SecurityUtils.getUsername();
+        //审批组ID,这个里需要找到这个人在那个审批组，自己建表，此处为了演示直接使用if判断
+        if (username.startsWith("zg")) {
+            taskCompleteRequestBody.setTaskAssigneeGroup("zg_group");
+        }
+        //审批组ID,这个里需要找到这个人在那个审批组，自己建表，此处为了演示直接使用if判断
+        if (username.startsWith("cw")) {
+            taskCompleteRequestBody.setTaskAssigneeGroup("cw_group");
+        }
+        //审批组ID,这个里需要找到这个人在那个审批组，自己建表，此处为了演示直接使用if判断
+        if (username.startsWith("admin")) {
+            taskCompleteRequestBody.setTaskAssigneeGroup("super_group");
+        }
+        //审批人
+        taskCompleteRequestBody.setTaskAssignee(username);
+        //设置业务主键
+        taskCompleteRequestBody.setBusinessKey(id);
+        //租户ID
+        taskCompleteRequestBody.setTenantId(XTJ);
+        //审批意见、审批通过或不通过
+        HashMap<String, Object> vars = Maps.newHashMap();
+        vars.put("approvalComment", "这里是我的审批意见，还能设置各种附件");
+        vars.put("to", to);
+        taskCompleteRequestBody.setLocalVars(vars);
+
+        //完成任务
+        R<TaskCompleteResponseBody> taskCompleteResponseBodyR = remoteWorkFlowService.taskClaimAndComplete(taskCompleteRequestBody);
+        if (taskCompleteResponseBodyR.getCode() != SUCCESS_CODE) {
+            return R.fail(taskCompleteResponseBodyR.getMsg());
+        }
+
+        //更新审批人node名称，这一步可选
+        school.setWorkflowTaskNode(taskCompleteResponseBodyR.getData().getApproveStatus().getActivityId());
+
+        //判断流程是否结束
+        if (taskCompleteResponseBodyR.getData().getApproveStatus().isEnd()) {
+            if (taskCompleteResponseBodyR.getData().getApproveStatus().getEndType().equals(TERMINATE_END)) {
+                //中途取消或者驳回
+                school.setWorkflowStatus(2L);
+            }
+
+            if (taskCompleteResponseBodyR.getData().getApproveStatus().getEndType().equals(END)) {
+                //正常结束
+                school.setWorkflowStatus(3L);
+            }
+        }
+
+        schoolService.updateSchool(school);
+        return R.ok();
     }
 }

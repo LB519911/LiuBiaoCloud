@@ -67,3 +67,11 @@ export function apListSchool(query) {
     params: query
   })
 }
+
+// 审批
+export function apSchool(id, next) {
+  return request({
+    url: '/school/school/apSchool/' + id + '/' + next,
+    method: 'get'
+  })
+}
