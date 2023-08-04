@@ -1,6 +1,7 @@
 package com.ruoyi.school.controller;
 
 import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 import com.ruoyi.common.core.domain.R;
 import com.ruoyi.common.core.web.controller.BaseController;
 import com.ruoyi.common.core.web.domain.AjaxResult;
@@ -15,10 +16,7 @@ import com.ruoyi.school.domain.School;
 import com.ruoyi.school.service.IApSchoolService;
 import com.ruoyi.school.service.ISchoolService;
 import com.ruoyi.workflow.api.RemoteWorkFlowService;
-import com.ruoyi.workflow.api.model.GroupTaskRequestBody;
-import com.ruoyi.workflow.api.model.ProcessDefinitionPojo;
-import com.ruoyi.workflow.api.model.StartProcessInstanceByIdRequestBody;
-import com.ruoyi.workflow.api.model.TaskBusinessKeys;
+import com.ruoyi.workflow.api.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -177,6 +175,47 @@ public class SchoolBusController extends BaseController {
     @RequiresPermissions("school:school:apList")
     @GetMapping("/apSchool/{id}/{to}")
     public R<String> apSchool(@PathVariable("id") String id, @PathVariable("to") String to) {
+        //根据业务主键查询流程实例ID
+        School school = schoolService.selectSchoolById(id);
+        if (school == null) {
+            return R.fail("没有该校区");
+        }
+
+        //完成任务准备参数
+        TaskCompleteRequestBody taskCompleteRequestBody = new TaskCompleteRequestBody();
+        //流程定义KEY
+        taskCompleteRequestBody.setProcessDefinitionKey(FXCL);
+        taskCompleteRequestBody.setProcessDefinitionId("");
+        String username = SecurityUtils.getUsername();
+        //审批组ID,这个里需要找到这个人在那个审批组，自己建表，此处为了演示直接使用if判断
+        if (username.startsWith("zg")) {
+            taskCompleteRequestBody.setTaskAssigneeGroup("zg_group");
+        }
+        //审批组ID,这个里需要找到这个人在那个审批组，自己建表，此处为了演示直接使用if判断
+        if (username.startsWith("cw")) {
+            taskCompleteRequestBody.setTaskAssigneeGroup("cw_group");
+        }
+        //审批组ID,这个里需要找到这个人在那个审批组，自己建表，此处为了演示直接使用if判断
+        if (username.startsWith("admin")) {
+            taskCompleteRequestBody.setTaskAssigneeGroup("super_group");
+        }
+        //审批人
+        taskCompleteRequestBody.setTaskAssignee(username);
+        //设置业务主键
+        taskCompleteRequestBody.setBusinessKey(id);
+        //租户ID
+        taskCompleteRequestBody.setTenantId(XTJ);
+        //审批意见、审批通过或不通过
+        HashMap<String, Object> vars = Maps.newHashMap();
+        vars.put("approvalComment", "这里是我的审批意见，还能设置各种附件");
+        vars.put("to", to);
+        taskCompleteRequestBody.setLocalVars(vars);
+
+        //完成任务
+        R<TaskCompleteResponseBody> taskCompleteResponseBodyR = remoteWorkFlowService.taskClaimAndComplete(taskCompleteRequestBody);
+        if (taskCompleteResponseBodyR.getCode() != SUCCESS_CODE) {
+            return R.fail(taskCompleteResponseBodyR.getMsg());
+        }
         return R.ok();
     }
 }
