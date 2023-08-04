@@ -11,7 +11,7 @@
  Target Server Version : 80033
  File Encoding         : 65001
 
- Date: 04/08/2023 13:09:06
+ Date: 04/08/2023 13:42:37
 */
 
 SET NAMES utf8mb4;
@@ -640,8 +640,8 @@ INSERT INTO `act_ru_execution` (`ID_`, `REV_`, `PROC_INST_ID_`, `BUSINESS_KEY_`,
 INSERT INTO `act_ru_execution` (`ID_`, `REV_`, `PROC_INST_ID_`, `BUSINESS_KEY_`, `PARENT_ID_`, `PROC_DEF_ID_`, `SUPER_EXEC_`, `ROOT_PROC_INST_ID_`, `ACT_ID_`, `IS_ACTIVE_`, `IS_CONCURRENT_`, `IS_SCOPE_`, `IS_EVENT_SCOPE_`, `IS_MI_ROOT_`, `SUSPENSION_STATE_`, `CACHED_ENT_STATE_`, `TENANT_ID_`, `NAME_`, `START_TIME_`, `START_USER_ID_`, `LOCK_TIME_`, `IS_COUNT_ENABLED_`, `EVT_SUBSCR_COUNT_`, `TASK_COUNT_`, `JOB_COUNT_`, `TIMER_JOB_COUNT_`, `SUSP_JOB_COUNT_`, `DEADLETTER_JOB_COUNT_`, `VAR_COUNT_`, `ID_LINK_COUNT_`, `APP_VERSION_`) VALUES ('72f5717f-327e-11ee-82f6-f22185ea3ea7', 1, '72f54a6a-327e-11ee-82f6-f22185ea3ea7', NULL, '72f54a6a-327e-11ee-82f6-f22185ea3ea7', 'fxcl:1:980d1729-326e-11ee-b048-86876c6ac732', NULL, '72f54a6a-327e-11ee-82f6-f22185ea3ea7', 'zg', 1, 0, 0, 0, 0, 1, NULL, 'xtj', NULL, '2023-08-04 12:21:57.102', NULL, NULL, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL);
 INSERT INTO `act_ru_execution` (`ID_`, `REV_`, `PROC_INST_ID_`, `BUSINESS_KEY_`, `PARENT_ID_`, `PROC_DEF_ID_`, `SUPER_EXEC_`, `ROOT_PROC_INST_ID_`, `ACT_ID_`, `IS_ACTIVE_`, `IS_CONCURRENT_`, `IS_SCOPE_`, `IS_EVENT_SCOPE_`, `IS_MI_ROOT_`, `SUSPENSION_STATE_`, `CACHED_ENT_STATE_`, `TENANT_ID_`, `NAME_`, `START_TIME_`, `START_USER_ID_`, `LOCK_TIME_`, `IS_COUNT_ENABLED_`, `EVT_SUBSCR_COUNT_`, `TASK_COUNT_`, `JOB_COUNT_`, `TIMER_JOB_COUNT_`, `SUSP_JOB_COUNT_`, `DEADLETTER_JOB_COUNT_`, `VAR_COUNT_`, `ID_LINK_COUNT_`, `APP_VERSION_`) VALUES ('81356e8c-327c-11ee-82f6-f22185ea3ea7', 1, '81356e8c-327c-11ee-82f6-f22185ea3ea7', '35', NULL, 'fxcl:1:980d1729-326e-11ee-b048-86876c6ac732', NULL, '81356e8c-327c-11ee-82f6-f22185ea3ea7', NULL, 1, 0, 1, 0, 0, 1, NULL, 'xtj', NULL, '2023-08-04 12:08:02.016', NULL, NULL, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL);
 INSERT INTO `act_ru_execution` (`ID_`, `REV_`, `PROC_INST_ID_`, `BUSINESS_KEY_`, `PARENT_ID_`, `PROC_DEF_ID_`, `SUPER_EXEC_`, `ROOT_PROC_INST_ID_`, `ACT_ID_`, `IS_ACTIVE_`, `IS_CONCURRENT_`, `IS_SCOPE_`, `IS_EVENT_SCOPE_`, `IS_MI_ROOT_`, `SUSPENSION_STATE_`, `CACHED_ENT_STATE_`, `TENANT_ID_`, `NAME_`, `START_TIME_`, `START_USER_ID_`, `LOCK_TIME_`, `IS_COUNT_ENABLED_`, `EVT_SUBSCR_COUNT_`, `TASK_COUNT_`, `JOB_COUNT_`, `TIMER_JOB_COUNT_`, `SUSP_JOB_COUNT_`, `DEADLETTER_JOB_COUNT_`, `VAR_COUNT_`, `ID_LINK_COUNT_`, `APP_VERSION_`) VALUES ('813595a1-327c-11ee-82f6-f22185ea3ea7', 1, '81356e8c-327c-11ee-82f6-f22185ea3ea7', NULL, '81356e8c-327c-11ee-82f6-f22185ea3ea7', 'fxcl:1:980d1729-326e-11ee-b048-86876c6ac732', NULL, '81356e8c-327c-11ee-82f6-f22185ea3ea7', 'zg', 1, 0, 0, 0, 0, 1, NULL, 'xtj', NULL, '2023-08-04 12:08:02.017', NULL, NULL, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL);
-INSERT INTO `act_ru_execution` (`ID_`, `REV_`, `PROC_INST_ID_`, `BUSINESS_KEY_`, `PARENT_ID_`, `PROC_DEF_ID_`, `SUPER_EXEC_`, `ROOT_PROC_INST_ID_`, `ACT_ID_`, `IS_ACTIVE_`, `IS_CONCURRENT_`, `IS_SCOPE_`, `IS_EVENT_SCOPE_`, `IS_MI_ROOT_`, `SUSPENSION_STATE_`, `CACHED_ENT_STATE_`, `TENANT_ID_`, `NAME_`, `START_TIME_`, `START_USER_ID_`, `LOCK_TIME_`, `IS_COUNT_ENABLED_`, `EVT_SUBSCR_COUNT_`, `TASK_COUNT_`, `JOB_COUNT_`, `TIMER_JOB_COUNT_`, `SUSP_JOB_COUNT_`, `DEADLETTER_JOB_COUNT_`, `VAR_COUNT_`, `ID_LINK_COUNT_`, `APP_VERSION_`) VALUES ('ae64b1ea-326e-11ee-b048-86876c6ac732', 1, 'ae64b1ea-326e-11ee-b048-86876c6ac732', 'bk_1', NULL, 'fxcl:1:980d1729-326e-11ee-b048-86876c6ac732', NULL, 'ae64b1ea-326e-11ee-b048-86876c6ac732', NULL, 1, 0, 1, 0, 0, 1, NULL, 'xtj', NULL, '2023-08-04 10:29:04.869', NULL, NULL, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL);
-INSERT INTO `act_ru_execution` (`ID_`, `REV_`, `PROC_INST_ID_`, `BUSINESS_KEY_`, `PARENT_ID_`, `PROC_DEF_ID_`, `SUPER_EXEC_`, `ROOT_PROC_INST_ID_`, `ACT_ID_`, `IS_ACTIVE_`, `IS_CONCURRENT_`, `IS_SCOPE_`, `IS_EVENT_SCOPE_`, `IS_MI_ROOT_`, `SUSPENSION_STATE_`, `CACHED_ENT_STATE_`, `TENANT_ID_`, `NAME_`, `START_TIME_`, `START_USER_ID_`, `LOCK_TIME_`, `IS_COUNT_ENABLED_`, `EVT_SUBSCR_COUNT_`, `TASK_COUNT_`, `JOB_COUNT_`, `TIMER_JOB_COUNT_`, `SUSP_JOB_COUNT_`, `DEADLETTER_JOB_COUNT_`, `VAR_COUNT_`, `ID_LINK_COUNT_`, `APP_VERSION_`) VALUES ('ae65271f-326e-11ee-b048-86876c6ac732', 1, 'ae64b1ea-326e-11ee-b048-86876c6ac732', NULL, 'ae64b1ea-326e-11ee-b048-86876c6ac732', 'fxcl:1:980d1729-326e-11ee-b048-86876c6ac732', NULL, 'ae64b1ea-326e-11ee-b048-86876c6ac732', 'zg', 1, 0, 0, 0, 0, 1, NULL, 'xtj', NULL, '2023-08-04 10:29:04.872', NULL, NULL, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL);
+INSERT INTO `act_ru_execution` (`ID_`, `REV_`, `PROC_INST_ID_`, `BUSINESS_KEY_`, `PARENT_ID_`, `PROC_DEF_ID_`, `SUPER_EXEC_`, `ROOT_PROC_INST_ID_`, `ACT_ID_`, `IS_ACTIVE_`, `IS_CONCURRENT_`, `IS_SCOPE_`, `IS_EVENT_SCOPE_`, `IS_MI_ROOT_`, `SUSPENSION_STATE_`, `CACHED_ENT_STATE_`, `TENANT_ID_`, `NAME_`, `START_TIME_`, `START_USER_ID_`, `LOCK_TIME_`, `IS_COUNT_ENABLED_`, `EVT_SUBSCR_COUNT_`, `TASK_COUNT_`, `JOB_COUNT_`, `TIMER_JOB_COUNT_`, `SUSP_JOB_COUNT_`, `DEADLETTER_JOB_COUNT_`, `VAR_COUNT_`, `ID_LINK_COUNT_`, `APP_VERSION_`) VALUES ('ae64b1ea-326e-11ee-b048-86876c6ac732', 2, 'ae64b1ea-326e-11ee-b048-86876c6ac732', 'bk_1', NULL, 'fxcl:1:980d1729-326e-11ee-b048-86876c6ac732', NULL, 'ae64b1ea-326e-11ee-b048-86876c6ac732', NULL, 1, 0, 1, 0, 0, 2, NULL, 'xtj', NULL, '2023-08-04 10:29:04.869', NULL, NULL, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL);
+INSERT INTO `act_ru_execution` (`ID_`, `REV_`, `PROC_INST_ID_`, `BUSINESS_KEY_`, `PARENT_ID_`, `PROC_DEF_ID_`, `SUPER_EXEC_`, `ROOT_PROC_INST_ID_`, `ACT_ID_`, `IS_ACTIVE_`, `IS_CONCURRENT_`, `IS_SCOPE_`, `IS_EVENT_SCOPE_`, `IS_MI_ROOT_`, `SUSPENSION_STATE_`, `CACHED_ENT_STATE_`, `TENANT_ID_`, `NAME_`, `START_TIME_`, `START_USER_ID_`, `LOCK_TIME_`, `IS_COUNT_ENABLED_`, `EVT_SUBSCR_COUNT_`, `TASK_COUNT_`, `JOB_COUNT_`, `TIMER_JOB_COUNT_`, `SUSP_JOB_COUNT_`, `DEADLETTER_JOB_COUNT_`, `VAR_COUNT_`, `ID_LINK_COUNT_`, `APP_VERSION_`) VALUES ('ae65271f-326e-11ee-b048-86876c6ac732', 2, 'ae64b1ea-326e-11ee-b048-86876c6ac732', NULL, 'ae64b1ea-326e-11ee-b048-86876c6ac732', 'fxcl:1:980d1729-326e-11ee-b048-86876c6ac732', NULL, 'ae64b1ea-326e-11ee-b048-86876c6ac732', 'zg', 1, 0, 0, 0, 0, 2, NULL, 'xtj', NULL, '2023-08-04 10:29:04.872', NULL, NULL, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL);
 INSERT INTO `act_ru_execution` (`ID_`, `REV_`, `PROC_INST_ID_`, `BUSINESS_KEY_`, `PARENT_ID_`, `PROC_DEF_ID_`, `SUPER_EXEC_`, `ROOT_PROC_INST_ID_`, `ACT_ID_`, `IS_ACTIVE_`, `IS_CONCURRENT_`, `IS_SCOPE_`, `IS_EVENT_SCOPE_`, `IS_MI_ROOT_`, `SUSPENSION_STATE_`, `CACHED_ENT_STATE_`, `TENANT_ID_`, `NAME_`, `START_TIME_`, `START_USER_ID_`, `LOCK_TIME_`, `IS_COUNT_ENABLED_`, `EVT_SUBSCR_COUNT_`, `TASK_COUNT_`, `JOB_COUNT_`, `TIMER_JOB_COUNT_`, `SUSP_JOB_COUNT_`, `DEADLETTER_JOB_COUNT_`, `VAR_COUNT_`, `ID_LINK_COUNT_`, `APP_VERSION_`) VALUES ('bd417968-326e-11ee-b048-86876c6ac732', 1, 'bd417968-326e-11ee-b048-86876c6ac732', '27', NULL, 'fxcl:1:980d1729-326e-11ee-b048-86876c6ac732', NULL, 'bd417968-326e-11ee-b048-86876c6ac732', NULL, 1, 0, 1, 0, 0, 1, NULL, 'xtj', NULL, '2023-08-04 10:29:29.804', NULL, NULL, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL);
 INSERT INTO `act_ru_execution` (`ID_`, `REV_`, `PROC_INST_ID_`, `BUSINESS_KEY_`, `PARENT_ID_`, `PROC_DEF_ID_`, `SUPER_EXEC_`, `ROOT_PROC_INST_ID_`, `ACT_ID_`, `IS_ACTIVE_`, `IS_CONCURRENT_`, `IS_SCOPE_`, `IS_EVENT_SCOPE_`, `IS_MI_ROOT_`, `SUSPENSION_STATE_`, `CACHED_ENT_STATE_`, `TENANT_ID_`, `NAME_`, `START_TIME_`, `START_USER_ID_`, `LOCK_TIME_`, `IS_COUNT_ENABLED_`, `EVT_SUBSCR_COUNT_`, `TASK_COUNT_`, `JOB_COUNT_`, `TIMER_JOB_COUNT_`, `SUSP_JOB_COUNT_`, `DEADLETTER_JOB_COUNT_`, `VAR_COUNT_`, `ID_LINK_COUNT_`, `APP_VERSION_`) VALUES ('bd41a07d-326e-11ee-b048-86876c6ac732', 1, 'bd417968-326e-11ee-b048-86876c6ac732', NULL, 'bd417968-326e-11ee-b048-86876c6ac732', 'fxcl:1:980d1729-326e-11ee-b048-86876c6ac732', NULL, 'bd417968-326e-11ee-b048-86876c6ac732', 'zg', 1, 0, 0, 0, 0, 1, NULL, 'xtj', NULL, '2023-08-04 10:29:29.805', NULL, NULL, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL);
 COMMIT;
@@ -829,7 +829,7 @@ INSERT INTO `act_ru_task` (`ID_`, `REV_`, `EXECUTION_ID_`, `PROC_INST_ID_`, `PRO
 INSERT INTO `act_ru_task` (`ID_`, `REV_`, `EXECUTION_ID_`, `PROC_INST_ID_`, `PROC_DEF_ID_`, `NAME_`, `BUSINESS_KEY_`, `PARENT_TASK_ID_`, `DESCRIPTION_`, `TASK_DEF_KEY_`, `OWNER_`, `ASSIGNEE_`, `DELEGATION_`, `PRIORITY_`, `CREATE_TIME_`, `DUE_DATE_`, `CATEGORY_`, `SUSPENSION_STATE_`, `TENANT_ID_`, `FORM_KEY_`, `CLAIM_TIME_`, `APP_VERSION_`) VALUES ('64715c00-327f-11ee-82f6-f22185ea3ea7', 1, '647134ed-327f-11ee-82f6-f22185ea3ea7', '64710dd8-327f-11ee-82f6-f22185ea3ea7', 'fxcl:1:980d1729-326e-11ee-b048-86876c6ac732', '主管审核', '32', NULL, NULL, 'zg', NULL, NULL, NULL, 50, '2023-08-04 12:28:42.245', NULL, NULL, 1, 'xtj', NULL, NULL, NULL);
 INSERT INTO `act_ru_task` (`ID_`, `REV_`, `EXECUTION_ID_`, `PROC_INST_ID_`, `PROC_DEF_ID_`, `NAME_`, `BUSINESS_KEY_`, `PARENT_TASK_ID_`, `DESCRIPTION_`, `TASK_DEF_KEY_`, `OWNER_`, `ASSIGNEE_`, `DELEGATION_`, `PRIORITY_`, `CREATE_TIME_`, `DUE_DATE_`, `CATEGORY_`, `SUSPENSION_STATE_`, `TENANT_ID_`, `FORM_KEY_`, `CLAIM_TIME_`, `APP_VERSION_`) VALUES ('72f59892-327e-11ee-82f6-f22185ea3ea7', 1, '72f5717f-327e-11ee-82f6-f22185ea3ea7', '72f54a6a-327e-11ee-82f6-f22185ea3ea7', 'fxcl:1:980d1729-326e-11ee-b048-86876c6ac732', '主管审核', '28', NULL, NULL, 'zg', NULL, NULL, NULL, 50, '2023-08-04 12:21:57.103', NULL, NULL, 1, 'xtj', NULL, NULL, NULL);
 INSERT INTO `act_ru_task` (`ID_`, `REV_`, `EXECUTION_ID_`, `PROC_INST_ID_`, `PROC_DEF_ID_`, `NAME_`, `BUSINESS_KEY_`, `PARENT_TASK_ID_`, `DESCRIPTION_`, `TASK_DEF_KEY_`, `OWNER_`, `ASSIGNEE_`, `DELEGATION_`, `PRIORITY_`, `CREATE_TIME_`, `DUE_DATE_`, `CATEGORY_`, `SUSPENSION_STATE_`, `TENANT_ID_`, `FORM_KEY_`, `CLAIM_TIME_`, `APP_VERSION_`) VALUES ('8135bcb4-327c-11ee-82f6-f22185ea3ea7', 1, '813595a1-327c-11ee-82f6-f22185ea3ea7', '81356e8c-327c-11ee-82f6-f22185ea3ea7', 'fxcl:1:980d1729-326e-11ee-b048-86876c6ac732', '主管审核', '35', NULL, NULL, 'zg', NULL, NULL, NULL, 50, '2023-08-04 12:08:02.018', NULL, NULL, 1, 'xtj', NULL, NULL, NULL);
-INSERT INTO `act_ru_task` (`ID_`, `REV_`, `EXECUTION_ID_`, `PROC_INST_ID_`, `PROC_DEF_ID_`, `NAME_`, `BUSINESS_KEY_`, `PARENT_TASK_ID_`, `DESCRIPTION_`, `TASK_DEF_KEY_`, `OWNER_`, `ASSIGNEE_`, `DELEGATION_`, `PRIORITY_`, `CREATE_TIME_`, `DUE_DATE_`, `CATEGORY_`, `SUSPENSION_STATE_`, `TENANT_ID_`, `FORM_KEY_`, `CLAIM_TIME_`, `APP_VERSION_`) VALUES ('ae654e32-326e-11ee-b048-86876c6ac732', 1, 'ae65271f-326e-11ee-b048-86876c6ac732', 'ae64b1ea-326e-11ee-b048-86876c6ac732', 'fxcl:1:980d1729-326e-11ee-b048-86876c6ac732', '主管审核', 'bk_1', NULL, NULL, 'zg', NULL, NULL, NULL, 50, '2023-08-04 10:29:04.873', NULL, NULL, 1, 'xtj', NULL, NULL, NULL);
+INSERT INTO `act_ru_task` (`ID_`, `REV_`, `EXECUTION_ID_`, `PROC_INST_ID_`, `PROC_DEF_ID_`, `NAME_`, `BUSINESS_KEY_`, `PARENT_TASK_ID_`, `DESCRIPTION_`, `TASK_DEF_KEY_`, `OWNER_`, `ASSIGNEE_`, `DELEGATION_`, `PRIORITY_`, `CREATE_TIME_`, `DUE_DATE_`, `CATEGORY_`, `SUSPENSION_STATE_`, `TENANT_ID_`, `FORM_KEY_`, `CLAIM_TIME_`, `APP_VERSION_`) VALUES ('ae654e32-326e-11ee-b048-86876c6ac732', 2, 'ae65271f-326e-11ee-b048-86876c6ac732', 'ae64b1ea-326e-11ee-b048-86876c6ac732', 'fxcl:1:980d1729-326e-11ee-b048-86876c6ac732', '主管审核', 'bk_1', NULL, NULL, 'zg', NULL, NULL, NULL, 50, '2023-08-04 10:29:04.873', NULL, NULL, 2, 'xtj', NULL, NULL, NULL);
 INSERT INTO `act_ru_task` (`ID_`, `REV_`, `EXECUTION_ID_`, `PROC_INST_ID_`, `PROC_DEF_ID_`, `NAME_`, `BUSINESS_KEY_`, `PARENT_TASK_ID_`, `DESCRIPTION_`, `TASK_DEF_KEY_`, `OWNER_`, `ASSIGNEE_`, `DELEGATION_`, `PRIORITY_`, `CREATE_TIME_`, `DUE_DATE_`, `CATEGORY_`, `SUSPENSION_STATE_`, `TENANT_ID_`, `FORM_KEY_`, `CLAIM_TIME_`, `APP_VERSION_`) VALUES ('bd41c790-326e-11ee-b048-86876c6ac732', 1, 'bd41a07d-326e-11ee-b048-86876c6ac732', 'bd417968-326e-11ee-b048-86876c6ac732', 'fxcl:1:980d1729-326e-11ee-b048-86876c6ac732', '主管审核', '27', NULL, NULL, 'zg', NULL, NULL, NULL, 50, '2023-08-04 10:29:29.805', NULL, NULL, 1, 'xtj', NULL, NULL, NULL);
 COMMIT;
 
@@ -2113,7 +2113,7 @@ CREATE TABLE `sys_logininfor` (
   PRIMARY KEY (`info_id`),
   KEY `idx_sys_logininfor_s` (`status`),
   KEY `idx_sys_logininfor_lt` (`access_time`)
-) ENGINE=InnoDB AUTO_INCREMENT=124 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='系统访问记录';
+) ENGINE=InnoDB AUTO_INCREMENT=130 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='系统访问记录';
 
 -- ----------------------------
 -- Records of sys_logininfor
@@ -2143,6 +2143,12 @@ INSERT INTO `sys_logininfor` (`info_id`, `user_name`, `ipaddr`, `status`, `msg`,
 INSERT INTO `sys_logininfor` (`info_id`, `user_name`, `ipaddr`, `status`, `msg`, `access_time`) VALUES (121, 'admin', '127.0.0.1', '0', '退出成功', '2023-08-03 20:48:23');
 INSERT INTO `sys_logininfor` (`info_id`, `user_name`, `ipaddr`, `status`, `msg`, `access_time`) VALUES (122, 'admin', '127.0.0.1', '0', '登录成功', '2023-08-03 20:48:26');
 INSERT INTO `sys_logininfor` (`info_id`, `user_name`, `ipaddr`, `status`, `msg`, `access_time`) VALUES (123, 'admin', '127.0.0.1', '0', '登录成功', '2023-08-04 09:33:49');
+INSERT INTO `sys_logininfor` (`info_id`, `user_name`, `ipaddr`, `status`, `msg`, `access_time`) VALUES (124, 'admin', '127.0.0.1', '0', '退出成功', '2023-08-04 13:41:31');
+INSERT INTO `sys_logininfor` (`info_id`, `user_name`, `ipaddr`, `status`, `msg`, `access_time`) VALUES (125, 'zg1', '127.0.0.1', '0', '登录成功', '2023-08-04 13:41:44');
+INSERT INTO `sys_logininfor` (`info_id`, `user_name`, `ipaddr`, `status`, `msg`, `access_time`) VALUES (126, 'zg1', '127.0.0.1', '0', '退出成功', '2023-08-04 13:41:53');
+INSERT INTO `sys_logininfor` (`info_id`, `user_name`, `ipaddr`, `status`, `msg`, `access_time`) VALUES (127, 'zg1', '127.0.0.1', '0', '登录成功', '2023-08-04 13:41:59');
+INSERT INTO `sys_logininfor` (`info_id`, `user_name`, `ipaddr`, `status`, `msg`, `access_time`) VALUES (128, 'zg1', '127.0.0.1', '0', '退出成功', '2023-08-04 13:42:07');
+INSERT INTO `sys_logininfor` (`info_id`, `user_name`, `ipaddr`, `status`, `msg`, `access_time`) VALUES (129, 'admin', '127.0.0.1', '0', '登录成功', '2023-08-04 13:42:18');
 COMMIT;
 
 -- ----------------------------
@@ -2323,7 +2329,7 @@ CREATE TABLE `sys_oper_log` (
   KEY `idx_sys_oper_log_bt` (`business_type`),
   KEY `idx_sys_oper_log_s` (`status`),
   KEY `idx_sys_oper_log_ot` (`oper_time`)
-) ENGINE=InnoDB AUTO_INCREMENT=236 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='操作日志记录';
+) ENGINE=InnoDB AUTO_INCREMENT=241 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='操作日志记录';
 
 -- ----------------------------
 -- Records of sys_oper_log
@@ -2465,6 +2471,11 @@ INSERT INTO `sys_oper_log` (`oper_id`, `title`, `business_type`, `method`, `requ
 INSERT INTO `sys_oper_log` (`oper_id`, `title`, `business_type`, `method`, `request_method`, `operator_type`, `oper_name`, `dept_name`, `oper_url`, `oper_ip`, `oper_location`, `oper_param`, `json_result`, `status`, `error_msg`, `oper_time`, `cost_time`) VALUES (233, '菜单管理', 2, 'com.ruoyi.system.controller.SysMenuController.edit()', 'PUT', 1, 'admin', NULL, '/menu', '127.0.0.1', '', '{\"children\":[],\"component\":\"school/startSchool/index\",\"createTime\":\"2023-08-04 12:19:45\",\"icon\":\"peoples\",\"isCache\":\"0\",\"isFrame\":\"1\",\"menuId\":2027,\"menuName\":\"分校成立审批\",\"menuType\":\"C\",\"orderNum\":1,\"params\":{},\"parentId\":2006,\"path\":\"ApSchool\",\"perms\":\"\",\"query\":\"\",\"status\":\"0\",\"updateBy\":\"admin\",\"visible\":\"0\"}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2023-08-04 12:22:43', 26);
 INSERT INTO `sys_oper_log` (`oper_id`, `title`, `business_type`, `method`, `request_method`, `operator_type`, `oper_name`, `dept_name`, `oper_url`, `oper_ip`, `oper_location`, `oper_param`, `json_result`, `status`, `error_msg`, `oper_time`, `cost_time`) VALUES (234, '分校成立发起流程', 2, 'com.ruoyi.school.controller.SchoolBusController.startFlow()', 'GET', 1, 'admin', NULL, '/school/startFlow/32', '127.0.0.1', '', '{}', '{\"msg\":\"操作成功\",\"code\":200,\"data\":{\"address\":\"河北省秦皇岛市卢龙县城龙城路与永兴大街交叉口西南拐角综合楼207室\",\"addressId\":0,\"adminId\":3676,\"alias\":\"卢龙县校区\",\"area\":\"卢龙县\",\"areaCode\":\"130324\",\"brief\":\"这里是学校的简介，新途径赚大钱\",\"category\":\"school\",\"city\":\"秦皇岛市\",\"cityCode\":\"130300\",\"classId\":894,\"createdAt\":\"2022-07-14 15:17:00\",\"crmId\":1004,\"date\":\"2022-07-12\",\"directlyId\":0,\"id\":\"32\",\"name\":\"秦皇岛卢龙县校区\",\"originId\":819,\"params\":{},\"pid\":0,\"province\":\"河北省\",\"provinceCode\":\"130000\",\"state\":0,\"status\":1,\"type\":3,\"updatedAt\":\"2022-09-20 18:07:09\",\"workflowId\":\"64710dd8-327f-11ee-82f6-f22185ea3ea7\",\"workflowStatus\":1,\"workflowTaskNode\":\"发起人\",\"yyMode\":6,\"yyType\":2}}', 0, NULL, '2023-08-04 12:28:42', 133);
 INSERT INTO `sys_oper_log` (`oper_id`, `title`, `business_type`, `method`, `request_method`, `operator_type`, `oper_name`, `dept_name`, `oper_url`, `oper_ip`, `oper_location`, `oper_param`, `json_result`, `status`, `error_msg`, `oper_time`, `cost_time`) VALUES (235, '菜单管理', 2, 'com.ruoyi.system.controller.SysMenuController.edit()', 'PUT', 1, 'admin', NULL, '/menu', '127.0.0.1', '', '{\"children\":[],\"component\":\"school/apSchool/index\",\"createTime\":\"2023-08-04 12:19:45\",\"icon\":\"peoples\",\"isCache\":\"0\",\"isFrame\":\"1\",\"menuId\":2027,\"menuName\":\"分校成立审批\",\"menuType\":\"C\",\"orderNum\":1,\"params\":{},\"parentId\":2006,\"path\":\"ApSchool\",\"perms\":\"\",\"query\":\"\",\"status\":\"0\",\"updateBy\":\"admin\",\"visible\":\"0\"}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2023-08-04 13:04:15', 22);
+INSERT INTO `sys_oper_log` (`oper_id`, `title`, `business_type`, `method`, `request_method`, `operator_type`, `oper_name`, `dept_name`, `oper_url`, `oper_ip`, `oper_location`, `oper_param`, `json_result`, `status`, `error_msg`, `oper_time`, `cost_time`) VALUES (236, '用户管理', 1, 'com.ruoyi.system.controller.SysUserController.add()', 'POST', 1, 'admin', NULL, '/user', '127.0.0.1', '', '{\"admin\":false,\"createBy\":\"admin\",\"deptId\":100,\"nickName\":\"zg1\",\"params\":{},\"phonenumber\":\"\",\"postIds\":[],\"roleIds\":[],\"sex\":\"0\",\"status\":\"0\",\"userId\":100,\"userName\":\"zg1\"}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2023-08-04 13:40:42', 153);
+INSERT INTO `sys_oper_log` (`oper_id`, `title`, `business_type`, `method`, `request_method`, `operator_type`, `oper_name`, `dept_name`, `oper_url`, `oper_ip`, `oper_location`, `oper_param`, `json_result`, `status`, `error_msg`, `oper_time`, `cost_time`) VALUES (237, '用户管理', 1, 'com.ruoyi.system.controller.SysUserController.add()', 'POST', 1, 'admin', NULL, '/user', '127.0.0.1', '', '{\"admin\":false,\"createBy\":\"admin\",\"deptId\":100,\"nickName\":\"zg2\",\"params\":{},\"postIds\":[],\"roleIds\":[],\"sex\":\"0\",\"status\":\"0\",\"userId\":101,\"userName\":\"zg2\"}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2023-08-04 13:40:59', 125);
+INSERT INTO `sys_oper_log` (`oper_id`, `title`, `business_type`, `method`, `request_method`, `operator_type`, `oper_name`, `dept_name`, `oper_url`, `oper_ip`, `oper_location`, `oper_param`, `json_result`, `status`, `error_msg`, `oper_time`, `cost_time`) VALUES (238, '角色管理', 2, 'com.ruoyi.system.controller.SysRoleController.edit()', 'PUT', 1, 'admin', NULL, '/role', '127.0.0.1', '', '{\"admin\":false,\"createTime\":\"2023-08-03 09:58:58\",\"dataScope\":\"2\",\"delFlag\":\"0\",\"deptCheckStrictly\":true,\"flag\":false,\"menuCheckStrictly\":true,\"menuIds\":[2006,2027],\"params\":{},\"remark\":\"普通角色\",\"roleId\":2,\"roleKey\":\"common\",\"roleName\":\"普通角色\",\"roleSort\":2,\"status\":\"0\",\"updateBy\":\"admin\"}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2023-08-04 13:41:17', 68);
+INSERT INTO `sys_oper_log` (`oper_id`, `title`, `business_type`, `method`, `request_method`, `operator_type`, `oper_name`, `dept_name`, `oper_url`, `oper_ip`, `oper_location`, `oper_param`, `json_result`, `status`, `error_msg`, `oper_time`, `cost_time`) VALUES (239, '用户管理', 2, 'com.ruoyi.system.controller.SysUserController.edit()', 'PUT', 1, 'admin', NULL, '/user', '127.0.0.1', '', '{\"admin\":false,\"avatar\":\"\",\"createBy\":\"admin\",\"createTime\":\"2023-08-04 13:40:42\",\"delFlag\":\"0\",\"dept\":{\"ancestors\":\"0\",\"children\":[],\"deptId\":100,\"deptName\":\"新途径教育\",\"leader\":\"刘彪\",\"orderNum\":0,\"params\":{},\"parentId\":0,\"status\":\"0\"},\"deptId\":100,\"email\":\"\",\"loginIp\":\"\",\"nickName\":\"zg1\",\"params\":{},\"phonenumber\":\"\",\"postIds\":[],\"roleIds\":[2],\"roles\":[],\"sex\":\"0\",\"status\":\"0\",\"updateBy\":\"admin\",\"userId\":100,\"userName\":\"zg1\"}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2023-08-04 13:41:24', 32);
+INSERT INTO `sys_oper_log` (`oper_id`, `title`, `business_type`, `method`, `request_method`, `operator_type`, `oper_name`, `dept_name`, `oper_url`, `oper_ip`, `oper_location`, `oper_param`, `json_result`, `status`, `error_msg`, `oper_time`, `cost_time`) VALUES (240, '用户管理', 2, 'com.ruoyi.system.controller.SysUserController.edit()', 'PUT', 1, 'admin', NULL, '/user', '127.0.0.1', '', '{\"admin\":false,\"avatar\":\"\",\"createBy\":\"admin\",\"createTime\":\"2023-08-04 13:40:59\",\"delFlag\":\"0\",\"dept\":{\"ancestors\":\"0\",\"children\":[],\"deptId\":100,\"deptName\":\"新途径教育\",\"leader\":\"刘彪\",\"orderNum\":0,\"params\":{},\"parentId\":0,\"status\":\"0\"},\"deptId\":100,\"email\":\"\",\"loginIp\":\"\",\"nickName\":\"zg2\",\"params\":{},\"phonenumber\":\"\",\"postIds\":[],\"roleIds\":[2],\"roles\":[],\"sex\":\"0\",\"status\":\"0\",\"updateBy\":\"admin\",\"userId\":101,\"userName\":\"zg2\"}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2023-08-04 13:41:27', 32);
 COMMIT;
 
 -- ----------------------------
@@ -2522,7 +2533,7 @@ CREATE TABLE `sys_role` (
 -- ----------------------------
 BEGIN;
 INSERT INTO `sys_role` (`role_id`, `role_name`, `role_key`, `role_sort`, `data_scope`, `menu_check_strictly`, `dept_check_strictly`, `status`, `del_flag`, `create_by`, `create_time`, `update_by`, `update_time`, `remark`) VALUES (1, '超级管理员', 'admin', 1, '1', 1, 1, '0', '0', 'admin', '2023-08-03 09:58:58', '', NULL, '超级管理员');
-INSERT INTO `sys_role` (`role_id`, `role_name`, `role_key`, `role_sort`, `data_scope`, `menu_check_strictly`, `dept_check_strictly`, `status`, `del_flag`, `create_by`, `create_time`, `update_by`, `update_time`, `remark`) VALUES (2, '普通角色', 'common', 2, '2', 1, 1, '0', '0', 'admin', '2023-08-03 09:58:58', 'admin', '2023-08-03 15:22:51', '普通角色');
+INSERT INTO `sys_role` (`role_id`, `role_name`, `role_key`, `role_sort`, `data_scope`, `menu_check_strictly`, `dept_check_strictly`, `status`, `del_flag`, `create_by`, `create_time`, `update_by`, `update_time`, `remark`) VALUES (2, '普通角色', 'common', 2, '2', 1, 1, '0', '0', 'admin', '2023-08-03 09:58:58', 'admin', '2023-08-04 13:41:17', '普通角色');
 COMMIT;
 
 -- ----------------------------
@@ -2558,89 +2569,8 @@ CREATE TABLE `sys_role_menu` (
 -- Records of sys_role_menu
 -- ----------------------------
 BEGIN;
-INSERT INTO `sys_role_menu` (`role_id`, `menu_id`) VALUES (2, 1);
-INSERT INTO `sys_role_menu` (`role_id`, `menu_id`) VALUES (2, 2);
-INSERT INTO `sys_role_menu` (`role_id`, `menu_id`) VALUES (2, 3);
-INSERT INTO `sys_role_menu` (`role_id`, `menu_id`) VALUES (2, 100);
-INSERT INTO `sys_role_menu` (`role_id`, `menu_id`) VALUES (2, 101);
-INSERT INTO `sys_role_menu` (`role_id`, `menu_id`) VALUES (2, 102);
-INSERT INTO `sys_role_menu` (`role_id`, `menu_id`) VALUES (2, 103);
-INSERT INTO `sys_role_menu` (`role_id`, `menu_id`) VALUES (2, 104);
-INSERT INTO `sys_role_menu` (`role_id`, `menu_id`) VALUES (2, 105);
-INSERT INTO `sys_role_menu` (`role_id`, `menu_id`) VALUES (2, 106);
-INSERT INTO `sys_role_menu` (`role_id`, `menu_id`) VALUES (2, 107);
-INSERT INTO `sys_role_menu` (`role_id`, `menu_id`) VALUES (2, 108);
-INSERT INTO `sys_role_menu` (`role_id`, `menu_id`) VALUES (2, 109);
-INSERT INTO `sys_role_menu` (`role_id`, `menu_id`) VALUES (2, 110);
-INSERT INTO `sys_role_menu` (`role_id`, `menu_id`) VALUES (2, 111);
-INSERT INTO `sys_role_menu` (`role_id`, `menu_id`) VALUES (2, 112);
-INSERT INTO `sys_role_menu` (`role_id`, `menu_id`) VALUES (2, 113);
-INSERT INTO `sys_role_menu` (`role_id`, `menu_id`) VALUES (2, 114);
-INSERT INTO `sys_role_menu` (`role_id`, `menu_id`) VALUES (2, 115);
-INSERT INTO `sys_role_menu` (`role_id`, `menu_id`) VALUES (2, 116);
-INSERT INTO `sys_role_menu` (`role_id`, `menu_id`) VALUES (2, 500);
-INSERT INTO `sys_role_menu` (`role_id`, `menu_id`) VALUES (2, 501);
-INSERT INTO `sys_role_menu` (`role_id`, `menu_id`) VALUES (2, 1000);
-INSERT INTO `sys_role_menu` (`role_id`, `menu_id`) VALUES (2, 1001);
-INSERT INTO `sys_role_menu` (`role_id`, `menu_id`) VALUES (2, 1002);
-INSERT INTO `sys_role_menu` (`role_id`, `menu_id`) VALUES (2, 1003);
-INSERT INTO `sys_role_menu` (`role_id`, `menu_id`) VALUES (2, 1004);
-INSERT INTO `sys_role_menu` (`role_id`, `menu_id`) VALUES (2, 1005);
-INSERT INTO `sys_role_menu` (`role_id`, `menu_id`) VALUES (2, 1006);
-INSERT INTO `sys_role_menu` (`role_id`, `menu_id`) VALUES (2, 1007);
-INSERT INTO `sys_role_menu` (`role_id`, `menu_id`) VALUES (2, 1008);
-INSERT INTO `sys_role_menu` (`role_id`, `menu_id`) VALUES (2, 1009);
-INSERT INTO `sys_role_menu` (`role_id`, `menu_id`) VALUES (2, 1010);
-INSERT INTO `sys_role_menu` (`role_id`, `menu_id`) VALUES (2, 1011);
-INSERT INTO `sys_role_menu` (`role_id`, `menu_id`) VALUES (2, 1012);
-INSERT INTO `sys_role_menu` (`role_id`, `menu_id`) VALUES (2, 1013);
-INSERT INTO `sys_role_menu` (`role_id`, `menu_id`) VALUES (2, 1014);
-INSERT INTO `sys_role_menu` (`role_id`, `menu_id`) VALUES (2, 1015);
-INSERT INTO `sys_role_menu` (`role_id`, `menu_id`) VALUES (2, 1016);
-INSERT INTO `sys_role_menu` (`role_id`, `menu_id`) VALUES (2, 1017);
-INSERT INTO `sys_role_menu` (`role_id`, `menu_id`) VALUES (2, 1018);
-INSERT INTO `sys_role_menu` (`role_id`, `menu_id`) VALUES (2, 1019);
-INSERT INTO `sys_role_menu` (`role_id`, `menu_id`) VALUES (2, 1020);
-INSERT INTO `sys_role_menu` (`role_id`, `menu_id`) VALUES (2, 1021);
-INSERT INTO `sys_role_menu` (`role_id`, `menu_id`) VALUES (2, 1022);
-INSERT INTO `sys_role_menu` (`role_id`, `menu_id`) VALUES (2, 1023);
-INSERT INTO `sys_role_menu` (`role_id`, `menu_id`) VALUES (2, 1024);
-INSERT INTO `sys_role_menu` (`role_id`, `menu_id`) VALUES (2, 1025);
-INSERT INTO `sys_role_menu` (`role_id`, `menu_id`) VALUES (2, 1026);
-INSERT INTO `sys_role_menu` (`role_id`, `menu_id`) VALUES (2, 1027);
-INSERT INTO `sys_role_menu` (`role_id`, `menu_id`) VALUES (2, 1028);
-INSERT INTO `sys_role_menu` (`role_id`, `menu_id`) VALUES (2, 1029);
-INSERT INTO `sys_role_menu` (`role_id`, `menu_id`) VALUES (2, 1030);
-INSERT INTO `sys_role_menu` (`role_id`, `menu_id`) VALUES (2, 1031);
-INSERT INTO `sys_role_menu` (`role_id`, `menu_id`) VALUES (2, 1032);
-INSERT INTO `sys_role_menu` (`role_id`, `menu_id`) VALUES (2, 1033);
-INSERT INTO `sys_role_menu` (`role_id`, `menu_id`) VALUES (2, 1034);
-INSERT INTO `sys_role_menu` (`role_id`, `menu_id`) VALUES (2, 1035);
-INSERT INTO `sys_role_menu` (`role_id`, `menu_id`) VALUES (2, 1036);
-INSERT INTO `sys_role_menu` (`role_id`, `menu_id`) VALUES (2, 1037);
-INSERT INTO `sys_role_menu` (`role_id`, `menu_id`) VALUES (2, 1038);
-INSERT INTO `sys_role_menu` (`role_id`, `menu_id`) VALUES (2, 1039);
-INSERT INTO `sys_role_menu` (`role_id`, `menu_id`) VALUES (2, 1040);
-INSERT INTO `sys_role_menu` (`role_id`, `menu_id`) VALUES (2, 1041);
-INSERT INTO `sys_role_menu` (`role_id`, `menu_id`) VALUES (2, 1042);
-INSERT INTO `sys_role_menu` (`role_id`, `menu_id`) VALUES (2, 1043);
-INSERT INTO `sys_role_menu` (`role_id`, `menu_id`) VALUES (2, 1044);
-INSERT INTO `sys_role_menu` (`role_id`, `menu_id`) VALUES (2, 1045);
-INSERT INTO `sys_role_menu` (`role_id`, `menu_id`) VALUES (2, 1046);
-INSERT INTO `sys_role_menu` (`role_id`, `menu_id`) VALUES (2, 1047);
-INSERT INTO `sys_role_menu` (`role_id`, `menu_id`) VALUES (2, 1048);
-INSERT INTO `sys_role_menu` (`role_id`, `menu_id`) VALUES (2, 1049);
-INSERT INTO `sys_role_menu` (`role_id`, `menu_id`) VALUES (2, 1050);
-INSERT INTO `sys_role_menu` (`role_id`, `menu_id`) VALUES (2, 1051);
-INSERT INTO `sys_role_menu` (`role_id`, `menu_id`) VALUES (2, 1052);
-INSERT INTO `sys_role_menu` (`role_id`, `menu_id`) VALUES (2, 1053);
-INSERT INTO `sys_role_menu` (`role_id`, `menu_id`) VALUES (2, 1054);
-INSERT INTO `sys_role_menu` (`role_id`, `menu_id`) VALUES (2, 1055);
-INSERT INTO `sys_role_menu` (`role_id`, `menu_id`) VALUES (2, 1056);
-INSERT INTO `sys_role_menu` (`role_id`, `menu_id`) VALUES (2, 1057);
-INSERT INTO `sys_role_menu` (`role_id`, `menu_id`) VALUES (2, 1058);
-INSERT INTO `sys_role_menu` (`role_id`, `menu_id`) VALUES (2, 1059);
-INSERT INTO `sys_role_menu` (`role_id`, `menu_id`) VALUES (2, 1060);
+INSERT INTO `sys_role_menu` (`role_id`, `menu_id`) VALUES (2, 2006);
+INSERT INTO `sys_role_menu` (`role_id`, `menu_id`) VALUES (2, 2027);
 COMMIT;
 
 -- ----------------------------
@@ -2668,7 +2598,7 @@ CREATE TABLE `sys_user` (
   `update_time` datetime DEFAULT NULL COMMENT '更新时间',
   `remark` varchar(500) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '备注',
   PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=100 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='用户信息表';
+) ENGINE=InnoDB AUTO_INCREMENT=102 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='用户信息表';
 
 -- ----------------------------
 -- Records of sys_user
@@ -2676,6 +2606,8 @@ CREATE TABLE `sys_user` (
 BEGIN;
 INSERT INTO `sys_user` (`user_id`, `dept_id`, `user_name`, `nick_name`, `user_type`, `email`, `phonenumber`, `sex`, `avatar`, `password`, `status`, `del_flag`, `login_ip`, `login_date`, `create_by`, `create_time`, `update_by`, `update_time`, `remark`) VALUES (1, 103, 'admin', '刘彪', '00', 'ry@163.com', '15888888888', '0', '', '$2a$10$7JB720yubVSZvUI0rEqK/.VqGOZTH.ulu33dHOiBE8ByOhJIrdAu2', '0', '0', '127.0.0.1', '2023-08-03 09:58:57', 'admin', '2023-08-03 09:58:57', '', NULL, '管理员');
 INSERT INTO `sys_user` (`user_id`, `dept_id`, `user_name`, `nick_name`, `user_type`, `email`, `phonenumber`, `sex`, `avatar`, `password`, `status`, `del_flag`, `login_ip`, `login_date`, `create_by`, `create_time`, `update_by`, `update_time`, `remark`) VALUES (2, 105, 'ry', '刘备', '00', 'ry@qq.com', '15666666666', '1', '', '$2a$10$7JB720yubVSZvUI0rEqK/.VqGOZTH.ulu33dHOiBE8ByOhJIrdAu2', '0', '2', '127.0.0.1', '2023-08-03 09:58:57', 'admin', '2023-08-03 09:58:57', '', NULL, '测试员');
+INSERT INTO `sys_user` (`user_id`, `dept_id`, `user_name`, `nick_name`, `user_type`, `email`, `phonenumber`, `sex`, `avatar`, `password`, `status`, `del_flag`, `login_ip`, `login_date`, `create_by`, `create_time`, `update_by`, `update_time`, `remark`) VALUES (100, 100, 'zg1', 'zg1', '00', '', '', '0', '', '$2a$10$FNajPUQLMccg5ViLdbYgn.2i/R6605vTnzIixEzkeNuHYIVApae6O', '0', '0', '', NULL, 'admin', '2023-08-04 13:40:42', 'admin', '2023-08-04 13:41:24', NULL);
+INSERT INTO `sys_user` (`user_id`, `dept_id`, `user_name`, `nick_name`, `user_type`, `email`, `phonenumber`, `sex`, `avatar`, `password`, `status`, `del_flag`, `login_ip`, `login_date`, `create_by`, `create_time`, `update_by`, `update_time`, `remark`) VALUES (101, 100, 'zg2', 'zg2', '00', '', '', '0', '', '$2a$10$vwtZpV04dCF633.unGEdrOnEeLXwRF7g4qcTYe.eQtyTIUNkVKWM.', '0', '0', '', NULL, 'admin', '2023-08-04 13:40:59', 'admin', '2023-08-04 13:41:27', NULL);
 COMMIT;
 
 -- ----------------------------
@@ -2710,6 +2642,8 @@ CREATE TABLE `sys_user_role` (
 -- ----------------------------
 BEGIN;
 INSERT INTO `sys_user_role` (`user_id`, `role_id`) VALUES (1, 1);
+INSERT INTO `sys_user_role` (`user_id`, `role_id`) VALUES (100, 2);
+INSERT INTO `sys_user_role` (`user_id`, `role_id`) VALUES (101, 2);
 COMMIT;
 
 SET FOREIGN_KEY_CHECKS = 1;

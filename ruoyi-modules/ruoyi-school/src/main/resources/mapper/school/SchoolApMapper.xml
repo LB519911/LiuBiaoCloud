@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.school.mapper.SchoolApMapper">
+
+    <resultMap type="School" id="SchoolResult">
+        <result property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="alias" column="alias"/>
+        <result property="province" column="province"/>
+        <result property="provinceCode" column="province_code"/>
+        <result property="city" column="city"/>
+        <result property="cityCode" column="city_code"/>
+        <result property="area" column="area"/>
+        <result property="areaCode" column="area_code"/>
+        <result property="address" column="address"/>
+        <result property="date" column="date"/>
+        <result property="type" column="type"/>
+        <result property="yyMode" column="yy_mode"/>
+        <result property="yyType" column="yy_type"/>
+        <result property="brief" column="brief"/>
+        <result property="status" column="status"/>
+        <result property="state" column="state"/>
+        <result property="category" column="category"/>
+        <result property="addressId" column="address_id"/>
+        <result property="adminId" column="admin_id"/>
+        <result property="pid" column="pid"/>
+        <result property="directlyId" column="directly_id"/>
+        <result property="classId" column="class_id"/>
+        <result property="crmId" column="crm_id"/>
+        <result property="originId" column="origin_id"/>
+        <result property="createdAt" column="created_at"/>
+        <result property="updatedAt" column="updated_at"/>
+        <result property="deletedAt" column="deleted_at"/>
+        <result property="doorHeadPhoto" column="door_head_photo"/>
+        <result property="businessLicense" column="business_license"/>
+        <result property="workflowId" column="workflow_id"/>
+        <result property="workflowTaskNode" column="workflow_task_node"/>
+        <result property="workflowStatus" column="workflow_status"/>
+    </resultMap>
+
+    <sql id="selectSchoolVo">
+        select id,
+               name,
+               alias,
+               province,
+               province_code,
+               city,
+               city_code,
+               area,
+               area_code,
+               address, date, type, yy_mode, yy_type, brief, status, state, category, address_id, admin_id, pid, directly_id, class_id, crm_id, origin_id, created_at, updated_at, deleted_at, door_head_photo, business_license, workflow_id, workflow_task_node, workflow_status
+        from school
+    </sql>
+
+    <select id="selectSchoolList" resultType="com.ruoyi.school.domain.School">
+        <include refid="selectSchoolVo"/>
+        where id in
+        <foreach item="id" collection="ids" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </select>
+</mapper>
