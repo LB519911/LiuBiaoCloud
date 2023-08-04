@@ -30,7 +30,7 @@ public interface RemoteWorkFlowService {
      * @return R 返回
      * @throws IOException 异常
      */
-    @PostMapping(value = "/deploy", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @PostMapping(value = "/workflow/deploy", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public R<String> deploy(@RequestParam("definitionName") String definitionName, @RequestParam("tenantId") String tenantId, @RequestPart(value = "bpmn") MultipartFile bpmn);
 
     /**
@@ -43,7 +43,7 @@ public interface RemoteWorkFlowService {
      * @param processDefinitionKey 流程KEY
      * @return ProcessDefinitionPojoPage 分页信息
      */
-    @GetMapping("/getDeployListByName")
+    @GetMapping("/workflow/getDeployListByName")
     public R<ProcessDefinitionPojoPage> getDeployListByName(@RequestParam("definitionName") String definitionName,
                                                             @RequestParam("currentPage") Integer currentPage,
                                                             @RequestParam("maxResults") Integer maxResults,
@@ -58,7 +58,7 @@ public interface RemoteWorkFlowService {
      * @param processDefinitionKey 流程KEY
      * @return ProcessDefinitionPojo
      */
-    @GetMapping("/deployLatestListByName")
+    @GetMapping("/workflow/deployLatestListByName")
     public R<ProcessDefinitionPojo> getDeployLatestListByName(@RequestParam("definitionName") String definitionName,
                                                               @RequestParam("tenantId") String tenantId,
                                                               @RequestParam("processDefinitionKey") String processDefinitionKey);
@@ -69,7 +69,7 @@ public interface RemoteWorkFlowService {
      * @param processDefinitionKey 流程KEY
      * @param processDefinitionId  流程定义ID
      */
-    @GetMapping("/getDeployImage")
+    @GetMapping("/workflow/getDeployImage")
     public R<String> getDeployImage(@RequestParam("definitionName") String definitionName,
                                     @RequestParam("tenantId") String tenantId,
                                     @RequestParam("processDefinitionKey") String processDefinitionKey,
@@ -82,7 +82,7 @@ public interface RemoteWorkFlowService {
      * @param processDefinitionId 流程定义ID
      * @return String
      */
-    @GetMapping("/deleteProcessDefinitionAllInfo")
+    @GetMapping("/workflow/deleteProcessDefinitionAllInfo")
     public R<String> deleteProcessDefinitionAllInfo(@RequestParam("processDefinitionId") String processDefinitionId,
                                                     @RequestParam("tenantId") String tenantId);
 
@@ -92,7 +92,7 @@ public interface RemoteWorkFlowService {
      * @param processDefinitionName 流程定义名称
      * @return String
      */
-    @GetMapping("/deleteProcessDefinitionByName")
+    @GetMapping("/workflow/deleteProcessDefinitionByName")
     public R<String> deleteProcessDefinitionByName(@RequestParam("processDefinitionName") String processDefinitionName,
                                                    @RequestParam("tenantId") String tenantId);
 
@@ -102,7 +102,7 @@ public interface RemoteWorkFlowService {
      * @param processDefinitionKey 流程定义Key
      * @return String
      */
-    @GetMapping("/deleteProcessDefinitionByKey")
+    @GetMapping("/workflow/deleteProcessDefinitionByKey")
     public R<String> deleteProcessDefinitionByKey(@RequestParam("processDefinitionKey") String processDefinitionKey,
                                                   @RequestParam("tenantId") String tenantId);
 
@@ -112,7 +112,7 @@ public interface RemoteWorkFlowService {
      * @param requestBody 请求体
      * @return String
      */
-    @PostMapping("/startProcessInstanceByKey")
+    @PostMapping("/workflow/startProcessInstanceByKey")
     public R<String> startProcessInstanceByKey(@RequestBody StartProcessInstanceByIdRequestBody requestBody);
 
     /**
@@ -121,7 +121,7 @@ public interface RemoteWorkFlowService {
      * @param requestBody 请求
      * @return R<TaskBusinessKeys> 结果
      */
-    @PostMapping("/findGroupTaskList")
+    @PostMapping("/workflow/findGroupTaskList")
     public R<TaskBusinessKeys> findGroupTaskList(@RequestBody GroupTaskRequestBody requestBody);
 
     /**
@@ -130,7 +130,7 @@ public interface RemoteWorkFlowService {
      * @param requestBody 请求
      * @return R<TaskBusinessKeys> 结果
      */
-    @PostMapping("/findTaskCandidateUserList")
+    @PostMapping("/workflow/findTaskCandidateUserList")
     public R<TaskBusinessKeys> findTaskCandidateUserList(@RequestBody GroupTaskRequestBody requestBody);
 
     /**
@@ -139,7 +139,7 @@ public interface RemoteWorkFlowService {
      * @param requestBody 请求
      * @return String
      */
-    @PostMapping("/claimTaskFormGroup")
+    @PostMapping("/workflow/claimTaskFormGroup")
     public R<String> claimTaskFormGroup(@RequestBody GroupTaskRequestBody requestBody);
 
     /**
@@ -148,7 +148,7 @@ public interface RemoteWorkFlowService {
      * @param requestBody 请求
      * @return String
      */
-    @PostMapping("/claimTaskFromCandidateUser")
+    @PostMapping("/workflow/claimTaskFromCandidateUser")
     public R<String> claimTaskFromCandidateUser(@RequestBody GroupTaskRequestBody requestBody);
 
     /**
@@ -157,7 +157,7 @@ public interface RemoteWorkFlowService {
      * @param requestBody 请求
      * @return String
      */
-    @PostMapping("/setAssigneeToGroupTask")
+    @PostMapping("/workflow/setAssigneeToGroupTask")
     public R<String> setAssigneeToGroupTask(@RequestBody GroupTaskRequestBody requestBody);
 
     /**
@@ -166,7 +166,7 @@ public interface RemoteWorkFlowService {
      * @param requestBody 请求
      * @return String
      */
-    @PostMapping("/setAssigneeToTaskCandidateUser")
+    @PostMapping("/workflow/setAssigneeToTaskCandidateUser")
     public R<String> setAssigneeToTaskCandidateUser(@RequestBody GroupTaskRequestBody requestBody);
 
     /**
@@ -175,7 +175,7 @@ public interface RemoteWorkFlowService {
      * @param requestBody 请求
      * @return String
      */
-    @PostMapping("/setAssigneeToCandidateUser")
+    @PostMapping("/workflow/setAssigneeToCandidateUser")
     public R<String> setAssigneeToCandidateUser(@RequestBody GroupTaskRequestBody requestBody);
 
     /**
@@ -184,7 +184,7 @@ public interface RemoteWorkFlowService {
      * @param requestBody 请求他
      * @return TaskBusinessKeys  返回
      */
-    @PostMapping("/getTaskBusinessKeys")
+    @PostMapping("/workflow/getTaskBusinessKeys")
     public R<TaskBusinessKeys> getTaskBusinessKeys(@RequestBody TaskCompleteRequestBody requestBody);
 
     /**
@@ -193,7 +193,7 @@ public interface RemoteWorkFlowService {
      * @param requestBody 请求体
      * @return TaskCompleteResponseBody 返回值
      */
-    @PostMapping("/taskComplete")
+    @PostMapping("/workflow/taskComplete")
     public R<TaskCompleteResponseBody> taskComplete(@RequestBody TaskCompleteRequestBody requestBody);
 
     /**
@@ -202,7 +202,7 @@ public interface RemoteWorkFlowService {
      * @param requestBody 请求体
      * @return TaskCompleteResponseBody 返回值
      */
-    @PostMapping("/taskClaimAndComplete")
+    @PostMapping("/workflow/taskClaimAndComplete")
     public R<TaskCompleteResponseBody> taskClaimAndComplete(@RequestBody TaskCompleteRequestBody requestBody);
 
     /**
@@ -211,7 +211,7 @@ public interface RemoteWorkFlowService {
      * @param requestBody 请求体
      * @return TaskCompleteResponseBody 返回值
      */
-    @PostMapping("/taskCandidateUserClaimAndComplete")
+    @PostMapping("/workflow/taskCandidateUserClaimAndComplete")
     public R<TaskCompleteResponseBody> taskCandidateUserClaimAndComplete(@RequestBody TaskCompleteRequestBody requestBody);
 
     /**
@@ -224,7 +224,7 @@ public interface RemoteWorkFlowService {
      * @param businessKey          业务主键
      * @return R<List < BusinessKeysAndProcessInfos>> 结果
      */
-    @GetMapping("getBusinessKeysAndProcessInfos")
+    @GetMapping("/workflow/getBusinessKeysAndProcessInfos")
     public R<List<BusinessKeysAndProcessInfos>> getBusinessKeysAndProcessInfos(@RequestParam("assignee") String assignee,
                                                                                @RequestParam("tenantId") String tenantId,
                                                                                @RequestParam("processDefinitionId") String processDefinitionId,
@@ -242,7 +242,7 @@ public interface RemoteWorkFlowService {
      * @param businessKey          业务主键
      * @return List<BusinessKeysAndProcessInfos> 返回体
      */
-    @GetMapping("getBusinessKeysAndProcessInfosWithVar")
+    @GetMapping("/workflow/getBusinessKeysAndProcessInfosWithVar")
     public R<List<BusinessKeysAndProcessInfos>> getBusinessKeysAndProcessInfosWithVar(@RequestParam("assignee") String assignee,
                                                                                       @RequestParam("tenantId") String tenantId,
                                                                                       @RequestParam("processDefinitionId") String processDefinitionId,
@@ -256,7 +256,7 @@ public interface RemoteWorkFlowService {
      * @param processInstanceId   流程实例ID
      * @param httpServletResponse 结果
      */
-    @GetMapping(value = "/getProcessImage")
+    @GetMapping(value = "/workflow/getProcessImage")
     public void getProcessImage(@RequestParam("processInstanceId") String processInstanceId,
                                 HttpServletResponse httpServletResponse);
 
@@ -265,7 +265,7 @@ public interface RemoteWorkFlowService {
      * @param businessKey 业务主键
      * @return R<List < BusinessKeyInfo>> 结果
      */
-    @GetMapping(value = "/getBusinessKeyInfos")
+    @GetMapping(value = "/workflow/getBusinessKeyInfos")
     public R<List<BusinessKeyInfo>> getBusinessKeyInfos(@RequestParam("tenantId") String tenantId,
                                                         @RequestParam("processDefinitionId") String processDefinitionId,
                                                         @RequestParam("processDefinitionKey") String processDefinitionKey,
@@ -280,7 +280,7 @@ public interface RemoteWorkFlowService {
      * @param businessKey          业务主键
      * @return R 返回
      */
-    @GetMapping("/suspendProcessInstance")
+    @GetMapping("/workflow/suspendProcessInstance")
     public R<String> suspendProcessInstance(
             @RequestParam("tenantId") String tenantId,
             @RequestParam("processDefinitionId") String processDefinitionId,
@@ -296,7 +296,7 @@ public interface RemoteWorkFlowService {
      * @param cascade              是否连同实例也暂停
      * @return R 返回
      */
-    @GetMapping("/suspendProcessDefinition")
+    @GetMapping("/workflow/suspendProcessDefinition")
     public R<String> suspendProcessDefinition(
             @RequestParam("tenantId") String tenantId,
             @RequestParam("processDefinitionId") String processDefinitionId,
@@ -312,7 +312,7 @@ public interface RemoteWorkFlowService {
      * @param businessKey          业务主键
      * @return R 返回
      */
-    @GetMapping("/notSuspendProcessInstance")
+    @GetMapping("/workflow/notSuspendProcessInstance")
     public R<String> notSuspendProcessInstance(
             @RequestParam("tenantId") String tenantId,
             @RequestParam("processDefinitionId") String processDefinitionId,
@@ -328,7 +328,7 @@ public interface RemoteWorkFlowService {
      * @param cascade              是否连同实例也暂停
      * @return R 返回
      */
-    @GetMapping("/notSuspendProcessDefinition")
+    @GetMapping("/workflow/notSuspendProcessDefinition")
     public R<String> notSuspendProcessDefinition(
             @RequestParam("tenantId") String tenantId,
             @RequestParam("processDefinitionId") String processDefinitionId,
