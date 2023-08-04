@@ -58,3 +58,12 @@ export function hiFlow(id) {
     method: 'get'
   })
 }
+
+// 查询分校成立审批列表
+export function apListSchool(query) {
+  return request({
+    url: '/school/school/apList',
+    method: 'get',
+    params: query
+  })
+}
