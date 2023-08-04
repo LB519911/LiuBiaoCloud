@@ -162,6 +162,18 @@
         <el-button @click="cancel">取 消</el-button>
       </div>
     </el-dialog>
+
+    <el-dialog
+      title="您的审批进度"
+      :visible.sync="hiFlowImgDialogVisible"
+      width="60%"
+      :before-close="handleClose">
+      <div v-html="hiFlowImg"></div>
+      <span slot="footer" class="dialog-footer">
+    <el-button @click="hiFlowImgDialogVisible = false">取 消</el-button>
+    <el-button type="primary" @click="hiFlowImgDialogVisible = false">确 定</el-button>
+  </span>
+    </el-dialog>
   </div>
 </template>
 
@@ -172,6 +184,7 @@ export default {
   name: "School",
   data() {
     return {
+      hiFlowImgDialogVisible: false,
       hiFlowImg: '',
       // 遮罩层
       loading: true,
@@ -214,6 +227,10 @@ export default {
     this.getList();
   },
   methods: {
+    handleClose(done) {
+      this.hiFlowImgDialogVisible = false
+      this.hiFlowImg = ''
+    },
     /** 查询分校成立列表 */
     getList() {
       this.loading = true;
@@ -314,6 +331,7 @@ export default {
       this.reset();
       const id = row.id || this.ids
       hiFlow(id).then(response => {
+        this.hiFlowImgDialogVisible = true
         this.hiFlowImg = response.data
       });
     },
