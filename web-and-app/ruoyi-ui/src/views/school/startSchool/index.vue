@@ -162,6 +162,10 @@
         <el-button @click="cancel">取 消</el-button>
       </div>
     </el-dialog>
+
+    <div style="height: 500px">
+      {{img}}
+    </div>
   </div>
 </template>
 
@@ -172,6 +176,7 @@ export default {
   name: "School",
   data() {
     return {
+      img:'',
       // 遮罩层
       loading: true,
       // 选中数组
@@ -308,7 +313,7 @@ export default {
         this.$modal.msgSuccess("流程发起成功");
       });
     },
-    /** 发起审批按钮操作 */
+    /** 查看审批进度 */
     hiFlow(row) {
       this.reset();
       const id = row.id || this.ids
