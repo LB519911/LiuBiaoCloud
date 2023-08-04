@@ -87,7 +87,7 @@ public class SchoolBusController extends BaseController {
 
             //主管组
             ArrayList<Object> cws = Lists.newArrayList();
-            cws.add("zg_group");
+            cws.add("cw_group");
             //超级用户
             cws.add("super_group");
             vars.put("cwfzr_group", cws);
@@ -156,7 +156,7 @@ public class SchoolBusController extends BaseController {
         }
         //审批组ID,这个里需要找到这个人在那个审批组，自己建表，此处为了演示直接使用if判断
         if (username.startsWith("cw")) {
-            groupTaskRequestBody.setTaskAssigneeGroup("cwfzr_group");
+            groupTaskRequestBody.setTaskAssigneeGroup("cw_group");
         }
         //审批组ID,这个里需要找到这个人在那个审批组，自己建表，此处为了演示直接使用if判断
         if (username.startsWith("admin")) {
