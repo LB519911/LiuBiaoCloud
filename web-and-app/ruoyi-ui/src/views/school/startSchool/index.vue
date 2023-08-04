@@ -164,7 +164,7 @@
     </el-dialog>
 
     <div style="height: 500px">
-      {{img}}
+      <img :src="img"></img>
     </div>
   </div>
 </template>
