@@ -98,10 +98,11 @@ public class SchoolBusController extends BaseController {
     @RequiresPermissions("school:school:hiAp")
     @Log(title = "分校成立发起流程", businessType = BusinessType.UPDATE)
     @GetMapping("/hiFlow/{id}")
-    public void HiFlow(@PathVariable("id") String id, HttpServletResponse httpServletResponse) {
+    public R<String> HiFlow(@PathVariable("id") String id) {
         //根据业务ID找到流程实例ID
         School school = schoolService.selectSchoolById(id);
         //调用流程图
-        remoteWorkFlowService.getProcessImage(school.getWorkflowId(), httpServletResponse);
+        R<String> processImageBase64 = remoteWorkFlowService.getProcessImageBase64(school.getWorkflowId());
+        return R.ok(processImageBase64.getData());
     }
 }

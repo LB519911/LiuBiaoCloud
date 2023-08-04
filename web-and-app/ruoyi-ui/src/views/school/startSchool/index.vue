@@ -164,7 +164,7 @@
     </el-dialog>
 
     <div style="height: 500px">
-      <img :src="img"></img>
+      <div v-html="img"></div>
     </div>
   </div>
 </template>
@@ -176,7 +176,7 @@ export default {
   name: "School",
   data() {
     return {
-      img:'',
+      img: '',
       // 遮罩层
       loading: true,
       // 选中数组
@@ -318,7 +318,7 @@ export default {
       this.reset();
       const id = row.id || this.ids
       hiFlow(id).then(response => {
-        console.log(response.data)
+        this.img = response.data
       });
     },
     /** 提交按钮 */
