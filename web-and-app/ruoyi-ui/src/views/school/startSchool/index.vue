@@ -162,10 +162,6 @@
         <el-button @click="cancel">取 消</el-button>
       </div>
     </el-dialog>
-
-    <div style="height: 500px">
-      <div v-html="img"></div>
-    </div>
   </div>
 </template>
 
@@ -176,7 +172,7 @@ export default {
   name: "School",
   data() {
     return {
-      img: '',
+      hiFlowImg: '',
       // 遮罩层
       loading: true,
       // 选中数组
@@ -318,7 +314,7 @@ export default {
       this.reset();
       const id = row.id || this.ids
       hiFlow(id).then(response => {
-        this.img = response.data
+        this.hiFlowImg = response.data
       });
     },
     /** 提交按钮 */

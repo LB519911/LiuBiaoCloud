@@ -103,6 +103,10 @@ public class SchoolBusController extends BaseController {
         School school = schoolService.selectSchoolById(id);
         //调用流程图
         R<String> processImageBase64 = remoteWorkFlowService.getProcessImageBase64(school.getWorkflowId());
+
+        if (processImageBase64.getCode() != SUCCESS_CODE) {
+            return R.fail(processImageBase64.getMsg());
+        }
         return R.ok(processImageBase64.getData());
     }
 }
