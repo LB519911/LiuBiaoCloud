@@ -140,11 +140,11 @@ public class SchoolBusController extends BaseController {
 
         String username = SecurityUtils.getUsername();
         //审批组ID,这个里需要找到这个人在那个审批组，自己建表，此处为了演示直接使用if判断
-        if (username.startsWith("admin") || username.startsWith("zg")) {
+        if (username.startsWith("zg")) {
             groupTaskRequestBody.setTaskAssigneeGroup("zg_group");
         }
         //审批组ID,这个里需要找到这个人在那个审批组，自己建表，此处为了演示直接使用if判断
-        if (username.startsWith("admin") || username.startsWith("cw")) {
+        if (username.startsWith("cw")) {
             groupTaskRequestBody.setTaskAssigneeGroup("cwfzr_group");
         }
 
