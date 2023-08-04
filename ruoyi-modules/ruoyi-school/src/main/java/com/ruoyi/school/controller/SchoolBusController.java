@@ -10,6 +10,7 @@ import com.ruoyi.common.core.web.page.TableSupport;
 import com.ruoyi.common.log.annotation.Log;
 import com.ruoyi.common.log.enums.BusinessType;
 import com.ruoyi.common.security.annotation.RequiresPermissions;
+import com.ruoyi.common.security.utils.SecurityUtils;
 import com.ruoyi.school.domain.School;
 import com.ruoyi.school.service.IApSchoolService;
 import com.ruoyi.school.service.ISchoolService;
@@ -129,8 +130,6 @@ public class SchoolBusController extends BaseController {
         GroupTaskRequestBody groupTaskRequestBody = new GroupTaskRequestBody();
         //流程定义KEY
         groupTaskRequestBody.setProcessDefinitionKey(FXCL);
-        //审批组ID
-        groupTaskRequestBody.setTaskAssigneeGroup("zg_group");
         groupTaskRequestBody.setTenantId(XTJ);
         //分页信息
         PageDomain pageDomain = TableSupport.buildPageRequest();
@@ -138,6 +137,16 @@ public class SchoolBusController extends BaseController {
         Integer pageSize = pageDomain.getPageSize();
         groupTaskRequestBody.setCurrentPage(pageNum);
         groupTaskRequestBody.setMaxResults(pageSize);
+
+        String username = SecurityUtils.getUsername();
+        //审批组ID,这个里需要找到这个人在那个审批组，自己建表，此处为了演示直接使用if判断
+        if (username.startsWith("admin") || username.startsWith("zg")) {
+            groupTaskRequestBody.setTaskAssigneeGroup("zg_group");
+        }
+        //审批组ID,这个里需要找到这个人在那个审批组，自己建表，此处为了演示直接使用if判断
+        if (username.startsWith("admin") || username.startsWith("cw")) {
+            groupTaskRequestBody.setTaskAssigneeGroup("cwfzr_group");
+        }
 
         //得到审批列表
         R<TaskBusinessKeys> taskLists = remoteWorkFlowService.findGroupTaskList(groupTaskRequestBody);
