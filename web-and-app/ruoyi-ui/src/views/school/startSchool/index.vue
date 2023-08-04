@@ -101,7 +101,7 @@
             v-hasPermi="['school:school:edit']">发起审批
           </el-button>
           <el-button
-            v-if="scope.row.workflowStatus==1"
+            v-if="scope.row.workflowStatus!=0"
             size="mini"
             type="text"
             icon="el-icon-s-comment"
