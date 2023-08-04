@@ -50,3 +50,11 @@ export function startFlow(id) {
     method: 'get'
   })
 }
+
+// 查看审批流程图
+export function hiFlow(id) {
+  return request({
+    url: '/school/school/hiFlow/' + id,
+    method: 'get'
+  })
+}

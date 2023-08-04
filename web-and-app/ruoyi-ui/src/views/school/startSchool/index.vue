@@ -105,7 +105,7 @@
             size="mini"
             type="text"
             icon="el-icon-s-comment"
-            @click="startWorkFlow(scope.row)"
+            @click="hiFlow(scope.row)"
             v-hasPermi="['school:school:edit']">审批进度
           </el-button>
           <el-button
@@ -166,7 +166,7 @@
 </template>
 
 <script>
-import {listSchool, getSchool, delSchool, addSchool, updateSchool, startFlow} from "@/api/school/school";
+import {listSchool, getSchool, delSchool, addSchool, updateSchool, startFlow, hiFlow} from "@/api/school/school";
 
 export default {
   name: "School",
@@ -309,13 +309,11 @@ export default {
       });
     },
     /** 发起审批按钮操作 */
-    startWorkFlow(row) {
+    hiFlow(row) {
       this.reset();
       const id = row.id || this.ids
-      startFlow(id).then(response => {
-        this.form = response.data;
-        row.workflowStatus = 1
-        this.$modal.msgSuccess("流程发起成功");
+      hiFlow(id).then(response => {
+        console.log(response.data)
       });
     },
     /** 提交按钮 */
