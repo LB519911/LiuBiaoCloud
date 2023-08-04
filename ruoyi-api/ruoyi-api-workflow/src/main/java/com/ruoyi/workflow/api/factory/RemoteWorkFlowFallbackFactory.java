@@ -48,6 +48,11 @@ public class RemoteWorkFlowFallbackFactory implements FallbackFactory<RemoteWork
             }
 
             @Override
+            public R<String> getProcessImageBase64(String processInstanceId) {
+                return R.fail("失败:" + throwable.getMessage());
+            }
+
+            @Override
             public R<String> deleteProcessDefinitionAllInfo(String processDefinitionId, String tenantId) {
                 return R.fail("失败:" + throwable.getMessage());
             }

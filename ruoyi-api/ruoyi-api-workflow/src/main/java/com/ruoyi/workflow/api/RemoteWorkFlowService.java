@@ -77,6 +77,14 @@ public interface RemoteWorkFlowService {
                                     HttpServletResponse httpServletResponse);
 
     /**
+     * 获取流程进度Base64图片
+     *
+     * @param processInstanceId 流程实例ID
+     */
+    @GetMapping(value = "/workflow/getProcessImageBase64")
+    public R<String> getProcessImageBase64(@RequestParam("processInstanceId") String processInstanceId);
+
+    /**
      * 根据流程定义ID删除所有信息,危险！
      *
      * @param processDefinitionId 流程定义ID

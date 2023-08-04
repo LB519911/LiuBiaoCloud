@@ -1083,6 +1083,24 @@ public class WorkFlowController {
     }
 
     /**
+     * 获取流程进度Base64图片
+     *
+     * @param processInstanceId 流程实例ID
+     */
+    @GetMapping(value = "/getProcessImageBase64")
+    public R<String> getProcessImageBase64(@RequestParam String processInstanceId) {
+        String baseImg = "";
+
+        try {
+            InputStream imgInputStream = processImageService.getFlowImgByProcInstId(processInstanceId);
+            baseImg = IOUtils.toString(imgInputStream);
+        } catch (Exception e) {
+            return R.fail(e.getMessage());
+        }
+        return R.ok(baseImg);
+    }
+
+    /**
      * @param tenantId    租户ID
      * @param businessKey 业务主键
      * @return R<List < BusinessKeyInfo>> 结果

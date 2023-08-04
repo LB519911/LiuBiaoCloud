@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.xtj.com">
+  <process id="fxcl" name="分校成立流程" isExecutable="true">
+    <startEvent id="startevent1" name="开始"></startEvent>
+    <userTask id="zg" name="主管审核" activiti:candidateGroups="${ zg_group }"></userTask>
+    <endEvent id="terminateendevent1" name="TerminateEndEvent">
+      <terminateEventDefinition></terminateEventDefinition>
+    </endEvent>
+    <userTask id="cwfzr" name="财务片区负责人审核" activiti:candidateGroups="${ cwfzr_group }"></userTask>
+    <sequenceFlow id="zg_flow_next" name="同意" sourceRef="zg" targetRef="cwfzr">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${to == "next"}]]></conditionExpression>
+    </sequenceFlow>
+    <endEvent id="endevent1" name="End"></endEvent>
+    <sequenceFlow id="cwfzr_flow_next" name="同意" sourceRef="cwfzr" targetRef="endevent1">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${to == "next"}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow5" sourceRef="startevent1" targetRef="zg"></sequenceFlow>
+    <sequenceFlow id="zg_flow_back" name="不同意" sourceRef="zg" targetRef="terminateendevent1">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${to == "back"}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="cwfzr_flow_back" name="不同意" sourceRef="cwfzr" targetRef="terminateendevent1">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${to == "back"}]]></conditionExpression>
+    </sequenceFlow>
+    <textAnnotation id="textannotation1">
+      <text>1: 分校从小程序端提交信息。
+2: 运营和分校沟通信息是否正确，直至信息修改完成。
+3: 由运营发起审批。
+4: 通过后学校可用。
+
+
+</text>
+    </textAnnotation>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_fxcl">
+    <bpmndi:BPMNPlane bpmnElement="fxcl" id="BPMNPlane_fxcl">
+      <bpmndi:BPMNShape bpmnElement="startevent1" id="BPMNShape_startevent1">
+        <omgdc:Bounds height="35.0" width="35.0" x="210.0" y="238.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="zg" id="BPMNShape_zg">
+        <omgdc:Bounds height="71.0" width="135.0" x="310.0" y="220.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="terminateendevent1" id="BPMNShape_terminateendevent1">
+        <omgdc:Bounds height="35.0" width="35.0" x="720.0" y="410.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="cwfzr" id="BPMNShape_cwfzr">
+        <omgdc:Bounds height="71.0" width="141.0" x="510.0" y="220.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="endevent1" id="BPMNShape_endevent1">
+        <omgdc:Bounds height="35.0" width="35.0" x="720.0" y="238.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="textannotation1" id="BPMNShape_textannotation1">
+        <omgdc:Bounds height="106.0" width="401.0" x="210.0" y="90.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="zg_flow_next" id="BPMNEdge_zg_flow_next">
+        <omgdi:waypoint x="445.0" y="255.0"></omgdi:waypoint>
+        <omgdi:waypoint x="510.0" y="255.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="16.0" width="22.0" x="459.0" y="238.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="cwfzr_flow_next" id="BPMNEdge_cwfzr_flow_next">
+        <omgdi:waypoint x="651.0" y="255.0"></omgdi:waypoint>
+        <omgdi:waypoint x="720.0" y="255.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="16.0" width="22.0" x="669.0" y="238.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow5" id="BPMNEdge_flow5">
+        <omgdi:waypoint x="245.0" y="255.0"></omgdi:waypoint>
+        <omgdi:waypoint x="310.0" y="255.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="zg_flow_back" id="BPMNEdge_zg_flow_back">
+        <omgdi:waypoint x="377.0" y="291.0"></omgdi:waypoint>
+        <omgdi:waypoint x="737.0" y="410.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="16.0" width="33.0" x="452.0" y="360.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="cwfzr_flow_back" id="BPMNEdge_cwfzr_flow_back">
+        <omgdi:waypoint x="580.0" y="291.0"></omgdi:waypoint>
+        <omgdi:waypoint x="737.0" y="410.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="16.0" width="33.0" x="637.0" y="335.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>
