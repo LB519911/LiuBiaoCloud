@@ -83,7 +83,7 @@ public class SchoolBusController extends BaseController {
             //工作流发起成功后会返回instanceID，持久化到数据库
             school.setWorkflowId(startProcessInstanceInfo.getData());
             //发起人是本身
-            school.setWorkflowTaskNode(1L);
+            school.setWorkflowTaskNode("发起人");
             schoolService.updateSchool(school);
         } catch (Exception e) {
             return error(e.getMessage());
