@@ -15,13 +15,13 @@
               size="small"
               type="success"
               @click="startWorkFlow(scope.row)"
-              v-hasPermi="['school:school:edit']">通过
+              v-hasPermi="['school:school:apList']">通过
           </el-button>
           <el-button
               size="small"
               type="danger"
               @click="hiFlow(scope.row)"
-              v-hasPermi="['school:school:edit']">不通过
+              v-hasPermi="['school:school:apList']">不通过
           </el-button>
         </template>
       </el-table-column>

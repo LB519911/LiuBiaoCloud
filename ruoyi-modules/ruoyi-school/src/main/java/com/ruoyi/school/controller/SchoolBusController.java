@@ -22,6 +22,7 @@ import com.ruoyi.workflow.api.model.TaskBusinessKeys;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -78,10 +79,20 @@ public class SchoolBusController extends BaseController {
             //向工作流设置流程变量（审批人、流程走向参数请放到这个里，自己建表，此处为了演示直接写到map）
             HashMap<String, Object> vars = new HashMap();
             //主管组
-            vars.put("zg_group", "zg_group");
-            //财务负责人组
-            vars.put("cwfzr_group", "cwfzr_group");
+            ArrayList<Object> zgs = Lists.newArrayList();
+            zgs.add("zg_group");
+            //超级用户
+            zgs.add("super_group");
+            vars.put("zg_group", zgs);
+
+            //主管组
+            ArrayList<Object> cws = Lists.newArrayList();
+            cws.add("zg_group");
+            //超级用户
+            cws.add("super_group");
+            vars.put("cwfzr_group", cws);
             requestBody.setGlobalVar(vars);
+
             //向工作流设置租户ID
             requestBody.setTenantId(XTJ);
 
@@ -146,6 +157,10 @@ public class SchoolBusController extends BaseController {
         //审批组ID,这个里需要找到这个人在那个审批组，自己建表，此处为了演示直接使用if判断
         if (username.startsWith("cw")) {
             groupTaskRequestBody.setTaskAssigneeGroup("cwfzr_group");
+        }
+        //审批组ID,这个里需要找到这个人在那个审批组，自己建表，此处为了演示直接使用if判断
+        if (username.startsWith("admin")) {
+            groupTaskRequestBody.setTaskAssigneeGroup("super_group");
         }
 
         //得到审批列表
