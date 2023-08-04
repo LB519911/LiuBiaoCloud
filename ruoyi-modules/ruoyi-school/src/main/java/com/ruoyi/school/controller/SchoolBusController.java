@@ -14,6 +14,7 @@ import com.ruoyi.workflow.api.model.StartProcessInstanceByIdRequestBody;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
 
 /**
@@ -89,5 +90,18 @@ public class SchoolBusController extends BaseController {
             return error(e.getMessage());
         }
         return success(schoolService.selectSchoolById(id));
+    }
+
+    /**
+     * 查看审批进度
+     */
+    @RequiresPermissions("school:school:hiAp")
+    @Log(title = "分校成立发起流程", businessType = BusinessType.UPDATE)
+    @GetMapping("/hiFlow/{id}")
+    public void startFlow(@PathVariable("id") String id, HttpServletResponse httpServletResponse) {
+        //根据业务ID找到流程实例ID
+        School school = schoolService.selectSchoolById(id);
+        //调用流程图
+        remoteWorkFlowService.getProcessImage(school.getWorkflowId(), httpServletResponse);
     }
 }
