@@ -10,8 +10,11 @@ import com.ruoyi.school.domain.School;
 import com.ruoyi.school.service.ISchoolService;
 import com.ruoyi.workflow.api.RemoteWorkFlowService;
 import com.ruoyi.workflow.api.model.ProcessDefinitionPojo;
+import com.ruoyi.workflow.api.model.StartProcessInstanceByIdRequestBody;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.HashMap;
 
 /**
  * 分校成立Controller
@@ -22,10 +25,15 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/school")
 public class SchoolBusController extends BaseController {
+    //工作流流程信息
+    public static final String FXCL = "fxcl";
+    public static final String XTJ = "xtj";
     @Autowired
     private ISchoolService schoolService;
     @Autowired
     private RemoteWorkFlowService remoteWorkFlowService;
+
+    public static final int SUCCESS_CODE = 200;
 
     /**
      * 分校成立发起流程
@@ -36,12 +44,45 @@ public class SchoolBusController extends BaseController {
     public AjaxResult startFlow(@PathVariable("id") String id) {
         //查询流程信息
         R<ProcessDefinitionPojo> processDefinitions = remoteWorkFlowService
-                .getDeployLatestListByName("x", "xtj", "x");
+                .getDeployLatestListByName("分校成立流程行", XTJ, FXCL);
 
-        School school = new School();
-        school.setId(id);
-        school.setWorkflowStatus(1L);
+        if (SUCCESS_CODE != processDefinitions.getCode()) {
+            return error(processDefinitions.getMsg());
+        }
+
         try {
+            School school = new School();
+            school.setId(id);
+            school.setWorkflowStatus(1L);
+
+            //发起流程请求参数
+            StartProcessInstanceByIdRequestBody requestBody = new StartProcessInstanceByIdRequestBody();
+            //向工作流设置任务主键
+            requestBody.setBusinessKey(id);
+            //向工作流设置流程定义ID
+            requestBody.setProcessDefinitionId(processDefinitions.getData().getId());
+            //向工作流设置流程定义KEY
+            requestBody.setProcessDefinitionKey(FXCL);
+            //向工作流设置流程变量（审批人、流程走向参数请放到这个里，自己建表，此处为了演示直接写到map）
+            HashMap<String, Object> vars = new HashMap();
+            //主管组
+            vars.put("zg_group", "zg_group");
+            //财务负责人组
+            vars.put("cwfzr_group", "cwfzr_group");
+            requestBody.setGlobalVar(vars);
+            //向工作流设置租户ID
+            requestBody.setTenantId(XTJ);
+
+            //发起流程
+            R<String> startProcessInstanceInfo = remoteWorkFlowService.startProcessInstanceByKey(requestBody);
+            if (SUCCESS_CODE != startProcessInstanceInfo.getCode()) {
+                return error(startProcessInstanceInfo.getMsg());
+            }
+
+            //工作流发起成功后会返回instanceID，持久化到数据库
+            school.setWorkflowId(startProcessInstanceInfo.getData());
+            //发起人是本身
+            school.setWorkflowTaskNode(1L);
             schoolService.updateSchool(school);
         } catch (Exception e) {
             return error(e.getMessage());
