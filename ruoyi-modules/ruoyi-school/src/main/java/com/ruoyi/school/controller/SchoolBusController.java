@@ -3,6 +3,7 @@ package com.ruoyi.school.controller;
 import com.ruoyi.common.core.domain.R;
 import com.ruoyi.common.core.web.controller.BaseController;
 import com.ruoyi.common.core.web.domain.AjaxResult;
+import com.ruoyi.common.core.web.page.TableDataInfo;
 import com.ruoyi.common.log.annotation.Log;
 import com.ruoyi.common.log.enums.BusinessType;
 import com.ruoyi.common.security.annotation.RequiresPermissions;
@@ -15,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * 分校成立Controller
@@ -107,5 +109,16 @@ public class SchoolBusController extends BaseController {
             return R.fail(processImageBase64.getMsg());
         }
         return R.ok(processImageBase64.getData());
+    }
+
+    /**
+     * 查询分校成立审批列表
+     */
+    @RequiresPermissions("school:school:apList")
+    @GetMapping("/apList")
+    public TableDataInfo apList(School school) {
+        startPage();
+        List<School> list = schoolService.selectSchoolList(school);
+        return getDataTable(list);
     }
 }

@@ -1,86 +1,5 @@
 <template>
   <div class="app-container">
-    <el-form :model="queryParams" ref="queryForm" size="small" :inline="true" v-show="showSearch" label-width="68px">
-      <el-form-item label="校区名称" prop="name">
-        <el-input
-          v-model="queryParams.name"
-          placeholder="请输入"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="地址" prop="address">
-        <el-input
-          v-model="queryParams.address"
-          placeholder="请输入地址"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="建校时间" prop="date">
-        <el-date-picker clearable
-                        v-model="queryParams.date"
-                        type="date"
-                        value-format="yyyy-MM-dd"
-                        placeholder="请选择建校时间">
-        </el-date-picker>
-      </el-form-item>
-      <el-form-item>
-        <el-button type="primary" icon="el-icon-search" size="mini" @click="handleQuery">搜索</el-button>
-        <el-button icon="el-icon-refresh" size="mini" @click="resetQuery">重置</el-button>
-      </el-form-item>
-    </el-form>
-
-    <el-row :gutter="10" class="mb8">
-      <el-col :span="1.5">
-        <el-button
-          type="primary"
-          plain
-          icon="el-icon-plus"
-          size="mini"
-          @click="handleAdd"
-          v-hasPermi="['school:school:add']"
-        >新增
-        </el-button>
-      </el-col>
-      <el-col :span="1.5">
-        <el-button
-          type="success"
-          plain
-          icon="el-icon-edit"
-          size="mini"
-          :disabled="single"
-          @click="handleUpdate"
-          v-hasPermi="['school:school:edit']"
-        >修改
-        </el-button>
-      </el-col>
-      <el-col :span="1.5">
-        <el-button
-          type="danger"
-          plain
-          icon="el-icon-delete"
-          size="mini"
-          :disabled="multiple"
-          @click="handleDelete"
-          v-hasPermi="['school:school:remove']"
-        >删除
-        </el-button>
-      </el-col>
-      <el-col :span="1.5">
-        <el-button
-          type="warning"
-          plain
-          icon="el-icon-download"
-          size="mini"
-          @click="handleExport"
-          v-hasPermi="['school:school:export']"
-        >导出
-        </el-button>
-      </el-col>
-      <right-toolbar :showSearch.sync="showSearch" @queryTable="getList"></right-toolbar>
-    </el-row>
-
     <el-table v-loading="loading" :data="schoolList" @selection-change="handleSelectionChange">
       <el-table-column label="校区名称" align="center" prop="name"/>
       <el-table-column label="地址" align="center" prop="address"/>
@@ -93,47 +12,27 @@
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
         <template slot-scope="scope">
           <el-button
-            v-if="scope.row.workflowStatus==0"
-            size="mini"
-            type="text"
-            icon="el-icon-s-comment"
-            @click="startWorkFlow(scope.row)"
-            v-hasPermi="['school:school:edit']">发起审批
+              size="small"
+              type="success"
+              @click="startWorkFlow(scope.row)"
+              v-hasPermi="['school:school:edit']">通过
           </el-button>
           <el-button
-            v-if="scope.row.workflowStatus==1"
-            size="mini"
-            type="text"
-            icon="el-icon-s-comment"
-            @click="hiFlow(scope.row)"
-            v-hasPermi="['school:school:edit']">审批进度
-          </el-button>
-          <el-button
-            v-if="scope.row.workflowStatus==0"
-            size="mini"
-            type="text"
-            icon="el-icon-edit"
-            @click="handleUpdate(scope.row)"
-            v-hasPermi="['school:school:edit']">修改
-          </el-button>
-          <el-button
-            v-if="scope.row.workflowStatus==0"
-            size="mini"
-            type="text"
-            icon="el-icon-delete"
-            @click="handleDelete(scope.row)"
-            v-hasPermi="['school:school:remove']">删除
+              size="small"
+              type="danger"
+              @click="hiFlow(scope.row)"
+              v-hasPermi="['school:school:edit']">不通过
           </el-button>
         </template>
       </el-table-column>
     </el-table>
 
     <pagination
-      v-show="total>0"
-      :total="total"
-      :page.sync="queryParams.pageNum"
-      :limit.sync="queryParams.pageSize"
-      @pagination="getList"
+        v-show="total>0"
+        :total="total"
+        :page.sync="queryParams.pageNum"
+        :limit.sync="queryParams.pageSize"
+        @pagination="getList"
     />
 
     <!-- 添加或修改分校成立对话框 -->
@@ -164,10 +63,10 @@
     </el-dialog>
 
     <el-dialog
-      title="您的审批进度"
-      :visible.sync="hiFlowImgDialogVisible"
-      width="60%"
-      :before-close="handleClose">
+        title="您的审批进度"
+        :visible.sync="hiFlowImgDialogVisible"
+        width="60%"
+        :before-close="handleClose">
       <div v-html="hiFlowImg"></div>
       <span slot="footer" class="dialog-footer">
     <el-button @click="hiFlowImgDialogVisible = false">取 消</el-button>
@@ -178,7 +77,7 @@
 </template>
 
 <script>
-import {listSchool, getSchool, delSchool, addSchool, updateSchool, startFlow, hiFlow} from "@/api/school/school";
+import {apListSchool, getSchool, delSchool, addSchool, updateSchool, startFlow, hiFlow} from "@/api/school/school";
 
 export default {
   name: "School",
@@ -234,7 +133,7 @@ export default {
     /** 查询分校成立列表 */
     getList() {
       this.loading = true;
-      listSchool(this.queryParams).then(response => {
+      apListSchool(this.queryParams).then(response => {
         this.schoolList = response.rows;
         this.total = response.total;
         this.loading = false;
