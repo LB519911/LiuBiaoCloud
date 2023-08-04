@@ -170,4 +170,13 @@ public class SchoolBusController extends BaseController {
         List<School> list = apSchoolService.selectSchoolList(taskLists.getData().getBusinessKeys());
         return getDataTable(list);
     }
+
+    /**
+     * 审批
+     */
+    @RequiresPermissions("school:school:apList")
+    @GetMapping("/apSchool/{id}/{to}")
+    public R<String> apSchool(@PathVariable("id") String id, @PathVariable("to") String to) {
+        return R.ok();
+    }
 }

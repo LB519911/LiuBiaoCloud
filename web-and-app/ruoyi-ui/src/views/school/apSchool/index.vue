@@ -14,13 +14,13 @@
           <el-button
               size="small"
               type="success"
-              @click="startWorkFlow(scope.row)"
+              @click="apSchool(scope.row,'next')"
               v-hasPermi="['school:school:apList']">通过
           </el-button>
           <el-button
               size="small"
               type="danger"
-              @click="hiFlow(scope.row)"
+              @click="apSchool(scope.row,'back')"
               v-hasPermi="['school:school:apList']">不通过
           </el-button>
         </template>
@@ -77,7 +77,16 @@
 </template>
 
 <script>
-import {apListSchool, getSchool, delSchool, addSchool, updateSchool, startFlow, hiFlow} from "@/api/school/school";
+import {
+  apSchool,
+  apListSchool,
+  getSchool,
+  delSchool,
+  addSchool,
+  updateSchool,
+  startFlow,
+  hiFlow
+} from "@/api/school/school";
 
 export default {
   name: "School",
@@ -130,7 +139,7 @@ export default {
       this.hiFlowImgDialogVisible = false
       this.hiFlowImg = ''
     },
-    /** 查询分校成立列表 */
+    /** 查询分校成立审批列表 */
     getList() {
       this.loading = true;
       apListSchool(this.queryParams).then(response => {
@@ -216,22 +225,17 @@ export default {
       });
     },
     /** 发起审批按钮操作 */
-    startWorkFlow(row) {
+    apSchool(row, to) {
       this.reset();
       const id = row.id || this.ids
-      startFlow(id).then(response => {
-        this.form = response.data;
-        row.workflowStatus = 1
-        this.$modal.msgSuccess("流程发起成功");
-      });
-    },
-    /** 查看审批进度 */
-    hiFlow(row) {
-      this.reset();
-      const id = row.id || this.ids
-      hiFlow(id).then(response => {
-        this.hiFlowImgDialogVisible = true
-        this.hiFlowImg = response.data
+      apSchool(id, to).then(response => {
+        this.$modal.msgSuccess("审批完成");
+        this.loading = true;
+        apListSchool(this.queryParams).then(response => {
+          this.schoolList = response.rows;
+          this.total = response.total;
+          this.loading = false;
+        });
       });
     },
     /** 提交按钮 */
