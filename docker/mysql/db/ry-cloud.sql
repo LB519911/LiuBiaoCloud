@@ -11,7 +11,7 @@
  Target Server Version : 80033
  File Encoding         : 65001
 
- Date: 04/08/2023 15:13:18
+ Date: 04/08/2023 15:16:58
 */
 
 SET NAMES utf8mb4;
@@ -1989,7 +1989,7 @@ CREATE TABLE `sys_logininfor` (
   PRIMARY KEY (`info_id`),
   KEY `idx_sys_logininfor_s` (`status`),
   KEY `idx_sys_logininfor_lt` (`access_time`)
-) ENGINE=InnoDB AUTO_INCREMENT=194 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='系统访问记录';
+) ENGINE=InnoDB AUTO_INCREMENT=206 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='系统访问记录';
 
 -- ----------------------------
 -- Records of sys_logininfor
@@ -2089,6 +2089,18 @@ INSERT INTO `sys_logininfor` (`info_id`, `user_name`, `ipaddr`, `status`, `msg`,
 INSERT INTO `sys_logininfor` (`info_id`, `user_name`, `ipaddr`, `status`, `msg`, `access_time`) VALUES (191, 'cw1', '127.0.0.1', '0', '登录成功', '2023-08-04 15:12:04');
 INSERT INTO `sys_logininfor` (`info_id`, `user_name`, `ipaddr`, `status`, `msg`, `access_time`) VALUES (192, 'cw1', '127.0.0.1', '0', '退出成功', '2023-08-04 15:12:21');
 INSERT INTO `sys_logininfor` (`info_id`, `user_name`, `ipaddr`, `status`, `msg`, `access_time`) VALUES (193, 'admin', '127.0.0.1', '0', '登录成功', '2023-08-04 15:12:29');
+INSERT INTO `sys_logininfor` (`info_id`, `user_name`, `ipaddr`, `status`, `msg`, `access_time`) VALUES (194, 'admin', '127.0.0.1', '0', '退出成功', '2023-08-04 15:13:51');
+INSERT INTO `sys_logininfor` (`info_id`, `user_name`, `ipaddr`, `status`, `msg`, `access_time`) VALUES (195, 'admin', '127.0.0.1', '0', '登录成功', '2023-08-04 15:13:59');
+INSERT INTO `sys_logininfor` (`info_id`, `user_name`, `ipaddr`, `status`, `msg`, `access_time`) VALUES (196, 'admin', '127.0.0.1', '0', '退出成功', '2023-08-04 15:14:07');
+INSERT INTO `sys_logininfor` (`info_id`, `user_name`, `ipaddr`, `status`, `msg`, `access_time`) VALUES (197, 'admin', '127.0.0.1', '0', '登录成功', '2023-08-04 15:14:19');
+INSERT INTO `sys_logininfor` (`info_id`, `user_name`, `ipaddr`, `status`, `msg`, `access_time`) VALUES (198, 'admin', '127.0.0.1', '0', '退出成功', '2023-08-04 15:14:26');
+INSERT INTO `sys_logininfor` (`info_id`, `user_name`, `ipaddr`, `status`, `msg`, `access_time`) VALUES (199, 'admin', '127.0.0.1', '0', '登录成功', '2023-08-04 15:14:50');
+INSERT INTO `sys_logininfor` (`info_id`, `user_name`, `ipaddr`, `status`, `msg`, `access_time`) VALUES (200, 'admin', '127.0.0.1', '0', '退出成功', '2023-08-04 15:14:57');
+INSERT INTO `sys_logininfor` (`info_id`, `user_name`, `ipaddr`, `status`, `msg`, `access_time`) VALUES (201, 'cw2', '127.0.0.1', '0', '登录成功', '2023-08-04 15:15:07');
+INSERT INTO `sys_logininfor` (`info_id`, `user_name`, `ipaddr`, `status`, `msg`, `access_time`) VALUES (202, 'cw2', '127.0.0.1', '0', '退出成功', '2023-08-04 15:16:13');
+INSERT INTO `sys_logininfor` (`info_id`, `user_name`, `ipaddr`, `status`, `msg`, `access_time`) VALUES (203, 'cw2', '127.0.0.1', '0', '登录成功', '2023-08-04 15:16:18');
+INSERT INTO `sys_logininfor` (`info_id`, `user_name`, `ipaddr`, `status`, `msg`, `access_time`) VALUES (204, 'cw2', '127.0.0.1', '0', '退出成功', '2023-08-04 15:16:32');
+INSERT INTO `sys_logininfor` (`info_id`, `user_name`, `ipaddr`, `status`, `msg`, `access_time`) VALUES (205, 'admin', '127.0.0.1', '0', '登录成功', '2023-08-04 15:16:49');
 COMMIT;
 
 -- ----------------------------
