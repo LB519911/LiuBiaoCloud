@@ -28,6 +28,7 @@ public class SchoolBusController extends BaseController {
     //工作流流程信息
     public static final String FXCL = "fxcl";
     public static final String XTJ = "xtj";
+    public static final String DEFINITION_NAME = "分校成立流程";
     @Autowired
     private ISchoolService schoolService;
     @Autowired
@@ -44,7 +45,7 @@ public class SchoolBusController extends BaseController {
     public AjaxResult startFlow(@PathVariable("id") String id) {
         //查询流程信息
         R<ProcessDefinitionPojo> processDefinitions = remoteWorkFlowService
-                .getDeployLatestListByName("分校成立流程行", XTJ, FXCL);
+                .getDeployLatestListByName(DEFINITION_NAME, XTJ, FXCL);
 
         if (SUCCESS_CODE != processDefinitions.getCode()) {
             return error(processDefinitions.getMsg());
