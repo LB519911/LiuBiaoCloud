@@ -124,7 +124,7 @@ public class SchoolBusController extends BaseController {
      * 查看审批进度
      */
     @RequiresPermissions("school:school:hiAp")
-    @Log(title = "分校成立发起流程", businessType = BusinessType.UPDATE)
+    @Log(title = "查看审批进度", businessType = BusinessType.OTHER)
     @GetMapping("/hiFlow/{id}")
     public R<String> HiFlow(@PathVariable("id") String id) {
         //根据业务ID找到流程实例ID
@@ -142,6 +142,7 @@ public class SchoolBusController extends BaseController {
      * 查询分校成立审批列表
      */
     @RequiresPermissions("school:school:apList")
+    @Log(title = "查询分校成立审批列表", businessType = BusinessType.OTHER)
     @GetMapping("/apList")
     public TableDataInfo apList() {
         //获取流程里的业务主键
@@ -183,6 +184,7 @@ public class SchoolBusController extends BaseController {
      */
     @RequiresPermissions("school:school:apList")
     @GetMapping("/apSchool/{id}/{to}")
+    @Log(title = "审批", businessType = BusinessType.UPDATE)
     public R<String> apSchool(@PathVariable("id") String id, @PathVariable("to") String to) {
         //根据业务主键查询流程实例ID
         School school = schoolService.selectSchoolById(id);
