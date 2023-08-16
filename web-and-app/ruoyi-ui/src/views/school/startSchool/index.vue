@@ -101,12 +101,20 @@
             v-hasPermi="['school:school:edit']">发起审批
           </el-button>
           <el-button
-            v-if="scope.row.workflowStatus!=0"
+            v-if="scope.row.workflowStatus==1"
             size="mini"
             type="text"
             icon="el-icon-s-comment"
             @click="hiFlow(scope.row)"
             v-hasPermi="['school:school:edit']">审批进度
+          </el-button>
+          <el-button
+            v-if="scope.row.workflowStatus==2||scope.row.workflowStatus==3||scope.row.workflowStatus==4"
+            size="mini"
+            type="text"
+            icon="el-icon-s-comment"
+            @click="hiFlow(scope.row)"
+            v-hasPermi="['school:school:edit']">审批历史
           </el-button>
           <el-button
             v-if="scope.row.workflowStatus==0"
