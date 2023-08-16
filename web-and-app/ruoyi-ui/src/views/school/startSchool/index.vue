@@ -178,10 +178,13 @@
       :before-close="handleClose">
       <div v-html="hiFlowImg" style="text-align: center"></div>
       <div style="text-align: center">
-        <el-steps :active="this.hiFlowText.length+1" finish-status="success">
-          <el-step title="开始"></el-step>
-          <el-step v-bind:key="hiFlowTextItem.executionId" :title="hiFlowTextItem.activityId"
-                   v-for="(hiFlowTextItem,index) in this.hiFlowText"></el-step>
+        <el-steps :active="this.hiFlowText.length+1" align-center>
+          <el-step title="开始" description="开始发起审批" finish-status="success"></el-step>
+          <el-step v-bind:key="hiFlowTextItem.executionId"
+                   :title="hiFlowTextItem.activityId+'审批完成'"
+                   v-for="(hiFlowTextItem,index) in this.hiFlowText"
+                   description="这是一段很长很长很长的描述性文字">
+          </el-step>
         </el-steps>
       </div>
       <span slot="footer" class="dialog-footer">
