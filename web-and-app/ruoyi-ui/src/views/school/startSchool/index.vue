@@ -177,6 +177,13 @@
       width="60%"
       :before-close="handleClose">
       <div v-html="hiFlowImg" style="text-align: center"></div>
+      <div style="text-align: center">
+        <el-steps :active="3" finish-status="success">
+          <el-step title="第一步"></el-step>
+          <el-step title="第二步"></el-step>
+          <el-step title="第三步"></el-step>
+        </el-steps>
+      </div>
       <span slot="footer" class="dialog-footer">
         <el-button @click="hiFlowImgDialogVisible = false">取 消</el-button>
         <el-button type="primary" @click="hiFlowImgDialogVisible = false">确 定</el-button>
