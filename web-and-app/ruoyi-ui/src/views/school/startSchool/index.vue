@@ -112,7 +112,7 @@
             v-if="scope.row.workflowStatus==1"
             size="mini"
             type="text"
-            style="color: red"
+            style="color: #ee4f4f"
             icon="el-icon-s-comment"
             v-hasPermi="['school:school:edit']">取消申请
           </el-button>
