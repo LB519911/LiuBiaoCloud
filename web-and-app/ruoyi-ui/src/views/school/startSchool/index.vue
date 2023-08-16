@@ -168,7 +168,7 @@
       :visible.sync="hiFlowImgDialogVisible"
       width="60%"
       :before-close="handleClose">
-      <div v-html="hiFlowImg"></div>
+      <div v-html="hiFlowImg" style="text-align: center"></div>
       <span slot="footer" class="dialog-footer">
         <el-button @click="hiFlowImgDialogVisible = false">取 消</el-button>
         <el-button type="primary" @click="hiFlowImgDialogVisible = false">确 定</el-button>
