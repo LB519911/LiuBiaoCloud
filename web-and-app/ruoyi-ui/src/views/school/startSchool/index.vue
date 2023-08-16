@@ -180,10 +180,14 @@
       <div style="text-align: center">
         <el-steps :active="this.hiFlowText.length+1" align-center finish-status="success">
           <el-step title="开始" description="开始发起审批" finish-status="success"></el-step>
+          <!--          <el-step v-bind:key="hiFlowTextItem.executionId"-->
+          <!--                   :title="hiFlowTextItem.activityId+'审批完成'"-->
+          <!--                   v-for="(hiFlowTextItem,index) in this.hiFlowText"-->
+          <!--                   :description="'审批时间'+':'+hiFlowTextItem.time+' 意见:'+hiFlowTextItem.var.to">-->
           <el-step v-bind:key="hiFlowTextItem.executionId"
                    :title="hiFlowTextItem.activityId+'审批完成'"
                    v-for="(hiFlowTextItem,index) in this.hiFlowText"
-                   :description="'审批时间'+':'+hiFlowTextItem.time+' 意见:'+hiFlowTextItem.var.to">
+                   :description="'审批时间'+':'+hiFlowTextItem.time">
           </el-step>
         </el-steps>
       </div>
