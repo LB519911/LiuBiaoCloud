@@ -178,10 +178,9 @@
       :before-close="handleClose">
       <div v-html="hiFlowImg" style="text-align: center"></div>
       <div style="text-align: center">
-        <el-steps :active="3" finish-status="success">
-          <el-step title="第一步"></el-step>
-          <el-step title="第二步"></el-step>
-          <el-step title="第三步"></el-step>
+        <el-steps :active="this.hiFlowText.length" finish-status="success">
+          <el-step v-bind:key="hiFlowTextItem.executionId" :title="hiFlowTextItem.activityId"
+                   v-for="(hiFlowTextItem,index) in this.hiFlowText"></el-step>
         </el-steps>
       </div>
       <span slot="footer" class="dialog-footer">
