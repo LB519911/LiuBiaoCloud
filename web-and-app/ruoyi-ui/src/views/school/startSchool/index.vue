@@ -109,6 +109,14 @@
             v-hasPermi="['school:school:edit']">审批进度
           </el-button>
           <el-button
+            v-if="scope.row.workflowStatus==1"
+            size="mini"
+            type="text"
+            style="color: red"
+            icon="el-icon-s-comment"
+            v-hasPermi="['school:school:edit']">取消申请
+          </el-button>
+          <el-button
             v-if="scope.row.workflowStatus==2||scope.row.workflowStatus==3||scope.row.workflowStatus==4"
             size="mini"
             type="text"
