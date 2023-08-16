@@ -170,9 +170,9 @@
       :before-close="handleClose">
       <div v-html="hiFlowImg"></div>
       <span slot="footer" class="dialog-footer">
-    <el-button @click="hiFlowImgDialogVisible = false">取 消</el-button>
-    <el-button type="primary" @click="hiFlowImgDialogVisible = false">确 定</el-button>
-  </span>
+        <el-button @click="hiFlowImgDialogVisible = false">取 消</el-button>
+        <el-button type="primary" @click="hiFlowImgDialogVisible = false">确 定</el-button>
+      </span>
     </el-dialog>
   </div>
 </template>
