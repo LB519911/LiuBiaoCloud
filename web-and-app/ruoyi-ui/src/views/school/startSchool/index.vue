@@ -101,12 +101,20 @@
             v-hasPermi="['school:school:edit']">发起审批
           </el-button>
           <el-button
-            v-if="scope.row.workflowStatus!=0"
+            v-if="scope.row.workflowStatus==1"
             size="mini"
             type="text"
             icon="el-icon-s-comment"
             @click="hiFlow(scope.row)"
             v-hasPermi="['school:school:edit']">审批进度
+          </el-button>
+          <el-button
+            v-if="scope.row.workflowStatus==2||scope.row.workflowStatus==3||scope.row.workflowStatus==4"
+            size="mini"
+            type="text"
+            icon="el-icon-s-comment"
+            @click="hiFlow(scope.row)"
+            v-hasPermi="['school:school:edit']">审批历史
           </el-button>
           <el-button
             v-if="scope.row.workflowStatus==0"
@@ -168,11 +176,11 @@
       :visible.sync="hiFlowImgDialogVisible"
       width="60%"
       :before-close="handleClose">
-      <div v-html="hiFlowImg"></div>
+      <div v-html="hiFlowImg" style="text-align: center"></div>
       <span slot="footer" class="dialog-footer">
-    <el-button @click="hiFlowImgDialogVisible = false">取 消</el-button>
-    <el-button type="primary" @click="hiFlowImgDialogVisible = false">确 定</el-button>
-  </span>
+        <el-button @click="hiFlowImgDialogVisible = false">取 消</el-button>
+        <el-button type="primary" @click="hiFlowImgDialogVisible = false">确 定</el-button>
+      </span>
     </el-dialog>
   </div>
 </template>
