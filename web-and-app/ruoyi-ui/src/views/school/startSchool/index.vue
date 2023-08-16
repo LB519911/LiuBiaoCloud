@@ -193,7 +193,16 @@
 </template>
 
 <script>
-import {listSchool, getSchool, delSchool, addSchool, updateSchool, startFlow, hiFlow} from "@/api/school/school";
+import {
+  listSchool,
+  getSchool,
+  delSchool,
+  addSchool,
+  updateSchool,
+  startFlow,
+  hiFlow,
+  hiFlowText
+} from "@/api/school/school";
 
 export default {
   name: "School",
@@ -201,6 +210,7 @@ export default {
     return {
       hiFlowImgDialogVisible: false,
       hiFlowImg: '',
+      hiFlowText: [],
       // 遮罩层
       loading: true,
       // 选中数组
@@ -348,6 +358,9 @@ export default {
       hiFlow(id).then(response => {
         this.hiFlowImgDialogVisible = true
         this.hiFlowImg = response.data
+      });
+      hiFlowText(id).then(response => {
+        this.hiFlowText = response.data
       });
     },
     /** 提交按钮 */
