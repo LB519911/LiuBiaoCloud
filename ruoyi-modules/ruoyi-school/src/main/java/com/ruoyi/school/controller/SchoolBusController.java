@@ -139,6 +139,30 @@ public class SchoolBusController extends BaseController {
     }
 
     /**
+     * 查看审批进度
+     */
+    @RequiresPermissions("school:school:hiAp")
+    @Log(title = "查看审批进度", businessType = BusinessType.OTHER)
+    @GetMapping("/HiFlowText/{id}")
+    public AjaxResult HiFlowText(@PathVariable("id") String id) {
+        //根据业务ID找到流程实例ID
+        School school = schoolService.selectSchoolById(id);
+        //调用历史
+        R<List<BusinessKeysAndProcessInfos>> his = remoteWorkFlowService.getBusinessKeysAndProcessInfosWithVar(
+                "",
+                XTJ,
+                "",
+                FXCL,
+                school.getWorkflowId(),
+                "");
+
+        if (SUCCESS_CODE != his.getCode()) {
+            return error(his.getMsg());
+        }
+        return success(his.getData());
+    }
+
+    /**
      * 查询分校成立审批列表
      */
     @RequiresPermissions("school:school:apList")
