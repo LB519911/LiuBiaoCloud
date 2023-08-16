@@ -177,6 +177,16 @@
       width="60%"
       :before-close="handleClose">
       <div v-html="hiFlowImg" style="text-align: center"></div>
+      <div style="text-align: center">
+        <el-steps :active="this.hiFlowText.length+1" align-center finish-status="success">
+          <el-step title="开始" description="开始发起审批" finish-status="success"></el-step>
+          <el-step v-bind:key="hiFlowTextItem.executionId"
+                   :title="hiFlowTextItem.activityId+'审批完成'"
+                   v-for="(hiFlowTextItem,index) in this.hiFlowText"
+                   :description="'审批时间'+':'+hiFlowTextItem.time+' 意见:'+hiFlowTextItem.var.to">
+          </el-step>
+        </el-steps>
+      </div>
       <span slot="footer" class="dialog-footer">
         <el-button @click="hiFlowImgDialogVisible = false">取 消</el-button>
         <el-button type="primary" @click="hiFlowImgDialogVisible = false">确 定</el-button>
@@ -186,7 +196,16 @@
 </template>
 
 <script>
-import {listSchool, getSchool, delSchool, addSchool, updateSchool, startFlow, hiFlow} from "@/api/school/school";
+import {
+  listSchool,
+  getSchool,
+  delSchool,
+  addSchool,
+  updateSchool,
+  startFlow,
+  hiFlow,
+  hiFlowText
+} from "@/api/school/school";
 
 export default {
   name: "School",
@@ -194,6 +213,7 @@ export default {
     return {
       hiFlowImgDialogVisible: false,
       hiFlowImg: '',
+      hiFlowText: [],
       // 遮罩层
       loading: true,
       // 选中数组
@@ -341,6 +361,9 @@ export default {
       hiFlow(id).then(response => {
         this.hiFlowImgDialogVisible = true
         this.hiFlowImg = response.data
+      });
+      hiFlowText(id).then(response => {
+        this.hiFlowText = response.data
       });
     },
     /** 提交按钮 */

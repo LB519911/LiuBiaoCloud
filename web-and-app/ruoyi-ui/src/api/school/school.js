@@ -59,6 +59,14 @@ export function hiFlow(id) {
   })
 }
 
+// 查看审批流程图
+export function hiFlowText(id) {
+  return request({
+    url: '/school/school/HiFlowText/' + id,
+    method: 'get'
+  })
+}
+
 // 查询分校成立审批列表
 export function apListSchool(query) {
   return request({
