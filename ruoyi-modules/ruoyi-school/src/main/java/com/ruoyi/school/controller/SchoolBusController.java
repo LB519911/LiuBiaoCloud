@@ -164,14 +164,12 @@ public class SchoolBusController extends BaseController {
     }
 
     /**
-     * 查看审批进度
+     * 取消发起审批
      */
     @RequiresPermissions("school:school:hiAp")
     @Log(title = "取消发起审批", businessType = BusinessType.OTHER)
     @GetMapping("/suspendProcessInstance/{id}")
     public AjaxResult SuspendProcessInstance(@PathVariable("id") String id) {
-        //根据业务ID找到流程实例ID
-        School school = schoolService.selectSchoolById(id);
         //取消
         R<String> remoteR = remoteWorkFlowService.suspendProcessInstance(
                 XTJ,
@@ -183,12 +181,8 @@ public class SchoolBusController extends BaseController {
             return error(remoteR.getMsg());
         }
 
-        //更新业务状态
-        school.setWorkflowStatus(0L);
-        school.setWorkflowTaskNode("");
-        school.setWorkflowId("");
-        school.setDeletedAt(DateUtil.date());
-        schoolService.updateSchool(school);
+        //删除业务数据
+        schoolService.deleteSchoolById(id);
         return success();
     }
 
