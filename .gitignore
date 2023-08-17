@@ -46,6 +46,6 @@ nbdist/
 !*/build/*.xml
 
 ######################################################################
-docker/mysql/data/*
-docker/nacos/logs/*
-/docker/redis/data/dump.rdb
+liubiao-cloud-docker/mysql/data/*
+liubiao-cloud-docker/nacos/logs/*
+/liubiao-cloud-docker/redis/data/dump.rdb
