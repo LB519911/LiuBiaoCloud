@@ -109,6 +109,15 @@
             v-hasPermi="['school:school:edit']">审批进度
           </el-button>
           <el-button
+            v-if="scope.row.workflowStatus==1"
+            size="mini"
+            type="text"
+            style="color: #ee4f4f"
+            icon="el-icon-s-comment"
+            @click="suspendProcessInstance(scope.row)"
+            v-hasPermi="['school:school:edit']">取消申请
+          </el-button>
+          <el-button
             v-if="scope.row.workflowStatus==2||scope.row.workflowStatus==3||scope.row.workflowStatus==4"
             size="mini"
             type="text"
@@ -208,7 +217,8 @@ import {
   updateSchool,
   startFlow,
   hiFlow,
-  hiFlowText
+  hiFlowText,
+  suspendProcessInstance
 } from "@/api/school/school";
 
 export default {
@@ -368,6 +378,16 @@ export default {
       });
       hiFlowText(id).then(response => {
         this.hiFlowText = response.data
+      });
+    },
+    /** 取消申请 */
+    suspendProcessInstance(row) {
+      this.reset();
+      const id = row.id || this.ids
+      suspendProcessInstance(id).then(response => {
+        this.$modal.msgSuccess("申请已取消");
+        this.open = false;
+        this.getList();
       });
     },
     /** 提交按钮 */

@@ -1,5 +1,6 @@
 package com.ruoyi.school.controller;
 
+import cn.hutool.core.date.DateUtil;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.ruoyi.common.core.domain.R;
@@ -160,6 +161,29 @@ public class SchoolBusController extends BaseController {
             return error(his.getMsg());
         }
         return success(his.getData());
+    }
+
+    /**
+     * 取消发起审批
+     */
+    @RequiresPermissions("school:school:hiAp")
+    @Log(title = "取消发起审批", businessType = BusinessType.OTHER)
+    @GetMapping("/suspendProcessInstance/{id}")
+    public AjaxResult SuspendProcessInstance(@PathVariable("id") String id) {
+        //取消
+        R<String> remoteR = remoteWorkFlowService.suspendProcessInstance(
+                XTJ,
+                "",
+                FXCL,
+                id);
+
+        if (SUCCESS_CODE != remoteR.getCode()) {
+            return error(remoteR.getMsg());
+        }
+
+        //删除业务数据
+        schoolService.deleteSchoolById(id);
+        return success();
     }
 
     /**

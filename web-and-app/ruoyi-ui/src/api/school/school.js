@@ -67,6 +67,14 @@ export function hiFlowText(id) {
   })
 }
 
+// 取消
+export function suspendProcessInstance(id) {
+  return request({
+    url: '/school/school/suspendProcessInstance/' + id,
+    method: 'get'
+  })
+}
+
 // 查询分校成立审批列表
 export function apListSchool(query) {
   return request({
