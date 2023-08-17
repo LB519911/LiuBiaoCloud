@@ -113,7 +113,7 @@
             size="mini"
             type="text"
             style="color: #ee4f4f"
-            icon="el-icon-s-comment"
+            icon="el-icon-delete"
             @click="suspendProcessInstance(scope.row)"
             v-hasPermi="['school:school:edit']">取消申请
           </el-button>
@@ -138,6 +138,7 @@
             size="mini"
             type="text"
             icon="el-icon-delete"
+            style="color: #ee4f4f"
             @click="handleDelete(scope.row)"
             v-hasPermi="['school:school:remove']">删除
           </el-button>
