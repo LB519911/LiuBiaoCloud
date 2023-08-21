@@ -11,7 +11,7 @@
  Target Server Version : 80033
  File Encoding         : 65001
 
- Date: 04/08/2023 15:34:28
+ Date: 21/08/2023 15:39:06
 */
 
 SET NAMES utf8mb4;
@@ -23,15 +23,15 @@ SET FOREIGN_KEY_CHECKS = 0;
 DROP TABLE IF EXISTS `act_evt_log`;
 CREATE TABLE `act_evt_log` (
   `LOG_NR_` bigint NOT NULL AUTO_INCREMENT,
-  `TYPE_` varchar(64) COLLATE utf8mb3_bin DEFAULT NULL,
-  `PROC_DEF_ID_` varchar(64) COLLATE utf8mb3_bin DEFAULT NULL,
-  `PROC_INST_ID_` varchar(64) COLLATE utf8mb3_bin DEFAULT NULL,
-  `EXECUTION_ID_` varchar(64) COLLATE utf8mb3_bin DEFAULT NULL,
-  `TASK_ID_` varchar(64) COLLATE utf8mb3_bin DEFAULT NULL,
+  `TYPE_` varchar(64) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
+  `PROC_DEF_ID_` varchar(64) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
+  `PROC_INST_ID_` varchar(64) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
+  `EXECUTION_ID_` varchar(64) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
+  `TASK_ID_` varchar(64) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
   `TIME_STAMP_` timestamp(3) NOT NULL,
-  `USER_ID_` varchar(255) COLLATE utf8mb3_bin DEFAULT NULL,
+  `USER_ID_` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
   `DATA_` longblob,
-  `LOCK_OWNER_` varchar(255) COLLATE utf8mb3_bin DEFAULT NULL,
+  `LOCK_OWNER_` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
   `LOCK_TIME_` timestamp(3) NULL DEFAULT NULL,
   `IS_PROCESSED_` tinyint DEFAULT '0',
   PRIMARY KEY (`LOG_NR_`)
@@ -48,10 +48,10 @@ COMMIT;
 -- ----------------------------
 DROP TABLE IF EXISTS `act_ge_bytearray`;
 CREATE TABLE `act_ge_bytearray` (
-  `ID_` varchar(64) COLLATE utf8mb3_bin NOT NULL,
+  `ID_` varchar(64) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin NOT NULL,
   `REV_` int DEFAULT NULL,
-  `NAME_` varchar(255) COLLATE utf8mb3_bin DEFAULT NULL,
-  `DEPLOYMENT_ID_` varchar(64) COLLATE utf8mb3_bin DEFAULT NULL,
+  `NAME_` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
+  `DEPLOYMENT_ID_` varchar(64) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
   `BYTES_` longblob,
   `GENERATED_` tinyint DEFAULT NULL,
   PRIMARY KEY (`ID_`),
@@ -71,8 +71,8 @@ COMMIT;
 -- ----------------------------
 DROP TABLE IF EXISTS `act_ge_property`;
 CREATE TABLE `act_ge_property` (
-  `NAME_` varchar(64) COLLATE utf8mb3_bin NOT NULL,
-  `VALUE_` varchar(300) COLLATE utf8mb3_bin DEFAULT NULL,
+  `NAME_` varchar(64) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin NOT NULL,
+  `VALUE_` varchar(300) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
   `REV_` int DEFAULT NULL,
   PRIMARY KEY (`NAME_`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
@@ -92,21 +92,21 @@ COMMIT;
 -- ----------------------------
 DROP TABLE IF EXISTS `act_hi_actinst`;
 CREATE TABLE `act_hi_actinst` (
-  `ID_` varchar(64) COLLATE utf8mb3_bin NOT NULL,
-  `PROC_DEF_ID_` varchar(64) COLLATE utf8mb3_bin NOT NULL,
-  `PROC_INST_ID_` varchar(64) COLLATE utf8mb3_bin NOT NULL,
-  `EXECUTION_ID_` varchar(64) COLLATE utf8mb3_bin NOT NULL,
-  `ACT_ID_` varchar(255) COLLATE utf8mb3_bin NOT NULL,
-  `TASK_ID_` varchar(64) COLLATE utf8mb3_bin DEFAULT NULL,
-  `CALL_PROC_INST_ID_` varchar(64) COLLATE utf8mb3_bin DEFAULT NULL,
-  `ACT_NAME_` varchar(255) COLLATE utf8mb3_bin DEFAULT NULL,
-  `ACT_TYPE_` varchar(255) COLLATE utf8mb3_bin NOT NULL,
-  `ASSIGNEE_` varchar(255) COLLATE utf8mb3_bin DEFAULT NULL,
+  `ID_` varchar(64) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin NOT NULL,
+  `PROC_DEF_ID_` varchar(64) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin NOT NULL,
+  `PROC_INST_ID_` varchar(64) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin NOT NULL,
+  `EXECUTION_ID_` varchar(64) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin NOT NULL,
+  `ACT_ID_` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin NOT NULL,
+  `TASK_ID_` varchar(64) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
+  `CALL_PROC_INST_ID_` varchar(64) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
+  `ACT_NAME_` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
+  `ACT_TYPE_` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin NOT NULL,
+  `ASSIGNEE_` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
   `START_TIME_` datetime(3) NOT NULL,
   `END_TIME_` datetime(3) DEFAULT NULL,
   `DURATION_` bigint DEFAULT NULL,
-  `DELETE_REASON_` varchar(4000) COLLATE utf8mb3_bin DEFAULT NULL,
-  `TENANT_ID_` varchar(255) COLLATE utf8mb3_bin DEFAULT '',
+  `DELETE_REASON_` varchar(4000) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
+  `TENANT_ID_` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT '',
   PRIMARY KEY (`ID_`),
   KEY `ACT_IDX_HI_ACT_INST_START` (`START_TIME_`),
   KEY `ACT_IDX_HI_ACT_INST_END` (`END_TIME_`),
@@ -118,6 +118,22 @@ CREATE TABLE `act_hi_actinst` (
 -- Records of act_hi_actinst
 -- ----------------------------
 BEGIN;
+INSERT INTO `act_hi_actinst` (`ID_`, `PROC_DEF_ID_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `ACT_ID_`, `TASK_ID_`, `CALL_PROC_INST_ID_`, `ACT_NAME_`, `ACT_TYPE_`, `ASSIGNEE_`, `START_TIME_`, `END_TIME_`, `DURATION_`, `DELETE_REASON_`, `TENANT_ID_`) VALUES ('8c68319c-3ff5-11ee-b131-5a73e78fbd04', 'fxcl:1:48476e94-3299-11ee-82f6-f22185ea3ea7', '8c674731-3ff5-11ee-b131-5a73e78fbd04', '8c67e37a-3ff5-11ee-b131-5a73e78fbd04', 'startevent1', NULL, NULL, '开始', 'startEvent', NULL, '2023-08-21 15:37:15.024', '2023-08-21 15:37:15.027', 3, NULL, 'xtj');
+INSERT INTO `act_hi_actinst` (`ID_`, `PROC_DEF_ID_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `ACT_ID_`, `TASK_ID_`, `CALL_PROC_INST_ID_`, `ACT_NAME_`, `ACT_TYPE_`, `ASSIGNEE_`, `START_TIME_`, `END_TIME_`, `DURATION_`, `DELETE_REASON_`, `TENANT_ID_`) VALUES ('8c68319d-3ff5-11ee-b131-5a73e78fbd04', 'fxcl:1:48476e94-3299-11ee-82f6-f22185ea3ea7', '8c674730-3ff5-11ee-b131-5a73e78fbd04', '8c67e37b-3ff5-11ee-b131-5a73e78fbd04', 'startevent1', NULL, NULL, '开始', 'startEvent', NULL, '2023-08-21 15:37:15.024', '2023-08-21 15:37:15.027', 3, NULL, 'xtj');
+INSERT INTO `act_hi_actinst` (`ID_`, `PROC_DEF_ID_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `ACT_ID_`, `TASK_ID_`, `CALL_PROC_INST_ID_`, `ACT_NAME_`, `ACT_TYPE_`, `ASSIGNEE_`, `START_TIME_`, `END_TIME_`, `DURATION_`, `DELETE_REASON_`, `TENANT_ID_`) VALUES ('8c68f4ee-3ff5-11ee-b131-5a73e78fbd04', 'fxcl:1:48476e94-3299-11ee-82f6-f22185ea3ea7', '8c674730-3ff5-11ee-b131-5a73e78fbd04', '8c67e37b-3ff5-11ee-b131-5a73e78fbd04', 'zg', '8c6b17d1-3ff5-11ee-b131-5a73e78fbd04', NULL, '主管审核', 'userTask', 'zg1', '2023-08-21 15:37:15.029', '2023-08-21 15:37:37.184', 22155, NULL, 'xtj');
+INSERT INTO `act_hi_actinst` (`ID_`, `PROC_DEF_ID_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `ACT_ID_`, `TASK_ID_`, `CALL_PROC_INST_ID_`, `ACT_NAME_`, `ACT_TYPE_`, `ASSIGNEE_`, `START_TIME_`, `END_TIME_`, `DURATION_`, `DELETE_REASON_`, `TENANT_ID_`) VALUES ('8c68f4ef-3ff5-11ee-b131-5a73e78fbd04', 'fxcl:1:48476e94-3299-11ee-82f6-f22185ea3ea7', '8c674731-3ff5-11ee-b131-5a73e78fbd04', '8c67e37a-3ff5-11ee-b131-5a73e78fbd04', 'zg', '8c6b17d0-3ff5-11ee-b131-5a73e78fbd04', NULL, '主管审核', 'userTask', 'zg1', '2023-08-21 15:37:15.029', '2023-08-21 15:37:40.033', 25004, NULL, 'xtj');
+INSERT INTO `act_hi_actinst` (`ID_`, `PROC_DEF_ID_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `ACT_ID_`, `TASK_ID_`, `CALL_PROC_INST_ID_`, `ACT_NAME_`, `ACT_TYPE_`, `ASSIGNEE_`, `START_TIME_`, `END_TIME_`, `DURATION_`, `DELETE_REASON_`, `TENANT_ID_`) VALUES ('8c9498e4-3ff5-11ee-b131-5a73e78fbd04', 'fxcl:1:48476e94-3299-11ee-82f6-f22185ea3ea7', '8c9498de-3ff5-11ee-b131-5a73e78fbd04', '8c9498e3-3ff5-11ee-b131-5a73e78fbd04', 'startevent1', NULL, NULL, '开始', 'startEvent', NULL, '2023-08-21 15:37:15.316', '2023-08-21 15:37:15.316', 0, NULL, 'xtj');
+INSERT INTO `act_hi_actinst` (`ID_`, `PROC_DEF_ID_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `ACT_ID_`, `TASK_ID_`, `CALL_PROC_INST_ID_`, `ACT_NAME_`, `ACT_TYPE_`, `ASSIGNEE_`, `START_TIME_`, `END_TIME_`, `DURATION_`, `DELETE_REASON_`, `TENANT_ID_`) VALUES ('8c94bff5-3ff5-11ee-b131-5a73e78fbd04', 'fxcl:1:48476e94-3299-11ee-82f6-f22185ea3ea7', '8c9498de-3ff5-11ee-b131-5a73e78fbd04', '8c9498e3-3ff5-11ee-b131-5a73e78fbd04', 'zg', '8c94bff6-3ff5-11ee-b131-5a73e78fbd04', NULL, '主管审核', 'userTask', 'zg1', '2023-08-21 15:37:15.316', '2023-08-21 15:37:41.813', 26497, NULL, 'xtj');
+INSERT INTO `act_hi_actinst` (`ID_`, `PROC_DEF_ID_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `ACT_ID_`, `TASK_ID_`, `CALL_PROC_INST_ID_`, `ACT_NAME_`, `ACT_TYPE_`, `ASSIGNEE_`, `START_TIME_`, `END_TIME_`, `DURATION_`, `DELETE_REASON_`, `TENANT_ID_`) VALUES ('8d14c573-3ff5-11ee-b131-5a73e78fbd04', 'fxcl:1:48476e94-3299-11ee-82f6-f22185ea3ea7', '8d149e5d-3ff5-11ee-b131-5a73e78fbd04', '8d14c572-3ff5-11ee-b131-5a73e78fbd04', 'startevent1', NULL, NULL, '开始', 'startEvent', NULL, '2023-08-21 15:37:16.155', '2023-08-21 15:37:16.155', 0, NULL, 'xtj');
+INSERT INTO `act_hi_actinst` (`ID_`, `PROC_DEF_ID_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `ACT_ID_`, `TASK_ID_`, `CALL_PROC_INST_ID_`, `ACT_NAME_`, `ACT_TYPE_`, `ASSIGNEE_`, `START_TIME_`, `END_TIME_`, `DURATION_`, `DELETE_REASON_`, `TENANT_ID_`) VALUES ('8d14c574-3ff5-11ee-b131-5a73e78fbd04', 'fxcl:1:48476e94-3299-11ee-82f6-f22185ea3ea7', '8d149e5d-3ff5-11ee-b131-5a73e78fbd04', '8d14c572-3ff5-11ee-b131-5a73e78fbd04', 'zg', '8d14c575-3ff5-11ee-b131-5a73e78fbd04', NULL, '主管审核', 'userTask', 'zg1', '2023-08-21 15:37:16.155', '2023-08-21 15:37:42.669', 26514, NULL, 'xtj');
+INSERT INTO `act_hi_actinst` (`ID_`, `PROC_DEF_ID_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `ACT_ID_`, `TASK_ID_`, `CALL_PROC_INST_ID_`, `ACT_NAME_`, `ACT_TYPE_`, `ASSIGNEE_`, `START_TIME_`, `END_TIME_`, `DURATION_`, `DELETE_REASON_`, `TENANT_ID_`) VALUES ('8d69c352-3ff5-11ee-b131-5a73e78fbd04', 'fxcl:1:48476e94-3299-11ee-82f6-f22185ea3ea7', '8d699c3c-3ff5-11ee-b131-5a73e78fbd04', '8d69c351-3ff5-11ee-b131-5a73e78fbd04', 'startevent1', NULL, NULL, '开始', 'startEvent', NULL, '2023-08-21 15:37:16.712', '2023-08-21 15:37:16.713', 1, NULL, 'xtj');
+INSERT INTO `act_hi_actinst` (`ID_`, `PROC_DEF_ID_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `ACT_ID_`, `TASK_ID_`, `CALL_PROC_INST_ID_`, `ACT_NAME_`, `ACT_TYPE_`, `ASSIGNEE_`, `START_TIME_`, `END_TIME_`, `DURATION_`, `DELETE_REASON_`, `TENANT_ID_`) VALUES ('8d69ea63-3ff5-11ee-b131-5a73e78fbd04', 'fxcl:1:48476e94-3299-11ee-82f6-f22185ea3ea7', '8d699c3c-3ff5-11ee-b131-5a73e78fbd04', '8d69c351-3ff5-11ee-b131-5a73e78fbd04', 'zg', '8d69ea64-3ff5-11ee-b131-5a73e78fbd04', NULL, '主管审核', 'userTask', NULL, '2023-08-21 15:37:16.713', NULL, NULL, NULL, 'xtj');
+INSERT INTO `act_hi_actinst` (`ID_`, `PROC_DEF_ID_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `ACT_ID_`, `TASK_ID_`, `CALL_PROC_INST_ID_`, `ACT_NAME_`, `ACT_TYPE_`, `ASSIGNEE_`, `START_TIME_`, `END_TIME_`, `DURATION_`, `DELETE_REASON_`, `TENANT_ID_`) VALUES ('999fadc6-3ff5-11ee-b131-5a73e78fbd04', 'fxcl:1:48476e94-3299-11ee-82f6-f22185ea3ea7', '8c674730-3ff5-11ee-b131-5a73e78fbd04', '8c67e37b-3ff5-11ee-b131-5a73e78fbd04', 'cwfzr', '999fd4d7-3ff5-11ee-b131-5a73e78fbd04', NULL, '财务片区负责人审核', 'userTask', 'cw1', '2023-08-21 15:37:37.198', '2023-08-21 15:37:56.724', 19526, NULL, 'xtj');
+INSERT INTO `act_hi_actinst` (`ID_`, `PROC_DEF_ID_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `ACT_ID_`, `TASK_ID_`, `CALL_PROC_INST_ID_`, `ACT_NAME_`, `ACT_TYPE_`, `ASSIGNEE_`, `START_TIME_`, `END_TIME_`, `DURATION_`, `DELETE_REASON_`, `TENANT_ID_`) VALUES ('9b512e6d-3ff5-11ee-b131-5a73e78fbd04', 'fxcl:1:48476e94-3299-11ee-82f6-f22185ea3ea7', '8c674731-3ff5-11ee-b131-5a73e78fbd04', '8c67e37a-3ff5-11ee-b131-5a73e78fbd04', 'terminateendevent1', NULL, NULL, 'TerminateEndEvent', 'endEvent', NULL, '2023-08-21 15:37:40.039', '2023-08-21 15:37:40.052', 13, 'terminate end event (terminateendevent1)', 'xtj');
+INSERT INTO `act_hi_actinst` (`ID_`, `PROC_DEF_ID_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `ACT_ID_`, `TASK_ID_`, `CALL_PROC_INST_ID_`, `ACT_NAME_`, `ACT_TYPE_`, `ASSIGNEE_`, `START_TIME_`, `END_TIME_`, `DURATION_`, `DELETE_REASON_`, `TENANT_ID_`) VALUES ('9c605389-3ff5-11ee-b131-5a73e78fbd04', 'fxcl:1:48476e94-3299-11ee-82f6-f22185ea3ea7', '8c9498de-3ff5-11ee-b131-5a73e78fbd04', '8c9498e3-3ff5-11ee-b131-5a73e78fbd04', 'cwfzr', '9c60538a-3ff5-11ee-b131-5a73e78fbd04', NULL, '财务片区负责人审核', 'userTask', 'cw1', '2023-08-21 15:37:41.816', '2023-08-21 15:37:57.740', 15924, NULL, 'xtj');
+INSERT INTO `act_hi_actinst` (`ID_`, `PROC_DEF_ID_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `ACT_ID_`, `TASK_ID_`, `CALL_PROC_INST_ID_`, `ACT_NAME_`, `ACT_TYPE_`, `ASSIGNEE_`, `START_TIME_`, `END_TIME_`, `DURATION_`, `DELETE_REASON_`, `TENANT_ID_`) VALUES ('9ce2a300-3ff5-11ee-b131-5a73e78fbd04', 'fxcl:1:48476e94-3299-11ee-82f6-f22185ea3ea7', '8d149e5d-3ff5-11ee-b131-5a73e78fbd04', '8d14c572-3ff5-11ee-b131-5a73e78fbd04', 'cwfzr', '9ce2a301-3ff5-11ee-b131-5a73e78fbd04', NULL, '财务片区负责人审核', 'userTask', NULL, '2023-08-21 15:37:42.670', NULL, NULL, NULL, 'xtj');
+INSERT INTO `act_hi_actinst` (`ID_`, `PROC_DEF_ID_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `ACT_ID_`, `TASK_ID_`, `CALL_PROC_INST_ID_`, `ACT_NAME_`, `ACT_TYPE_`, `ASSIGNEE_`, `START_TIME_`, `END_TIME_`, `DURATION_`, `DELETE_REASON_`, `TENANT_ID_`) VALUES ('a5434283-3ff5-11ee-b131-5a73e78fbd04', 'fxcl:1:48476e94-3299-11ee-82f6-f22185ea3ea7', '8c674730-3ff5-11ee-b131-5a73e78fbd04', '8c67e37b-3ff5-11ee-b131-5a73e78fbd04', 'endevent1', NULL, NULL, 'End', 'endEvent', NULL, '2023-08-21 15:37:56.725', '2023-08-21 15:37:56.725', 0, NULL, 'xtj');
+INSERT INTO `act_hi_actinst` (`ID_`, `PROC_DEF_ID_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `ACT_ID_`, `TASK_ID_`, `CALL_PROC_INST_ID_`, `ACT_NAME_`, `ACT_TYPE_`, `ASSIGNEE_`, `START_TIME_`, `END_TIME_`, `DURATION_`, `DELETE_REASON_`, `TENANT_ID_`) VALUES ('a5de4a0b-3ff5-11ee-b131-5a73e78fbd04', 'fxcl:1:48476e94-3299-11ee-82f6-f22185ea3ea7', '8c9498de-3ff5-11ee-b131-5a73e78fbd04', '8c9498e3-3ff5-11ee-b131-5a73e78fbd04', 'terminateendevent1', NULL, NULL, 'TerminateEndEvent', 'endEvent', NULL, '2023-08-21 15:37:57.741', '2023-08-21 15:37:57.746', 5, 'terminate end event (terminateendevent1)', 'xtj');
 COMMIT;
 
 -- ----------------------------
@@ -125,16 +141,16 @@ COMMIT;
 -- ----------------------------
 DROP TABLE IF EXISTS `act_hi_attachment`;
 CREATE TABLE `act_hi_attachment` (
-  `ID_` varchar(64) COLLATE utf8mb3_bin NOT NULL,
+  `ID_` varchar(64) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin NOT NULL,
   `REV_` int DEFAULT NULL,
-  `USER_ID_` varchar(255) COLLATE utf8mb3_bin DEFAULT NULL,
-  `NAME_` varchar(255) COLLATE utf8mb3_bin DEFAULT NULL,
-  `DESCRIPTION_` varchar(4000) COLLATE utf8mb3_bin DEFAULT NULL,
-  `TYPE_` varchar(255) COLLATE utf8mb3_bin DEFAULT NULL,
-  `TASK_ID_` varchar(64) COLLATE utf8mb3_bin DEFAULT NULL,
-  `PROC_INST_ID_` varchar(64) COLLATE utf8mb3_bin DEFAULT NULL,
-  `URL_` varchar(4000) COLLATE utf8mb3_bin DEFAULT NULL,
-  `CONTENT_ID_` varchar(64) COLLATE utf8mb3_bin DEFAULT NULL,
+  `USER_ID_` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
+  `NAME_` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
+  `DESCRIPTION_` varchar(4000) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
+  `TYPE_` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
+  `TASK_ID_` varchar(64) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
+  `PROC_INST_ID_` varchar(64) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
+  `URL_` varchar(4000) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
+  `CONTENT_ID_` varchar(64) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
   `TIME_` datetime(3) DEFAULT NULL,
   PRIMARY KEY (`ID_`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
@@ -150,14 +166,14 @@ COMMIT;
 -- ----------------------------
 DROP TABLE IF EXISTS `act_hi_comment`;
 CREATE TABLE `act_hi_comment` (
-  `ID_` varchar(64) COLLATE utf8mb3_bin NOT NULL,
-  `TYPE_` varchar(255) COLLATE utf8mb3_bin DEFAULT NULL,
+  `ID_` varchar(64) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin NOT NULL,
+  `TYPE_` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
   `TIME_` datetime(3) NOT NULL,
-  `USER_ID_` varchar(255) COLLATE utf8mb3_bin DEFAULT NULL,
-  `TASK_ID_` varchar(64) COLLATE utf8mb3_bin DEFAULT NULL,
-  `PROC_INST_ID_` varchar(64) COLLATE utf8mb3_bin DEFAULT NULL,
-  `ACTION_` varchar(255) COLLATE utf8mb3_bin DEFAULT NULL,
-  `MESSAGE_` varchar(4000) COLLATE utf8mb3_bin DEFAULT NULL,
+  `USER_ID_` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
+  `TASK_ID_` varchar(64) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
+  `PROC_INST_ID_` varchar(64) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
+  `ACTION_` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
+  `MESSAGE_` varchar(4000) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
   `FULL_MSG_` longblob,
   PRIMARY KEY (`ID_`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
@@ -173,21 +189,21 @@ COMMIT;
 -- ----------------------------
 DROP TABLE IF EXISTS `act_hi_detail`;
 CREATE TABLE `act_hi_detail` (
-  `ID_` varchar(64) COLLATE utf8mb3_bin NOT NULL,
-  `TYPE_` varchar(255) COLLATE utf8mb3_bin NOT NULL,
-  `PROC_INST_ID_` varchar(64) COLLATE utf8mb3_bin DEFAULT NULL,
-  `EXECUTION_ID_` varchar(64) COLLATE utf8mb3_bin DEFAULT NULL,
-  `TASK_ID_` varchar(64) COLLATE utf8mb3_bin DEFAULT NULL,
-  `ACT_INST_ID_` varchar(64) COLLATE utf8mb3_bin DEFAULT NULL,
-  `NAME_` varchar(255) COLLATE utf8mb3_bin NOT NULL,
-  `VAR_TYPE_` varchar(255) COLLATE utf8mb3_bin DEFAULT NULL,
+  `ID_` varchar(64) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin NOT NULL,
+  `TYPE_` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin NOT NULL,
+  `PROC_INST_ID_` varchar(64) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
+  `EXECUTION_ID_` varchar(64) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
+  `TASK_ID_` varchar(64) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
+  `ACT_INST_ID_` varchar(64) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
+  `NAME_` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin NOT NULL,
+  `VAR_TYPE_` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
   `REV_` int DEFAULT NULL,
   `TIME_` datetime(3) NOT NULL,
-  `BYTEARRAY_ID_` varchar(64) COLLATE utf8mb3_bin DEFAULT NULL,
+  `BYTEARRAY_ID_` varchar(64) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
   `DOUBLE_` double DEFAULT NULL,
   `LONG_` bigint DEFAULT NULL,
-  `TEXT_` varchar(4000) COLLATE utf8mb3_bin DEFAULT NULL,
-  `TEXT2_` varchar(4000) COLLATE utf8mb3_bin DEFAULT NULL,
+  `TEXT_` varchar(4000) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
+  `TEXT2_` varchar(4000) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
   PRIMARY KEY (`ID_`),
   KEY `ACT_IDX_HI_DETAIL_PROC_INST` (`PROC_INST_ID_`),
   KEY `ACT_IDX_HI_DETAIL_ACT_INST` (`ACT_INST_ID_`),
@@ -200,6 +216,74 @@ CREATE TABLE `act_hi_detail` (
 -- Records of act_hi_detail
 -- ----------------------------
 BEGIN;
+INSERT INTO `act_hi_detail` (`ID_`, `TYPE_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `TASK_ID_`, `ACT_INST_ID_`, `NAME_`, `VAR_TYPE_`, `REV_`, `TIME_`, `BYTEARRAY_ID_`, `DOUBLE_`, `LONG_`, `TEXT_`, `TEXT2_`) VALUES ('8c67bc64-3ff5-11ee-b131-5a73e78fbd04', 'VariableUpdate', '8c674731-3ff5-11ee-b131-5a73e78fbd04', '8c674731-3ff5-11ee-b131-5a73e78fbd04', NULL, NULL, 'zg_group', 'json', 0, '2023-08-21 15:37:15.021', NULL, NULL, NULL, '[\"zg_group\",\"super_group\"]', 'java.util.ArrayList');
+INSERT INTO `act_hi_detail` (`ID_`, `TYPE_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `TASK_ID_`, `ACT_INST_ID_`, `NAME_`, `VAR_TYPE_`, `REV_`, `TIME_`, `BYTEARRAY_ID_`, `DOUBLE_`, `LONG_`, `TEXT_`, `TEXT2_`) VALUES ('8c67bc65-3ff5-11ee-b131-5a73e78fbd04', 'VariableUpdate', '8c674730-3ff5-11ee-b131-5a73e78fbd04', '8c674730-3ff5-11ee-b131-5a73e78fbd04', NULL, NULL, 'zg_group', 'json', 0, '2023-08-21 15:37:15.021', NULL, NULL, NULL, '[\"zg_group\",\"super_group\"]', 'java.util.ArrayList');
+INSERT INTO `act_hi_detail` (`ID_`, `TYPE_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `TASK_ID_`, `ACT_INST_ID_`, `NAME_`, `VAR_TYPE_`, `REV_`, `TIME_`, `BYTEARRAY_ID_`, `DOUBLE_`, `LONG_`, `TEXT_`, `TEXT2_`) VALUES ('8c67e378-3ff5-11ee-b131-5a73e78fbd04', 'VariableUpdate', '8c674731-3ff5-11ee-b131-5a73e78fbd04', '8c674731-3ff5-11ee-b131-5a73e78fbd04', NULL, NULL, 'cwfzr_group', 'json', 0, '2023-08-21 15:37:15.022', NULL, NULL, NULL, '[\"cw_group\",\"super_group\"]', 'java.util.ArrayList');
+INSERT INTO `act_hi_detail` (`ID_`, `TYPE_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `TASK_ID_`, `ACT_INST_ID_`, `NAME_`, `VAR_TYPE_`, `REV_`, `TIME_`, `BYTEARRAY_ID_`, `DOUBLE_`, `LONG_`, `TEXT_`, `TEXT2_`) VALUES ('8c67e379-3ff5-11ee-b131-5a73e78fbd04', 'VariableUpdate', '8c674730-3ff5-11ee-b131-5a73e78fbd04', '8c674730-3ff5-11ee-b131-5a73e78fbd04', NULL, NULL, 'cwfzr_group', 'json', 0, '2023-08-21 15:37:15.022', NULL, NULL, NULL, '[\"cw_group\",\"super_group\"]', 'java.util.ArrayList');
+INSERT INTO `act_hi_detail` (`ID_`, `TYPE_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `TASK_ID_`, `ACT_INST_ID_`, `NAME_`, `VAR_TYPE_`, `REV_`, `TIME_`, `BYTEARRAY_ID_`, `DOUBLE_`, `LONG_`, `TEXT_`, `TEXT2_`) VALUES ('8c6c2944-3ff5-11ee-b131-5a73e78fbd04', 'VariableUpdate', '8c674730-3ff5-11ee-b131-5a73e78fbd04', '8c67e37b-3ff5-11ee-b131-5a73e78fbd04', '8c6b17d1-3ff5-11ee-b131-5a73e78fbd04', NULL, 'zg_group', 'json', 0, '2023-08-21 15:37:15.050', NULL, NULL, NULL, '[\"zg_group\",\"super_group\"]', 'java.util.LinkedList');
+INSERT INTO `act_hi_detail` (`ID_`, `TYPE_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `TASK_ID_`, `ACT_INST_ID_`, `NAME_`, `VAR_TYPE_`, `REV_`, `TIME_`, `BYTEARRAY_ID_`, `DOUBLE_`, `LONG_`, `TEXT_`, `TEXT2_`) VALUES ('8c6c2945-3ff5-11ee-b131-5a73e78fbd04', 'VariableUpdate', '8c674731-3ff5-11ee-b131-5a73e78fbd04', '8c67e37a-3ff5-11ee-b131-5a73e78fbd04', '8c6b17d0-3ff5-11ee-b131-5a73e78fbd04', NULL, 'zg_group', 'json', 0, '2023-08-21 15:37:15.050', NULL, NULL, NULL, '[\"zg_group\",\"super_group\"]', 'java.util.LinkedList');
+INSERT INTO `act_hi_detail` (`ID_`, `TYPE_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `TASK_ID_`, `ACT_INST_ID_`, `NAME_`, `VAR_TYPE_`, `REV_`, `TIME_`, `BYTEARRAY_ID_`, `DOUBLE_`, `LONG_`, `TEXT_`, `TEXT2_`) VALUES ('8c6c2948-3ff5-11ee-b131-5a73e78fbd04', 'VariableUpdate', '8c674730-3ff5-11ee-b131-5a73e78fbd04', '8c67e37b-3ff5-11ee-b131-5a73e78fbd04', '8c6b17d1-3ff5-11ee-b131-5a73e78fbd04', NULL, 'cwfzr_group', 'json', 0, '2023-08-21 15:37:15.050', NULL, NULL, NULL, '[\"cw_group\",\"super_group\"]', 'java.util.LinkedList');
+INSERT INTO `act_hi_detail` (`ID_`, `TYPE_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `TASK_ID_`, `ACT_INST_ID_`, `NAME_`, `VAR_TYPE_`, `REV_`, `TIME_`, `BYTEARRAY_ID_`, `DOUBLE_`, `LONG_`, `TEXT_`, `TEXT2_`) VALUES ('8c6c2949-3ff5-11ee-b131-5a73e78fbd04', 'VariableUpdate', '8c674731-3ff5-11ee-b131-5a73e78fbd04', '8c67e37a-3ff5-11ee-b131-5a73e78fbd04', '8c6b17d0-3ff5-11ee-b131-5a73e78fbd04', NULL, 'cwfzr_group', 'json', 0, '2023-08-21 15:37:15.050', NULL, NULL, NULL, '[\"cw_group\",\"super_group\"]', 'java.util.LinkedList');
+INSERT INTO `act_hi_detail` (`ID_`, `TYPE_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `TASK_ID_`, `ACT_INST_ID_`, `NAME_`, `VAR_TYPE_`, `REV_`, `TIME_`, `BYTEARRAY_ID_`, `DOUBLE_`, `LONG_`, `TEXT_`, `TEXT2_`) VALUES ('8c9498e0-3ff5-11ee-b131-5a73e78fbd04', 'VariableUpdate', '8c9498de-3ff5-11ee-b131-5a73e78fbd04', '8c9498de-3ff5-11ee-b131-5a73e78fbd04', NULL, NULL, 'zg_group', 'json', 0, '2023-08-21 15:37:15.315', NULL, NULL, NULL, '[\"zg_group\",\"super_group\"]', 'java.util.ArrayList');
+INSERT INTO `act_hi_detail` (`ID_`, `TYPE_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `TASK_ID_`, `ACT_INST_ID_`, `NAME_`, `VAR_TYPE_`, `REV_`, `TIME_`, `BYTEARRAY_ID_`, `DOUBLE_`, `LONG_`, `TEXT_`, `TEXT2_`) VALUES ('8c9498e2-3ff5-11ee-b131-5a73e78fbd04', 'VariableUpdate', '8c9498de-3ff5-11ee-b131-5a73e78fbd04', '8c9498de-3ff5-11ee-b131-5a73e78fbd04', NULL, NULL, 'cwfzr_group', 'json', 0, '2023-08-21 15:37:15.315', NULL, NULL, NULL, '[\"cw_group\",\"super_group\"]', 'java.util.ArrayList');
+INSERT INTO `act_hi_detail` (`ID_`, `TYPE_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `TASK_ID_`, `ACT_INST_ID_`, `NAME_`, `VAR_TYPE_`, `REV_`, `TIME_`, `BYTEARRAY_ID_`, `DOUBLE_`, `LONG_`, `TEXT_`, `TEXT2_`) VALUES ('8c94e708-3ff5-11ee-b131-5a73e78fbd04', 'VariableUpdate', '8c9498de-3ff5-11ee-b131-5a73e78fbd04', '8c9498e3-3ff5-11ee-b131-5a73e78fbd04', '8c94bff6-3ff5-11ee-b131-5a73e78fbd04', NULL, 'zg_group', 'json', 0, '2023-08-21 15:37:15.317', NULL, NULL, NULL, '[\"zg_group\",\"super_group\"]', 'java.util.LinkedList');
+INSERT INTO `act_hi_detail` (`ID_`, `TYPE_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `TASK_ID_`, `ACT_INST_ID_`, `NAME_`, `VAR_TYPE_`, `REV_`, `TIME_`, `BYTEARRAY_ID_`, `DOUBLE_`, `LONG_`, `TEXT_`, `TEXT2_`) VALUES ('8c94e70a-3ff5-11ee-b131-5a73e78fbd04', 'VariableUpdate', '8c9498de-3ff5-11ee-b131-5a73e78fbd04', '8c9498e3-3ff5-11ee-b131-5a73e78fbd04', '8c94bff6-3ff5-11ee-b131-5a73e78fbd04', NULL, 'cwfzr_group', 'json', 0, '2023-08-21 15:37:15.317', NULL, NULL, NULL, '[\"cw_group\",\"super_group\"]', 'java.util.LinkedList');
+INSERT INTO `act_hi_detail` (`ID_`, `TYPE_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `TASK_ID_`, `ACT_INST_ID_`, `NAME_`, `VAR_TYPE_`, `REV_`, `TIME_`, `BYTEARRAY_ID_`, `DOUBLE_`, `LONG_`, `TEXT_`, `TEXT2_`) VALUES ('8d14c56f-3ff5-11ee-b131-5a73e78fbd04', 'VariableUpdate', '8d149e5d-3ff5-11ee-b131-5a73e78fbd04', '8d149e5d-3ff5-11ee-b131-5a73e78fbd04', NULL, NULL, 'zg_group', 'json', 0, '2023-08-21 15:37:16.155', NULL, NULL, NULL, '[\"zg_group\",\"super_group\"]', 'java.util.ArrayList');
+INSERT INTO `act_hi_detail` (`ID_`, `TYPE_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `TASK_ID_`, `ACT_INST_ID_`, `NAME_`, `VAR_TYPE_`, `REV_`, `TIME_`, `BYTEARRAY_ID_`, `DOUBLE_`, `LONG_`, `TEXT_`, `TEXT2_`) VALUES ('8d14c571-3ff5-11ee-b131-5a73e78fbd04', 'VariableUpdate', '8d149e5d-3ff5-11ee-b131-5a73e78fbd04', '8d149e5d-3ff5-11ee-b131-5a73e78fbd04', NULL, NULL, 'cwfzr_group', 'json', 0, '2023-08-21 15:37:16.155', NULL, NULL, NULL, '[\"cw_group\",\"super_group\"]', 'java.util.ArrayList');
+INSERT INTO `act_hi_detail` (`ID_`, `TYPE_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `TASK_ID_`, `ACT_INST_ID_`, `NAME_`, `VAR_TYPE_`, `REV_`, `TIME_`, `BYTEARRAY_ID_`, `DOUBLE_`, `LONG_`, `TEXT_`, `TEXT2_`) VALUES ('8d14ec87-3ff5-11ee-b131-5a73e78fbd04', 'VariableUpdate', '8d149e5d-3ff5-11ee-b131-5a73e78fbd04', '8d14c572-3ff5-11ee-b131-5a73e78fbd04', '8d14c575-3ff5-11ee-b131-5a73e78fbd04', NULL, 'zg_group', 'json', 0, '2023-08-21 15:37:16.156', NULL, NULL, NULL, '[\"zg_group\",\"super_group\"]', 'java.util.LinkedList');
+INSERT INTO `act_hi_detail` (`ID_`, `TYPE_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `TASK_ID_`, `ACT_INST_ID_`, `NAME_`, `VAR_TYPE_`, `REV_`, `TIME_`, `BYTEARRAY_ID_`, `DOUBLE_`, `LONG_`, `TEXT_`, `TEXT2_`) VALUES ('8d14ec89-3ff5-11ee-b131-5a73e78fbd04', 'VariableUpdate', '8d149e5d-3ff5-11ee-b131-5a73e78fbd04', '8d14c572-3ff5-11ee-b131-5a73e78fbd04', '8d14c575-3ff5-11ee-b131-5a73e78fbd04', NULL, 'cwfzr_group', 'json', 0, '2023-08-21 15:37:16.156', NULL, NULL, NULL, '[\"cw_group\",\"super_group\"]', 'java.util.LinkedList');
+INSERT INTO `act_hi_detail` (`ID_`, `TYPE_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `TASK_ID_`, `ACT_INST_ID_`, `NAME_`, `VAR_TYPE_`, `REV_`, `TIME_`, `BYTEARRAY_ID_`, `DOUBLE_`, `LONG_`, `TEXT_`, `TEXT2_`) VALUES ('8d69c34e-3ff5-11ee-b131-5a73e78fbd04', 'VariableUpdate', '8d699c3c-3ff5-11ee-b131-5a73e78fbd04', '8d699c3c-3ff5-11ee-b131-5a73e78fbd04', NULL, NULL, 'zg_group', 'json', 0, '2023-08-21 15:37:16.712', NULL, NULL, NULL, '[\"zg_group\",\"super_group\"]', 'java.util.ArrayList');
+INSERT INTO `act_hi_detail` (`ID_`, `TYPE_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `TASK_ID_`, `ACT_INST_ID_`, `NAME_`, `VAR_TYPE_`, `REV_`, `TIME_`, `BYTEARRAY_ID_`, `DOUBLE_`, `LONG_`, `TEXT_`, `TEXT2_`) VALUES ('8d69c350-3ff5-11ee-b131-5a73e78fbd04', 'VariableUpdate', '8d699c3c-3ff5-11ee-b131-5a73e78fbd04', '8d699c3c-3ff5-11ee-b131-5a73e78fbd04', NULL, NULL, 'cwfzr_group', 'json', 0, '2023-08-21 15:37:16.712', NULL, NULL, NULL, '[\"cw_group\",\"super_group\"]', 'java.util.ArrayList');
+INSERT INTO `act_hi_detail` (`ID_`, `TYPE_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `TASK_ID_`, `ACT_INST_ID_`, `NAME_`, `VAR_TYPE_`, `REV_`, `TIME_`, `BYTEARRAY_ID_`, `DOUBLE_`, `LONG_`, `TEXT_`, `TEXT2_`) VALUES ('8d6a5f96-3ff5-11ee-b131-5a73e78fbd04', 'VariableUpdate', '8d699c3c-3ff5-11ee-b131-5a73e78fbd04', '8d69c351-3ff5-11ee-b131-5a73e78fbd04', '8d69ea64-3ff5-11ee-b131-5a73e78fbd04', NULL, 'zg_group', 'json', 0, '2023-08-21 15:37:16.716', NULL, NULL, NULL, '[\"zg_group\",\"super_group\"]', 'java.util.LinkedList');
+INSERT INTO `act_hi_detail` (`ID_`, `TYPE_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `TASK_ID_`, `ACT_INST_ID_`, `NAME_`, `VAR_TYPE_`, `REV_`, `TIME_`, `BYTEARRAY_ID_`, `DOUBLE_`, `LONG_`, `TEXT_`, `TEXT2_`) VALUES ('8d6a5f98-3ff5-11ee-b131-5a73e78fbd04', 'VariableUpdate', '8d699c3c-3ff5-11ee-b131-5a73e78fbd04', '8d69c351-3ff5-11ee-b131-5a73e78fbd04', '8d69ea64-3ff5-11ee-b131-5a73e78fbd04', NULL, 'cwfzr_group', 'json', 0, '2023-08-21 15:37:16.716', NULL, NULL, NULL, '[\"cw_group\",\"super_group\"]', 'java.util.LinkedList');
+INSERT INTO `act_hi_detail` (`ID_`, `TYPE_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `TASK_ID_`, `ACT_INST_ID_`, `NAME_`, `VAR_TYPE_`, `REV_`, `TIME_`, `BYTEARRAY_ID_`, `DOUBLE_`, `LONG_`, `TEXT_`, `TEXT2_`) VALUES ('9995748d-3ff5-11ee-b131-5a73e78fbd04', 'VariableUpdate', '8c674730-3ff5-11ee-b131-5a73e78fbd04', '8c67e37b-3ff5-11ee-b131-5a73e78fbd04', '8c6b17d1-3ff5-11ee-b131-5a73e78fbd04', NULL, 'approvalComment', 'string', 0, '2023-08-21 15:37:37.131', NULL, NULL, NULL, '这里是我的审批意见，还能设置各种附件', NULL);
+INSERT INTO `act_hi_detail` (`ID_`, `TYPE_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `TASK_ID_`, `ACT_INST_ID_`, `NAME_`, `VAR_TYPE_`, `REV_`, `TIME_`, `BYTEARRAY_ID_`, `DOUBLE_`, `LONG_`, `TEXT_`, `TEXT2_`) VALUES ('9995c2af-3ff5-11ee-b131-5a73e78fbd04', 'VariableUpdate', '8c674730-3ff5-11ee-b131-5a73e78fbd04', '8c67e37b-3ff5-11ee-b131-5a73e78fbd04', '8c6b17d1-3ff5-11ee-b131-5a73e78fbd04', NULL, 'to', 'string', 0, '2023-08-21 15:37:37.133', NULL, NULL, NULL, 'next', NULL);
+INSERT INTO `act_hi_detail` (`ID_`, `TYPE_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `TASK_ID_`, `ACT_INST_ID_`, `NAME_`, `VAR_TYPE_`, `REV_`, `TIME_`, `BYTEARRAY_ID_`, `DOUBLE_`, `LONG_`, `TEXT_`, `TEXT2_`) VALUES ('999cc790-3ff5-11ee-b131-5a73e78fbd04', 'VariableUpdate', '8c674730-3ff5-11ee-b131-5a73e78fbd04', '8c674730-3ff5-11ee-b131-5a73e78fbd04', NULL, NULL, 'zg_group', 'json', 1, '2023-08-21 15:37:37.179', NULL, NULL, NULL, '[\"zg_group\",\"super_group\"]', 'java.util.LinkedList');
+INSERT INTO `act_hi_detail` (`ID_`, `TYPE_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `TASK_ID_`, `ACT_INST_ID_`, `NAME_`, `VAR_TYPE_`, `REV_`, `TIME_`, `BYTEARRAY_ID_`, `DOUBLE_`, `LONG_`, `TEXT_`, `TEXT2_`) VALUES ('999d15b2-3ff5-11ee-b131-5a73e78fbd04', 'VariableUpdate', '8c674730-3ff5-11ee-b131-5a73e78fbd04', '8c674730-3ff5-11ee-b131-5a73e78fbd04', NULL, NULL, 'to', 'string', 0, '2023-08-21 15:37:37.181', NULL, NULL, NULL, 'next', NULL);
+INSERT INTO `act_hi_detail` (`ID_`, `TYPE_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `TASK_ID_`, `ACT_INST_ID_`, `NAME_`, `VAR_TYPE_`, `REV_`, `TIME_`, `BYTEARRAY_ID_`, `DOUBLE_`, `LONG_`, `TEXT_`, `TEXT2_`) VALUES ('999d15b4-3ff5-11ee-b131-5a73e78fbd04', 'VariableUpdate', '8c674730-3ff5-11ee-b131-5a73e78fbd04', '8c674730-3ff5-11ee-b131-5a73e78fbd04', NULL, NULL, 'approvalComment', 'string', 0, '2023-08-21 15:37:37.181', NULL, NULL, NULL, '这里是我的审批意见，还能设置各种附件', NULL);
+INSERT INTO `act_hi_detail` (`ID_`, `TYPE_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `TASK_ID_`, `ACT_INST_ID_`, `NAME_`, `VAR_TYPE_`, `REV_`, `TIME_`, `BYTEARRAY_ID_`, `DOUBLE_`, `LONG_`, `TEXT_`, `TEXT2_`) VALUES ('999d3cc5-3ff5-11ee-b131-5a73e78fbd04', 'VariableUpdate', '8c674730-3ff5-11ee-b131-5a73e78fbd04', '8c674730-3ff5-11ee-b131-5a73e78fbd04', NULL, NULL, 'cwfzr_group', 'json', 1, '2023-08-21 15:37:37.182', NULL, NULL, NULL, '[\"cw_group\",\"super_group\"]', 'java.util.LinkedList');
+INSERT INTO `act_hi_detail` (`ID_`, `TYPE_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `TASK_ID_`, `ACT_INST_ID_`, `NAME_`, `VAR_TYPE_`, `REV_`, `TIME_`, `BYTEARRAY_ID_`, `DOUBLE_`, `LONG_`, `TEXT_`, `TEXT2_`) VALUES ('999ffbe9-3ff5-11ee-b131-5a73e78fbd04', 'VariableUpdate', '8c674730-3ff5-11ee-b131-5a73e78fbd04', '8c67e37b-3ff5-11ee-b131-5a73e78fbd04', '999fd4d7-3ff5-11ee-b131-5a73e78fbd04', NULL, 'zg_group', 'json', 0, '2023-08-21 15:37:37.200', NULL, NULL, NULL, '[\"zg_group\",\"super_group\"]', 'java.util.LinkedList');
+INSERT INTO `act_hi_detail` (`ID_`, `TYPE_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `TASK_ID_`, `ACT_INST_ID_`, `NAME_`, `VAR_TYPE_`, `REV_`, `TIME_`, `BYTEARRAY_ID_`, `DOUBLE_`, `LONG_`, `TEXT_`, `TEXT2_`) VALUES ('999ffbeb-3ff5-11ee-b131-5a73e78fbd04', 'VariableUpdate', '8c674730-3ff5-11ee-b131-5a73e78fbd04', '8c67e37b-3ff5-11ee-b131-5a73e78fbd04', '999fd4d7-3ff5-11ee-b131-5a73e78fbd04', NULL, 'approvalComment', 'string', 0, '2023-08-21 15:37:37.200', NULL, NULL, NULL, '这里是我的审批意见，还能设置各种附件', NULL);
+INSERT INTO `act_hi_detail` (`ID_`, `TYPE_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `TASK_ID_`, `ACT_INST_ID_`, `NAME_`, `VAR_TYPE_`, `REV_`, `TIME_`, `BYTEARRAY_ID_`, `DOUBLE_`, `LONG_`, `TEXT_`, `TEXT2_`) VALUES ('999ffbed-3ff5-11ee-b131-5a73e78fbd04', 'VariableUpdate', '8c674730-3ff5-11ee-b131-5a73e78fbd04', '8c67e37b-3ff5-11ee-b131-5a73e78fbd04', '999fd4d7-3ff5-11ee-b131-5a73e78fbd04', NULL, 'cwfzr_group', 'json', 0, '2023-08-21 15:37:37.200', NULL, NULL, NULL, '[\"cw_group\",\"super_group\"]', 'java.util.LinkedList');
+INSERT INTO `act_hi_detail` (`ID_`, `TYPE_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `TASK_ID_`, `ACT_INST_ID_`, `NAME_`, `VAR_TYPE_`, `REV_`, `TIME_`, `BYTEARRAY_ID_`, `DOUBLE_`, `LONG_`, `TEXT_`, `TEXT2_`) VALUES ('999ffbef-3ff5-11ee-b131-5a73e78fbd04', 'VariableUpdate', '8c674730-3ff5-11ee-b131-5a73e78fbd04', '8c67e37b-3ff5-11ee-b131-5a73e78fbd04', '999fd4d7-3ff5-11ee-b131-5a73e78fbd04', NULL, 'to', 'string', 0, '2023-08-21 15:37:37.200', NULL, NULL, NULL, 'next', NULL);
+INSERT INTO `act_hi_detail` (`ID_`, `TYPE_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `TASK_ID_`, `ACT_INST_ID_`, `NAME_`, `VAR_TYPE_`, `REV_`, `TIME_`, `BYTEARRAY_ID_`, `DOUBLE_`, `LONG_`, `TEXT_`, `TEXT2_`) VALUES ('9b48f104-3ff5-11ee-b131-5a73e78fbd04', 'VariableUpdate', '8c674731-3ff5-11ee-b131-5a73e78fbd04', '8c67e37a-3ff5-11ee-b131-5a73e78fbd04', '8c6b17d0-3ff5-11ee-b131-5a73e78fbd04', NULL, 'approvalComment', 'string', 0, '2023-08-21 15:37:39.985', NULL, NULL, NULL, '这里是我的审批意见，还能设置各种附件', NULL);
+INSERT INTO `act_hi_detail` (`ID_`, `TYPE_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `TASK_ID_`, `ACT_INST_ID_`, `NAME_`, `VAR_TYPE_`, `REV_`, `TIME_`, `BYTEARRAY_ID_`, `DOUBLE_`, `LONG_`, `TEXT_`, `TEXT2_`) VALUES ('9b496636-3ff5-11ee-b131-5a73e78fbd04', 'VariableUpdate', '8c674731-3ff5-11ee-b131-5a73e78fbd04', '8c67e37a-3ff5-11ee-b131-5a73e78fbd04', '8c6b17d0-3ff5-11ee-b131-5a73e78fbd04', NULL, 'to', 'string', 0, '2023-08-21 15:37:39.988', NULL, NULL, NULL, 'back', NULL);
+INSERT INTO `act_hi_detail` (`ID_`, `TYPE_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `TASK_ID_`, `ACT_INST_ID_`, `NAME_`, `VAR_TYPE_`, `REV_`, `TIME_`, `BYTEARRAY_ID_`, `DOUBLE_`, `LONG_`, `TEXT_`, `TEXT2_`) VALUES ('9b4f59a7-3ff5-11ee-b131-5a73e78fbd04', 'VariableUpdate', '8c674731-3ff5-11ee-b131-5a73e78fbd04', '8c674731-3ff5-11ee-b131-5a73e78fbd04', NULL, NULL, 'zg_group', 'json', 1, '2023-08-21 15:37:40.027', NULL, NULL, NULL, '[\"zg_group\",\"super_group\"]', 'java.util.LinkedList');
+INSERT INTO `act_hi_detail` (`ID_`, `TYPE_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `TASK_ID_`, `ACT_INST_ID_`, `NAME_`, `VAR_TYPE_`, `REV_`, `TIME_`, `BYTEARRAY_ID_`, `DOUBLE_`, `LONG_`, `TEXT_`, `TEXT2_`) VALUES ('9b4fced9-3ff5-11ee-b131-5a73e78fbd04', 'VariableUpdate', '8c674731-3ff5-11ee-b131-5a73e78fbd04', '8c674731-3ff5-11ee-b131-5a73e78fbd04', NULL, NULL, 'to', 'string', 0, '2023-08-21 15:37:40.030', NULL, NULL, NULL, 'back', NULL);
+INSERT INTO `act_hi_detail` (`ID_`, `TYPE_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `TASK_ID_`, `ACT_INST_ID_`, `NAME_`, `VAR_TYPE_`, `REV_`, `TIME_`, `BYTEARRAY_ID_`, `DOUBLE_`, `LONG_`, `TEXT_`, `TEXT2_`) VALUES ('9b4fcedb-3ff5-11ee-b131-5a73e78fbd04', 'VariableUpdate', '8c674731-3ff5-11ee-b131-5a73e78fbd04', '8c674731-3ff5-11ee-b131-5a73e78fbd04', NULL, NULL, 'approvalComment', 'string', 0, '2023-08-21 15:37:40.030', NULL, NULL, NULL, '这里是我的审批意见，还能设置各种附件', NULL);
+INSERT INTO `act_hi_detail` (`ID_`, `TYPE_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `TASK_ID_`, `ACT_INST_ID_`, `NAME_`, `VAR_TYPE_`, `REV_`, `TIME_`, `BYTEARRAY_ID_`, `DOUBLE_`, `LONG_`, `TEXT_`, `TEXT2_`) VALUES ('9b4fcedc-3ff5-11ee-b131-5a73e78fbd04', 'VariableUpdate', '8c674731-3ff5-11ee-b131-5a73e78fbd04', '8c674731-3ff5-11ee-b131-5a73e78fbd04', NULL, NULL, 'cwfzr_group', 'json', 1, '2023-08-21 15:37:40.030', NULL, NULL, NULL, '[\"cw_group\",\"super_group\"]', 'java.util.LinkedList');
+INSERT INTO `act_hi_detail` (`ID_`, `TYPE_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `TASK_ID_`, `ACT_INST_ID_`, `NAME_`, `VAR_TYPE_`, `REV_`, `TIME_`, `BYTEARRAY_ID_`, `DOUBLE_`, `LONG_`, `TEXT_`, `TEXT2_`) VALUES ('9c58b360-3ff5-11ee-b131-5a73e78fbd04', 'VariableUpdate', '8c9498de-3ff5-11ee-b131-5a73e78fbd04', '8c9498e3-3ff5-11ee-b131-5a73e78fbd04', '8c94bff6-3ff5-11ee-b131-5a73e78fbd04', NULL, 'approvalComment', 'string', 0, '2023-08-21 15:37:41.766', NULL, NULL, NULL, '这里是我的审批意见，还能设置各种附件', NULL);
+INSERT INTO `act_hi_detail` (`ID_`, `TYPE_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `TASK_ID_`, `ACT_INST_ID_`, `NAME_`, `VAR_TYPE_`, `REV_`, `TIME_`, `BYTEARRAY_ID_`, `DOUBLE_`, `LONG_`, `TEXT_`, `TEXT2_`) VALUES ('9c590082-3ff5-11ee-b131-5a73e78fbd04', 'VariableUpdate', '8c9498de-3ff5-11ee-b131-5a73e78fbd04', '8c9498e3-3ff5-11ee-b131-5a73e78fbd04', '8c94bff6-3ff5-11ee-b131-5a73e78fbd04', NULL, 'to', 'string', 0, '2023-08-21 15:37:41.768', NULL, NULL, NULL, 'next', NULL);
+INSERT INTO `act_hi_detail` (`ID_`, `TYPE_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `TASK_ID_`, `ACT_INST_ID_`, `NAME_`, `VAR_TYPE_`, `REV_`, `TIME_`, `BYTEARRAY_ID_`, `DOUBLE_`, `LONG_`, `TEXT_`, `TEXT2_`) VALUES ('9c5ef3f3-3ff5-11ee-b131-5a73e78fbd04', 'VariableUpdate', '8c9498de-3ff5-11ee-b131-5a73e78fbd04', '8c9498de-3ff5-11ee-b131-5a73e78fbd04', NULL, NULL, 'zg_group', 'json', 1, '2023-08-21 15:37:41.807', NULL, NULL, NULL, '[\"zg_group\",\"super_group\"]', 'java.util.LinkedList');
+INSERT INTO `act_hi_detail` (`ID_`, `TYPE_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `TASK_ID_`, `ACT_INST_ID_`, `NAME_`, `VAR_TYPE_`, `REV_`, `TIME_`, `BYTEARRAY_ID_`, `DOUBLE_`, `LONG_`, `TEXT_`, `TEXT2_`) VALUES ('9c5f4215-3ff5-11ee-b131-5a73e78fbd04', 'VariableUpdate', '8c9498de-3ff5-11ee-b131-5a73e78fbd04', '8c9498de-3ff5-11ee-b131-5a73e78fbd04', NULL, NULL, 'to', 'string', 0, '2023-08-21 15:37:41.809', NULL, NULL, NULL, 'next', NULL);
+INSERT INTO `act_hi_detail` (`ID_`, `TYPE_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `TASK_ID_`, `ACT_INST_ID_`, `NAME_`, `VAR_TYPE_`, `REV_`, `TIME_`, `BYTEARRAY_ID_`, `DOUBLE_`, `LONG_`, `TEXT_`, `TEXT2_`) VALUES ('9c5f4217-3ff5-11ee-b131-5a73e78fbd04', 'VariableUpdate', '8c9498de-3ff5-11ee-b131-5a73e78fbd04', '8c9498de-3ff5-11ee-b131-5a73e78fbd04', NULL, NULL, 'approvalComment', 'string', 0, '2023-08-21 15:37:41.809', NULL, NULL, NULL, '这里是我的审批意见，还能设置各种附件', NULL);
+INSERT INTO `act_hi_detail` (`ID_`, `TYPE_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `TASK_ID_`, `ACT_INST_ID_`, `NAME_`, `VAR_TYPE_`, `REV_`, `TIME_`, `BYTEARRAY_ID_`, `DOUBLE_`, `LONG_`, `TEXT_`, `TEXT2_`) VALUES ('9c5f4218-3ff5-11ee-b131-5a73e78fbd04', 'VariableUpdate', '8c9498de-3ff5-11ee-b131-5a73e78fbd04', '8c9498de-3ff5-11ee-b131-5a73e78fbd04', NULL, NULL, 'cwfzr_group', 'json', 1, '2023-08-21 15:37:41.809', NULL, NULL, NULL, '[\"cw_group\",\"super_group\"]', 'java.util.LinkedList');
+INSERT INTO `act_hi_detail` (`ID_`, `TYPE_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `TASK_ID_`, `ACT_INST_ID_`, `NAME_`, `VAR_TYPE_`, `REV_`, `TIME_`, `BYTEARRAY_ID_`, `DOUBLE_`, `LONG_`, `TEXT_`, `TEXT2_`) VALUES ('9c60a1ac-3ff5-11ee-b131-5a73e78fbd04', 'VariableUpdate', '8c9498de-3ff5-11ee-b131-5a73e78fbd04', '8c9498e3-3ff5-11ee-b131-5a73e78fbd04', '9c60538a-3ff5-11ee-b131-5a73e78fbd04', NULL, 'zg_group', 'json', 0, '2023-08-21 15:37:41.818', NULL, NULL, NULL, '[\"zg_group\",\"super_group\"]', 'java.util.LinkedList');
+INSERT INTO `act_hi_detail` (`ID_`, `TYPE_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `TASK_ID_`, `ACT_INST_ID_`, `NAME_`, `VAR_TYPE_`, `REV_`, `TIME_`, `BYTEARRAY_ID_`, `DOUBLE_`, `LONG_`, `TEXT_`, `TEXT2_`) VALUES ('9c60a1ae-3ff5-11ee-b131-5a73e78fbd04', 'VariableUpdate', '8c9498de-3ff5-11ee-b131-5a73e78fbd04', '8c9498e3-3ff5-11ee-b131-5a73e78fbd04', '9c60538a-3ff5-11ee-b131-5a73e78fbd04', NULL, 'approvalComment', 'string', 0, '2023-08-21 15:37:41.818', NULL, NULL, NULL, '这里是我的审批意见，还能设置各种附件', NULL);
+INSERT INTO `act_hi_detail` (`ID_`, `TYPE_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `TASK_ID_`, `ACT_INST_ID_`, `NAME_`, `VAR_TYPE_`, `REV_`, `TIME_`, `BYTEARRAY_ID_`, `DOUBLE_`, `LONG_`, `TEXT_`, `TEXT2_`) VALUES ('9c60a1b0-3ff5-11ee-b131-5a73e78fbd04', 'VariableUpdate', '8c9498de-3ff5-11ee-b131-5a73e78fbd04', '8c9498e3-3ff5-11ee-b131-5a73e78fbd04', '9c60538a-3ff5-11ee-b131-5a73e78fbd04', NULL, 'cwfzr_group', 'json', 0, '2023-08-21 15:37:41.818', NULL, NULL, NULL, '[\"cw_group\",\"super_group\"]', 'java.util.LinkedList');
+INSERT INTO `act_hi_detail` (`ID_`, `TYPE_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `TASK_ID_`, `ACT_INST_ID_`, `NAME_`, `VAR_TYPE_`, `REV_`, `TIME_`, `BYTEARRAY_ID_`, `DOUBLE_`, `LONG_`, `TEXT_`, `TEXT2_`) VALUES ('9c60a1b2-3ff5-11ee-b131-5a73e78fbd04', 'VariableUpdate', '8c9498de-3ff5-11ee-b131-5a73e78fbd04', '8c9498e3-3ff5-11ee-b131-5a73e78fbd04', '9c60538a-3ff5-11ee-b131-5a73e78fbd04', NULL, 'to', 'string', 0, '2023-08-21 15:37:41.818', NULL, NULL, NULL, 'next', NULL);
+INSERT INTO `act_hi_detail` (`ID_`, `TYPE_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `TASK_ID_`, `ACT_INST_ID_`, `NAME_`, `VAR_TYPE_`, `REV_`, `TIME_`, `BYTEARRAY_ID_`, `DOUBLE_`, `LONG_`, `TEXT_`, `TEXT2_`) VALUES ('9cdd99e7-3ff5-11ee-b131-5a73e78fbd04', 'VariableUpdate', '8d149e5d-3ff5-11ee-b131-5a73e78fbd04', '8d14c572-3ff5-11ee-b131-5a73e78fbd04', '8d14c575-3ff5-11ee-b131-5a73e78fbd04', NULL, 'approvalComment', 'string', 0, '2023-08-21 15:37:42.637', NULL, NULL, NULL, '这里是我的审批意见，还能设置各种附件', NULL);
+INSERT INTO `act_hi_detail` (`ID_`, `TYPE_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `TASK_ID_`, `ACT_INST_ID_`, `NAME_`, `VAR_TYPE_`, `REV_`, `TIME_`, `BYTEARRAY_ID_`, `DOUBLE_`, `LONG_`, `TEXT_`, `TEXT2_`) VALUES ('9cdde809-3ff5-11ee-b131-5a73e78fbd04', 'VariableUpdate', '8d149e5d-3ff5-11ee-b131-5a73e78fbd04', '8d14c572-3ff5-11ee-b131-5a73e78fbd04', '8d14c575-3ff5-11ee-b131-5a73e78fbd04', NULL, 'to', 'string', 0, '2023-08-21 15:37:42.639', NULL, NULL, NULL, 'next', NULL);
+INSERT INTO `act_hi_detail` (`ID_`, `TYPE_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `TASK_ID_`, `ACT_INST_ID_`, `NAME_`, `VAR_TYPE_`, `REV_`, `TIME_`, `BYTEARRAY_ID_`, `DOUBLE_`, `LONG_`, `TEXT_`, `TEXT2_`) VALUES ('9ce1dfaa-3ff5-11ee-b131-5a73e78fbd04', 'VariableUpdate', '8d149e5d-3ff5-11ee-b131-5a73e78fbd04', '8d149e5d-3ff5-11ee-b131-5a73e78fbd04', NULL, NULL, 'zg_group', 'json', 1, '2023-08-21 15:37:42.665', NULL, NULL, NULL, '[\"zg_group\",\"super_group\"]', 'java.util.LinkedList');
+INSERT INTO `act_hi_detail` (`ID_`, `TYPE_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `TASK_ID_`, `ACT_INST_ID_`, `NAME_`, `VAR_TYPE_`, `REV_`, `TIME_`, `BYTEARRAY_ID_`, `DOUBLE_`, `LONG_`, `TEXT_`, `TEXT2_`) VALUES ('9ce206bc-3ff5-11ee-b131-5a73e78fbd04', 'VariableUpdate', '8d149e5d-3ff5-11ee-b131-5a73e78fbd04', '8d149e5d-3ff5-11ee-b131-5a73e78fbd04', NULL, NULL, 'to', 'string', 0, '2023-08-21 15:37:42.666', NULL, NULL, NULL, 'next', NULL);
+INSERT INTO `act_hi_detail` (`ID_`, `TYPE_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `TASK_ID_`, `ACT_INST_ID_`, `NAME_`, `VAR_TYPE_`, `REV_`, `TIME_`, `BYTEARRAY_ID_`, `DOUBLE_`, `LONG_`, `TEXT_`, `TEXT2_`) VALUES ('9ce206be-3ff5-11ee-b131-5a73e78fbd04', 'VariableUpdate', '8d149e5d-3ff5-11ee-b131-5a73e78fbd04', '8d149e5d-3ff5-11ee-b131-5a73e78fbd04', NULL, NULL, 'approvalComment', 'string', 0, '2023-08-21 15:37:42.666', NULL, NULL, NULL, '这里是我的审批意见，还能设置各种附件', NULL);
+INSERT INTO `act_hi_detail` (`ID_`, `TYPE_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `TASK_ID_`, `ACT_INST_ID_`, `NAME_`, `VAR_TYPE_`, `REV_`, `TIME_`, `BYTEARRAY_ID_`, `DOUBLE_`, `LONG_`, `TEXT_`, `TEXT2_`) VALUES ('9ce22dcf-3ff5-11ee-b131-5a73e78fbd04', 'VariableUpdate', '8d149e5d-3ff5-11ee-b131-5a73e78fbd04', '8d149e5d-3ff5-11ee-b131-5a73e78fbd04', NULL, NULL, 'cwfzr_group', 'json', 1, '2023-08-21 15:37:42.667', NULL, NULL, NULL, '[\"cw_group\",\"super_group\"]', 'java.util.LinkedList');
+INSERT INTO `act_hi_detail` (`ID_`, `TYPE_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `TASK_ID_`, `ACT_INST_ID_`, `NAME_`, `VAR_TYPE_`, `REV_`, `TIME_`, `BYTEARRAY_ID_`, `DOUBLE_`, `LONG_`, `TEXT_`, `TEXT2_`) VALUES ('9ce2ca13-3ff5-11ee-b131-5a73e78fbd04', 'VariableUpdate', '8d149e5d-3ff5-11ee-b131-5a73e78fbd04', '8d14c572-3ff5-11ee-b131-5a73e78fbd04', '9ce2a301-3ff5-11ee-b131-5a73e78fbd04', NULL, 'zg_group', 'json', 0, '2023-08-21 15:37:42.671', NULL, NULL, NULL, '[\"zg_group\",\"super_group\"]', 'java.util.LinkedList');
+INSERT INTO `act_hi_detail` (`ID_`, `TYPE_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `TASK_ID_`, `ACT_INST_ID_`, `NAME_`, `VAR_TYPE_`, `REV_`, `TIME_`, `BYTEARRAY_ID_`, `DOUBLE_`, `LONG_`, `TEXT_`, `TEXT2_`) VALUES ('9ce2ca15-3ff5-11ee-b131-5a73e78fbd04', 'VariableUpdate', '8d149e5d-3ff5-11ee-b131-5a73e78fbd04', '8d14c572-3ff5-11ee-b131-5a73e78fbd04', '9ce2a301-3ff5-11ee-b131-5a73e78fbd04', NULL, 'approvalComment', 'string', 0, '2023-08-21 15:37:42.671', NULL, NULL, NULL, '这里是我的审批意见，还能设置各种附件', NULL);
+INSERT INTO `act_hi_detail` (`ID_`, `TYPE_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `TASK_ID_`, `ACT_INST_ID_`, `NAME_`, `VAR_TYPE_`, `REV_`, `TIME_`, `BYTEARRAY_ID_`, `DOUBLE_`, `LONG_`, `TEXT_`, `TEXT2_`) VALUES ('9ce2f127-3ff5-11ee-b131-5a73e78fbd04', 'VariableUpdate', '8d149e5d-3ff5-11ee-b131-5a73e78fbd04', '8d14c572-3ff5-11ee-b131-5a73e78fbd04', '9ce2a301-3ff5-11ee-b131-5a73e78fbd04', NULL, 'cwfzr_group', 'json', 0, '2023-08-21 15:37:42.672', NULL, NULL, NULL, '[\"cw_group\",\"super_group\"]', 'java.util.LinkedList');
+INSERT INTO `act_hi_detail` (`ID_`, `TYPE_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `TASK_ID_`, `ACT_INST_ID_`, `NAME_`, `VAR_TYPE_`, `REV_`, `TIME_`, `BYTEARRAY_ID_`, `DOUBLE_`, `LONG_`, `TEXT_`, `TEXT2_`) VALUES ('9ce2f129-3ff5-11ee-b131-5a73e78fbd04', 'VariableUpdate', '8d149e5d-3ff5-11ee-b131-5a73e78fbd04', '8d14c572-3ff5-11ee-b131-5a73e78fbd04', '9ce2a301-3ff5-11ee-b131-5a73e78fbd04', NULL, 'to', 'string', 0, '2023-08-21 15:37:42.672', NULL, NULL, NULL, 'next', NULL);
+INSERT INTO `act_hi_detail` (`ID_`, `TYPE_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `TASK_ID_`, `ACT_INST_ID_`, `NAME_`, `VAR_TYPE_`, `REV_`, `TIME_`, `BYTEARRAY_ID_`, `DOUBLE_`, `LONG_`, `TEXT_`, `TEXT2_`) VALUES ('a53d9d2d-3ff5-11ee-b131-5a73e78fbd04', 'VariableUpdate', '8c674730-3ff5-11ee-b131-5a73e78fbd04', '8c67e37b-3ff5-11ee-b131-5a73e78fbd04', '999fd4d7-3ff5-11ee-b131-5a73e78fbd04', NULL, 'approvalComment', 'string', 1, '2023-08-21 15:37:56.688', NULL, NULL, NULL, '这里是我的审批意见，还能设置各种附件', NULL);
+INSERT INTO `act_hi_detail` (`ID_`, `TYPE_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `TASK_ID_`, `ACT_INST_ID_`, `NAME_`, `VAR_TYPE_`, `REV_`, `TIME_`, `BYTEARRAY_ID_`, `DOUBLE_`, `LONG_`, `TEXT_`, `TEXT2_`) VALUES ('a53e125e-3ff5-11ee-b131-5a73e78fbd04', 'VariableUpdate', '8c674730-3ff5-11ee-b131-5a73e78fbd04', '8c67e37b-3ff5-11ee-b131-5a73e78fbd04', '999fd4d7-3ff5-11ee-b131-5a73e78fbd04', NULL, 'to', 'string', 1, '2023-08-21 15:37:56.691', NULL, NULL, NULL, 'next', NULL);
+INSERT INTO `act_hi_detail` (`ID_`, `TYPE_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `TASK_ID_`, `ACT_INST_ID_`, `NAME_`, `VAR_TYPE_`, `REV_`, `TIME_`, `BYTEARRAY_ID_`, `DOUBLE_`, `LONG_`, `TEXT_`, `TEXT2_`) VALUES ('a54209ff-3ff5-11ee-b131-5a73e78fbd04', 'VariableUpdate', '8c674730-3ff5-11ee-b131-5a73e78fbd04', '8c674730-3ff5-11ee-b131-5a73e78fbd04', NULL, NULL, 'zg_group', 'json', 2, '2023-08-21 15:37:56.717', NULL, NULL, NULL, '[\"zg_group\",\"super_group\"]', 'java.util.LinkedList');
+INSERT INTO `act_hi_detail` (`ID_`, `TYPE_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `TASK_ID_`, `ACT_INST_ID_`, `NAME_`, `VAR_TYPE_`, `REV_`, `TIME_`, `BYTEARRAY_ID_`, `DOUBLE_`, `LONG_`, `TEXT_`, `TEXT2_`) VALUES ('a5423110-3ff5-11ee-b131-5a73e78fbd04', 'VariableUpdate', '8c674730-3ff5-11ee-b131-5a73e78fbd04', '8c674730-3ff5-11ee-b131-5a73e78fbd04', NULL, NULL, 'to', 'string', 1, '2023-08-21 15:37:56.718', NULL, NULL, NULL, 'next', NULL);
+INSERT INTO `act_hi_detail` (`ID_`, `TYPE_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `TASK_ID_`, `ACT_INST_ID_`, `NAME_`, `VAR_TYPE_`, `REV_`, `TIME_`, `BYTEARRAY_ID_`, `DOUBLE_`, `LONG_`, `TEXT_`, `TEXT2_`) VALUES ('a5427f31-3ff5-11ee-b131-5a73e78fbd04', 'VariableUpdate', '8c674730-3ff5-11ee-b131-5a73e78fbd04', '8c674730-3ff5-11ee-b131-5a73e78fbd04', NULL, NULL, 'approvalComment', 'string', 1, '2023-08-21 15:37:56.720', NULL, NULL, NULL, '这里是我的审批意见，还能设置各种附件', NULL);
+INSERT INTO `act_hi_detail` (`ID_`, `TYPE_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `TASK_ID_`, `ACT_INST_ID_`, `NAME_`, `VAR_TYPE_`, `REV_`, `TIME_`, `BYTEARRAY_ID_`, `DOUBLE_`, `LONG_`, `TEXT_`, `TEXT2_`) VALUES ('a542a642-3ff5-11ee-b131-5a73e78fbd04', 'VariableUpdate', '8c674730-3ff5-11ee-b131-5a73e78fbd04', '8c674730-3ff5-11ee-b131-5a73e78fbd04', NULL, NULL, 'cwfzr_group', 'json', 2, '2023-08-21 15:37:56.721', NULL, NULL, NULL, '[\"cw_group\",\"super_group\"]', 'java.util.LinkedList');
+INSERT INTO `act_hi_detail` (`ID_`, `TYPE_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `TASK_ID_`, `ACT_INST_ID_`, `NAME_`, `VAR_TYPE_`, `REV_`, `TIME_`, `BYTEARRAY_ID_`, `DOUBLE_`, `LONG_`, `TEXT_`, `TEXT2_`) VALUES ('a5da2b55-3ff5-11ee-b131-5a73e78fbd04', 'VariableUpdate', '8c9498de-3ff5-11ee-b131-5a73e78fbd04', '8c9498e3-3ff5-11ee-b131-5a73e78fbd04', '9c60538a-3ff5-11ee-b131-5a73e78fbd04', NULL, 'approvalComment', 'string', 1, '2023-08-21 15:37:57.714', NULL, NULL, NULL, '这里是我的审批意见，还能设置各种附件', NULL);
+INSERT INTO `act_hi_detail` (`ID_`, `TYPE_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `TASK_ID_`, `ACT_INST_ID_`, `NAME_`, `VAR_TYPE_`, `REV_`, `TIME_`, `BYTEARRAY_ID_`, `DOUBLE_`, `LONG_`, `TEXT_`, `TEXT2_`) VALUES ('a5da7976-3ff5-11ee-b131-5a73e78fbd04', 'VariableUpdate', '8c9498de-3ff5-11ee-b131-5a73e78fbd04', '8c9498e3-3ff5-11ee-b131-5a73e78fbd04', '9c60538a-3ff5-11ee-b131-5a73e78fbd04', NULL, 'to', 'string', 1, '2023-08-21 15:37:57.716', NULL, NULL, NULL, 'back', NULL);
+INSERT INTO `act_hi_detail` (`ID_`, `TYPE_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `TASK_ID_`, `ACT_INST_ID_`, `NAME_`, `VAR_TYPE_`, `REV_`, `TIME_`, `BYTEARRAY_ID_`, `DOUBLE_`, `LONG_`, `TEXT_`, `TEXT2_`) VALUES ('a5dd1187-3ff5-11ee-b131-5a73e78fbd04', 'VariableUpdate', '8c9498de-3ff5-11ee-b131-5a73e78fbd04', '8c9498de-3ff5-11ee-b131-5a73e78fbd04', NULL, NULL, 'zg_group', 'json', 2, '2023-08-21 15:37:57.733', NULL, NULL, NULL, '[\"zg_group\",\"super_group\"]', 'java.util.LinkedList');
+INSERT INTO `act_hi_detail` (`ID_`, `TYPE_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `TASK_ID_`, `ACT_INST_ID_`, `NAME_`, `VAR_TYPE_`, `REV_`, `TIME_`, `BYTEARRAY_ID_`, `DOUBLE_`, `LONG_`, `TEXT_`, `TEXT2_`) VALUES ('a5dd3898-3ff5-11ee-b131-5a73e78fbd04', 'VariableUpdate', '8c9498de-3ff5-11ee-b131-5a73e78fbd04', '8c9498de-3ff5-11ee-b131-5a73e78fbd04', NULL, NULL, 'to', 'string', 1, '2023-08-21 15:37:57.734', NULL, NULL, NULL, 'back', NULL);
+INSERT INTO `act_hi_detail` (`ID_`, `TYPE_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `TASK_ID_`, `ACT_INST_ID_`, `NAME_`, `VAR_TYPE_`, `REV_`, `TIME_`, `BYTEARRAY_ID_`, `DOUBLE_`, `LONG_`, `TEXT_`, `TEXT2_`) VALUES ('a5dd5fa9-3ff5-11ee-b131-5a73e78fbd04', 'VariableUpdate', '8c9498de-3ff5-11ee-b131-5a73e78fbd04', '8c9498de-3ff5-11ee-b131-5a73e78fbd04', NULL, NULL, 'approvalComment', 'string', 1, '2023-08-21 15:37:57.735', NULL, NULL, NULL, '这里是我的审批意见，还能设置各种附件', NULL);
+INSERT INTO `act_hi_detail` (`ID_`, `TYPE_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `TASK_ID_`, `ACT_INST_ID_`, `NAME_`, `VAR_TYPE_`, `REV_`, `TIME_`, `BYTEARRAY_ID_`, `DOUBLE_`, `LONG_`, `TEXT_`, `TEXT2_`) VALUES ('a5ddd4da-3ff5-11ee-b131-5a73e78fbd04', 'VariableUpdate', '8c9498de-3ff5-11ee-b131-5a73e78fbd04', '8c9498de-3ff5-11ee-b131-5a73e78fbd04', NULL, NULL, 'cwfzr_group', 'json', 2, '2023-08-21 15:37:57.738', NULL, NULL, NULL, '[\"cw_group\",\"super_group\"]', 'java.util.LinkedList');
 COMMIT;
 
 -- ----------------------------
@@ -207,12 +291,12 @@ COMMIT;
 -- ----------------------------
 DROP TABLE IF EXISTS `act_hi_identitylink`;
 CREATE TABLE `act_hi_identitylink` (
-  `ID_` varchar(64) COLLATE utf8mb3_bin NOT NULL,
-  `GROUP_ID_` varchar(255) COLLATE utf8mb3_bin DEFAULT NULL,
-  `TYPE_` varchar(255) COLLATE utf8mb3_bin DEFAULT NULL,
-  `USER_ID_` varchar(255) COLLATE utf8mb3_bin DEFAULT NULL,
-  `TASK_ID_` varchar(64) COLLATE utf8mb3_bin DEFAULT NULL,
-  `PROC_INST_ID_` varchar(64) COLLATE utf8mb3_bin DEFAULT NULL,
+  `ID_` varchar(64) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin NOT NULL,
+  `GROUP_ID_` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
+  `TYPE_` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
+  `USER_ID_` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
+  `TASK_ID_` varchar(64) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
+  `PROC_INST_ID_` varchar(64) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
   PRIMARY KEY (`ID_`),
   KEY `ACT_IDX_HI_IDENT_LNK_USER` (`USER_ID_`),
   KEY `ACT_IDX_HI_IDENT_LNK_TASK` (`TASK_ID_`),
@@ -223,6 +307,28 @@ CREATE TABLE `act_hi_identitylink` (
 -- Records of act_hi_identitylink
 -- ----------------------------
 BEGIN;
+INSERT INTO `act_hi_identitylink` (`ID_`, `GROUP_ID_`, `TYPE_`, `USER_ID_`, `TASK_ID_`, `PROC_INST_ID_`) VALUES ('8c6d13aa-3ff5-11ee-b131-5a73e78fbd04', 'zg_group', 'candidate', NULL, '8c6b17d0-3ff5-11ee-b131-5a73e78fbd04', NULL);
+INSERT INTO `act_hi_identitylink` (`ID_`, `GROUP_ID_`, `TYPE_`, `USER_ID_`, `TASK_ID_`, `PROC_INST_ID_`) VALUES ('8c6d13ab-3ff5-11ee-b131-5a73e78fbd04', 'zg_group', 'candidate', NULL, '8c6b17d1-3ff5-11ee-b131-5a73e78fbd04', NULL);
+INSERT INTO `act_hi_identitylink` (`ID_`, `GROUP_ID_`, `TYPE_`, `USER_ID_`, `TASK_ID_`, `PROC_INST_ID_`) VALUES ('8c6d13ac-3ff5-11ee-b131-5a73e78fbd04', 'super_group', 'candidate', NULL, '8c6b17d0-3ff5-11ee-b131-5a73e78fbd04', NULL);
+INSERT INTO `act_hi_identitylink` (`ID_`, `GROUP_ID_`, `TYPE_`, `USER_ID_`, `TASK_ID_`, `PROC_INST_ID_`) VALUES ('8c6d13ad-3ff5-11ee-b131-5a73e78fbd04', 'super_group', 'candidate', NULL, '8c6b17d1-3ff5-11ee-b131-5a73e78fbd04', NULL);
+INSERT INTO `act_hi_identitylink` (`ID_`, `GROUP_ID_`, `TYPE_`, `USER_ID_`, `TASK_ID_`, `PROC_INST_ID_`) VALUES ('8c950e1b-3ff5-11ee-b131-5a73e78fbd04', 'zg_group', 'candidate', NULL, '8c94bff6-3ff5-11ee-b131-5a73e78fbd04', NULL);
+INSERT INTO `act_hi_identitylink` (`ID_`, `GROUP_ID_`, `TYPE_`, `USER_ID_`, `TASK_ID_`, `PROC_INST_ID_`) VALUES ('8c950e1c-3ff5-11ee-b131-5a73e78fbd04', 'super_group', 'candidate', NULL, '8c94bff6-3ff5-11ee-b131-5a73e78fbd04', NULL);
+INSERT INTO `act_hi_identitylink` (`ID_`, `GROUP_ID_`, `TYPE_`, `USER_ID_`, `TASK_ID_`, `PROC_INST_ID_`) VALUES ('8d15139a-3ff5-11ee-b131-5a73e78fbd04', 'zg_group', 'candidate', NULL, '8d14c575-3ff5-11ee-b131-5a73e78fbd04', NULL);
+INSERT INTO `act_hi_identitylink` (`ID_`, `GROUP_ID_`, `TYPE_`, `USER_ID_`, `TASK_ID_`, `PROC_INST_ID_`) VALUES ('8d15139b-3ff5-11ee-b131-5a73e78fbd04', 'super_group', 'candidate', NULL, '8d14c575-3ff5-11ee-b131-5a73e78fbd04', NULL);
+INSERT INTO `act_hi_identitylink` (`ID_`, `GROUP_ID_`, `TYPE_`, `USER_ID_`, `TASK_ID_`, `PROC_INST_ID_`) VALUES ('8d6aadb9-3ff5-11ee-b131-5a73e78fbd04', 'zg_group', 'candidate', NULL, '8d69ea64-3ff5-11ee-b131-5a73e78fbd04', NULL);
+INSERT INTO `act_hi_identitylink` (`ID_`, `GROUP_ID_`, `TYPE_`, `USER_ID_`, `TASK_ID_`, `PROC_INST_ID_`) VALUES ('8d6aadba-3ff5-11ee-b131-5a73e78fbd04', 'super_group', 'candidate', NULL, '8d69ea64-3ff5-11ee-b131-5a73e78fbd04', NULL);
+INSERT INTO `act_hi_identitylink` (`ID_`, `GROUP_ID_`, `TYPE_`, `USER_ID_`, `TASK_ID_`, `PROC_INST_ID_`) VALUES ('9990e0ab-3ff5-11ee-b131-5a73e78fbd04', NULL, 'participant', 'zg1', NULL, '8c674730-3ff5-11ee-b131-5a73e78fbd04');
+INSERT INTO `act_hi_identitylink` (`ID_`, `GROUP_ID_`, `TYPE_`, `USER_ID_`, `TASK_ID_`, `PROC_INST_ID_`) VALUES ('99a02300-3ff5-11ee-b131-5a73e78fbd04', 'cw_group', 'candidate', NULL, '999fd4d7-3ff5-11ee-b131-5a73e78fbd04', NULL);
+INSERT INTO `act_hi_identitylink` (`ID_`, `GROUP_ID_`, `TYPE_`, `USER_ID_`, `TASK_ID_`, `PROC_INST_ID_`) VALUES ('99a04a11-3ff5-11ee-b131-5a73e78fbd04', 'super_group', 'candidate', NULL, '999fd4d7-3ff5-11ee-b131-5a73e78fbd04', NULL);
+INSERT INTO `act_hi_identitylink` (`ID_`, `GROUP_ID_`, `TYPE_`, `USER_ID_`, `TASK_ID_`, `PROC_INST_ID_`) VALUES ('9b448432-3ff5-11ee-b131-5a73e78fbd04', NULL, 'participant', 'zg1', NULL, '8c674731-3ff5-11ee-b131-5a73e78fbd04');
+INSERT INTO `act_hi_identitylink` (`ID_`, `GROUP_ID_`, `TYPE_`, `USER_ID_`, `TASK_ID_`, `PROC_INST_ID_`) VALUES ('9c53833e-3ff5-11ee-b131-5a73e78fbd04', NULL, 'participant', 'zg1', NULL, '8c9498de-3ff5-11ee-b131-5a73e78fbd04');
+INSERT INTO `act_hi_identitylink` (`ID_`, `GROUP_ID_`, `TYPE_`, `USER_ID_`, `TASK_ID_`, `PROC_INST_ID_`) VALUES ('9c60efd3-3ff5-11ee-b131-5a73e78fbd04', 'cw_group', 'candidate', NULL, '9c60538a-3ff5-11ee-b131-5a73e78fbd04', NULL);
+INSERT INTO `act_hi_identitylink` (`ID_`, `GROUP_ID_`, `TYPE_`, `USER_ID_`, `TASK_ID_`, `PROC_INST_ID_`) VALUES ('9c60efd4-3ff5-11ee-b131-5a73e78fbd04', 'super_group', 'candidate', NULL, '9c60538a-3ff5-11ee-b131-5a73e78fbd04', NULL);
+INSERT INTO `act_hi_identitylink` (`ID_`, `GROUP_ID_`, `TYPE_`, `USER_ID_`, `TASK_ID_`, `PROC_INST_ID_`) VALUES ('9cd7f495-3ff5-11ee-b131-5a73e78fbd04', NULL, 'participant', 'zg1', NULL, '8d149e5d-3ff5-11ee-b131-5a73e78fbd04');
+INSERT INTO `act_hi_identitylink` (`ID_`, `GROUP_ID_`, `TYPE_`, `USER_ID_`, `TASK_ID_`, `PROC_INST_ID_`) VALUES ('9ce3183a-3ff5-11ee-b131-5a73e78fbd04', 'cw_group', 'candidate', NULL, '9ce2a301-3ff5-11ee-b131-5a73e78fbd04', NULL);
+INSERT INTO `act_hi_identitylink` (`ID_`, `GROUP_ID_`, `TYPE_`, `USER_ID_`, `TASK_ID_`, `PROC_INST_ID_`) VALUES ('9ce3183b-3ff5-11ee-b131-5a73e78fbd04', 'super_group', 'candidate', NULL, '9ce2a301-3ff5-11ee-b131-5a73e78fbd04', NULL);
+INSERT INTO `act_hi_identitylink` (`ID_`, `GROUP_ID_`, `TYPE_`, `USER_ID_`, `TASK_ID_`, `PROC_INST_ID_`) VALUES ('a538941c-3ff5-11ee-b131-5a73e78fbd04', NULL, 'participant', 'cw1', NULL, '8c674730-3ff5-11ee-b131-5a73e78fbd04');
+INSERT INTO `act_hi_identitylink` (`ID_`, `GROUP_ID_`, `TYPE_`, `USER_ID_`, `TASK_ID_`, `PROC_INST_ID_`) VALUES ('a5d681d4-3ff5-11ee-b131-5a73e78fbd04', NULL, 'participant', 'cw1', NULL, '8c9498de-3ff5-11ee-b131-5a73e78fbd04');
 COMMIT;
 
 -- ----------------------------
@@ -230,20 +336,20 @@ COMMIT;
 -- ----------------------------
 DROP TABLE IF EXISTS `act_hi_procinst`;
 CREATE TABLE `act_hi_procinst` (
-  `ID_` varchar(64) COLLATE utf8mb3_bin NOT NULL,
-  `PROC_INST_ID_` varchar(64) COLLATE utf8mb3_bin NOT NULL,
-  `BUSINESS_KEY_` varchar(255) COLLATE utf8mb3_bin DEFAULT NULL,
-  `PROC_DEF_ID_` varchar(64) COLLATE utf8mb3_bin NOT NULL,
+  `ID_` varchar(64) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin NOT NULL,
+  `PROC_INST_ID_` varchar(64) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin NOT NULL,
+  `BUSINESS_KEY_` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
+  `PROC_DEF_ID_` varchar(64) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin NOT NULL,
   `START_TIME_` datetime(3) NOT NULL,
   `END_TIME_` datetime(3) DEFAULT NULL,
   `DURATION_` bigint DEFAULT NULL,
-  `START_USER_ID_` varchar(255) COLLATE utf8mb3_bin DEFAULT NULL,
-  `START_ACT_ID_` varchar(255) COLLATE utf8mb3_bin DEFAULT NULL,
-  `END_ACT_ID_` varchar(255) COLLATE utf8mb3_bin DEFAULT NULL,
-  `SUPER_PROCESS_INSTANCE_ID_` varchar(64) COLLATE utf8mb3_bin DEFAULT NULL,
-  `DELETE_REASON_` varchar(4000) COLLATE utf8mb3_bin DEFAULT NULL,
-  `TENANT_ID_` varchar(255) COLLATE utf8mb3_bin DEFAULT '',
-  `NAME_` varchar(255) COLLATE utf8mb3_bin DEFAULT NULL,
+  `START_USER_ID_` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
+  `START_ACT_ID_` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
+  `END_ACT_ID_` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
+  `SUPER_PROCESS_INSTANCE_ID_` varchar(64) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
+  `DELETE_REASON_` varchar(4000) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
+  `TENANT_ID_` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT '',
+  `NAME_` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
   PRIMARY KEY (`ID_`),
   UNIQUE KEY `PROC_INST_ID_` (`PROC_INST_ID_`),
   KEY `ACT_IDX_HI_PRO_INST_END` (`END_TIME_`),
@@ -254,6 +360,11 @@ CREATE TABLE `act_hi_procinst` (
 -- Records of act_hi_procinst
 -- ----------------------------
 BEGIN;
+INSERT INTO `act_hi_procinst` (`ID_`, `PROC_INST_ID_`, `BUSINESS_KEY_`, `PROC_DEF_ID_`, `START_TIME_`, `END_TIME_`, `DURATION_`, `START_USER_ID_`, `START_ACT_ID_`, `END_ACT_ID_`, `SUPER_PROCESS_INSTANCE_ID_`, `DELETE_REASON_`, `TENANT_ID_`, `NAME_`) VALUES ('8c674730-3ff5-11ee-b131-5a73e78fbd04', '8c674730-3ff5-11ee-b131-5a73e78fbd04', '27', 'fxcl:1:48476e94-3299-11ee-82f6-f22185ea3ea7', '2023-08-21 15:37:15.018', '2023-08-21 15:37:56.787', 41769, NULL, 'startevent1', 'endevent1', NULL, NULL, 'xtj', NULL);
+INSERT INTO `act_hi_procinst` (`ID_`, `PROC_INST_ID_`, `BUSINESS_KEY_`, `PROC_DEF_ID_`, `START_TIME_`, `END_TIME_`, `DURATION_`, `START_USER_ID_`, `START_ACT_ID_`, `END_ACT_ID_`, `SUPER_PROCESS_INSTANCE_ID_`, `DELETE_REASON_`, `TENANT_ID_`, `NAME_`) VALUES ('8c674731-3ff5-11ee-b131-5a73e78fbd04', '8c674731-3ff5-11ee-b131-5a73e78fbd04', '28', 'fxcl:1:48476e94-3299-11ee-82f6-f22185ea3ea7', '2023-08-21 15:37:15.018', '2023-08-21 15:37:40.079', 25061, NULL, 'startevent1', 'terminateendevent1', NULL, 'terminate end event (terminateendevent1)', 'xtj', NULL);
+INSERT INTO `act_hi_procinst` (`ID_`, `PROC_INST_ID_`, `BUSINESS_KEY_`, `PROC_DEF_ID_`, `START_TIME_`, `END_TIME_`, `DURATION_`, `START_USER_ID_`, `START_ACT_ID_`, `END_ACT_ID_`, `SUPER_PROCESS_INSTANCE_ID_`, `DELETE_REASON_`, `TENANT_ID_`, `NAME_`) VALUES ('8c9498de-3ff5-11ee-b131-5a73e78fbd04', '8c9498de-3ff5-11ee-b131-5a73e78fbd04', '29', 'fxcl:1:48476e94-3299-11ee-82f6-f22185ea3ea7', '2023-08-21 15:37:15.315', '2023-08-21 15:37:57.757', 42442, NULL, 'startevent1', 'terminateendevent1', NULL, 'terminate end event (terminateendevent1)', 'xtj', NULL);
+INSERT INTO `act_hi_procinst` (`ID_`, `PROC_INST_ID_`, `BUSINESS_KEY_`, `PROC_DEF_ID_`, `START_TIME_`, `END_TIME_`, `DURATION_`, `START_USER_ID_`, `START_ACT_ID_`, `END_ACT_ID_`, `SUPER_PROCESS_INSTANCE_ID_`, `DELETE_REASON_`, `TENANT_ID_`, `NAME_`) VALUES ('8d149e5d-3ff5-11ee-b131-5a73e78fbd04', '8d149e5d-3ff5-11ee-b131-5a73e78fbd04', '30', 'fxcl:1:48476e94-3299-11ee-82f6-f22185ea3ea7', '2023-08-21 15:37:16.154', NULL, NULL, NULL, 'startevent1', NULL, NULL, NULL, 'xtj', NULL);
+INSERT INTO `act_hi_procinst` (`ID_`, `PROC_INST_ID_`, `BUSINESS_KEY_`, `PROC_DEF_ID_`, `START_TIME_`, `END_TIME_`, `DURATION_`, `START_USER_ID_`, `START_ACT_ID_`, `END_ACT_ID_`, `SUPER_PROCESS_INSTANCE_ID_`, `DELETE_REASON_`, `TENANT_ID_`, `NAME_`) VALUES ('8d699c3c-3ff5-11ee-b131-5a73e78fbd04', '8d699c3c-3ff5-11ee-b131-5a73e78fbd04', '31', 'fxcl:1:48476e94-3299-11ee-82f6-f22185ea3ea7', '2023-08-21 15:37:16.711', NULL, NULL, NULL, 'startevent1', NULL, NULL, NULL, 'xtj', NULL);
 COMMIT;
 
 -- ----------------------------
@@ -261,26 +372,26 @@ COMMIT;
 -- ----------------------------
 DROP TABLE IF EXISTS `act_hi_taskinst`;
 CREATE TABLE `act_hi_taskinst` (
-  `ID_` varchar(64) COLLATE utf8mb3_bin NOT NULL,
-  `PROC_DEF_ID_` varchar(64) COLLATE utf8mb3_bin DEFAULT NULL,
-  `TASK_DEF_KEY_` varchar(255) COLLATE utf8mb3_bin DEFAULT NULL,
-  `PROC_INST_ID_` varchar(64) COLLATE utf8mb3_bin DEFAULT NULL,
-  `EXECUTION_ID_` varchar(64) COLLATE utf8mb3_bin DEFAULT NULL,
-  `NAME_` varchar(255) COLLATE utf8mb3_bin DEFAULT NULL,
-  `PARENT_TASK_ID_` varchar(64) COLLATE utf8mb3_bin DEFAULT NULL,
-  `DESCRIPTION_` varchar(4000) COLLATE utf8mb3_bin DEFAULT NULL,
-  `OWNER_` varchar(255) COLLATE utf8mb3_bin DEFAULT NULL,
-  `ASSIGNEE_` varchar(255) COLLATE utf8mb3_bin DEFAULT NULL,
+  `ID_` varchar(64) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin NOT NULL,
+  `PROC_DEF_ID_` varchar(64) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
+  `TASK_DEF_KEY_` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
+  `PROC_INST_ID_` varchar(64) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
+  `EXECUTION_ID_` varchar(64) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
+  `NAME_` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
+  `PARENT_TASK_ID_` varchar(64) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
+  `DESCRIPTION_` varchar(4000) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
+  `OWNER_` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
+  `ASSIGNEE_` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
   `START_TIME_` datetime(3) NOT NULL,
   `CLAIM_TIME_` datetime(3) DEFAULT NULL,
   `END_TIME_` datetime(3) DEFAULT NULL,
   `DURATION_` bigint DEFAULT NULL,
-  `DELETE_REASON_` varchar(4000) COLLATE utf8mb3_bin DEFAULT NULL,
+  `DELETE_REASON_` varchar(4000) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
   `PRIORITY_` int DEFAULT NULL,
   `DUE_DATE_` datetime(3) DEFAULT NULL,
-  `FORM_KEY_` varchar(255) COLLATE utf8mb3_bin DEFAULT NULL,
-  `CATEGORY_` varchar(255) COLLATE utf8mb3_bin DEFAULT NULL,
-  `TENANT_ID_` varchar(255) COLLATE utf8mb3_bin DEFAULT '',
+  `FORM_KEY_` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
+  `CATEGORY_` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
+  `TENANT_ID_` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT '',
   PRIMARY KEY (`ID_`),
   KEY `ACT_IDX_HI_TASK_INST_PROCINST` (`PROC_INST_ID_`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
@@ -289,6 +400,14 @@ CREATE TABLE `act_hi_taskinst` (
 -- Records of act_hi_taskinst
 -- ----------------------------
 BEGIN;
+INSERT INTO `act_hi_taskinst` (`ID_`, `PROC_DEF_ID_`, `TASK_DEF_KEY_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `NAME_`, `PARENT_TASK_ID_`, `DESCRIPTION_`, `OWNER_`, `ASSIGNEE_`, `START_TIME_`, `CLAIM_TIME_`, `END_TIME_`, `DURATION_`, `DELETE_REASON_`, `PRIORITY_`, `DUE_DATE_`, `FORM_KEY_`, `CATEGORY_`, `TENANT_ID_`) VALUES ('8c6b17d0-3ff5-11ee-b131-5a73e78fbd04', 'fxcl:1:48476e94-3299-11ee-82f6-f22185ea3ea7', 'zg', '8c674731-3ff5-11ee-b131-5a73e78fbd04', '8c67e37a-3ff5-11ee-b131-5a73e78fbd04', '主管审核', NULL, NULL, NULL, 'zg1', '2023-08-21 15:37:15.043', '2023-08-21 15:37:39.939', '2023-08-21 15:37:40.020', 24977, NULL, 50, NULL, NULL, NULL, 'xtj');
+INSERT INTO `act_hi_taskinst` (`ID_`, `PROC_DEF_ID_`, `TASK_DEF_KEY_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `NAME_`, `PARENT_TASK_ID_`, `DESCRIPTION_`, `OWNER_`, `ASSIGNEE_`, `START_TIME_`, `CLAIM_TIME_`, `END_TIME_`, `DURATION_`, `DELETE_REASON_`, `PRIORITY_`, `DUE_DATE_`, `FORM_KEY_`, `CATEGORY_`, `TENANT_ID_`) VALUES ('8c6b17d1-3ff5-11ee-b131-5a73e78fbd04', 'fxcl:1:48476e94-3299-11ee-82f6-f22185ea3ea7', 'zg', '8c674730-3ff5-11ee-b131-5a73e78fbd04', '8c67e37b-3ff5-11ee-b131-5a73e78fbd04', '主管审核', NULL, NULL, NULL, 'zg1', '2023-08-21 15:37:15.043', '2023-08-21 15:37:37.084', '2023-08-21 15:37:37.174', 22131, NULL, 50, NULL, NULL, NULL, 'xtj');
+INSERT INTO `act_hi_taskinst` (`ID_`, `PROC_DEF_ID_`, `TASK_DEF_KEY_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `NAME_`, `PARENT_TASK_ID_`, `DESCRIPTION_`, `OWNER_`, `ASSIGNEE_`, `START_TIME_`, `CLAIM_TIME_`, `END_TIME_`, `DURATION_`, `DELETE_REASON_`, `PRIORITY_`, `DUE_DATE_`, `FORM_KEY_`, `CATEGORY_`, `TENANT_ID_`) VALUES ('8c94bff6-3ff5-11ee-b131-5a73e78fbd04', 'fxcl:1:48476e94-3299-11ee-82f6-f22185ea3ea7', 'zg', '8c9498de-3ff5-11ee-b131-5a73e78fbd04', '8c9498e3-3ff5-11ee-b131-5a73e78fbd04', '主管审核', NULL, NULL, NULL, 'zg1', '2023-08-21 15:37:15.316', '2023-08-21 15:37:41.717', '2023-08-21 15:37:41.799', 26483, NULL, 50, NULL, NULL, NULL, 'xtj');
+INSERT INTO `act_hi_taskinst` (`ID_`, `PROC_DEF_ID_`, `TASK_DEF_KEY_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `NAME_`, `PARENT_TASK_ID_`, `DESCRIPTION_`, `OWNER_`, `ASSIGNEE_`, `START_TIME_`, `CLAIM_TIME_`, `END_TIME_`, `DURATION_`, `DELETE_REASON_`, `PRIORITY_`, `DUE_DATE_`, `FORM_KEY_`, `CATEGORY_`, `TENANT_ID_`) VALUES ('8d14c575-3ff5-11ee-b131-5a73e78fbd04', 'fxcl:1:48476e94-3299-11ee-82f6-f22185ea3ea7', 'zg', '8d149e5d-3ff5-11ee-b131-5a73e78fbd04', '8d14c572-3ff5-11ee-b131-5a73e78fbd04', '主管审核', NULL, NULL, NULL, 'zg1', '2023-08-21 15:37:16.155', '2023-08-21 15:37:42.589', '2023-08-21 15:37:42.661', 26506, NULL, 50, NULL, NULL, NULL, 'xtj');
+INSERT INTO `act_hi_taskinst` (`ID_`, `PROC_DEF_ID_`, `TASK_DEF_KEY_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `NAME_`, `PARENT_TASK_ID_`, `DESCRIPTION_`, `OWNER_`, `ASSIGNEE_`, `START_TIME_`, `CLAIM_TIME_`, `END_TIME_`, `DURATION_`, `DELETE_REASON_`, `PRIORITY_`, `DUE_DATE_`, `FORM_KEY_`, `CATEGORY_`, `TENANT_ID_`) VALUES ('8d69ea64-3ff5-11ee-b131-5a73e78fbd04', 'fxcl:1:48476e94-3299-11ee-82f6-f22185ea3ea7', 'zg', '8d699c3c-3ff5-11ee-b131-5a73e78fbd04', '8d69c351-3ff5-11ee-b131-5a73e78fbd04', '主管审核', NULL, NULL, NULL, NULL, '2023-08-21 15:37:16.713', NULL, NULL, NULL, NULL, 50, NULL, NULL, NULL, 'xtj');
+INSERT INTO `act_hi_taskinst` (`ID_`, `PROC_DEF_ID_`, `TASK_DEF_KEY_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `NAME_`, `PARENT_TASK_ID_`, `DESCRIPTION_`, `OWNER_`, `ASSIGNEE_`, `START_TIME_`, `CLAIM_TIME_`, `END_TIME_`, `DURATION_`, `DELETE_REASON_`, `PRIORITY_`, `DUE_DATE_`, `FORM_KEY_`, `CATEGORY_`, `TENANT_ID_`) VALUES ('999fd4d7-3ff5-11ee-b131-5a73e78fbd04', 'fxcl:1:48476e94-3299-11ee-82f6-f22185ea3ea7', 'cwfzr', '8c674730-3ff5-11ee-b131-5a73e78fbd04', '8c67e37b-3ff5-11ee-b131-5a73e78fbd04', '财务片区负责人审核', NULL, NULL, NULL, 'cw1', '2023-08-21 15:37:37.199', '2023-08-21 15:37:56.639', '2023-08-21 15:37:56.711', 19512, NULL, 50, NULL, NULL, NULL, 'xtj');
+INSERT INTO `act_hi_taskinst` (`ID_`, `PROC_DEF_ID_`, `TASK_DEF_KEY_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `NAME_`, `PARENT_TASK_ID_`, `DESCRIPTION_`, `OWNER_`, `ASSIGNEE_`, `START_TIME_`, `CLAIM_TIME_`, `END_TIME_`, `DURATION_`, `DELETE_REASON_`, `PRIORITY_`, `DUE_DATE_`, `FORM_KEY_`, `CATEGORY_`, `TENANT_ID_`) VALUES ('9c60538a-3ff5-11ee-b131-5a73e78fbd04', 'fxcl:1:48476e94-3299-11ee-82f6-f22185ea3ea7', 'cwfzr', '8c9498de-3ff5-11ee-b131-5a73e78fbd04', '8c9498e3-3ff5-11ee-b131-5a73e78fbd04', '财务片区负责人审核', NULL, NULL, NULL, 'cw1', '2023-08-21 15:37:41.816', '2023-08-21 15:37:57.677', '2023-08-21 15:37:57.730', 15914, NULL, 50, NULL, NULL, NULL, 'xtj');
+INSERT INTO `act_hi_taskinst` (`ID_`, `PROC_DEF_ID_`, `TASK_DEF_KEY_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `NAME_`, `PARENT_TASK_ID_`, `DESCRIPTION_`, `OWNER_`, `ASSIGNEE_`, `START_TIME_`, `CLAIM_TIME_`, `END_TIME_`, `DURATION_`, `DELETE_REASON_`, `PRIORITY_`, `DUE_DATE_`, `FORM_KEY_`, `CATEGORY_`, `TENANT_ID_`) VALUES ('9ce2a301-3ff5-11ee-b131-5a73e78fbd04', 'fxcl:1:48476e94-3299-11ee-82f6-f22185ea3ea7', 'cwfzr', '8d149e5d-3ff5-11ee-b131-5a73e78fbd04', '8d14c572-3ff5-11ee-b131-5a73e78fbd04', '财务片区负责人审核', NULL, NULL, NULL, NULL, '2023-08-21 15:37:42.670', NULL, NULL, NULL, NULL, 50, NULL, NULL, NULL, 'xtj');
 COMMIT;
 
 -- ----------------------------
@@ -296,18 +415,18 @@ COMMIT;
 -- ----------------------------
 DROP TABLE IF EXISTS `act_hi_varinst`;
 CREATE TABLE `act_hi_varinst` (
-  `ID_` varchar(64) COLLATE utf8mb3_bin NOT NULL,
-  `PROC_INST_ID_` varchar(64) COLLATE utf8mb3_bin DEFAULT NULL,
-  `EXECUTION_ID_` varchar(64) COLLATE utf8mb3_bin DEFAULT NULL,
-  `TASK_ID_` varchar(64) COLLATE utf8mb3_bin DEFAULT NULL,
-  `NAME_` varchar(255) COLLATE utf8mb3_bin NOT NULL,
-  `VAR_TYPE_` varchar(100) COLLATE utf8mb3_bin DEFAULT NULL,
+  `ID_` varchar(64) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin NOT NULL,
+  `PROC_INST_ID_` varchar(64) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
+  `EXECUTION_ID_` varchar(64) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
+  `TASK_ID_` varchar(64) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
+  `NAME_` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin NOT NULL,
+  `VAR_TYPE_` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
   `REV_` int DEFAULT NULL,
-  `BYTEARRAY_ID_` varchar(64) COLLATE utf8mb3_bin DEFAULT NULL,
+  `BYTEARRAY_ID_` varchar(64) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
   `DOUBLE_` double DEFAULT NULL,
   `LONG_` bigint DEFAULT NULL,
-  `TEXT_` varchar(4000) COLLATE utf8mb3_bin DEFAULT NULL,
-  `TEXT2_` varchar(4000) COLLATE utf8mb3_bin DEFAULT NULL,
+  `TEXT_` varchar(4000) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
+  `TEXT2_` varchar(4000) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
   `CREATE_TIME_` datetime(3) DEFAULT NULL,
   `LAST_UPDATED_TIME_` datetime(3) DEFAULT NULL,
   PRIMARY KEY (`ID_`),
@@ -320,6 +439,54 @@ CREATE TABLE `act_hi_varinst` (
 -- Records of act_hi_varinst
 -- ----------------------------
 BEGIN;
+INSERT INTO `act_hi_varinst` (`ID_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `TASK_ID_`, `NAME_`, `VAR_TYPE_`, `REV_`, `BYTEARRAY_ID_`, `DOUBLE_`, `LONG_`, `TEXT_`, `TEXT2_`, `CREATE_TIME_`, `LAST_UPDATED_TIME_`) VALUES ('8c679552-3ff5-11ee-b131-5a73e78fbd04', '8c674731-3ff5-11ee-b131-5a73e78fbd04', '8c674731-3ff5-11ee-b131-5a73e78fbd04', NULL, 'zg_group', 'json', 1, NULL, NULL, NULL, '[\"zg_group\",\"super_group\"]', 'java.util.LinkedList', '2023-08-21 15:37:15.021', '2023-08-21 15:37:40.030');
+INSERT INTO `act_hi_varinst` (`ID_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `TASK_ID_`, `NAME_`, `VAR_TYPE_`, `REV_`, `BYTEARRAY_ID_`, `DOUBLE_`, `LONG_`, `TEXT_`, `TEXT2_`, `CREATE_TIME_`, `LAST_UPDATED_TIME_`) VALUES ('8c679553-3ff5-11ee-b131-5a73e78fbd04', '8c674730-3ff5-11ee-b131-5a73e78fbd04', '8c674730-3ff5-11ee-b131-5a73e78fbd04', NULL, 'zg_group', 'json', 2, NULL, NULL, NULL, '[\"zg_group\",\"super_group\"]', 'java.util.LinkedList', '2023-08-21 15:37:15.021', '2023-08-21 15:37:56.718');
+INSERT INTO `act_hi_varinst` (`ID_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `TASK_ID_`, `NAME_`, `VAR_TYPE_`, `REV_`, `BYTEARRAY_ID_`, `DOUBLE_`, `LONG_`, `TEXT_`, `TEXT2_`, `CREATE_TIME_`, `LAST_UPDATED_TIME_`) VALUES ('8c67e376-3ff5-11ee-b131-5a73e78fbd04', '8c674731-3ff5-11ee-b131-5a73e78fbd04', '8c674731-3ff5-11ee-b131-5a73e78fbd04', NULL, 'cwfzr_group', 'json', 1, NULL, NULL, NULL, '[\"cw_group\",\"super_group\"]', 'java.util.LinkedList', '2023-08-21 15:37:15.022', '2023-08-21 15:37:40.032');
+INSERT INTO `act_hi_varinst` (`ID_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `TASK_ID_`, `NAME_`, `VAR_TYPE_`, `REV_`, `BYTEARRAY_ID_`, `DOUBLE_`, `LONG_`, `TEXT_`, `TEXT2_`, `CREATE_TIME_`, `LAST_UPDATED_TIME_`) VALUES ('8c67e377-3ff5-11ee-b131-5a73e78fbd04', '8c674730-3ff5-11ee-b131-5a73e78fbd04', '8c674730-3ff5-11ee-b131-5a73e78fbd04', NULL, 'cwfzr_group', 'json', 2, NULL, NULL, NULL, '[\"cw_group\",\"super_group\"]', 'java.util.LinkedList', '2023-08-21 15:37:15.022', '2023-08-21 15:37:56.722');
+INSERT INTO `act_hi_varinst` (`ID_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `TASK_ID_`, `NAME_`, `VAR_TYPE_`, `REV_`, `BYTEARRAY_ID_`, `DOUBLE_`, `LONG_`, `TEXT_`, `TEXT2_`, `CREATE_TIME_`, `LAST_UPDATED_TIME_`) VALUES ('8c6c2942-3ff5-11ee-b131-5a73e78fbd04', '8c674730-3ff5-11ee-b131-5a73e78fbd04', '8c67e37b-3ff5-11ee-b131-5a73e78fbd04', '8c6b17d1-3ff5-11ee-b131-5a73e78fbd04', 'zg_group', 'json', 0, NULL, NULL, NULL, '[\"zg_group\",\"super_group\"]', 'java.util.LinkedList', '2023-08-21 15:37:15.050', '2023-08-21 15:37:15.050');
+INSERT INTO `act_hi_varinst` (`ID_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `TASK_ID_`, `NAME_`, `VAR_TYPE_`, `REV_`, `BYTEARRAY_ID_`, `DOUBLE_`, `LONG_`, `TEXT_`, `TEXT2_`, `CREATE_TIME_`, `LAST_UPDATED_TIME_`) VALUES ('8c6c2943-3ff5-11ee-b131-5a73e78fbd04', '8c674731-3ff5-11ee-b131-5a73e78fbd04', '8c67e37a-3ff5-11ee-b131-5a73e78fbd04', '8c6b17d0-3ff5-11ee-b131-5a73e78fbd04', 'zg_group', 'json', 0, NULL, NULL, NULL, '[\"zg_group\",\"super_group\"]', 'java.util.LinkedList', '2023-08-21 15:37:15.050', '2023-08-21 15:37:15.050');
+INSERT INTO `act_hi_varinst` (`ID_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `TASK_ID_`, `NAME_`, `VAR_TYPE_`, `REV_`, `BYTEARRAY_ID_`, `DOUBLE_`, `LONG_`, `TEXT_`, `TEXT2_`, `CREATE_TIME_`, `LAST_UPDATED_TIME_`) VALUES ('8c6c2946-3ff5-11ee-b131-5a73e78fbd04', '8c674730-3ff5-11ee-b131-5a73e78fbd04', '8c67e37b-3ff5-11ee-b131-5a73e78fbd04', '8c6b17d1-3ff5-11ee-b131-5a73e78fbd04', 'cwfzr_group', 'json', 0, NULL, NULL, NULL, '[\"cw_group\",\"super_group\"]', 'java.util.LinkedList', '2023-08-21 15:37:15.050', '2023-08-21 15:37:15.050');
+INSERT INTO `act_hi_varinst` (`ID_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `TASK_ID_`, `NAME_`, `VAR_TYPE_`, `REV_`, `BYTEARRAY_ID_`, `DOUBLE_`, `LONG_`, `TEXT_`, `TEXT2_`, `CREATE_TIME_`, `LAST_UPDATED_TIME_`) VALUES ('8c6c2947-3ff5-11ee-b131-5a73e78fbd04', '8c674731-3ff5-11ee-b131-5a73e78fbd04', '8c67e37a-3ff5-11ee-b131-5a73e78fbd04', '8c6b17d0-3ff5-11ee-b131-5a73e78fbd04', 'cwfzr_group', 'json', 0, NULL, NULL, NULL, '[\"cw_group\",\"super_group\"]', 'java.util.LinkedList', '2023-08-21 15:37:15.050', '2023-08-21 15:37:15.050');
+INSERT INTO `act_hi_varinst` (`ID_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `TASK_ID_`, `NAME_`, `VAR_TYPE_`, `REV_`, `BYTEARRAY_ID_`, `DOUBLE_`, `LONG_`, `TEXT_`, `TEXT2_`, `CREATE_TIME_`, `LAST_UPDATED_TIME_`) VALUES ('8c9498df-3ff5-11ee-b131-5a73e78fbd04', '8c9498de-3ff5-11ee-b131-5a73e78fbd04', '8c9498de-3ff5-11ee-b131-5a73e78fbd04', NULL, 'zg_group', 'json', 2, NULL, NULL, NULL, '[\"zg_group\",\"super_group\"]', 'java.util.LinkedList', '2023-08-21 15:37:15.315', '2023-08-21 15:37:57.734');
+INSERT INTO `act_hi_varinst` (`ID_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `TASK_ID_`, `NAME_`, `VAR_TYPE_`, `REV_`, `BYTEARRAY_ID_`, `DOUBLE_`, `LONG_`, `TEXT_`, `TEXT2_`, `CREATE_TIME_`, `LAST_UPDATED_TIME_`) VALUES ('8c9498e1-3ff5-11ee-b131-5a73e78fbd04', '8c9498de-3ff5-11ee-b131-5a73e78fbd04', '8c9498de-3ff5-11ee-b131-5a73e78fbd04', NULL, 'cwfzr_group', 'json', 2, NULL, NULL, NULL, '[\"cw_group\",\"super_group\"]', 'java.util.LinkedList', '2023-08-21 15:37:15.315', '2023-08-21 15:37:57.739');
+INSERT INTO `act_hi_varinst` (`ID_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `TASK_ID_`, `NAME_`, `VAR_TYPE_`, `REV_`, `BYTEARRAY_ID_`, `DOUBLE_`, `LONG_`, `TEXT_`, `TEXT2_`, `CREATE_TIME_`, `LAST_UPDATED_TIME_`) VALUES ('8c94e707-3ff5-11ee-b131-5a73e78fbd04', '8c9498de-3ff5-11ee-b131-5a73e78fbd04', '8c9498e3-3ff5-11ee-b131-5a73e78fbd04', '8c94bff6-3ff5-11ee-b131-5a73e78fbd04', 'zg_group', 'json', 0, NULL, NULL, NULL, '[\"zg_group\",\"super_group\"]', 'java.util.LinkedList', '2023-08-21 15:37:15.317', '2023-08-21 15:37:15.317');
+INSERT INTO `act_hi_varinst` (`ID_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `TASK_ID_`, `NAME_`, `VAR_TYPE_`, `REV_`, `BYTEARRAY_ID_`, `DOUBLE_`, `LONG_`, `TEXT_`, `TEXT2_`, `CREATE_TIME_`, `LAST_UPDATED_TIME_`) VALUES ('8c94e709-3ff5-11ee-b131-5a73e78fbd04', '8c9498de-3ff5-11ee-b131-5a73e78fbd04', '8c9498e3-3ff5-11ee-b131-5a73e78fbd04', '8c94bff6-3ff5-11ee-b131-5a73e78fbd04', 'cwfzr_group', 'json', 0, NULL, NULL, NULL, '[\"cw_group\",\"super_group\"]', 'java.util.LinkedList', '2023-08-21 15:37:15.317', '2023-08-21 15:37:15.317');
+INSERT INTO `act_hi_varinst` (`ID_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `TASK_ID_`, `NAME_`, `VAR_TYPE_`, `REV_`, `BYTEARRAY_ID_`, `DOUBLE_`, `LONG_`, `TEXT_`, `TEXT2_`, `CREATE_TIME_`, `LAST_UPDATED_TIME_`) VALUES ('8d149e5e-3ff5-11ee-b131-5a73e78fbd04', '8d149e5d-3ff5-11ee-b131-5a73e78fbd04', '8d149e5d-3ff5-11ee-b131-5a73e78fbd04', NULL, 'zg_group', 'json', 1, NULL, NULL, NULL, '[\"zg_group\",\"super_group\"]', 'java.util.LinkedList', '2023-08-21 15:37:16.155', '2023-08-21 15:37:42.666');
+INSERT INTO `act_hi_varinst` (`ID_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `TASK_ID_`, `NAME_`, `VAR_TYPE_`, `REV_`, `BYTEARRAY_ID_`, `DOUBLE_`, `LONG_`, `TEXT_`, `TEXT2_`, `CREATE_TIME_`, `LAST_UPDATED_TIME_`) VALUES ('8d14c570-3ff5-11ee-b131-5a73e78fbd04', '8d149e5d-3ff5-11ee-b131-5a73e78fbd04', '8d149e5d-3ff5-11ee-b131-5a73e78fbd04', NULL, 'cwfzr_group', 'json', 1, NULL, NULL, NULL, '[\"cw_group\",\"super_group\"]', 'java.util.LinkedList', '2023-08-21 15:37:16.155', '2023-08-21 15:37:42.667');
+INSERT INTO `act_hi_varinst` (`ID_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `TASK_ID_`, `NAME_`, `VAR_TYPE_`, `REV_`, `BYTEARRAY_ID_`, `DOUBLE_`, `LONG_`, `TEXT_`, `TEXT2_`, `CREATE_TIME_`, `LAST_UPDATED_TIME_`) VALUES ('8d14ec86-3ff5-11ee-b131-5a73e78fbd04', '8d149e5d-3ff5-11ee-b131-5a73e78fbd04', '8d14c572-3ff5-11ee-b131-5a73e78fbd04', '8d14c575-3ff5-11ee-b131-5a73e78fbd04', 'zg_group', 'json', 0, NULL, NULL, NULL, '[\"zg_group\",\"super_group\"]', 'java.util.LinkedList', '2023-08-21 15:37:16.156', '2023-08-21 15:37:16.156');
+INSERT INTO `act_hi_varinst` (`ID_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `TASK_ID_`, `NAME_`, `VAR_TYPE_`, `REV_`, `BYTEARRAY_ID_`, `DOUBLE_`, `LONG_`, `TEXT_`, `TEXT2_`, `CREATE_TIME_`, `LAST_UPDATED_TIME_`) VALUES ('8d14ec88-3ff5-11ee-b131-5a73e78fbd04', '8d149e5d-3ff5-11ee-b131-5a73e78fbd04', '8d14c572-3ff5-11ee-b131-5a73e78fbd04', '8d14c575-3ff5-11ee-b131-5a73e78fbd04', 'cwfzr_group', 'json', 0, NULL, NULL, NULL, '[\"cw_group\",\"super_group\"]', 'java.util.LinkedList', '2023-08-21 15:37:16.156', '2023-08-21 15:37:16.156');
+INSERT INTO `act_hi_varinst` (`ID_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `TASK_ID_`, `NAME_`, `VAR_TYPE_`, `REV_`, `BYTEARRAY_ID_`, `DOUBLE_`, `LONG_`, `TEXT_`, `TEXT2_`, `CREATE_TIME_`, `LAST_UPDATED_TIME_`) VALUES ('8d69c34d-3ff5-11ee-b131-5a73e78fbd04', '8d699c3c-3ff5-11ee-b131-5a73e78fbd04', '8d699c3c-3ff5-11ee-b131-5a73e78fbd04', NULL, 'zg_group', 'json', 0, NULL, NULL, NULL, '[\"zg_group\",\"super_group\"]', 'java.util.ArrayList', '2023-08-21 15:37:16.712', '2023-08-21 15:37:16.712');
+INSERT INTO `act_hi_varinst` (`ID_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `TASK_ID_`, `NAME_`, `VAR_TYPE_`, `REV_`, `BYTEARRAY_ID_`, `DOUBLE_`, `LONG_`, `TEXT_`, `TEXT2_`, `CREATE_TIME_`, `LAST_UPDATED_TIME_`) VALUES ('8d69c34f-3ff5-11ee-b131-5a73e78fbd04', '8d699c3c-3ff5-11ee-b131-5a73e78fbd04', '8d699c3c-3ff5-11ee-b131-5a73e78fbd04', NULL, 'cwfzr_group', 'json', 0, NULL, NULL, NULL, '[\"cw_group\",\"super_group\"]', 'java.util.ArrayList', '2023-08-21 15:37:16.712', '2023-08-21 15:37:16.712');
+INSERT INTO `act_hi_varinst` (`ID_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `TASK_ID_`, `NAME_`, `VAR_TYPE_`, `REV_`, `BYTEARRAY_ID_`, `DOUBLE_`, `LONG_`, `TEXT_`, `TEXT2_`, `CREATE_TIME_`, `LAST_UPDATED_TIME_`) VALUES ('8d6a3885-3ff5-11ee-b131-5a73e78fbd04', '8d699c3c-3ff5-11ee-b131-5a73e78fbd04', '8d69c351-3ff5-11ee-b131-5a73e78fbd04', '8d69ea64-3ff5-11ee-b131-5a73e78fbd04', 'zg_group', 'json', 0, NULL, NULL, NULL, '[\"zg_group\",\"super_group\"]', 'java.util.LinkedList', '2023-08-21 15:37:16.716', '2023-08-21 15:37:16.716');
+INSERT INTO `act_hi_varinst` (`ID_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `TASK_ID_`, `NAME_`, `VAR_TYPE_`, `REV_`, `BYTEARRAY_ID_`, `DOUBLE_`, `LONG_`, `TEXT_`, `TEXT2_`, `CREATE_TIME_`, `LAST_UPDATED_TIME_`) VALUES ('8d6a5f97-3ff5-11ee-b131-5a73e78fbd04', '8d699c3c-3ff5-11ee-b131-5a73e78fbd04', '8d69c351-3ff5-11ee-b131-5a73e78fbd04', '8d69ea64-3ff5-11ee-b131-5a73e78fbd04', 'cwfzr_group', 'json', 0, NULL, NULL, NULL, '[\"cw_group\",\"super_group\"]', 'java.util.LinkedList', '2023-08-21 15:37:16.716', '2023-08-21 15:37:16.716');
+INSERT INTO `act_hi_varinst` (`ID_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `TASK_ID_`, `NAME_`, `VAR_TYPE_`, `REV_`, `BYTEARRAY_ID_`, `DOUBLE_`, `LONG_`, `TEXT_`, `TEXT2_`, `CREATE_TIME_`, `LAST_UPDATED_TIME_`) VALUES ('9995748c-3ff5-11ee-b131-5a73e78fbd04', '8c674730-3ff5-11ee-b131-5a73e78fbd04', '8c67e37b-3ff5-11ee-b131-5a73e78fbd04', '8c6b17d1-3ff5-11ee-b131-5a73e78fbd04', 'approvalComment', 'string', 0, NULL, NULL, NULL, '这里是我的审批意见，还能设置各种附件', NULL, '2023-08-21 15:37:37.131', '2023-08-21 15:37:37.131');
+INSERT INTO `act_hi_varinst` (`ID_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `TASK_ID_`, `NAME_`, `VAR_TYPE_`, `REV_`, `BYTEARRAY_ID_`, `DOUBLE_`, `LONG_`, `TEXT_`, `TEXT2_`, `CREATE_TIME_`, `LAST_UPDATED_TIME_`) VALUES ('99959b9e-3ff5-11ee-b131-5a73e78fbd04', '8c674730-3ff5-11ee-b131-5a73e78fbd04', '8c67e37b-3ff5-11ee-b131-5a73e78fbd04', '8c6b17d1-3ff5-11ee-b131-5a73e78fbd04', 'to', 'string', 0, NULL, NULL, NULL, 'next', NULL, '2023-08-21 15:37:37.133', '2023-08-21 15:37:37.133');
+INSERT INTO `act_hi_varinst` (`ID_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `TASK_ID_`, `NAME_`, `VAR_TYPE_`, `REV_`, `BYTEARRAY_ID_`, `DOUBLE_`, `LONG_`, `TEXT_`, `TEXT2_`, `CREATE_TIME_`, `LAST_UPDATED_TIME_`) VALUES ('999d15b1-3ff5-11ee-b131-5a73e78fbd04', '8c674730-3ff5-11ee-b131-5a73e78fbd04', '8c674730-3ff5-11ee-b131-5a73e78fbd04', NULL, 'to', 'string', 1, NULL, NULL, NULL, 'next', NULL, '2023-08-21 15:37:37.181', '2023-08-21 15:37:56.720');
+INSERT INTO `act_hi_varinst` (`ID_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `TASK_ID_`, `NAME_`, `VAR_TYPE_`, `REV_`, `BYTEARRAY_ID_`, `DOUBLE_`, `LONG_`, `TEXT_`, `TEXT2_`, `CREATE_TIME_`, `LAST_UPDATED_TIME_`) VALUES ('999d15b3-3ff5-11ee-b131-5a73e78fbd04', '8c674730-3ff5-11ee-b131-5a73e78fbd04', '8c674730-3ff5-11ee-b131-5a73e78fbd04', NULL, 'approvalComment', 'string', 1, NULL, NULL, NULL, '这里是我的审批意见，还能设置各种附件', NULL, '2023-08-21 15:37:37.181', '2023-08-21 15:37:56.721');
+INSERT INTO `act_hi_varinst` (`ID_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `TASK_ID_`, `NAME_`, `VAR_TYPE_`, `REV_`, `BYTEARRAY_ID_`, `DOUBLE_`, `LONG_`, `TEXT_`, `TEXT2_`, `CREATE_TIME_`, `LAST_UPDATED_TIME_`) VALUES ('999ffbe8-3ff5-11ee-b131-5a73e78fbd04', '8c674730-3ff5-11ee-b131-5a73e78fbd04', '8c67e37b-3ff5-11ee-b131-5a73e78fbd04', '999fd4d7-3ff5-11ee-b131-5a73e78fbd04', 'zg_group', 'json', 0, NULL, NULL, NULL, '[\"zg_group\",\"super_group\"]', 'java.util.LinkedList', '2023-08-21 15:37:37.200', '2023-08-21 15:37:37.200');
+INSERT INTO `act_hi_varinst` (`ID_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `TASK_ID_`, `NAME_`, `VAR_TYPE_`, `REV_`, `BYTEARRAY_ID_`, `DOUBLE_`, `LONG_`, `TEXT_`, `TEXT2_`, `CREATE_TIME_`, `LAST_UPDATED_TIME_`) VALUES ('999ffbea-3ff5-11ee-b131-5a73e78fbd04', '8c674730-3ff5-11ee-b131-5a73e78fbd04', '8c67e37b-3ff5-11ee-b131-5a73e78fbd04', '999fd4d7-3ff5-11ee-b131-5a73e78fbd04', 'approvalComment', 'string', 1, NULL, NULL, NULL, '这里是我的审批意见，还能设置各种附件', NULL, '2023-08-21 15:37:37.200', '2023-08-21 15:37:56.690');
+INSERT INTO `act_hi_varinst` (`ID_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `TASK_ID_`, `NAME_`, `VAR_TYPE_`, `REV_`, `BYTEARRAY_ID_`, `DOUBLE_`, `LONG_`, `TEXT_`, `TEXT2_`, `CREATE_TIME_`, `LAST_UPDATED_TIME_`) VALUES ('999ffbec-3ff5-11ee-b131-5a73e78fbd04', '8c674730-3ff5-11ee-b131-5a73e78fbd04', '8c67e37b-3ff5-11ee-b131-5a73e78fbd04', '999fd4d7-3ff5-11ee-b131-5a73e78fbd04', 'cwfzr_group', 'json', 0, NULL, NULL, NULL, '[\"cw_group\",\"super_group\"]', 'java.util.LinkedList', '2023-08-21 15:37:37.200', '2023-08-21 15:37:37.200');
+INSERT INTO `act_hi_varinst` (`ID_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `TASK_ID_`, `NAME_`, `VAR_TYPE_`, `REV_`, `BYTEARRAY_ID_`, `DOUBLE_`, `LONG_`, `TEXT_`, `TEXT2_`, `CREATE_TIME_`, `LAST_UPDATED_TIME_`) VALUES ('999ffbee-3ff5-11ee-b131-5a73e78fbd04', '8c674730-3ff5-11ee-b131-5a73e78fbd04', '8c67e37b-3ff5-11ee-b131-5a73e78fbd04', '999fd4d7-3ff5-11ee-b131-5a73e78fbd04', 'to', 'string', 1, NULL, NULL, NULL, 'next', NULL, '2023-08-21 15:37:37.200', '2023-08-21 15:37:56.692');
+INSERT INTO `act_hi_varinst` (`ID_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `TASK_ID_`, `NAME_`, `VAR_TYPE_`, `REV_`, `BYTEARRAY_ID_`, `DOUBLE_`, `LONG_`, `TEXT_`, `TEXT2_`, `CREATE_TIME_`, `LAST_UPDATED_TIME_`) VALUES ('9b48f103-3ff5-11ee-b131-5a73e78fbd04', '8c674731-3ff5-11ee-b131-5a73e78fbd04', '8c67e37a-3ff5-11ee-b131-5a73e78fbd04', '8c6b17d0-3ff5-11ee-b131-5a73e78fbd04', 'approvalComment', 'string', 0, NULL, NULL, NULL, '这里是我的审批意见，还能设置各种附件', NULL, '2023-08-21 15:37:39.985', '2023-08-21 15:37:39.985');
+INSERT INTO `act_hi_varinst` (`ID_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `TASK_ID_`, `NAME_`, `VAR_TYPE_`, `REV_`, `BYTEARRAY_ID_`, `DOUBLE_`, `LONG_`, `TEXT_`, `TEXT2_`, `CREATE_TIME_`, `LAST_UPDATED_TIME_`) VALUES ('9b493f25-3ff5-11ee-b131-5a73e78fbd04', '8c674731-3ff5-11ee-b131-5a73e78fbd04', '8c67e37a-3ff5-11ee-b131-5a73e78fbd04', '8c6b17d0-3ff5-11ee-b131-5a73e78fbd04', 'to', 'string', 0, NULL, NULL, NULL, 'back', NULL, '2023-08-21 15:37:39.987', '2023-08-21 15:37:39.987');
+INSERT INTO `act_hi_varinst` (`ID_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `TASK_ID_`, `NAME_`, `VAR_TYPE_`, `REV_`, `BYTEARRAY_ID_`, `DOUBLE_`, `LONG_`, `TEXT_`, `TEXT2_`, `CREATE_TIME_`, `LAST_UPDATED_TIME_`) VALUES ('9b4fced8-3ff5-11ee-b131-5a73e78fbd04', '8c674731-3ff5-11ee-b131-5a73e78fbd04', '8c674731-3ff5-11ee-b131-5a73e78fbd04', NULL, 'to', 'string', 0, NULL, NULL, NULL, 'back', NULL, '2023-08-21 15:37:40.030', '2023-08-21 15:37:40.030');
+INSERT INTO `act_hi_varinst` (`ID_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `TASK_ID_`, `NAME_`, `VAR_TYPE_`, `REV_`, `BYTEARRAY_ID_`, `DOUBLE_`, `LONG_`, `TEXT_`, `TEXT2_`, `CREATE_TIME_`, `LAST_UPDATED_TIME_`) VALUES ('9b4fceda-3ff5-11ee-b131-5a73e78fbd04', '8c674731-3ff5-11ee-b131-5a73e78fbd04', '8c674731-3ff5-11ee-b131-5a73e78fbd04', NULL, 'approvalComment', 'string', 0, NULL, NULL, NULL, '这里是我的审批意见，还能设置各种附件', NULL, '2023-08-21 15:37:40.030', '2023-08-21 15:37:40.030');
+INSERT INTO `act_hi_varinst` (`ID_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `TASK_ID_`, `NAME_`, `VAR_TYPE_`, `REV_`, `BYTEARRAY_ID_`, `DOUBLE_`, `LONG_`, `TEXT_`, `TEXT2_`, `CREATE_TIME_`, `LAST_UPDATED_TIME_`) VALUES ('9c58b35f-3ff5-11ee-b131-5a73e78fbd04', '8c9498de-3ff5-11ee-b131-5a73e78fbd04', '8c9498e3-3ff5-11ee-b131-5a73e78fbd04', '8c94bff6-3ff5-11ee-b131-5a73e78fbd04', 'approvalComment', 'string', 0, NULL, NULL, NULL, '这里是我的审批意见，还能设置各种附件', NULL, '2023-08-21 15:37:41.766', '2023-08-21 15:37:41.766');
+INSERT INTO `act_hi_varinst` (`ID_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `TASK_ID_`, `NAME_`, `VAR_TYPE_`, `REV_`, `BYTEARRAY_ID_`, `DOUBLE_`, `LONG_`, `TEXT_`, `TEXT2_`, `CREATE_TIME_`, `LAST_UPDATED_TIME_`) VALUES ('9c590081-3ff5-11ee-b131-5a73e78fbd04', '8c9498de-3ff5-11ee-b131-5a73e78fbd04', '8c9498e3-3ff5-11ee-b131-5a73e78fbd04', '8c94bff6-3ff5-11ee-b131-5a73e78fbd04', 'to', 'string', 0, NULL, NULL, NULL, 'next', NULL, '2023-08-21 15:37:41.768', '2023-08-21 15:37:41.768');
+INSERT INTO `act_hi_varinst` (`ID_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `TASK_ID_`, `NAME_`, `VAR_TYPE_`, `REV_`, `BYTEARRAY_ID_`, `DOUBLE_`, `LONG_`, `TEXT_`, `TEXT2_`, `CREATE_TIME_`, `LAST_UPDATED_TIME_`) VALUES ('9c5f4214-3ff5-11ee-b131-5a73e78fbd04', '8c9498de-3ff5-11ee-b131-5a73e78fbd04', '8c9498de-3ff5-11ee-b131-5a73e78fbd04', NULL, 'to', 'string', 1, NULL, NULL, NULL, 'back', NULL, '2023-08-21 15:37:41.809', '2023-08-21 15:37:57.735');
+INSERT INTO `act_hi_varinst` (`ID_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `TASK_ID_`, `NAME_`, `VAR_TYPE_`, `REV_`, `BYTEARRAY_ID_`, `DOUBLE_`, `LONG_`, `TEXT_`, `TEXT2_`, `CREATE_TIME_`, `LAST_UPDATED_TIME_`) VALUES ('9c5f4216-3ff5-11ee-b131-5a73e78fbd04', '8c9498de-3ff5-11ee-b131-5a73e78fbd04', '8c9498de-3ff5-11ee-b131-5a73e78fbd04', NULL, 'approvalComment', 'string', 1, NULL, NULL, NULL, '这里是我的审批意见，还能设置各种附件', NULL, '2023-08-21 15:37:41.809', '2023-08-21 15:37:57.738');
+INSERT INTO `act_hi_varinst` (`ID_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `TASK_ID_`, `NAME_`, `VAR_TYPE_`, `REV_`, `BYTEARRAY_ID_`, `DOUBLE_`, `LONG_`, `TEXT_`, `TEXT2_`, `CREATE_TIME_`, `LAST_UPDATED_TIME_`) VALUES ('9c60a1ab-3ff5-11ee-b131-5a73e78fbd04', '8c9498de-3ff5-11ee-b131-5a73e78fbd04', '8c9498e3-3ff5-11ee-b131-5a73e78fbd04', '9c60538a-3ff5-11ee-b131-5a73e78fbd04', 'zg_group', 'json', 0, NULL, NULL, NULL, '[\"zg_group\",\"super_group\"]', 'java.util.LinkedList', '2023-08-21 15:37:41.818', '2023-08-21 15:37:41.818');
+INSERT INTO `act_hi_varinst` (`ID_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `TASK_ID_`, `NAME_`, `VAR_TYPE_`, `REV_`, `BYTEARRAY_ID_`, `DOUBLE_`, `LONG_`, `TEXT_`, `TEXT2_`, `CREATE_TIME_`, `LAST_UPDATED_TIME_`) VALUES ('9c60a1ad-3ff5-11ee-b131-5a73e78fbd04', '8c9498de-3ff5-11ee-b131-5a73e78fbd04', '8c9498e3-3ff5-11ee-b131-5a73e78fbd04', '9c60538a-3ff5-11ee-b131-5a73e78fbd04', 'approvalComment', 'string', 1, NULL, NULL, NULL, '这里是我的审批意见，还能设置各种附件', NULL, '2023-08-21 15:37:41.818', '2023-08-21 15:37:57.715');
+INSERT INTO `act_hi_varinst` (`ID_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `TASK_ID_`, `NAME_`, `VAR_TYPE_`, `REV_`, `BYTEARRAY_ID_`, `DOUBLE_`, `LONG_`, `TEXT_`, `TEXT2_`, `CREATE_TIME_`, `LAST_UPDATED_TIME_`) VALUES ('9c60a1af-3ff5-11ee-b131-5a73e78fbd04', '8c9498de-3ff5-11ee-b131-5a73e78fbd04', '8c9498e3-3ff5-11ee-b131-5a73e78fbd04', '9c60538a-3ff5-11ee-b131-5a73e78fbd04', 'cwfzr_group', 'json', 0, NULL, NULL, NULL, '[\"cw_group\",\"super_group\"]', 'java.util.LinkedList', '2023-08-21 15:37:41.818', '2023-08-21 15:37:41.818');
+INSERT INTO `act_hi_varinst` (`ID_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `TASK_ID_`, `NAME_`, `VAR_TYPE_`, `REV_`, `BYTEARRAY_ID_`, `DOUBLE_`, `LONG_`, `TEXT_`, `TEXT2_`, `CREATE_TIME_`, `LAST_UPDATED_TIME_`) VALUES ('9c60a1b1-3ff5-11ee-b131-5a73e78fbd04', '8c9498de-3ff5-11ee-b131-5a73e78fbd04', '8c9498e3-3ff5-11ee-b131-5a73e78fbd04', '9c60538a-3ff5-11ee-b131-5a73e78fbd04', 'to', 'string', 1, NULL, NULL, NULL, 'back', NULL, '2023-08-21 15:37:41.818', '2023-08-21 15:37:57.719');
+INSERT INTO `act_hi_varinst` (`ID_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `TASK_ID_`, `NAME_`, `VAR_TYPE_`, `REV_`, `BYTEARRAY_ID_`, `DOUBLE_`, `LONG_`, `TEXT_`, `TEXT2_`, `CREATE_TIME_`, `LAST_UPDATED_TIME_`) VALUES ('9cdd99e6-3ff5-11ee-b131-5a73e78fbd04', '8d149e5d-3ff5-11ee-b131-5a73e78fbd04', '8d14c572-3ff5-11ee-b131-5a73e78fbd04', '8d14c575-3ff5-11ee-b131-5a73e78fbd04', 'approvalComment', 'string', 0, NULL, NULL, NULL, '这里是我的审批意见，还能设置各种附件', NULL, '2023-08-21 15:37:42.637', '2023-08-21 15:37:42.637');
+INSERT INTO `act_hi_varinst` (`ID_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `TASK_ID_`, `NAME_`, `VAR_TYPE_`, `REV_`, `BYTEARRAY_ID_`, `DOUBLE_`, `LONG_`, `TEXT_`, `TEXT2_`, `CREATE_TIME_`, `LAST_UPDATED_TIME_`) VALUES ('9cdde808-3ff5-11ee-b131-5a73e78fbd04', '8d149e5d-3ff5-11ee-b131-5a73e78fbd04', '8d14c572-3ff5-11ee-b131-5a73e78fbd04', '8d14c575-3ff5-11ee-b131-5a73e78fbd04', 'to', 'string', 0, NULL, NULL, NULL, 'next', NULL, '2023-08-21 15:37:42.639', '2023-08-21 15:37:42.639');
+INSERT INTO `act_hi_varinst` (`ID_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `TASK_ID_`, `NAME_`, `VAR_TYPE_`, `REV_`, `BYTEARRAY_ID_`, `DOUBLE_`, `LONG_`, `TEXT_`, `TEXT2_`, `CREATE_TIME_`, `LAST_UPDATED_TIME_`) VALUES ('9ce206bb-3ff5-11ee-b131-5a73e78fbd04', '8d149e5d-3ff5-11ee-b131-5a73e78fbd04', '8d149e5d-3ff5-11ee-b131-5a73e78fbd04', NULL, 'to', 'string', 0, NULL, NULL, NULL, 'next', NULL, '2023-08-21 15:37:42.666', '2023-08-21 15:37:42.666');
+INSERT INTO `act_hi_varinst` (`ID_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `TASK_ID_`, `NAME_`, `VAR_TYPE_`, `REV_`, `BYTEARRAY_ID_`, `DOUBLE_`, `LONG_`, `TEXT_`, `TEXT2_`, `CREATE_TIME_`, `LAST_UPDATED_TIME_`) VALUES ('9ce206bd-3ff5-11ee-b131-5a73e78fbd04', '8d149e5d-3ff5-11ee-b131-5a73e78fbd04', '8d149e5d-3ff5-11ee-b131-5a73e78fbd04', NULL, 'approvalComment', 'string', 0, NULL, NULL, NULL, '这里是我的审批意见，还能设置各种附件', NULL, '2023-08-21 15:37:42.666', '2023-08-21 15:37:42.666');
+INSERT INTO `act_hi_varinst` (`ID_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `TASK_ID_`, `NAME_`, `VAR_TYPE_`, `REV_`, `BYTEARRAY_ID_`, `DOUBLE_`, `LONG_`, `TEXT_`, `TEXT2_`, `CREATE_TIME_`, `LAST_UPDATED_TIME_`) VALUES ('9ce2ca12-3ff5-11ee-b131-5a73e78fbd04', '8d149e5d-3ff5-11ee-b131-5a73e78fbd04', '8d14c572-3ff5-11ee-b131-5a73e78fbd04', '9ce2a301-3ff5-11ee-b131-5a73e78fbd04', 'zg_group', 'json', 0, NULL, NULL, NULL, '[\"zg_group\",\"super_group\"]', 'java.util.LinkedList', '2023-08-21 15:37:42.671', '2023-08-21 15:37:42.671');
+INSERT INTO `act_hi_varinst` (`ID_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `TASK_ID_`, `NAME_`, `VAR_TYPE_`, `REV_`, `BYTEARRAY_ID_`, `DOUBLE_`, `LONG_`, `TEXT_`, `TEXT2_`, `CREATE_TIME_`, `LAST_UPDATED_TIME_`) VALUES ('9ce2ca14-3ff5-11ee-b131-5a73e78fbd04', '8d149e5d-3ff5-11ee-b131-5a73e78fbd04', '8d14c572-3ff5-11ee-b131-5a73e78fbd04', '9ce2a301-3ff5-11ee-b131-5a73e78fbd04', 'approvalComment', 'string', 0, NULL, NULL, NULL, '这里是我的审批意见，还能设置各种附件', NULL, '2023-08-21 15:37:42.671', '2023-08-21 15:37:42.671');
+INSERT INTO `act_hi_varinst` (`ID_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `TASK_ID_`, `NAME_`, `VAR_TYPE_`, `REV_`, `BYTEARRAY_ID_`, `DOUBLE_`, `LONG_`, `TEXT_`, `TEXT2_`, `CREATE_TIME_`, `LAST_UPDATED_TIME_`) VALUES ('9ce2f126-3ff5-11ee-b131-5a73e78fbd04', '8d149e5d-3ff5-11ee-b131-5a73e78fbd04', '8d14c572-3ff5-11ee-b131-5a73e78fbd04', '9ce2a301-3ff5-11ee-b131-5a73e78fbd04', 'cwfzr_group', 'json', 0, NULL, NULL, NULL, '[\"cw_group\",\"super_group\"]', 'java.util.LinkedList', '2023-08-21 15:37:42.672', '2023-08-21 15:37:42.672');
+INSERT INTO `act_hi_varinst` (`ID_`, `PROC_INST_ID_`, `EXECUTION_ID_`, `TASK_ID_`, `NAME_`, `VAR_TYPE_`, `REV_`, `BYTEARRAY_ID_`, `DOUBLE_`, `LONG_`, `TEXT_`, `TEXT2_`, `CREATE_TIME_`, `LAST_UPDATED_TIME_`) VALUES ('9ce2f128-3ff5-11ee-b131-5a73e78fbd04', '8d149e5d-3ff5-11ee-b131-5a73e78fbd04', '8d14c572-3ff5-11ee-b131-5a73e78fbd04', '9ce2a301-3ff5-11ee-b131-5a73e78fbd04', 'to', 'string', 0, NULL, NULL, NULL, 'next', NULL, '2023-08-21 15:37:42.672', '2023-08-21 15:37:42.672');
 COMMIT;
 
 -- ----------------------------
@@ -327,10 +494,10 @@ COMMIT;
 -- ----------------------------
 DROP TABLE IF EXISTS `act_procdef_info`;
 CREATE TABLE `act_procdef_info` (
-  `ID_` varchar(64) COLLATE utf8mb3_bin NOT NULL,
-  `PROC_DEF_ID_` varchar(64) COLLATE utf8mb3_bin NOT NULL,
+  `ID_` varchar(64) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin NOT NULL,
+  `PROC_DEF_ID_` varchar(64) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin NOT NULL,
   `REV_` int DEFAULT NULL,
-  `INFO_JSON_ID_` varchar(64) COLLATE utf8mb3_bin DEFAULT NULL,
+  `INFO_JSON_ID_` varchar(64) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
   PRIMARY KEY (`ID_`),
   UNIQUE KEY `ACT_UNIQ_INFO_PROCDEF` (`PROC_DEF_ID_`),
   KEY `ACT_IDX_INFO_PROCDEF` (`PROC_DEF_ID_`),
@@ -350,15 +517,15 @@ COMMIT;
 -- ----------------------------
 DROP TABLE IF EXISTS `act_re_deployment`;
 CREATE TABLE `act_re_deployment` (
-  `ID_` varchar(64) COLLATE utf8mb3_bin NOT NULL,
-  `NAME_` varchar(255) COLLATE utf8mb3_bin DEFAULT NULL,
-  `CATEGORY_` varchar(255) COLLATE utf8mb3_bin DEFAULT NULL,
-  `KEY_` varchar(255) COLLATE utf8mb3_bin DEFAULT NULL,
-  `TENANT_ID_` varchar(255) COLLATE utf8mb3_bin DEFAULT '',
+  `ID_` varchar(64) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin NOT NULL,
+  `NAME_` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
+  `CATEGORY_` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
+  `KEY_` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
+  `TENANT_ID_` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT '',
   `DEPLOY_TIME_` timestamp(3) NULL DEFAULT NULL,
-  `ENGINE_VERSION_` varchar(255) COLLATE utf8mb3_bin DEFAULT NULL,
+  `ENGINE_VERSION_` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
   `VERSION_` int DEFAULT '1',
-  `PROJECT_RELEASE_VERSION_` varchar(255) COLLATE utf8mb3_bin DEFAULT NULL,
+  `PROJECT_RELEASE_VERSION_` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
   PRIMARY KEY (`ID_`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
 
@@ -370,6 +537,7 @@ INSERT INTO `act_re_deployment` (`ID_`, `NAME_`, `CATEGORY_`, `KEY_`, `TENANT_ID
 INSERT INTO `act_re_deployment` (`ID_`, `NAME_`, `CATEGORY_`, `KEY_`, `TENANT_ID_`, `DEPLOY_TIME_`, `ENGINE_VERSION_`, `VERSION_`, `PROJECT_RELEASE_VERSION_`) VALUES ('2331620d-3277-11ee-9679-0645e940bd4e', 'SpringAutoDeployment', NULL, NULL, '', '2023-08-04 11:29:36.798', NULL, 1, NULL);
 INSERT INTO `act_re_deployment` (`ID_`, `NAME_`, `CATEGORY_`, `KEY_`, `TENANT_ID_`, `DEPLOY_TIME_`, `ENGINE_VERSION_`, `VERSION_`, `PROJECT_RELEASE_VERSION_`) VALUES ('3f97846d-3279-11ee-82f6-f22185ea3ea7', 'SpringAutoDeployment', NULL, NULL, '', '2023-08-04 11:44:43.435', NULL, 3, NULL);
 INSERT INTO `act_re_deployment` (`ID_`, `NAME_`, `CATEGORY_`, `KEY_`, `TENANT_ID_`, `DEPLOY_TIME_`, `ENGINE_VERSION_`, `VERSION_`, `PROJECT_RELEASE_VERSION_`) VALUES ('48446152-3299-11ee-82f6-f22185ea3ea7', '分校成立流程', NULL, NULL, 'xtj', '2023-08-04 15:34:01.889', NULL, 1, NULL);
+INSERT INTO `act_re_deployment` (`ID_`, `NAME_`, `CATEGORY_`, `KEY_`, `TENANT_ID_`, `DEPLOY_TIME_`, `ENGINE_VERSION_`, `VERSION_`, `PROJECT_RELEASE_VERSION_`) VALUES ('6fd6ceff-3ff5-11ee-b131-5a73e78fbd04', 'SpringAutoDeployment', NULL, NULL, '', '2023-08-21 15:36:27.082', NULL, 4, NULL);
 COMMIT;
 
 -- ----------------------------
@@ -377,19 +545,19 @@ COMMIT;
 -- ----------------------------
 DROP TABLE IF EXISTS `act_re_model`;
 CREATE TABLE `act_re_model` (
-  `ID_` varchar(64) COLLATE utf8mb3_bin NOT NULL,
+  `ID_` varchar(64) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin NOT NULL,
   `REV_` int DEFAULT NULL,
-  `NAME_` varchar(255) COLLATE utf8mb3_bin DEFAULT NULL,
-  `KEY_` varchar(255) COLLATE utf8mb3_bin DEFAULT NULL,
-  `CATEGORY_` varchar(255) COLLATE utf8mb3_bin DEFAULT NULL,
+  `NAME_` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
+  `KEY_` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
+  `CATEGORY_` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
   `CREATE_TIME_` timestamp(3) NULL DEFAULT NULL,
   `LAST_UPDATE_TIME_` timestamp(3) NULL DEFAULT NULL,
   `VERSION_` int DEFAULT NULL,
-  `META_INFO_` varchar(4000) COLLATE utf8mb3_bin DEFAULT NULL,
-  `DEPLOYMENT_ID_` varchar(64) COLLATE utf8mb3_bin DEFAULT NULL,
-  `EDITOR_SOURCE_VALUE_ID_` varchar(64) COLLATE utf8mb3_bin DEFAULT NULL,
-  `EDITOR_SOURCE_EXTRA_VALUE_ID_` varchar(64) COLLATE utf8mb3_bin DEFAULT NULL,
-  `TENANT_ID_` varchar(255) COLLATE utf8mb3_bin DEFAULT '',
+  `META_INFO_` varchar(4000) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
+  `DEPLOYMENT_ID_` varchar(64) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
+  `EDITOR_SOURCE_VALUE_ID_` varchar(64) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
+  `EDITOR_SOURCE_EXTRA_VALUE_ID_` varchar(64) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
+  `TENANT_ID_` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT '',
   PRIMARY KEY (`ID_`),
   KEY `ACT_FK_MODEL_SOURCE` (`EDITOR_SOURCE_VALUE_ID_`),
   KEY `ACT_FK_MODEL_SOURCE_EXTRA` (`EDITOR_SOURCE_EXTRA_VALUE_ID_`),
@@ -410,21 +578,21 @@ COMMIT;
 -- ----------------------------
 DROP TABLE IF EXISTS `act_re_procdef`;
 CREATE TABLE `act_re_procdef` (
-  `ID_` varchar(64) COLLATE utf8mb3_bin NOT NULL,
+  `ID_` varchar(64) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin NOT NULL,
   `REV_` int DEFAULT NULL,
-  `CATEGORY_` varchar(255) COLLATE utf8mb3_bin DEFAULT NULL,
-  `NAME_` varchar(255) COLLATE utf8mb3_bin DEFAULT NULL,
-  `KEY_` varchar(255) COLLATE utf8mb3_bin NOT NULL,
+  `CATEGORY_` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
+  `NAME_` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
+  `KEY_` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin NOT NULL,
   `VERSION_` int NOT NULL,
-  `DEPLOYMENT_ID_` varchar(64) COLLATE utf8mb3_bin DEFAULT NULL,
-  `RESOURCE_NAME_` varchar(4000) COLLATE utf8mb3_bin DEFAULT NULL,
-  `DGRM_RESOURCE_NAME_` varchar(4000) COLLATE utf8mb3_bin DEFAULT NULL,
-  `DESCRIPTION_` varchar(4000) COLLATE utf8mb3_bin DEFAULT NULL,
+  `DEPLOYMENT_ID_` varchar(64) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
+  `RESOURCE_NAME_` varchar(4000) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
+  `DGRM_RESOURCE_NAME_` varchar(4000) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
+  `DESCRIPTION_` varchar(4000) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
   `HAS_START_FORM_KEY_` tinyint DEFAULT NULL,
   `HAS_GRAPHICAL_NOTATION_` tinyint DEFAULT NULL,
   `SUSPENSION_STATE_` int DEFAULT NULL,
-  `TENANT_ID_` varchar(255) COLLATE utf8mb3_bin DEFAULT '',
-  `ENGINE_VERSION_` varchar(255) COLLATE utf8mb3_bin DEFAULT NULL,
+  `TENANT_ID_` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT '',
+  `ENGINE_VERSION_` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
   `APP_VERSION_` int DEFAULT NULL,
   PRIMARY KEY (`ID_`),
   UNIQUE KEY `ACT_UNIQ_PROCDEF` (`KEY_`,`VERSION_`,`TENANT_ID_`)
@@ -442,20 +610,20 @@ COMMIT;
 -- ----------------------------
 DROP TABLE IF EXISTS `act_ru_deadletter_job`;
 CREATE TABLE `act_ru_deadletter_job` (
-  `ID_` varchar(64) COLLATE utf8mb3_bin NOT NULL,
+  `ID_` varchar(64) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin NOT NULL,
   `REV_` int DEFAULT NULL,
-  `TYPE_` varchar(255) COLLATE utf8mb3_bin NOT NULL,
+  `TYPE_` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin NOT NULL,
   `EXCLUSIVE_` tinyint(1) DEFAULT NULL,
-  `EXECUTION_ID_` varchar(64) COLLATE utf8mb3_bin DEFAULT NULL,
-  `PROCESS_INSTANCE_ID_` varchar(64) COLLATE utf8mb3_bin DEFAULT NULL,
-  `PROC_DEF_ID_` varchar(64) COLLATE utf8mb3_bin DEFAULT NULL,
-  `EXCEPTION_STACK_ID_` varchar(64) COLLATE utf8mb3_bin DEFAULT NULL,
-  `EXCEPTION_MSG_` varchar(4000) COLLATE utf8mb3_bin DEFAULT NULL,
+  `EXECUTION_ID_` varchar(64) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
+  `PROCESS_INSTANCE_ID_` varchar(64) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
+  `PROC_DEF_ID_` varchar(64) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
+  `EXCEPTION_STACK_ID_` varchar(64) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
+  `EXCEPTION_MSG_` varchar(4000) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
   `DUEDATE_` timestamp(3) NULL DEFAULT NULL,
-  `REPEAT_` varchar(255) COLLATE utf8mb3_bin DEFAULT NULL,
-  `HANDLER_TYPE_` varchar(255) COLLATE utf8mb3_bin DEFAULT NULL,
-  `HANDLER_CFG_` varchar(4000) COLLATE utf8mb3_bin DEFAULT NULL,
-  `TENANT_ID_` varchar(255) COLLATE utf8mb3_bin DEFAULT '',
+  `REPEAT_` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
+  `HANDLER_TYPE_` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
+  `HANDLER_CFG_` varchar(4000) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
+  `TENANT_ID_` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT '',
   PRIMARY KEY (`ID_`),
   KEY `ACT_FK_DEADLETTER_JOB_EXECUTION` (`EXECUTION_ID_`),
   KEY `ACT_FK_DEADLETTER_JOB_PROCESS_INSTANCE` (`PROCESS_INSTANCE_ID_`),
@@ -478,17 +646,17 @@ COMMIT;
 -- ----------------------------
 DROP TABLE IF EXISTS `act_ru_event_subscr`;
 CREATE TABLE `act_ru_event_subscr` (
-  `ID_` varchar(64) COLLATE utf8mb3_bin NOT NULL,
+  `ID_` varchar(64) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin NOT NULL,
   `REV_` int DEFAULT NULL,
-  `EVENT_TYPE_` varchar(255) COLLATE utf8mb3_bin NOT NULL,
-  `EVENT_NAME_` varchar(255) COLLATE utf8mb3_bin DEFAULT NULL,
-  `EXECUTION_ID_` varchar(64) COLLATE utf8mb3_bin DEFAULT NULL,
-  `PROC_INST_ID_` varchar(64) COLLATE utf8mb3_bin DEFAULT NULL,
-  `ACTIVITY_ID_` varchar(64) COLLATE utf8mb3_bin DEFAULT NULL,
-  `CONFIGURATION_` varchar(255) COLLATE utf8mb3_bin DEFAULT NULL,
+  `EVENT_TYPE_` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin NOT NULL,
+  `EVENT_NAME_` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
+  `EXECUTION_ID_` varchar(64) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
+  `PROC_INST_ID_` varchar(64) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
+  `ACTIVITY_ID_` varchar(64) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
+  `CONFIGURATION_` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
   `CREATED_` timestamp(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
-  `PROC_DEF_ID_` varchar(64) COLLATE utf8mb3_bin DEFAULT NULL,
-  `TENANT_ID_` varchar(255) COLLATE utf8mb3_bin DEFAULT '',
+  `PROC_DEF_ID_` varchar(64) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
+  `TENANT_ID_` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT '',
   PRIMARY KEY (`ID_`),
   KEY `ACT_IDX_EVENT_SUBSCR_CONFIG_` (`CONFIGURATION_`),
   KEY `ACT_FK_EVENT_EXEC` (`EXECUTION_ID_`),
@@ -506,15 +674,15 @@ COMMIT;
 -- ----------------------------
 DROP TABLE IF EXISTS `act_ru_execution`;
 CREATE TABLE `act_ru_execution` (
-  `ID_` varchar(64) COLLATE utf8mb3_bin NOT NULL,
+  `ID_` varchar(64) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin NOT NULL,
   `REV_` int DEFAULT NULL,
-  `PROC_INST_ID_` varchar(64) COLLATE utf8mb3_bin DEFAULT NULL,
-  `BUSINESS_KEY_` varchar(255) COLLATE utf8mb3_bin DEFAULT NULL,
-  `PARENT_ID_` varchar(64) COLLATE utf8mb3_bin DEFAULT NULL,
-  `PROC_DEF_ID_` varchar(64) COLLATE utf8mb3_bin DEFAULT NULL,
-  `SUPER_EXEC_` varchar(64) COLLATE utf8mb3_bin DEFAULT NULL,
-  `ROOT_PROC_INST_ID_` varchar(64) COLLATE utf8mb3_bin DEFAULT NULL,
-  `ACT_ID_` varchar(255) COLLATE utf8mb3_bin DEFAULT NULL,
+  `PROC_INST_ID_` varchar(64) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
+  `BUSINESS_KEY_` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
+  `PARENT_ID_` varchar(64) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
+  `PROC_DEF_ID_` varchar(64) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
+  `SUPER_EXEC_` varchar(64) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
+  `ROOT_PROC_INST_ID_` varchar(64) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
+  `ACT_ID_` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
   `IS_ACTIVE_` tinyint DEFAULT NULL,
   `IS_CONCURRENT_` tinyint DEFAULT NULL,
   `IS_SCOPE_` tinyint DEFAULT NULL,
@@ -522,10 +690,10 @@ CREATE TABLE `act_ru_execution` (
   `IS_MI_ROOT_` tinyint DEFAULT NULL,
   `SUSPENSION_STATE_` int DEFAULT NULL,
   `CACHED_ENT_STATE_` int DEFAULT NULL,
-  `TENANT_ID_` varchar(255) COLLATE utf8mb3_bin DEFAULT '',
-  `NAME_` varchar(255) COLLATE utf8mb3_bin DEFAULT NULL,
+  `TENANT_ID_` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT '',
+  `NAME_` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
   `START_TIME_` datetime(3) DEFAULT NULL,
-  `START_USER_ID_` varchar(255) COLLATE utf8mb3_bin DEFAULT NULL,
+  `START_USER_ID_` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
   `LOCK_TIME_` timestamp(3) NULL DEFAULT NULL,
   `IS_COUNT_ENABLED_` tinyint DEFAULT NULL,
   `EVT_SUBSCR_COUNT_` int DEFAULT NULL,
@@ -554,6 +722,10 @@ CREATE TABLE `act_ru_execution` (
 -- Records of act_ru_execution
 -- ----------------------------
 BEGIN;
+INSERT INTO `act_ru_execution` (`ID_`, `REV_`, `PROC_INST_ID_`, `BUSINESS_KEY_`, `PARENT_ID_`, `PROC_DEF_ID_`, `SUPER_EXEC_`, `ROOT_PROC_INST_ID_`, `ACT_ID_`, `IS_ACTIVE_`, `IS_CONCURRENT_`, `IS_SCOPE_`, `IS_EVENT_SCOPE_`, `IS_MI_ROOT_`, `SUSPENSION_STATE_`, `CACHED_ENT_STATE_`, `TENANT_ID_`, `NAME_`, `START_TIME_`, `START_USER_ID_`, `LOCK_TIME_`, `IS_COUNT_ENABLED_`, `EVT_SUBSCR_COUNT_`, `TASK_COUNT_`, `JOB_COUNT_`, `TIMER_JOB_COUNT_`, `SUSP_JOB_COUNT_`, `DEADLETTER_JOB_COUNT_`, `VAR_COUNT_`, `ID_LINK_COUNT_`, `APP_VERSION_`) VALUES ('8d149e5d-3ff5-11ee-b131-5a73e78fbd04', 1, '8d149e5d-3ff5-11ee-b131-5a73e78fbd04', '30', NULL, 'fxcl:1:48476e94-3299-11ee-82f6-f22185ea3ea7', NULL, '8d149e5d-3ff5-11ee-b131-5a73e78fbd04', NULL, 1, 0, 1, 0, 0, 1, NULL, 'xtj', NULL, '2023-08-21 15:37:16.154', NULL, NULL, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL);
+INSERT INTO `act_ru_execution` (`ID_`, `REV_`, `PROC_INST_ID_`, `BUSINESS_KEY_`, `PARENT_ID_`, `PROC_DEF_ID_`, `SUPER_EXEC_`, `ROOT_PROC_INST_ID_`, `ACT_ID_`, `IS_ACTIVE_`, `IS_CONCURRENT_`, `IS_SCOPE_`, `IS_EVENT_SCOPE_`, `IS_MI_ROOT_`, `SUSPENSION_STATE_`, `CACHED_ENT_STATE_`, `TENANT_ID_`, `NAME_`, `START_TIME_`, `START_USER_ID_`, `LOCK_TIME_`, `IS_COUNT_ENABLED_`, `EVT_SUBSCR_COUNT_`, `TASK_COUNT_`, `JOB_COUNT_`, `TIMER_JOB_COUNT_`, `SUSP_JOB_COUNT_`, `DEADLETTER_JOB_COUNT_`, `VAR_COUNT_`, `ID_LINK_COUNT_`, `APP_VERSION_`) VALUES ('8d14c572-3ff5-11ee-b131-5a73e78fbd04', 2, '8d149e5d-3ff5-11ee-b131-5a73e78fbd04', NULL, '8d149e5d-3ff5-11ee-b131-5a73e78fbd04', 'fxcl:1:48476e94-3299-11ee-82f6-f22185ea3ea7', NULL, '8d149e5d-3ff5-11ee-b131-5a73e78fbd04', 'cwfzr', 1, 0, 0, 0, 0, 1, NULL, 'xtj', NULL, '2023-08-21 15:37:16.155', NULL, NULL, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL);
+INSERT INTO `act_ru_execution` (`ID_`, `REV_`, `PROC_INST_ID_`, `BUSINESS_KEY_`, `PARENT_ID_`, `PROC_DEF_ID_`, `SUPER_EXEC_`, `ROOT_PROC_INST_ID_`, `ACT_ID_`, `IS_ACTIVE_`, `IS_CONCURRENT_`, `IS_SCOPE_`, `IS_EVENT_SCOPE_`, `IS_MI_ROOT_`, `SUSPENSION_STATE_`, `CACHED_ENT_STATE_`, `TENANT_ID_`, `NAME_`, `START_TIME_`, `START_USER_ID_`, `LOCK_TIME_`, `IS_COUNT_ENABLED_`, `EVT_SUBSCR_COUNT_`, `TASK_COUNT_`, `JOB_COUNT_`, `TIMER_JOB_COUNT_`, `SUSP_JOB_COUNT_`, `DEADLETTER_JOB_COUNT_`, `VAR_COUNT_`, `ID_LINK_COUNT_`, `APP_VERSION_`) VALUES ('8d699c3c-3ff5-11ee-b131-5a73e78fbd04', 1, '8d699c3c-3ff5-11ee-b131-5a73e78fbd04', '31', NULL, 'fxcl:1:48476e94-3299-11ee-82f6-f22185ea3ea7', NULL, '8d699c3c-3ff5-11ee-b131-5a73e78fbd04', NULL, 1, 0, 1, 0, 0, 1, NULL, 'xtj', NULL, '2023-08-21 15:37:16.711', NULL, NULL, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL);
+INSERT INTO `act_ru_execution` (`ID_`, `REV_`, `PROC_INST_ID_`, `BUSINESS_KEY_`, `PARENT_ID_`, `PROC_DEF_ID_`, `SUPER_EXEC_`, `ROOT_PROC_INST_ID_`, `ACT_ID_`, `IS_ACTIVE_`, `IS_CONCURRENT_`, `IS_SCOPE_`, `IS_EVENT_SCOPE_`, `IS_MI_ROOT_`, `SUSPENSION_STATE_`, `CACHED_ENT_STATE_`, `TENANT_ID_`, `NAME_`, `START_TIME_`, `START_USER_ID_`, `LOCK_TIME_`, `IS_COUNT_ENABLED_`, `EVT_SUBSCR_COUNT_`, `TASK_COUNT_`, `JOB_COUNT_`, `TIMER_JOB_COUNT_`, `SUSP_JOB_COUNT_`, `DEADLETTER_JOB_COUNT_`, `VAR_COUNT_`, `ID_LINK_COUNT_`, `APP_VERSION_`) VALUES ('8d69c351-3ff5-11ee-b131-5a73e78fbd04', 1, '8d699c3c-3ff5-11ee-b131-5a73e78fbd04', NULL, '8d699c3c-3ff5-11ee-b131-5a73e78fbd04', 'fxcl:1:48476e94-3299-11ee-82f6-f22185ea3ea7', NULL, '8d699c3c-3ff5-11ee-b131-5a73e78fbd04', 'zg', 1, 0, 0, 0, 0, 1, NULL, 'xtj', NULL, '2023-08-21 15:37:16.712', NULL, NULL, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL);
 COMMIT;
 
 -- ----------------------------
@@ -561,14 +733,14 @@ COMMIT;
 -- ----------------------------
 DROP TABLE IF EXISTS `act_ru_identitylink`;
 CREATE TABLE `act_ru_identitylink` (
-  `ID_` varchar(64) COLLATE utf8mb3_bin NOT NULL,
+  `ID_` varchar(64) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin NOT NULL,
   `REV_` int DEFAULT NULL,
-  `GROUP_ID_` varchar(255) COLLATE utf8mb3_bin DEFAULT NULL,
-  `TYPE_` varchar(255) COLLATE utf8mb3_bin DEFAULT NULL,
-  `USER_ID_` varchar(255) COLLATE utf8mb3_bin DEFAULT NULL,
-  `TASK_ID_` varchar(64) COLLATE utf8mb3_bin DEFAULT NULL,
-  `PROC_INST_ID_` varchar(64) COLLATE utf8mb3_bin DEFAULT NULL,
-  `PROC_DEF_ID_` varchar(64) COLLATE utf8mb3_bin DEFAULT NULL,
+  `GROUP_ID_` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
+  `TYPE_` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
+  `USER_ID_` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
+  `TASK_ID_` varchar(64) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
+  `PROC_INST_ID_` varchar(64) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
+  `PROC_DEF_ID_` varchar(64) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
   PRIMARY KEY (`ID_`),
   KEY `ACT_IDX_IDENT_LNK_USER` (`USER_ID_`),
   KEY `ACT_IDX_IDENT_LNK_GROUP` (`GROUP_ID_`),
@@ -584,6 +756,11 @@ CREATE TABLE `act_ru_identitylink` (
 -- Records of act_ru_identitylink
 -- ----------------------------
 BEGIN;
+INSERT INTO `act_ru_identitylink` (`ID_`, `REV_`, `GROUP_ID_`, `TYPE_`, `USER_ID_`, `TASK_ID_`, `PROC_INST_ID_`, `PROC_DEF_ID_`) VALUES ('8d6aadb9-3ff5-11ee-b131-5a73e78fbd04', 1, 'zg_group', 'candidate', NULL, '8d69ea64-3ff5-11ee-b131-5a73e78fbd04', NULL, NULL);
+INSERT INTO `act_ru_identitylink` (`ID_`, `REV_`, `GROUP_ID_`, `TYPE_`, `USER_ID_`, `TASK_ID_`, `PROC_INST_ID_`, `PROC_DEF_ID_`) VALUES ('8d6aadba-3ff5-11ee-b131-5a73e78fbd04', 1, 'super_group', 'candidate', NULL, '8d69ea64-3ff5-11ee-b131-5a73e78fbd04', NULL, NULL);
+INSERT INTO `act_ru_identitylink` (`ID_`, `REV_`, `GROUP_ID_`, `TYPE_`, `USER_ID_`, `TASK_ID_`, `PROC_INST_ID_`, `PROC_DEF_ID_`) VALUES ('9cd7f495-3ff5-11ee-b131-5a73e78fbd04', 1, NULL, 'participant', 'zg1', NULL, '8d149e5d-3ff5-11ee-b131-5a73e78fbd04', NULL);
+INSERT INTO `act_ru_identitylink` (`ID_`, `REV_`, `GROUP_ID_`, `TYPE_`, `USER_ID_`, `TASK_ID_`, `PROC_INST_ID_`, `PROC_DEF_ID_`) VALUES ('9ce3183a-3ff5-11ee-b131-5a73e78fbd04', 1, 'cw_group', 'candidate', NULL, '9ce2a301-3ff5-11ee-b131-5a73e78fbd04', NULL, NULL);
+INSERT INTO `act_ru_identitylink` (`ID_`, `REV_`, `GROUP_ID_`, `TYPE_`, `USER_ID_`, `TASK_ID_`, `PROC_INST_ID_`, `PROC_DEF_ID_`) VALUES ('9ce3183b-3ff5-11ee-b131-5a73e78fbd04', 1, 'super_group', 'candidate', NULL, '9ce2a301-3ff5-11ee-b131-5a73e78fbd04', NULL, NULL);
 COMMIT;
 
 -- ----------------------------
@@ -591,11 +768,11 @@ COMMIT;
 -- ----------------------------
 DROP TABLE IF EXISTS `act_ru_integration`;
 CREATE TABLE `act_ru_integration` (
-  `ID_` varchar(64) COLLATE utf8mb3_bin NOT NULL,
-  `EXECUTION_ID_` varchar(64) COLLATE utf8mb3_bin DEFAULT NULL,
-  `PROCESS_INSTANCE_ID_` varchar(64) COLLATE utf8mb3_bin DEFAULT NULL,
-  `PROC_DEF_ID_` varchar(64) COLLATE utf8mb3_bin DEFAULT NULL,
-  `FLOW_NODE_ID_` varchar(64) COLLATE utf8mb3_bin DEFAULT NULL,
+  `ID_` varchar(64) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin NOT NULL,
+  `EXECUTION_ID_` varchar(64) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
+  `PROCESS_INSTANCE_ID_` varchar(64) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
+  `PROC_DEF_ID_` varchar(64) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
+  `FLOW_NODE_ID_` varchar(64) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
   `CREATED_DATE_` timestamp(3) NULL DEFAULT NULL,
   PRIMARY KEY (`ID_`),
   KEY `ACT_FK_INT_EXECUTION` (`EXECUTION_ID_`),
@@ -617,23 +794,23 @@ COMMIT;
 -- ----------------------------
 DROP TABLE IF EXISTS `act_ru_job`;
 CREATE TABLE `act_ru_job` (
-  `ID_` varchar(64) COLLATE utf8mb3_bin NOT NULL,
+  `ID_` varchar(64) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin NOT NULL,
   `REV_` int DEFAULT NULL,
-  `TYPE_` varchar(255) COLLATE utf8mb3_bin NOT NULL,
+  `TYPE_` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin NOT NULL,
   `LOCK_EXP_TIME_` timestamp(3) NULL DEFAULT NULL,
-  `LOCK_OWNER_` varchar(255) COLLATE utf8mb3_bin DEFAULT NULL,
+  `LOCK_OWNER_` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
   `EXCLUSIVE_` tinyint(1) DEFAULT NULL,
-  `EXECUTION_ID_` varchar(64) COLLATE utf8mb3_bin DEFAULT NULL,
-  `PROCESS_INSTANCE_ID_` varchar(64) COLLATE utf8mb3_bin DEFAULT NULL,
-  `PROC_DEF_ID_` varchar(64) COLLATE utf8mb3_bin DEFAULT NULL,
+  `EXECUTION_ID_` varchar(64) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
+  `PROCESS_INSTANCE_ID_` varchar(64) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
+  `PROC_DEF_ID_` varchar(64) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
   `RETRIES_` int DEFAULT NULL,
-  `EXCEPTION_STACK_ID_` varchar(64) COLLATE utf8mb3_bin DEFAULT NULL,
-  `EXCEPTION_MSG_` varchar(4000) COLLATE utf8mb3_bin DEFAULT NULL,
+  `EXCEPTION_STACK_ID_` varchar(64) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
+  `EXCEPTION_MSG_` varchar(4000) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
   `DUEDATE_` timestamp(3) NULL DEFAULT NULL,
-  `REPEAT_` varchar(255) COLLATE utf8mb3_bin DEFAULT NULL,
-  `HANDLER_TYPE_` varchar(255) COLLATE utf8mb3_bin DEFAULT NULL,
-  `HANDLER_CFG_` varchar(4000) COLLATE utf8mb3_bin DEFAULT NULL,
-  `TENANT_ID_` varchar(255) COLLATE utf8mb3_bin DEFAULT '',
+  `REPEAT_` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
+  `HANDLER_TYPE_` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
+  `HANDLER_CFG_` varchar(4000) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
+  `TENANT_ID_` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT '',
   PRIMARY KEY (`ID_`),
   KEY `ACT_FK_JOB_EXECUTION` (`EXECUTION_ID_`),
   KEY `ACT_FK_JOB_PROCESS_INSTANCE` (`PROCESS_INSTANCE_ID_`),
@@ -656,21 +833,21 @@ COMMIT;
 -- ----------------------------
 DROP TABLE IF EXISTS `act_ru_suspended_job`;
 CREATE TABLE `act_ru_suspended_job` (
-  `ID_` varchar(64) COLLATE utf8mb3_bin NOT NULL,
+  `ID_` varchar(64) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin NOT NULL,
   `REV_` int DEFAULT NULL,
-  `TYPE_` varchar(255) COLLATE utf8mb3_bin NOT NULL,
+  `TYPE_` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin NOT NULL,
   `EXCLUSIVE_` tinyint(1) DEFAULT NULL,
-  `EXECUTION_ID_` varchar(64) COLLATE utf8mb3_bin DEFAULT NULL,
-  `PROCESS_INSTANCE_ID_` varchar(64) COLLATE utf8mb3_bin DEFAULT NULL,
-  `PROC_DEF_ID_` varchar(64) COLLATE utf8mb3_bin DEFAULT NULL,
+  `EXECUTION_ID_` varchar(64) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
+  `PROCESS_INSTANCE_ID_` varchar(64) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
+  `PROC_DEF_ID_` varchar(64) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
   `RETRIES_` int DEFAULT NULL,
-  `EXCEPTION_STACK_ID_` varchar(64) COLLATE utf8mb3_bin DEFAULT NULL,
-  `EXCEPTION_MSG_` varchar(4000) COLLATE utf8mb3_bin DEFAULT NULL,
+  `EXCEPTION_STACK_ID_` varchar(64) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
+  `EXCEPTION_MSG_` varchar(4000) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
   `DUEDATE_` timestamp(3) NULL DEFAULT NULL,
-  `REPEAT_` varchar(255) COLLATE utf8mb3_bin DEFAULT NULL,
-  `HANDLER_TYPE_` varchar(255) COLLATE utf8mb3_bin DEFAULT NULL,
-  `HANDLER_CFG_` varchar(4000) COLLATE utf8mb3_bin DEFAULT NULL,
-  `TENANT_ID_` varchar(255) COLLATE utf8mb3_bin DEFAULT '',
+  `REPEAT_` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
+  `HANDLER_TYPE_` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
+  `HANDLER_CFG_` varchar(4000) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
+  `TENANT_ID_` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT '',
   PRIMARY KEY (`ID_`),
   KEY `ACT_FK_SUSPENDED_JOB_EXECUTION` (`EXECUTION_ID_`),
   KEY `ACT_FK_SUSPENDED_JOB_PROCESS_INSTANCE` (`PROCESS_INSTANCE_ID_`),
@@ -693,26 +870,26 @@ COMMIT;
 -- ----------------------------
 DROP TABLE IF EXISTS `act_ru_task`;
 CREATE TABLE `act_ru_task` (
-  `ID_` varchar(64) COLLATE utf8mb3_bin NOT NULL,
+  `ID_` varchar(64) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin NOT NULL,
   `REV_` int DEFAULT NULL,
-  `EXECUTION_ID_` varchar(64) COLLATE utf8mb3_bin DEFAULT NULL,
-  `PROC_INST_ID_` varchar(64) COLLATE utf8mb3_bin DEFAULT NULL,
-  `PROC_DEF_ID_` varchar(64) COLLATE utf8mb3_bin DEFAULT NULL,
-  `NAME_` varchar(255) COLLATE utf8mb3_bin DEFAULT NULL,
-  `BUSINESS_KEY_` varchar(255) COLLATE utf8mb3_bin DEFAULT NULL,
-  `PARENT_TASK_ID_` varchar(64) COLLATE utf8mb3_bin DEFAULT NULL,
-  `DESCRIPTION_` varchar(4000) COLLATE utf8mb3_bin DEFAULT NULL,
-  `TASK_DEF_KEY_` varchar(255) COLLATE utf8mb3_bin DEFAULT NULL,
-  `OWNER_` varchar(255) COLLATE utf8mb3_bin DEFAULT NULL,
-  `ASSIGNEE_` varchar(255) COLLATE utf8mb3_bin DEFAULT NULL,
-  `DELEGATION_` varchar(64) COLLATE utf8mb3_bin DEFAULT NULL,
+  `EXECUTION_ID_` varchar(64) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
+  `PROC_INST_ID_` varchar(64) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
+  `PROC_DEF_ID_` varchar(64) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
+  `NAME_` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
+  `BUSINESS_KEY_` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
+  `PARENT_TASK_ID_` varchar(64) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
+  `DESCRIPTION_` varchar(4000) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
+  `TASK_DEF_KEY_` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
+  `OWNER_` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
+  `ASSIGNEE_` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
+  `DELEGATION_` varchar(64) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
   `PRIORITY_` int DEFAULT NULL,
   `CREATE_TIME_` timestamp(3) NULL DEFAULT NULL,
   `DUE_DATE_` datetime(3) DEFAULT NULL,
-  `CATEGORY_` varchar(255) COLLATE utf8mb3_bin DEFAULT NULL,
+  `CATEGORY_` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
   `SUSPENSION_STATE_` int DEFAULT NULL,
-  `TENANT_ID_` varchar(255) COLLATE utf8mb3_bin DEFAULT '',
-  `FORM_KEY_` varchar(255) COLLATE utf8mb3_bin DEFAULT NULL,
+  `TENANT_ID_` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT '',
+  `FORM_KEY_` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
   `CLAIM_TIME_` datetime(3) DEFAULT NULL,
   `APP_VERSION_` int DEFAULT NULL,
   PRIMARY KEY (`ID_`),
@@ -729,6 +906,8 @@ CREATE TABLE `act_ru_task` (
 -- Records of act_ru_task
 -- ----------------------------
 BEGIN;
+INSERT INTO `act_ru_task` (`ID_`, `REV_`, `EXECUTION_ID_`, `PROC_INST_ID_`, `PROC_DEF_ID_`, `NAME_`, `BUSINESS_KEY_`, `PARENT_TASK_ID_`, `DESCRIPTION_`, `TASK_DEF_KEY_`, `OWNER_`, `ASSIGNEE_`, `DELEGATION_`, `PRIORITY_`, `CREATE_TIME_`, `DUE_DATE_`, `CATEGORY_`, `SUSPENSION_STATE_`, `TENANT_ID_`, `FORM_KEY_`, `CLAIM_TIME_`, `APP_VERSION_`) VALUES ('8d69ea64-3ff5-11ee-b131-5a73e78fbd04', 1, '8d69c351-3ff5-11ee-b131-5a73e78fbd04', '8d699c3c-3ff5-11ee-b131-5a73e78fbd04', 'fxcl:1:48476e94-3299-11ee-82f6-f22185ea3ea7', '主管审核', '31', NULL, NULL, 'zg', NULL, NULL, NULL, 50, '2023-08-21 15:37:16.713', NULL, NULL, 1, 'xtj', NULL, NULL, NULL);
+INSERT INTO `act_ru_task` (`ID_`, `REV_`, `EXECUTION_ID_`, `PROC_INST_ID_`, `PROC_DEF_ID_`, `NAME_`, `BUSINESS_KEY_`, `PARENT_TASK_ID_`, `DESCRIPTION_`, `TASK_DEF_KEY_`, `OWNER_`, `ASSIGNEE_`, `DELEGATION_`, `PRIORITY_`, `CREATE_TIME_`, `DUE_DATE_`, `CATEGORY_`, `SUSPENSION_STATE_`, `TENANT_ID_`, `FORM_KEY_`, `CLAIM_TIME_`, `APP_VERSION_`) VALUES ('9ce2a301-3ff5-11ee-b131-5a73e78fbd04', 1, '8d14c572-3ff5-11ee-b131-5a73e78fbd04', '8d149e5d-3ff5-11ee-b131-5a73e78fbd04', 'fxcl:1:48476e94-3299-11ee-82f6-f22185ea3ea7', '财务片区负责人审核', '30', NULL, NULL, 'cwfzr', NULL, NULL, NULL, 50, '2023-08-21 15:37:42.670', NULL, NULL, 1, 'xtj', NULL, NULL, NULL);
 COMMIT;
 
 -- ----------------------------
@@ -736,23 +915,23 @@ COMMIT;
 -- ----------------------------
 DROP TABLE IF EXISTS `act_ru_timer_job`;
 CREATE TABLE `act_ru_timer_job` (
-  `ID_` varchar(64) COLLATE utf8mb3_bin NOT NULL,
+  `ID_` varchar(64) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin NOT NULL,
   `REV_` int DEFAULT NULL,
-  `TYPE_` varchar(255) COLLATE utf8mb3_bin NOT NULL,
+  `TYPE_` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin NOT NULL,
   `LOCK_EXP_TIME_` timestamp(3) NULL DEFAULT NULL,
-  `LOCK_OWNER_` varchar(255) COLLATE utf8mb3_bin DEFAULT NULL,
+  `LOCK_OWNER_` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
   `EXCLUSIVE_` tinyint(1) DEFAULT NULL,
-  `EXECUTION_ID_` varchar(64) COLLATE utf8mb3_bin DEFAULT NULL,
-  `PROCESS_INSTANCE_ID_` varchar(64) COLLATE utf8mb3_bin DEFAULT NULL,
-  `PROC_DEF_ID_` varchar(64) COLLATE utf8mb3_bin DEFAULT NULL,
+  `EXECUTION_ID_` varchar(64) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
+  `PROCESS_INSTANCE_ID_` varchar(64) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
+  `PROC_DEF_ID_` varchar(64) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
   `RETRIES_` int DEFAULT NULL,
-  `EXCEPTION_STACK_ID_` varchar(64) COLLATE utf8mb3_bin DEFAULT NULL,
-  `EXCEPTION_MSG_` varchar(4000) COLLATE utf8mb3_bin DEFAULT NULL,
+  `EXCEPTION_STACK_ID_` varchar(64) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
+  `EXCEPTION_MSG_` varchar(4000) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
   `DUEDATE_` timestamp(3) NULL DEFAULT NULL,
-  `REPEAT_` varchar(255) COLLATE utf8mb3_bin DEFAULT NULL,
-  `HANDLER_TYPE_` varchar(255) COLLATE utf8mb3_bin DEFAULT NULL,
-  `HANDLER_CFG_` varchar(4000) COLLATE utf8mb3_bin DEFAULT NULL,
-  `TENANT_ID_` varchar(255) COLLATE utf8mb3_bin DEFAULT '',
+  `REPEAT_` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
+  `HANDLER_TYPE_` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
+  `HANDLER_CFG_` varchar(4000) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
+  `TENANT_ID_` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT '',
   PRIMARY KEY (`ID_`),
   KEY `ACT_FK_TIMER_JOB_EXECUTION` (`EXECUTION_ID_`),
   KEY `ACT_FK_TIMER_JOB_PROCESS_INSTANCE` (`PROCESS_INSTANCE_ID_`),
@@ -775,18 +954,18 @@ COMMIT;
 -- ----------------------------
 DROP TABLE IF EXISTS `act_ru_variable`;
 CREATE TABLE `act_ru_variable` (
-  `ID_` varchar(64) COLLATE utf8mb3_bin NOT NULL,
+  `ID_` varchar(64) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin NOT NULL,
   `REV_` int DEFAULT NULL,
-  `TYPE_` varchar(255) COLLATE utf8mb3_bin NOT NULL,
-  `NAME_` varchar(255) COLLATE utf8mb3_bin NOT NULL,
-  `EXECUTION_ID_` varchar(64) COLLATE utf8mb3_bin DEFAULT NULL,
-  `PROC_INST_ID_` varchar(64) COLLATE utf8mb3_bin DEFAULT NULL,
-  `TASK_ID_` varchar(64) COLLATE utf8mb3_bin DEFAULT NULL,
-  `BYTEARRAY_ID_` varchar(64) COLLATE utf8mb3_bin DEFAULT NULL,
+  `TYPE_` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin NOT NULL,
+  `NAME_` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin NOT NULL,
+  `EXECUTION_ID_` varchar(64) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
+  `PROC_INST_ID_` varchar(64) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
+  `TASK_ID_` varchar(64) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
+  `BYTEARRAY_ID_` varchar(64) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
   `DOUBLE_` double DEFAULT NULL,
   `LONG_` bigint DEFAULT NULL,
-  `TEXT_` varchar(4000) COLLATE utf8mb3_bin DEFAULT NULL,
-  `TEXT2_` varchar(4000) COLLATE utf8mb3_bin DEFAULT NULL,
+  `TEXT_` varchar(4000) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
+  `TEXT2_` varchar(4000) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
   PRIMARY KEY (`ID_`),
   KEY `ACT_IDX_VARIABLE_TASK_ID` (`TASK_ID_`),
   KEY `ACT_FK_VAR_EXE` (`EXECUTION_ID_`),
@@ -801,6 +980,18 @@ CREATE TABLE `act_ru_variable` (
 -- Records of act_ru_variable
 -- ----------------------------
 BEGIN;
+INSERT INTO `act_ru_variable` (`ID_`, `REV_`, `TYPE_`, `NAME_`, `EXECUTION_ID_`, `PROC_INST_ID_`, `TASK_ID_`, `BYTEARRAY_ID_`, `DOUBLE_`, `LONG_`, `TEXT_`, `TEXT2_`) VALUES ('8d149e5e-3ff5-11ee-b131-5a73e78fbd04', 2, 'json', 'zg_group', '8d149e5d-3ff5-11ee-b131-5a73e78fbd04', '8d149e5d-3ff5-11ee-b131-5a73e78fbd04', NULL, NULL, NULL, NULL, '[\"zg_group\",\"super_group\"]', 'java.util.LinkedList');
+INSERT INTO `act_ru_variable` (`ID_`, `REV_`, `TYPE_`, `NAME_`, `EXECUTION_ID_`, `PROC_INST_ID_`, `TASK_ID_`, `BYTEARRAY_ID_`, `DOUBLE_`, `LONG_`, `TEXT_`, `TEXT2_`) VALUES ('8d14c570-3ff5-11ee-b131-5a73e78fbd04', 2, 'json', 'cwfzr_group', '8d149e5d-3ff5-11ee-b131-5a73e78fbd04', '8d149e5d-3ff5-11ee-b131-5a73e78fbd04', NULL, NULL, NULL, NULL, '[\"cw_group\",\"super_group\"]', 'java.util.LinkedList');
+INSERT INTO `act_ru_variable` (`ID_`, `REV_`, `TYPE_`, `NAME_`, `EXECUTION_ID_`, `PROC_INST_ID_`, `TASK_ID_`, `BYTEARRAY_ID_`, `DOUBLE_`, `LONG_`, `TEXT_`, `TEXT2_`) VALUES ('8d69c34d-3ff5-11ee-b131-5a73e78fbd04', 1, 'json', 'zg_group', '8d699c3c-3ff5-11ee-b131-5a73e78fbd04', '8d699c3c-3ff5-11ee-b131-5a73e78fbd04', NULL, NULL, NULL, NULL, '[\"zg_group\",\"super_group\"]', 'java.util.ArrayList');
+INSERT INTO `act_ru_variable` (`ID_`, `REV_`, `TYPE_`, `NAME_`, `EXECUTION_ID_`, `PROC_INST_ID_`, `TASK_ID_`, `BYTEARRAY_ID_`, `DOUBLE_`, `LONG_`, `TEXT_`, `TEXT2_`) VALUES ('8d69c34f-3ff5-11ee-b131-5a73e78fbd04', 1, 'json', 'cwfzr_group', '8d699c3c-3ff5-11ee-b131-5a73e78fbd04', '8d699c3c-3ff5-11ee-b131-5a73e78fbd04', NULL, NULL, NULL, NULL, '[\"cw_group\",\"super_group\"]', 'java.util.ArrayList');
+INSERT INTO `act_ru_variable` (`ID_`, `REV_`, `TYPE_`, `NAME_`, `EXECUTION_ID_`, `PROC_INST_ID_`, `TASK_ID_`, `BYTEARRAY_ID_`, `DOUBLE_`, `LONG_`, `TEXT_`, `TEXT2_`) VALUES ('8d6a3885-3ff5-11ee-b131-5a73e78fbd04', 1, 'json', 'zg_group', '8d69c351-3ff5-11ee-b131-5a73e78fbd04', '8d699c3c-3ff5-11ee-b131-5a73e78fbd04', '8d69ea64-3ff5-11ee-b131-5a73e78fbd04', NULL, NULL, NULL, '[\"zg_group\",\"super_group\"]', 'java.util.LinkedList');
+INSERT INTO `act_ru_variable` (`ID_`, `REV_`, `TYPE_`, `NAME_`, `EXECUTION_ID_`, `PROC_INST_ID_`, `TASK_ID_`, `BYTEARRAY_ID_`, `DOUBLE_`, `LONG_`, `TEXT_`, `TEXT2_`) VALUES ('8d6a5f97-3ff5-11ee-b131-5a73e78fbd04', 1, 'json', 'cwfzr_group', '8d69c351-3ff5-11ee-b131-5a73e78fbd04', '8d699c3c-3ff5-11ee-b131-5a73e78fbd04', '8d69ea64-3ff5-11ee-b131-5a73e78fbd04', NULL, NULL, NULL, '[\"cw_group\",\"super_group\"]', 'java.util.LinkedList');
+INSERT INTO `act_ru_variable` (`ID_`, `REV_`, `TYPE_`, `NAME_`, `EXECUTION_ID_`, `PROC_INST_ID_`, `TASK_ID_`, `BYTEARRAY_ID_`, `DOUBLE_`, `LONG_`, `TEXT_`, `TEXT2_`) VALUES ('9ce206bb-3ff5-11ee-b131-5a73e78fbd04', 1, 'string', 'to', '8d149e5d-3ff5-11ee-b131-5a73e78fbd04', '8d149e5d-3ff5-11ee-b131-5a73e78fbd04', NULL, NULL, NULL, NULL, 'next', NULL);
+INSERT INTO `act_ru_variable` (`ID_`, `REV_`, `TYPE_`, `NAME_`, `EXECUTION_ID_`, `PROC_INST_ID_`, `TASK_ID_`, `BYTEARRAY_ID_`, `DOUBLE_`, `LONG_`, `TEXT_`, `TEXT2_`) VALUES ('9ce206bd-3ff5-11ee-b131-5a73e78fbd04', 1, 'string', 'approvalComment', '8d149e5d-3ff5-11ee-b131-5a73e78fbd04', '8d149e5d-3ff5-11ee-b131-5a73e78fbd04', NULL, NULL, NULL, NULL, '这里是我的审批意见，还能设置各种附件', NULL);
+INSERT INTO `act_ru_variable` (`ID_`, `REV_`, `TYPE_`, `NAME_`, `EXECUTION_ID_`, `PROC_INST_ID_`, `TASK_ID_`, `BYTEARRAY_ID_`, `DOUBLE_`, `LONG_`, `TEXT_`, `TEXT2_`) VALUES ('9ce2ca12-3ff5-11ee-b131-5a73e78fbd04', 1, 'json', 'zg_group', '8d14c572-3ff5-11ee-b131-5a73e78fbd04', '8d149e5d-3ff5-11ee-b131-5a73e78fbd04', '9ce2a301-3ff5-11ee-b131-5a73e78fbd04', NULL, NULL, NULL, '[\"zg_group\",\"super_group\"]', 'java.util.LinkedList');
+INSERT INTO `act_ru_variable` (`ID_`, `REV_`, `TYPE_`, `NAME_`, `EXECUTION_ID_`, `PROC_INST_ID_`, `TASK_ID_`, `BYTEARRAY_ID_`, `DOUBLE_`, `LONG_`, `TEXT_`, `TEXT2_`) VALUES ('9ce2ca14-3ff5-11ee-b131-5a73e78fbd04', 1, 'string', 'approvalComment', '8d14c572-3ff5-11ee-b131-5a73e78fbd04', '8d149e5d-3ff5-11ee-b131-5a73e78fbd04', '9ce2a301-3ff5-11ee-b131-5a73e78fbd04', NULL, NULL, NULL, '这里是我的审批意见，还能设置各种附件', NULL);
+INSERT INTO `act_ru_variable` (`ID_`, `REV_`, `TYPE_`, `NAME_`, `EXECUTION_ID_`, `PROC_INST_ID_`, `TASK_ID_`, `BYTEARRAY_ID_`, `DOUBLE_`, `LONG_`, `TEXT_`, `TEXT2_`) VALUES ('9ce2f126-3ff5-11ee-b131-5a73e78fbd04', 1, 'json', 'cwfzr_group', '8d14c572-3ff5-11ee-b131-5a73e78fbd04', '8d149e5d-3ff5-11ee-b131-5a73e78fbd04', '9ce2a301-3ff5-11ee-b131-5a73e78fbd04', NULL, NULL, NULL, '[\"cw_group\",\"super_group\"]', 'java.util.LinkedList');
+INSERT INTO `act_ru_variable` (`ID_`, `REV_`, `TYPE_`, `NAME_`, `EXECUTION_ID_`, `PROC_INST_ID_`, `TASK_ID_`, `BYTEARRAY_ID_`, `DOUBLE_`, `LONG_`, `TEXT_`, `TEXT2_`) VALUES ('9ce2f128-3ff5-11ee-b131-5a73e78fbd04', 1, 'string', 'to', '8d14c572-3ff5-11ee-b131-5a73e78fbd04', '8d149e5d-3ff5-11ee-b131-5a73e78fbd04', '9ce2a301-3ff5-11ee-b131-5a73e78fbd04', NULL, NULL, NULL, 'next', NULL);
 COMMIT;
 
 -- ----------------------------
@@ -809,25 +1000,25 @@ COMMIT;
 DROP TABLE IF EXISTS `gen_table`;
 CREATE TABLE `gen_table` (
   `table_id` bigint NOT NULL AUTO_INCREMENT COMMENT '编号',
-  `table_name` varchar(200) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '表名称',
-  `table_comment` varchar(500) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '表描述',
-  `sub_table_name` varchar(64) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '关联子表的表名',
-  `sub_table_fk_name` varchar(64) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '子表关联的外键名',
-  `class_name` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '实体类名称',
-  `tpl_category` varchar(200) COLLATE utf8mb4_unicode_ci DEFAULT 'crud' COMMENT '使用的模板（crud单表操作 tree树表操作）',
-  `package_name` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '生成包路径',
-  `module_name` varchar(30) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '生成模块名',
-  `business_name` varchar(30) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '生成业务名',
-  `function_name` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '生成功能名',
-  `function_author` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '生成功能作者',
-  `gen_type` char(1) COLLATE utf8mb4_unicode_ci DEFAULT '0' COMMENT '生成代码方式（0zip压缩包 1自定义路径）',
-  `gen_path` varchar(200) COLLATE utf8mb4_unicode_ci DEFAULT '/' COMMENT '生成路径（不填默认项目路径）',
-  `options` varchar(1000) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '其它生成选项',
-  `create_by` varchar(64) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '创建者',
+  `table_name` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '表名称',
+  `table_comment` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '表描述',
+  `sub_table_name` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '关联子表的表名',
+  `sub_table_fk_name` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '子表关联的外键名',
+  `class_name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '实体类名称',
+  `tpl_category` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT 'crud' COMMENT '使用的模板（crud单表操作 tree树表操作）',
+  `package_name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '生成包路径',
+  `module_name` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '生成模块名',
+  `business_name` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '生成业务名',
+  `function_name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '生成功能名',
+  `function_author` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '生成功能作者',
+  `gen_type` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT '0' COMMENT '生成代码方式（0zip压缩包 1自定义路径）',
+  `gen_path` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT '/' COMMENT '生成路径（不填默认项目路径）',
+  `options` varchar(1000) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '其它生成选项',
+  `create_by` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '创建者',
   `create_time` datetime DEFAULT NULL COMMENT '创建时间',
-  `update_by` varchar(64) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '更新者',
+  `update_by` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '更新者',
   `update_time` datetime DEFAULT NULL COMMENT '更新时间',
-  `remark` varchar(500) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '备注',
+  `remark` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '备注',
   PRIMARY KEY (`table_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='代码生成业务表';
 
@@ -845,25 +1036,25 @@ DROP TABLE IF EXISTS `gen_table_column`;
 CREATE TABLE `gen_table_column` (
   `column_id` bigint NOT NULL AUTO_INCREMENT COMMENT '编号',
   `table_id` bigint DEFAULT NULL COMMENT '归属表编号',
-  `column_name` varchar(200) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '列名称',
-  `column_comment` varchar(500) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '列描述',
-  `column_type` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '列类型',
-  `java_type` varchar(500) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'JAVA类型',
-  `java_field` varchar(200) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'JAVA字段名',
-  `is_pk` char(1) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '是否主键（1是）',
-  `is_increment` char(1) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '是否自增（1是）',
-  `is_required` char(1) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '是否必填（1是）',
-  `is_insert` char(1) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '是否为插入字段（1是）',
-  `is_edit` char(1) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '是否编辑字段（1是）',
-  `is_list` char(1) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '是否列表字段（1是）',
-  `is_query` char(1) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '是否查询字段（1是）',
-  `query_type` varchar(200) COLLATE utf8mb4_unicode_ci DEFAULT 'EQ' COMMENT '查询方式（等于、不等于、大于、小于、范围）',
-  `html_type` varchar(200) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '显示类型（文本框、文本域、下拉框、复选框、单选框、日期控件）',
-  `dict_type` varchar(200) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '字典类型',
+  `column_name` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '列名称',
+  `column_comment` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '列描述',
+  `column_type` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '列类型',
+  `java_type` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'JAVA类型',
+  `java_field` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'JAVA字段名',
+  `is_pk` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '是否主键（1是）',
+  `is_increment` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '是否自增（1是）',
+  `is_required` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '是否必填（1是）',
+  `is_insert` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '是否为插入字段（1是）',
+  `is_edit` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '是否编辑字段（1是）',
+  `is_list` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '是否列表字段（1是）',
+  `is_query` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '是否查询字段（1是）',
+  `query_type` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT 'EQ' COMMENT '查询方式（等于、不等于、大于、小于、范围）',
+  `html_type` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '显示类型（文本框、文本域、下拉框、复选框、单选框、日期控件）',
+  `dict_type` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '字典类型',
   `sort` int DEFAULT NULL COMMENT '排序',
-  `create_by` varchar(64) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '创建者',
+  `create_by` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '创建者',
   `create_time` datetime DEFAULT NULL COMMENT '创建时间',
-  `update_by` varchar(64) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '更新者',
+  `update_by` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '更新者',
   `update_time` datetime DEFAULT NULL COMMENT '更新时间',
   PRIMARY KEY (`column_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=67 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='代码生成业务表字段';
@@ -912,9 +1103,9 @@ COMMIT;
 -- ----------------------------
 DROP TABLE IF EXISTS `qrtz_blob_triggers`;
 CREATE TABLE `qrtz_blob_triggers` (
-  `sched_name` varchar(120) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '调度名称',
-  `trigger_name` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'qrtz_triggers表trigger_name的外键',
-  `trigger_group` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'qrtz_triggers表trigger_group的外键',
+  `sched_name` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '调度名称',
+  `trigger_name` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'qrtz_triggers表trigger_name的外键',
+  `trigger_group` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'qrtz_triggers表trigger_group的外键',
   `blob_data` blob COMMENT '存放持久化Trigger对象',
   PRIMARY KEY (`sched_name`,`trigger_name`,`trigger_group`),
   CONSTRAINT `qrtz_blob_triggers_ibfk_1` FOREIGN KEY (`sched_name`, `trigger_name`, `trigger_group`) REFERENCES `qrtz_triggers` (`sched_name`, `trigger_name`, `trigger_group`)
@@ -931,8 +1122,8 @@ COMMIT;
 -- ----------------------------
 DROP TABLE IF EXISTS `qrtz_calendars`;
 CREATE TABLE `qrtz_calendars` (
-  `sched_name` varchar(120) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '调度名称',
-  `calendar_name` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '日历名称',
+  `sched_name` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '调度名称',
+  `calendar_name` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '日历名称',
   `calendar` blob NOT NULL COMMENT '存放持久化calendar对象',
   PRIMARY KEY (`sched_name`,`calendar_name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='日历信息表';
@@ -948,11 +1139,11 @@ COMMIT;
 -- ----------------------------
 DROP TABLE IF EXISTS `qrtz_cron_triggers`;
 CREATE TABLE `qrtz_cron_triggers` (
-  `sched_name` varchar(120) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '调度名称',
-  `trigger_name` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'qrtz_triggers表trigger_name的外键',
-  `trigger_group` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'qrtz_triggers表trigger_group的外键',
-  `cron_expression` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'cron表达式',
-  `time_zone_id` varchar(80) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '时区',
+  `sched_name` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '调度名称',
+  `trigger_name` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'qrtz_triggers表trigger_name的外键',
+  `trigger_group` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'qrtz_triggers表trigger_group的外键',
+  `cron_expression` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'cron表达式',
+  `time_zone_id` varchar(80) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '时区',
   PRIMARY KEY (`sched_name`,`trigger_name`,`trigger_group`),
   CONSTRAINT `qrtz_cron_triggers_ibfk_1` FOREIGN KEY (`sched_name`, `trigger_name`, `trigger_group`) REFERENCES `qrtz_triggers` (`sched_name`, `trigger_name`, `trigger_group`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='Cron类型的触发器表';
@@ -968,19 +1159,19 @@ COMMIT;
 -- ----------------------------
 DROP TABLE IF EXISTS `qrtz_fired_triggers`;
 CREATE TABLE `qrtz_fired_triggers` (
-  `sched_name` varchar(120) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '调度名称',
-  `entry_id` varchar(95) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '调度器实例id',
-  `trigger_name` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'qrtz_triggers表trigger_name的外键',
-  `trigger_group` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'qrtz_triggers表trigger_group的外键',
-  `instance_name` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '调度器实例名',
+  `sched_name` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '调度名称',
+  `entry_id` varchar(95) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '调度器实例id',
+  `trigger_name` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'qrtz_triggers表trigger_name的外键',
+  `trigger_group` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'qrtz_triggers表trigger_group的外键',
+  `instance_name` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '调度器实例名',
   `fired_time` bigint NOT NULL COMMENT '触发的时间',
   `sched_time` bigint NOT NULL COMMENT '定时器制定的时间',
   `priority` int NOT NULL COMMENT '优先级',
-  `state` varchar(16) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '状态',
-  `job_name` varchar(200) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '任务名称',
-  `job_group` varchar(200) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '任务组名',
-  `is_nonconcurrent` varchar(1) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '是否并发',
-  `requests_recovery` varchar(1) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '是否接受恢复执行',
+  `state` varchar(16) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '状态',
+  `job_name` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '任务名称',
+  `job_group` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '任务组名',
+  `is_nonconcurrent` varchar(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '是否并发',
+  `requests_recovery` varchar(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '是否接受恢复执行',
   PRIMARY KEY (`sched_name`,`entry_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='已触发的触发器表';
 
@@ -995,15 +1186,15 @@ COMMIT;
 -- ----------------------------
 DROP TABLE IF EXISTS `qrtz_job_details`;
 CREATE TABLE `qrtz_job_details` (
-  `sched_name` varchar(120) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '调度名称',
-  `job_name` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '任务名称',
-  `job_group` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '任务组名',
-  `description` varchar(250) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '相关介绍',
-  `job_class_name` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '执行任务类名称',
-  `is_durable` varchar(1) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '是否持久化',
-  `is_nonconcurrent` varchar(1) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '是否并发',
-  `is_update_data` varchar(1) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '是否更新数据',
-  `requests_recovery` varchar(1) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '是否接受恢复执行',
+  `sched_name` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '调度名称',
+  `job_name` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '任务名称',
+  `job_group` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '任务组名',
+  `description` varchar(250) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '相关介绍',
+  `job_class_name` varchar(250) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '执行任务类名称',
+  `is_durable` varchar(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '是否持久化',
+  `is_nonconcurrent` varchar(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '是否并发',
+  `is_update_data` varchar(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '是否更新数据',
+  `requests_recovery` varchar(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '是否接受恢复执行',
   `job_data` blob COMMENT '存放持久化job对象',
   PRIMARY KEY (`sched_name`,`job_name`,`job_group`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='任务详细信息表';
@@ -1019,8 +1210,8 @@ COMMIT;
 -- ----------------------------
 DROP TABLE IF EXISTS `qrtz_locks`;
 CREATE TABLE `qrtz_locks` (
-  `sched_name` varchar(120) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '调度名称',
-  `lock_name` varchar(40) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '悲观锁名称',
+  `sched_name` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '调度名称',
+  `lock_name` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '悲观锁名称',
   PRIMARY KEY (`sched_name`,`lock_name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='存储的悲观锁信息表';
 
@@ -1035,8 +1226,8 @@ COMMIT;
 -- ----------------------------
 DROP TABLE IF EXISTS `qrtz_paused_trigger_grps`;
 CREATE TABLE `qrtz_paused_trigger_grps` (
-  `sched_name` varchar(120) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '调度名称',
-  `trigger_group` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'qrtz_triggers表trigger_group的外键',
+  `sched_name` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '调度名称',
+  `trigger_group` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'qrtz_triggers表trigger_group的外键',
   PRIMARY KEY (`sched_name`,`trigger_group`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='暂停的触发器表';
 
@@ -1051,8 +1242,8 @@ COMMIT;
 -- ----------------------------
 DROP TABLE IF EXISTS `qrtz_scheduler_state`;
 CREATE TABLE `qrtz_scheduler_state` (
-  `sched_name` varchar(120) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '调度名称',
-  `instance_name` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '实例名称',
+  `sched_name` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '调度名称',
+  `instance_name` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '实例名称',
   `last_checkin_time` bigint NOT NULL COMMENT '上次检查时间',
   `checkin_interval` bigint NOT NULL COMMENT '检查间隔时间',
   PRIMARY KEY (`sched_name`,`instance_name`)
@@ -1069,9 +1260,9 @@ COMMIT;
 -- ----------------------------
 DROP TABLE IF EXISTS `qrtz_simple_triggers`;
 CREATE TABLE `qrtz_simple_triggers` (
-  `sched_name` varchar(120) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '调度名称',
-  `trigger_name` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'qrtz_triggers表trigger_name的外键',
-  `trigger_group` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'qrtz_triggers表trigger_group的外键',
+  `sched_name` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '调度名称',
+  `trigger_name` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'qrtz_triggers表trigger_name的外键',
+  `trigger_group` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'qrtz_triggers表trigger_group的外键',
   `repeat_count` bigint NOT NULL COMMENT '重复的次数统计',
   `repeat_interval` bigint NOT NULL COMMENT '重复的间隔时间',
   `times_triggered` bigint NOT NULL COMMENT '已经触发的次数',
@@ -1090,20 +1281,20 @@ COMMIT;
 -- ----------------------------
 DROP TABLE IF EXISTS `qrtz_simprop_triggers`;
 CREATE TABLE `qrtz_simprop_triggers` (
-  `sched_name` varchar(120) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '调度名称',
-  `trigger_name` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'qrtz_triggers表trigger_name的外键',
-  `trigger_group` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'qrtz_triggers表trigger_group的外键',
-  `str_prop_1` varchar(512) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'String类型的trigger的第一个参数',
-  `str_prop_2` varchar(512) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'String类型的trigger的第二个参数',
-  `str_prop_3` varchar(512) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'String类型的trigger的第三个参数',
+  `sched_name` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '调度名称',
+  `trigger_name` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'qrtz_triggers表trigger_name的外键',
+  `trigger_group` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'qrtz_triggers表trigger_group的外键',
+  `str_prop_1` varchar(512) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'String类型的trigger的第一个参数',
+  `str_prop_2` varchar(512) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'String类型的trigger的第二个参数',
+  `str_prop_3` varchar(512) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'String类型的trigger的第三个参数',
   `int_prop_1` int DEFAULT NULL COMMENT 'int类型的trigger的第一个参数',
   `int_prop_2` int DEFAULT NULL COMMENT 'int类型的trigger的第二个参数',
   `long_prop_1` bigint DEFAULT NULL COMMENT 'long类型的trigger的第一个参数',
   `long_prop_2` bigint DEFAULT NULL COMMENT 'long类型的trigger的第二个参数',
   `dec_prop_1` decimal(13,4) DEFAULT NULL COMMENT 'decimal类型的trigger的第一个参数',
   `dec_prop_2` decimal(13,4) DEFAULT NULL COMMENT 'decimal类型的trigger的第二个参数',
-  `bool_prop_1` varchar(1) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'Boolean类型的trigger的第一个参数',
-  `bool_prop_2` varchar(1) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'Boolean类型的trigger的第二个参数',
+  `bool_prop_1` varchar(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'Boolean类型的trigger的第一个参数',
+  `bool_prop_2` varchar(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'Boolean类型的trigger的第二个参数',
   PRIMARY KEY (`sched_name`,`trigger_name`,`trigger_group`),
   CONSTRAINT `qrtz_simprop_triggers_ibfk_1` FOREIGN KEY (`sched_name`, `trigger_name`, `trigger_group`) REFERENCES `qrtz_triggers` (`sched_name`, `trigger_name`, `trigger_group`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='同步机制的行锁表';
@@ -1119,20 +1310,20 @@ COMMIT;
 -- ----------------------------
 DROP TABLE IF EXISTS `qrtz_triggers`;
 CREATE TABLE `qrtz_triggers` (
-  `sched_name` varchar(120) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '调度名称',
-  `trigger_name` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '触发器的名字',
-  `trigger_group` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '触发器所属组的名字',
-  `job_name` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'qrtz_job_details表job_name的外键',
-  `job_group` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'qrtz_job_details表job_group的外键',
-  `description` varchar(250) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '相关介绍',
+  `sched_name` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '调度名称',
+  `trigger_name` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '触发器的名字',
+  `trigger_group` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '触发器所属组的名字',
+  `job_name` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'qrtz_job_details表job_name的外键',
+  `job_group` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'qrtz_job_details表job_group的外键',
+  `description` varchar(250) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '相关介绍',
   `next_fire_time` bigint DEFAULT NULL COMMENT '上一次触发时间（毫秒）',
   `prev_fire_time` bigint DEFAULT NULL COMMENT '下一次触发时间（默认为-1表示不触发）',
   `priority` int DEFAULT NULL COMMENT '优先级',
-  `trigger_state` varchar(16) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '触发器状态',
-  `trigger_type` varchar(8) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '触发器的类型',
+  `trigger_state` varchar(16) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '触发器状态',
+  `trigger_type` varchar(8) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '触发器的类型',
   `start_time` bigint NOT NULL COMMENT '开始时间',
   `end_time` bigint DEFAULT NULL COMMENT '结束时间',
-  `calendar_name` varchar(200) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '日程表名称',
+  `calendar_name` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '日程表名称',
   `misfire_instr` smallint DEFAULT NULL COMMENT '补偿执行的策略',
   `job_data` blob COMMENT '存放持久化job对象',
   PRIMARY KEY (`sched_name`,`trigger_name`,`trigger_group`),
@@ -1152,23 +1343,23 @@ COMMIT;
 DROP TABLE IF EXISTS `school`;
 CREATE TABLE `school` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) COLLATE utf8mb4_bin DEFAULT NULL,
-  `alias` varchar(255) COLLATE utf8mb4_bin DEFAULT NULL,
-  `province` varchar(255) COLLATE utf8mb4_bin DEFAULT NULL,
-  `province_code` varchar(255) COLLATE utf8mb4_bin DEFAULT NULL,
-  `city` varchar(255) COLLATE utf8mb4_bin DEFAULT NULL,
-  `city_code` varchar(255) COLLATE utf8mb4_bin DEFAULT NULL,
-  `area` varchar(255) COLLATE utf8mb4_bin DEFAULT NULL,
-  `area_code` varchar(255) COLLATE utf8mb4_bin DEFAULT NULL,
-  `address` varchar(255) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '地址',
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
+  `alias` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
+  `province` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
+  `province_code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
+  `city` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
+  `city_code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
+  `area` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
+  `area_code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
+  `address` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL COMMENT '地址',
   `date` datetime DEFAULT NULL COMMENT '建校时间',
   `type` int DEFAULT NULL COMMENT '类型：1省会级，2市级，3县级',
   `yy_mode` int DEFAULT NULL COMMENT '运营方式：1第三种方式 2省级加盟总校 3省级直营市级 4市级加盟总校 5市级直营县级 6县级加盟总校 7总校直营 8县级加盟市级 9试运营 16外机构',
   `yy_type` int DEFAULT NULL COMMENT '运营类型 1直营 2加盟 3第三种 4外机构',
-  `brief` text COLLATE utf8mb4_bin COMMENT '简介',
+  `brief` text CHARACTER SET utf8mb4 COLLATE utf8mb4_bin COMMENT '简介',
   `status` int DEFAULT NULL COMMENT '运营状态：1正常，2删除，3未完善，4停业',
   `state` int DEFAULT NULL COMMENT '停课状态（暂定）',
-  `category` varchar(255) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '类型，school校区，depart部门',
+  `category` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL COMMENT '类型，school校区，depart部门',
   `address_id` int DEFAULT NULL,
   `admin_id` int NOT NULL COMMENT '当前负责人ID',
   `pid` int DEFAULT NULL COMMENT '上级ID',
@@ -1179,10 +1370,10 @@ CREATE TABLE `school` (
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   `deleted_at` datetime DEFAULT NULL,
-  `door_head_photo` varchar(255) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '门头照片',
-  `business_license` varchar(255) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '营业执照',
-  `workflow_id` varchar(50) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '流程实例ID（审批进度、历史都要用到这个字段）',
-  `workflow_task_node` varchar(50) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '当前审批到哪里（BPMN中的TaskName）',
+  `door_head_photo` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL COMMENT '门头照片',
+  `business_license` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL COMMENT '营业执照',
+  `workflow_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL COMMENT '流程实例ID（审批进度、历史都要用到这个字段）',
+  `workflow_task_node` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL COMMENT '当前审批到哪里（BPMN中的TaskName）',
   `workflow_status` int DEFAULT NULL COMMENT '审批状态（0:待审批、1审批中、2审批不通过、3审批通过、4审批中途不通过)',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=90001 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
@@ -1191,11 +1382,11 @@ CREATE TABLE `school` (
 -- Records of school
 -- ----------------------------
 BEGIN;
-INSERT INTO `school` (`id`, `name`, `alias`, `province`, `province_code`, `city`, `city_code`, `area`, `area_code`, `address`, `date`, `type`, `yy_mode`, `yy_type`, `brief`, `status`, `state`, `category`, `address_id`, `admin_id`, `pid`, `directly_id`, `class_id`, `crm_id`, `origin_id`, `created_at`, `updated_at`, `deleted_at`, `door_head_photo`, `business_license`, `workflow_id`, `workflow_task_node`, `workflow_status`) VALUES (27, '天津南开校区', '南开校区', '天津市', '120000', '天津市', '120000', '南开区', '120104', '天津市南开区新途径职教', '2022-04-29 00:00:00', 3, 6, 2, '这里是学校的简介，新途径必须大钱', 1, 0, 'school', 0, 3366, 0, 0, 891, 806, 806, '2022-08-15 16:40:00', '2022-09-20 18:07:07', '2022-04-29 10:55:00', NULL, NULL, NULL, NULL, 0);
-INSERT INTO `school` (`id`, `name`, `alias`, `province`, `province_code`, `city`, `city_code`, `area`, `area_code`, `address`, `date`, `type`, `yy_mode`, `yy_type`, `brief`, `status`, `state`, `category`, `address_id`, `admin_id`, `pid`, `directly_id`, `class_id`, `crm_id`, `origin_id`, `created_at`, `updated_at`, `deleted_at`, `door_head_photo`, `business_license`, `workflow_id`, `workflow_task_node`, `workflow_status`) VALUES (28, '天津西青校区', '西青校区', '天津市', '120000', '天津市', '120000', '西青区', '120111', '天津西青区新途径职教', '2022-01-20 00:00:00', 3, 6, 2, '这里是学校的简介，新途径赚大钱', 1, 0, 'school', 0, 58, 0, 0, 892, 782, 782, '2022-08-15 16:40:00', '2022-09-20 18:07:07', '2022-01-20 11:03:00', NULL, NULL, NULL, NULL, 0);
-INSERT INTO `school` (`id`, `name`, `alias`, `province`, `province_code`, `city`, `city_code`, `area`, `area_code`, `address`, `date`, `type`, `yy_mode`, `yy_type`, `brief`, `status`, `state`, `category`, `address_id`, `admin_id`, `pid`, `directly_id`, `class_id`, `crm_id`, `origin_id`, `created_at`, `updated_at`, `deleted_at`, `door_head_photo`, `business_license`, `workflow_id`, `workflow_task_node`, `workflow_status`) VALUES (29, '天津宝坻校区', '宝坻校区', '天津市', '120000', '天津市', '120000', '宝坻区', '120115', '天津市宝坻区津围线商业街4-11', '2020-12-28 00:00:00', 3, 6, 2, '这里是学校的简介，新途径赚大钱', 1, 0, 'school', 0, 55, 0, 0, 681, 681, 681, '2022-08-15 16:40:00', '2022-08-15 16:40:00', NULL, NULL, NULL, NULL, NULL, 0);
-INSERT INTO `school` (`id`, `name`, `alias`, `province`, `province_code`, `city`, `city_code`, `area`, `area_code`, `address`, `date`, `type`, `yy_mode`, `yy_type`, `brief`, `status`, `state`, `category`, `address_id`, `admin_id`, `pid`, `directly_id`, `class_id`, `crm_id`, `origin_id`, `created_at`, `updated_at`, `deleted_at`, `door_head_photo`, `business_license`, `workflow_id`, `workflow_task_node`, `workflow_status`) VALUES (30, '天津滨海校区', '滨海校区', '天津市', '120000', '天津市', '120000', '滨海新区', '120116', '天津市滨海新区宝龙国际广场B座2406', '2022-04-15 00:00:00', 3, 6, 2, '这里是学校的简介，新途径赚大钱', 1, 0, 'school', 0, 42, 0, 0, 682, 682, 682, '2022-08-15 16:40:00', '2022-08-15 16:40:00', NULL, NULL, NULL, NULL, NULL, 0);
-INSERT INTO `school` (`id`, `name`, `alias`, `province`, `province_code`, `city`, `city_code`, `area`, `area_code`, `address`, `date`, `type`, `yy_mode`, `yy_type`, `brief`, `status`, `state`, `category`, `address_id`, `admin_id`, `pid`, `directly_id`, `class_id`, `crm_id`, `origin_id`, `created_at`, `updated_at`, `deleted_at`, `door_head_photo`, `business_license`, `workflow_id`, `workflow_task_node`, `workflow_status`) VALUES (31, '天津静海校区', '静海校区', '天津市', '120000', '天津市', '120000', '静海区', '120118', '天津市静海区新途径职教', '2022-04-29 00:00:00', 3, 6, 2, '这里是学校的简介，新途径赚大钱', 1, 0, 'school', 0, 0, 0, 0, 893, 807, 807, '2022-08-15 16:40:00', '2022-09-20 18:07:08', '2022-04-29 10:56:00', NULL, NULL, NULL, NULL, 0);
+INSERT INTO `school` (`id`, `name`, `alias`, `province`, `province_code`, `city`, `city_code`, `area`, `area_code`, `address`, `date`, `type`, `yy_mode`, `yy_type`, `brief`, `status`, `state`, `category`, `address_id`, `admin_id`, `pid`, `directly_id`, `class_id`, `crm_id`, `origin_id`, `created_at`, `updated_at`, `deleted_at`, `door_head_photo`, `business_license`, `workflow_id`, `workflow_task_node`, `workflow_status`) VALUES (27, '天津南开校区', '南开校区', '天津市', '120000', '天津市', '120000', '南开区', '120104', '天津市南开区新途径职教', '2022-04-29 00:00:00', 3, 6, 2, '这里是学校的简介，新途径必须大钱', 1, 0, 'school', 0, 3366, 0, 0, 891, 806, 806, '2022-08-15 16:40:00', '2022-09-20 18:07:07', '2022-04-29 10:55:00', NULL, NULL, '8c674730-3ff5-11ee-b131-5a73e78fbd04', 'cwfzr', 3);
+INSERT INTO `school` (`id`, `name`, `alias`, `province`, `province_code`, `city`, `city_code`, `area`, `area_code`, `address`, `date`, `type`, `yy_mode`, `yy_type`, `brief`, `status`, `state`, `category`, `address_id`, `admin_id`, `pid`, `directly_id`, `class_id`, `crm_id`, `origin_id`, `created_at`, `updated_at`, `deleted_at`, `door_head_photo`, `business_license`, `workflow_id`, `workflow_task_node`, `workflow_status`) VALUES (28, '天津西青校区', '西青校区', '天津市', '120000', '天津市', '120000', '西青区', '120111', '天津西青区新途径职教', '2022-01-20 00:00:00', 3, 6, 2, '这里是学校的简介，新途径赚大钱', 1, 0, 'school', 0, 58, 0, 0, 892, 782, 782, '2022-08-15 16:40:00', '2022-09-20 18:07:07', '2022-01-20 11:03:00', NULL, NULL, '8c674731-3ff5-11ee-b131-5a73e78fbd04', 'zg', 2);
+INSERT INTO `school` (`id`, `name`, `alias`, `province`, `province_code`, `city`, `city_code`, `area`, `area_code`, `address`, `date`, `type`, `yy_mode`, `yy_type`, `brief`, `status`, `state`, `category`, `address_id`, `admin_id`, `pid`, `directly_id`, `class_id`, `crm_id`, `origin_id`, `created_at`, `updated_at`, `deleted_at`, `door_head_photo`, `business_license`, `workflow_id`, `workflow_task_node`, `workflow_status`) VALUES (29, '天津宝坻校区', '宝坻校区', '天津市', '120000', '天津市', '120000', '宝坻区', '120115', '天津市宝坻区津围线商业街4-11', '2020-12-28 00:00:00', 3, 6, 2, '这里是学校的简介，新途径赚大钱', 1, 0, 'school', 0, 55, 0, 0, 681, 681, 681, '2022-08-15 16:40:00', '2022-08-15 16:40:00', NULL, NULL, NULL, '8c9498de-3ff5-11ee-b131-5a73e78fbd04', 'cwfzr', 2);
+INSERT INTO `school` (`id`, `name`, `alias`, `province`, `province_code`, `city`, `city_code`, `area`, `area_code`, `address`, `date`, `type`, `yy_mode`, `yy_type`, `brief`, `status`, `state`, `category`, `address_id`, `admin_id`, `pid`, `directly_id`, `class_id`, `crm_id`, `origin_id`, `created_at`, `updated_at`, `deleted_at`, `door_head_photo`, `business_license`, `workflow_id`, `workflow_task_node`, `workflow_status`) VALUES (30, '天津滨海校区', '滨海校区', '天津市', '120000', '天津市', '120000', '滨海新区', '120116', '天津市滨海新区宝龙国际广场B座2406', '2022-04-15 00:00:00', 3, 6, 2, '这里是学校的简介，新途径赚大钱', 1, 0, 'school', 0, 42, 0, 0, 682, 682, 682, '2022-08-15 16:40:00', '2022-08-15 16:40:00', NULL, NULL, NULL, '8d149e5d-3ff5-11ee-b131-5a73e78fbd04', 'zg', 1);
+INSERT INTO `school` (`id`, `name`, `alias`, `province`, `province_code`, `city`, `city_code`, `area`, `area_code`, `address`, `date`, `type`, `yy_mode`, `yy_type`, `brief`, `status`, `state`, `category`, `address_id`, `admin_id`, `pid`, `directly_id`, `class_id`, `crm_id`, `origin_id`, `created_at`, `updated_at`, `deleted_at`, `door_head_photo`, `business_license`, `workflow_id`, `workflow_task_node`, `workflow_status`) VALUES (31, '天津静海校区', '静海校区', '天津市', '120000', '天津市', '120000', '静海区', '120118', '天津市静海区新途径职教', '2022-04-29 00:00:00', 3, 6, 2, '这里是学校的简介，新途径赚大钱', 1, 0, 'school', 0, 0, 0, 0, 893, 807, 807, '2022-08-15 16:40:00', '2022-09-20 18:07:08', '2022-04-29 10:56:00', NULL, NULL, '8d699c3c-3ff5-11ee-b131-5a73e78fbd04', '发起人', 1);
 INSERT INTO `school` (`id`, `name`, `alias`, `province`, `province_code`, `city`, `city_code`, `area`, `area_code`, `address`, `date`, `type`, `yy_mode`, `yy_type`, `brief`, `status`, `state`, `category`, `address_id`, `admin_id`, `pid`, `directly_id`, `class_id`, `crm_id`, `origin_id`, `created_at`, `updated_at`, `deleted_at`, `door_head_photo`, `business_license`, `workflow_id`, `workflow_task_node`, `workflow_status`) VALUES (32, '秦皇岛卢龙县校区', '卢龙县校区', '河北省', '130000', '秦皇岛市', '130300', '卢龙县', '130324', '河北省秦皇岛市卢龙县城龙城路与永兴大街交叉口西南拐角综合楼207室', '2022-07-12 00:00:00', 3, 6, 2, '这里是学校的简介，新途径赚大钱', 1, 0, 'school', 0, 3676, 0, 0, 894, 1004, 819, '2022-07-14 15:17:00', '2022-09-20 18:07:09', NULL, NULL, NULL, NULL, NULL, 0);
 INSERT INTO `school` (`id`, `name`, `alias`, `province`, `province_code`, `city`, `city_code`, `area`, `area_code`, `address`, `date`, `type`, `yy_mode`, `yy_type`, `brief`, `status`, `state`, `category`, `address_id`, `admin_id`, `pid`, `directly_id`, `class_id`, `crm_id`, `origin_id`, `created_at`, `updated_at`, `deleted_at`, `door_head_photo`, `business_license`, `workflow_id`, `workflow_task_node`, `workflow_status`) VALUES (33, '邯郸峰峰矿区校区', '峰峰矿区校区', '河北省', '130000', '', '130000', '', '130406', '邯郸市峰峰矿区美雅小区新途径职教', '2022-06-24 00:00:00', 3, 6, 2, '这里是学校的简介，新途径赚大钱', 1, 0, 'school', 0, 3319, 0, 0, 895, 1005, 814, '2022-07-30 09:45:00', '2023-01-16 10:05:05', NULL, NULL, NULL, NULL, NULL, 0);
 INSERT INTO `school` (`id`, `name`, `alias`, `province`, `province_code`, `city`, `city_code`, `area`, `area_code`, `address`, `date`, `type`, `yy_mode`, `yy_type`, `brief`, `status`, `state`, `category`, `address_id`, `admin_id`, `pid`, `directly_id`, `class_id`, `crm_id`, `origin_id`, `created_at`, `updated_at`, `deleted_at`, `door_head_photo`, `business_license`, `workflow_id`, `workflow_task_node`, `workflow_status`) VALUES (34, '保定雄安校区', '雄安校区', '河北省', '130000', '保定市', '130600', '雄县', '130638', '雄县雄州路未来已来孵化基地智创楼 201', '2021-02-24 00:00:00', 3, 6, 2, '这里是学校的简介，新途径赚大钱', 1, 0, 'school', 0, 0, 0, 0, 110, 110, 110, '2021-07-28 11:25:00', '2023-03-27 14:19:10', NULL, NULL, NULL, NULL, NULL, 0);
@@ -1769,15 +1960,15 @@ COMMIT;
 DROP TABLE IF EXISTS `sys_config`;
 CREATE TABLE `sys_config` (
   `config_id` int NOT NULL AUTO_INCREMENT COMMENT '参数主键',
-  `config_name` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '参数名称',
-  `config_key` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '参数键名',
-  `config_value` varchar(500) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '参数键值',
-  `config_type` char(1) COLLATE utf8mb4_unicode_ci DEFAULT 'N' COMMENT '系统内置（Y是 N否）',
-  `create_by` varchar(64) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '创建者',
+  `config_name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '参数名称',
+  `config_key` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '参数键名',
+  `config_value` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '参数键值',
+  `config_type` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT 'N' COMMENT '系统内置（Y是 N否）',
+  `create_by` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '创建者',
   `create_time` datetime DEFAULT NULL COMMENT '创建时间',
-  `update_by` varchar(64) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '更新者',
+  `update_by` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '更新者',
   `update_time` datetime DEFAULT NULL COMMENT '更新时间',
-  `remark` varchar(500) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '备注',
+  `remark` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '备注',
   PRIMARY KEY (`config_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=100 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='参数配置表';
 
@@ -1799,17 +1990,17 @@ DROP TABLE IF EXISTS `sys_dept`;
 CREATE TABLE `sys_dept` (
   `dept_id` bigint NOT NULL AUTO_INCREMENT COMMENT '部门id',
   `parent_id` bigint DEFAULT '0' COMMENT '父部门id',
-  `ancestors` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '祖级列表',
-  `dept_name` varchar(30) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '部门名称',
+  `ancestors` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '祖级列表',
+  `dept_name` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '部门名称',
   `order_num` int DEFAULT '0' COMMENT '显示顺序',
-  `leader` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '负责人',
-  `phone` varchar(11) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '联系电话',
-  `email` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '邮箱',
-  `status` char(1) COLLATE utf8mb4_unicode_ci DEFAULT '0' COMMENT '部门状态（0正常 1停用）',
-  `del_flag` char(1) COLLATE utf8mb4_unicode_ci DEFAULT '0' COMMENT '删除标志（0代表存在 2代表删除）',
-  `create_by` varchar(64) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '创建者',
+  `leader` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '负责人',
+  `phone` varchar(11) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '联系电话',
+  `email` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '邮箱',
+  `status` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT '0' COMMENT '部门状态（0正常 1停用）',
+  `del_flag` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT '0' COMMENT '删除标志（0代表存在 2代表删除）',
+  `create_by` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '创建者',
   `create_time` datetime DEFAULT NULL COMMENT '创建时间',
-  `update_by` varchar(64) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '更新者',
+  `update_by` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '更新者',
   `update_time` datetime DEFAULT NULL COMMENT '更新时间',
   PRIMARY KEY (`dept_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=202 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='部门表';
@@ -1839,18 +2030,18 @@ DROP TABLE IF EXISTS `sys_dict_data`;
 CREATE TABLE `sys_dict_data` (
   `dict_code` bigint NOT NULL AUTO_INCREMENT COMMENT '字典编码',
   `dict_sort` int DEFAULT '0' COMMENT '字典排序',
-  `dict_label` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '字典标签',
-  `dict_value` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '字典键值',
-  `dict_type` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '字典类型',
-  `css_class` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '样式属性（其他样式扩展）',
-  `list_class` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '表格回显样式',
-  `is_default` char(1) COLLATE utf8mb4_unicode_ci DEFAULT 'N' COMMENT '是否默认（Y是 N否）',
-  `status` char(1) COLLATE utf8mb4_unicode_ci DEFAULT '0' COMMENT '状态（0正常 1停用）',
-  `create_by` varchar(64) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '创建者',
+  `dict_label` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '字典标签',
+  `dict_value` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '字典键值',
+  `dict_type` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '字典类型',
+  `css_class` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '样式属性（其他样式扩展）',
+  `list_class` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '表格回显样式',
+  `is_default` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT 'N' COMMENT '是否默认（Y是 N否）',
+  `status` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT '0' COMMENT '状态（0正常 1停用）',
+  `create_by` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '创建者',
   `create_time` datetime DEFAULT NULL COMMENT '创建时间',
-  `update_by` varchar(64) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '更新者',
+  `update_by` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '更新者',
   `update_time` datetime DEFAULT NULL COMMENT '更新时间',
-  `remark` varchar(500) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '备注',
+  `remark` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '备注',
   PRIMARY KEY (`dict_code`)
 ) ENGINE=InnoDB AUTO_INCREMENT=100 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='字典数据表';
 
@@ -1895,14 +2086,14 @@ COMMIT;
 DROP TABLE IF EXISTS `sys_dict_type`;
 CREATE TABLE `sys_dict_type` (
   `dict_id` bigint NOT NULL AUTO_INCREMENT COMMENT '字典主键',
-  `dict_name` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '字典名称',
-  `dict_type` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '字典类型',
-  `status` char(1) COLLATE utf8mb4_unicode_ci DEFAULT '0' COMMENT '状态（0正常 1停用）',
-  `create_by` varchar(64) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '创建者',
+  `dict_name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '字典名称',
+  `dict_type` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '字典类型',
+  `status` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT '0' COMMENT '状态（0正常 1停用）',
+  `create_by` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '创建者',
   `create_time` datetime DEFAULT NULL COMMENT '创建时间',
-  `update_by` varchar(64) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '更新者',
+  `update_by` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '更新者',
   `update_time` datetime DEFAULT NULL COMMENT '更新时间',
-  `remark` varchar(500) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '备注',
+  `remark` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '备注',
   PRIMARY KEY (`dict_id`),
   UNIQUE KEY `dict_type` (`dict_type`)
 ) ENGINE=InnoDB AUTO_INCREMENT=100 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='字典类型表';
@@ -1929,18 +2120,18 @@ COMMIT;
 DROP TABLE IF EXISTS `sys_job`;
 CREATE TABLE `sys_job` (
   `job_id` bigint NOT NULL AUTO_INCREMENT COMMENT '任务ID',
-  `job_name` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '任务名称',
-  `job_group` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'DEFAULT' COMMENT '任务组名',
-  `invoke_target` varchar(500) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '调用目标字符串',
-  `cron_expression` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT 'cron执行表达式',
-  `misfire_policy` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT '3' COMMENT '计划执行错误策略（1立即执行 2执行一次 3放弃执行）',
-  `concurrent` char(1) COLLATE utf8mb4_unicode_ci DEFAULT '1' COMMENT '是否并发执行（0允许 1禁止）',
-  `status` char(1) COLLATE utf8mb4_unicode_ci DEFAULT '0' COMMENT '状态（0正常 1暂停）',
-  `create_by` varchar(64) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '创建者',
+  `job_name` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '任务名称',
+  `job_group` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'DEFAULT' COMMENT '任务组名',
+  `invoke_target` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '调用目标字符串',
+  `cron_expression` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT 'cron执行表达式',
+  `misfire_policy` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT '3' COMMENT '计划执行错误策略（1立即执行 2执行一次 3放弃执行）',
+  `concurrent` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT '1' COMMENT '是否并发执行（0允许 1禁止）',
+  `status` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT '0' COMMENT '状态（0正常 1暂停）',
+  `create_by` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '创建者',
   `create_time` datetime DEFAULT NULL COMMENT '创建时间',
-  `update_by` varchar(64) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '更新者',
+  `update_by` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '更新者',
   `update_time` datetime DEFAULT NULL COMMENT '更新时间',
-  `remark` varchar(500) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '备注信息',
+  `remark` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '备注信息',
   PRIMARY KEY (`job_id`,`job_name`,`job_group`)
 ) ENGINE=InnoDB AUTO_INCREMENT=100 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='定时任务调度表';
 
@@ -1959,12 +2150,12 @@ COMMIT;
 DROP TABLE IF EXISTS `sys_job_log`;
 CREATE TABLE `sys_job_log` (
   `job_log_id` bigint NOT NULL AUTO_INCREMENT COMMENT '任务日志ID',
-  `job_name` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '任务名称',
-  `job_group` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '任务组名',
-  `invoke_target` varchar(500) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '调用目标字符串',
-  `job_message` varchar(500) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '日志信息',
-  `status` char(1) COLLATE utf8mb4_unicode_ci DEFAULT '0' COMMENT '执行状态（0正常 1失败）',
-  `exception_info` varchar(2000) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '异常信息',
+  `job_name` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '任务名称',
+  `job_group` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '任务组名',
+  `invoke_target` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '调用目标字符串',
+  `job_message` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '日志信息',
+  `status` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT '0' COMMENT '执行状态（0正常 1失败）',
+  `exception_info` varchar(2000) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '异常信息',
   `create_time` datetime DEFAULT NULL COMMENT '创建时间',
   PRIMARY KEY (`job_log_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='定时任务调度日志表';
@@ -1981,15 +2172,15 @@ COMMIT;
 DROP TABLE IF EXISTS `sys_logininfor`;
 CREATE TABLE `sys_logininfor` (
   `info_id` bigint NOT NULL AUTO_INCREMENT COMMENT '访问ID',
-  `user_name` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '用户账号',
-  `ipaddr` varchar(128) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '登录IP地址',
-  `status` char(1) COLLATE utf8mb4_unicode_ci DEFAULT '0' COMMENT '登录状态（0成功 1失败）',
-  `msg` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '提示信息',
+  `user_name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '用户账号',
+  `ipaddr` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '登录IP地址',
+  `status` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT '0' COMMENT '登录状态（0成功 1失败）',
+  `msg` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '提示信息',
   `access_time` datetime DEFAULT NULL COMMENT '访问时间',
   PRIMARY KEY (`info_id`),
   KEY `idx_sys_logininfor_s` (`status`),
   KEY `idx_sys_logininfor_lt` (`access_time`)
-) ENGINE=InnoDB AUTO_INCREMENT=228 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='系统访问记录';
+) ENGINE=InnoDB AUTO_INCREMENT=235 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='系统访问记录';
 
 -- ----------------------------
 -- Records of sys_logininfor
@@ -2123,6 +2314,13 @@ INSERT INTO `sys_logininfor` (`info_id`, `user_name`, `ipaddr`, `status`, `msg`,
 INSERT INTO `sys_logininfor` (`info_id`, `user_name`, `ipaddr`, `status`, `msg`, `access_time`) VALUES (225, 'cw2', '127.0.0.1', '0', '登录成功', '2023-08-04 15:28:16');
 INSERT INTO `sys_logininfor` (`info_id`, `user_name`, `ipaddr`, `status`, `msg`, `access_time`) VALUES (226, 'cw2', '127.0.0.1', '0', '退出成功', '2023-08-04 15:30:50');
 INSERT INTO `sys_logininfor` (`info_id`, `user_name`, `ipaddr`, `status`, `msg`, `access_time`) VALUES (227, 'admin', '127.0.0.1', '0', '登录成功', '2023-08-04 15:31:05');
+INSERT INTO `sys_logininfor` (`info_id`, `user_name`, `ipaddr`, `status`, `msg`, `access_time`) VALUES (228, 'admin', '127.0.0.1', '0', '登录成功', '2023-08-21 15:37:06');
+INSERT INTO `sys_logininfor` (`info_id`, `user_name`, `ipaddr`, `status`, `msg`, `access_time`) VALUES (229, 'admin', '127.0.0.1', '0', '退出成功', '2023-08-21 15:37:27');
+INSERT INTO `sys_logininfor` (`info_id`, `user_name`, `ipaddr`, `status`, `msg`, `access_time`) VALUES (230, 'zg1', '127.0.0.1', '0', '登录成功', '2023-08-21 15:37:32');
+INSERT INTO `sys_logininfor` (`info_id`, `user_name`, `ipaddr`, `status`, `msg`, `access_time`) VALUES (231, 'zg1', '127.0.0.1', '0', '退出成功', '2023-08-21 15:37:46');
+INSERT INTO `sys_logininfor` (`info_id`, `user_name`, `ipaddr`, `status`, `msg`, `access_time`) VALUES (232, 'cw1', '127.0.0.1', '0', '登录成功', '2023-08-21 15:37:51');
+INSERT INTO `sys_logininfor` (`info_id`, `user_name`, `ipaddr`, `status`, `msg`, `access_time`) VALUES (233, 'cw1', '127.0.0.1', '0', '退出成功', '2023-08-21 15:38:00');
+INSERT INTO `sys_logininfor` (`info_id`, `user_name`, `ipaddr`, `status`, `msg`, `access_time`) VALUES (234, 'admin', '127.0.0.1', '0', '登录成功', '2023-08-21 15:38:05');
 COMMIT;
 
 -- ----------------------------
@@ -2131,24 +2329,24 @@ COMMIT;
 DROP TABLE IF EXISTS `sys_menu`;
 CREATE TABLE `sys_menu` (
   `menu_id` bigint NOT NULL AUTO_INCREMENT COMMENT '菜单ID',
-  `menu_name` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '菜单名称',
+  `menu_name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '菜单名称',
   `parent_id` bigint DEFAULT '0' COMMENT '父菜单ID',
   `order_num` int DEFAULT '0' COMMENT '显示顺序',
-  `path` varchar(200) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '路由地址',
-  `component` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '组件路径',
-  `query` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '路由参数',
+  `path` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '路由地址',
+  `component` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '组件路径',
+  `query` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '路由参数',
   `is_frame` int DEFAULT '1' COMMENT '是否为外链（0是 1否）',
   `is_cache` int DEFAULT '0' COMMENT '是否缓存（0缓存 1不缓存）',
-  `menu_type` char(1) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '菜单类型（M目录 C菜单 F按钮）',
-  `visible` char(1) COLLATE utf8mb4_unicode_ci DEFAULT '0' COMMENT '菜单状态（0显示 1隐藏）',
-  `status` char(1) COLLATE utf8mb4_unicode_ci DEFAULT '0' COMMENT '菜单状态（0正常 1停用）',
-  `perms` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '权限标识',
-  `icon` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT '#' COMMENT '菜单图标',
-  `create_by` varchar(64) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '创建者',
+  `menu_type` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '菜单类型（M目录 C菜单 F按钮）',
+  `visible` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT '0' COMMENT '菜单状态（0显示 1隐藏）',
+  `status` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT '0' COMMENT '菜单状态（0正常 1停用）',
+  `perms` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '权限标识',
+  `icon` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT '#' COMMENT '菜单图标',
+  `create_by` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '创建者',
   `create_time` datetime DEFAULT NULL COMMENT '创建时间',
-  `update_by` varchar(64) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '更新者',
+  `update_by` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '更新者',
   `update_time` datetime DEFAULT NULL COMMENT '更新时间',
-  `remark` varchar(500) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '备注',
+  `remark` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '备注',
   PRIMARY KEY (`menu_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2036 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='菜单权限表';
 
@@ -2265,15 +2463,15 @@ COMMIT;
 DROP TABLE IF EXISTS `sys_notice`;
 CREATE TABLE `sys_notice` (
   `notice_id` int NOT NULL AUTO_INCREMENT COMMENT '公告ID',
-  `notice_title` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '公告标题',
-  `notice_type` char(1) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '公告类型（1通知 2公告）',
+  `notice_title` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '公告标题',
+  `notice_type` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '公告类型（1通知 2公告）',
   `notice_content` longblob COMMENT '公告内容',
-  `status` char(1) COLLATE utf8mb4_unicode_ci DEFAULT '0' COMMENT '公告状态（0正常 1关闭）',
-  `create_by` varchar(64) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '创建者',
+  `status` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT '0' COMMENT '公告状态（0正常 1关闭）',
+  `create_by` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '创建者',
   `create_time` datetime DEFAULT NULL COMMENT '创建时间',
-  `update_by` varchar(64) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '更新者',
+  `update_by` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '更新者',
   `update_time` datetime DEFAULT NULL COMMENT '更新时间',
-  `remark` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '备注',
+  `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '备注',
   PRIMARY KEY (`notice_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='通知公告表';
 
@@ -2291,27 +2489,27 @@ COMMIT;
 DROP TABLE IF EXISTS `sys_oper_log`;
 CREATE TABLE `sys_oper_log` (
   `oper_id` bigint NOT NULL AUTO_INCREMENT COMMENT '日志主键',
-  `title` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '模块标题',
+  `title` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '模块标题',
   `business_type` int DEFAULT '0' COMMENT '业务类型（0其它 1新增 2修改 3删除）',
-  `method` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '方法名称',
-  `request_method` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '请求方式',
+  `method` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '方法名称',
+  `request_method` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '请求方式',
   `operator_type` int DEFAULT '0' COMMENT '操作类别（0其它 1后台用户 2手机端用户）',
-  `oper_name` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '操作人员',
-  `dept_name` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '部门名称',
-  `oper_url` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '请求URL',
-  `oper_ip` varchar(128) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '主机地址',
-  `oper_location` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '操作地点',
-  `oper_param` varchar(2000) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '请求参数',
-  `json_result` varchar(2000) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '返回参数',
+  `oper_name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '操作人员',
+  `dept_name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '部门名称',
+  `oper_url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '请求URL',
+  `oper_ip` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '主机地址',
+  `oper_location` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '操作地点',
+  `oper_param` varchar(2000) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '请求参数',
+  `json_result` varchar(2000) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '返回参数',
   `status` int DEFAULT '0' COMMENT '操作状态（0正常 1异常）',
-  `error_msg` varchar(2000) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '错误消息',
+  `error_msg` varchar(2000) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '错误消息',
   `oper_time` datetime DEFAULT NULL COMMENT '操作时间',
   `cost_time` bigint DEFAULT '0' COMMENT '消耗时间',
   PRIMARY KEY (`oper_id`),
   KEY `idx_sys_oper_log_bt` (`business_type`),
   KEY `idx_sys_oper_log_s` (`status`),
   KEY `idx_sys_oper_log_ot` (`oper_time`)
-) ENGINE=InnoDB AUTO_INCREMENT=276 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='操作日志记录';
+) ENGINE=InnoDB AUTO_INCREMENT=300 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='操作日志记录';
 
 -- ----------------------------
 -- Records of sys_oper_log
@@ -2493,6 +2691,30 @@ INSERT INTO `sys_oper_log` (`oper_id`, `title`, `business_type`, `method`, `requ
 INSERT INTO `sys_oper_log` (`oper_id`, `title`, `business_type`, `method`, `request_method`, `operator_type`, `oper_name`, `dept_name`, `oper_url`, `oper_ip`, `oper_location`, `oper_param`, `json_result`, `status`, `error_msg`, `oper_time`, `cost_time`) VALUES (273, '分校成立发起流程', 2, 'com.ruoyi.school.controller.SchoolBusController.startFlow()', 'GET', 1, 'admin', NULL, '/school/startFlow/27', '127.0.0.1', '', '{}', '{\"msg\":\"操作成功\",\"code\":200,\"data\":{\"address\":\"天津市南开区新途径职教\",\"addressId\":0,\"adminId\":3366,\"alias\":\"南开校区\",\"area\":\"南开区\",\"areaCode\":\"120104\",\"brief\":\"这里是学校的简介，新途径必须大钱\",\"category\":\"school\",\"city\":\"天津市\",\"cityCode\":\"120000\",\"classId\":891,\"createdAt\":\"2022-08-15 16:40:00\",\"crmId\":806,\"date\":\"2022-04-29\",\"deletedAt\":\"2022-04-29 10:55:00\",\"directlyId\":0,\"id\":\"27\",\"name\":\"天津南开校区\",\"originId\":806,\"params\":{},\"pid\":0,\"province\":\"天津市\",\"provinceCode\":\"120000\",\"state\":0,\"status\":1,\"type\":3,\"updatedAt\":\"2022-09-20 18:07:07\",\"workflowId\":\"7000e078-3297-11ee-82f6-f22185ea3ea7\",\"workflowStatus\":1,\"workflowTaskNode\":\"发起人\",\"yyMode\":6,\"yyType\":2}}', 0, NULL, '2023-08-04 15:20:49', 122);
 INSERT INTO `sys_oper_log` (`oper_id`, `title`, `business_type`, `method`, `request_method`, `operator_type`, `oper_name`, `dept_name`, `oper_url`, `oper_ip`, `oper_location`, `oper_param`, `json_result`, `status`, `error_msg`, `oper_time`, `cost_time`) VALUES (274, '分校成立发起流程', 2, 'com.ruoyi.school.controller.SchoolBusController.startFlow()', 'GET', 1, 'admin', NULL, '/school/startFlow/28', '127.0.0.1', '', '{}', '{\"msg\":\"操作成功\",\"code\":200,\"data\":{\"address\":\"天津西青区新途径职教\",\"addressId\":0,\"adminId\":58,\"alias\":\"西青校区\",\"area\":\"西青区\",\"areaCode\":\"120111\",\"brief\":\"这里是学校的简介，新途径赚大钱\",\"category\":\"school\",\"city\":\"天津市\",\"cityCode\":\"120000\",\"classId\":892,\"createdAt\":\"2022-08-15 16:40:00\",\"crmId\":782,\"date\":\"2022-01-20\",\"deletedAt\":\"2022-01-20 11:03:00\",\"directlyId\":0,\"id\":\"28\",\"name\":\"天津西青校区\",\"originId\":782,\"params\":{},\"pid\":0,\"province\":\"天津市\",\"provinceCode\":\"120000\",\"state\":0,\"status\":1,\"type\":3,\"updatedAt\":\"2022-09-20 18:07:07\",\"workflowId\":\"d80fd2e3-3297-11ee-82f6-f22185ea3ea7\",\"workflowStatus\":1,\"workflowTaskNode\":\"发起人\",\"yyMode\":6,\"yyType\":2}}', 0, NULL, '2023-08-04 15:23:44', 146);
 INSERT INTO `sys_oper_log` (`oper_id`, `title`, `business_type`, `method`, `request_method`, `operator_type`, `oper_name`, `dept_name`, `oper_url`, `oper_ip`, `oper_location`, `oper_param`, `json_result`, `status`, `error_msg`, `oper_time`, `cost_time`) VALUES (275, '分校成立发起流程', 2, 'com.ruoyi.school.controller.SchoolBusController.startFlow()', 'GET', 1, 'admin', NULL, '/school/startFlow/34', '127.0.0.1', '', '{}', '{\"msg\":\"操作成功\",\"code\":200,\"data\":{\"address\":\"雄县雄州路未来已来孵化基地智创楼 201\",\"addressId\":0,\"adminId\":0,\"alias\":\"雄安校区\",\"area\":\"雄县\",\"areaCode\":\"130638\",\"brief\":\"这里是学校的简介，新途径赚大钱\",\"category\":\"school\",\"city\":\"保定市\",\"cityCode\":\"130600\",\"classId\":110,\"createdAt\":\"2021-07-28 11:25:00\",\"crmId\":110,\"date\":\"2021-02-24\",\"directlyId\":0,\"id\":\"34\",\"name\":\"保定雄安校区\",\"originId\":110,\"params\":{},\"pid\":0,\"province\":\"河北省\",\"provinceCode\":\"130000\",\"state\":0,\"status\":1,\"type\":3,\"updatedAt\":\"2023-03-27 14:19:10\",\"workflowId\":\"5e5d13a4-3298-11ee-82f6-f22185ea3ea7\",\"workflowStatus\":1,\"workflowTaskNode\":\"发起人\",\"yyMode\":6,\"yyType\":2}}', 0, NULL, '2023-08-04 15:27:29', 134);
+INSERT INTO `sys_oper_log` (`oper_id`, `title`, `business_type`, `method`, `request_method`, `operator_type`, `oper_name`, `dept_name`, `oper_url`, `oper_ip`, `oper_location`, `oper_param`, `json_result`, `status`, `error_msg`, `oper_time`, `cost_time`) VALUES (276, '分校成立发起流程', 2, 'com.ruoyi.school.controller.SchoolBusController.startFlow()', 'GET', 1, 'admin', NULL, '/school/startFlow/28', '127.0.0.1', '', '{}', '{\"msg\":\"操作成功\",\"code\":200,\"data\":{\"address\":\"天津西青区新途径职教\",\"addressId\":0,\"adminId\":58,\"alias\":\"西青校区\",\"area\":\"西青区\",\"areaCode\":\"120111\",\"brief\":\"这里是学校的简介，新途径赚大钱\",\"category\":\"school\",\"city\":\"天津市\",\"cityCode\":\"120000\",\"classId\":892,\"createdAt\":\"2022-08-15 16:40:00\",\"crmId\":782,\"date\":\"2022-01-20\",\"deletedAt\":\"2022-01-20 11:03:00\",\"directlyId\":0,\"id\":\"28\",\"name\":\"天津西青校区\",\"originId\":782,\"params\":{},\"pid\":0,\"province\":\"天津市\",\"provinceCode\":\"120000\",\"state\":0,\"status\":1,\"type\":3,\"updatedAt\":\"2022-09-20 18:07:07\",\"workflowId\":\"8c674731-3ff5-11ee-b131-5a73e78fbd04\",\"workflowStatus\":1,\"workflowTaskNode\":\"发起人\",\"yyMode\":6,\"yyType\":2}}', 0, NULL, '2023-08-21 15:37:15', 586);
+INSERT INTO `sys_oper_log` (`oper_id`, `title`, `business_type`, `method`, `request_method`, `operator_type`, `oper_name`, `dept_name`, `oper_url`, `oper_ip`, `oper_location`, `oper_param`, `json_result`, `status`, `error_msg`, `oper_time`, `cost_time`) VALUES (277, '分校成立发起流程', 2, 'com.ruoyi.school.controller.SchoolBusController.startFlow()', 'GET', 1, 'admin', NULL, '/school/startFlow/27', '127.0.0.1', '', '{}', '{\"msg\":\"操作成功\",\"code\":200,\"data\":{\"address\":\"天津市南开区新途径职教\",\"addressId\":0,\"adminId\":3366,\"alias\":\"南开校区\",\"area\":\"南开区\",\"areaCode\":\"120104\",\"brief\":\"这里是学校的简介，新途径必须大钱\",\"category\":\"school\",\"city\":\"天津市\",\"cityCode\":\"120000\",\"classId\":891,\"createdAt\":\"2022-08-15 16:40:00\",\"crmId\":806,\"date\":\"2022-04-29\",\"deletedAt\":\"2022-04-29 10:55:00\",\"directlyId\":0,\"id\":\"27\",\"name\":\"天津南开校区\",\"originId\":806,\"params\":{},\"pid\":0,\"province\":\"天津市\",\"provinceCode\":\"120000\",\"state\":0,\"status\":1,\"type\":3,\"updatedAt\":\"2022-09-20 18:07:07\",\"workflowId\":\"8c674730-3ff5-11ee-b131-5a73e78fbd04\",\"workflowStatus\":1,\"workflowTaskNode\":\"发起人\",\"yyMode\":6,\"yyType\":2}}', 0, NULL, '2023-08-21 15:37:15', 1164);
+INSERT INTO `sys_oper_log` (`oper_id`, `title`, `business_type`, `method`, `request_method`, `operator_type`, `oper_name`, `dept_name`, `oper_url`, `oper_ip`, `oper_location`, `oper_param`, `json_result`, `status`, `error_msg`, `oper_time`, `cost_time`) VALUES (278, '分校成立发起流程', 2, 'com.ruoyi.school.controller.SchoolBusController.startFlow()', 'GET', 1, 'admin', NULL, '/school/startFlow/29', '127.0.0.1', '', '{}', '{\"msg\":\"操作成功\",\"code\":200,\"data\":{\"address\":\"天津市宝坻区津围线商业街4-11\",\"addressId\":0,\"adminId\":55,\"alias\":\"宝坻校区\",\"area\":\"宝坻区\",\"areaCode\":\"120115\",\"brief\":\"这里是学校的简介，新途径赚大钱\",\"category\":\"school\",\"city\":\"天津市\",\"cityCode\":\"120000\",\"classId\":681,\"createdAt\":\"2022-08-15 16:40:00\",\"crmId\":681,\"date\":\"2020-12-28\",\"directlyId\":0,\"id\":\"29\",\"name\":\"天津宝坻校区\",\"originId\":681,\"params\":{},\"pid\":0,\"province\":\"天津市\",\"provinceCode\":\"120000\",\"state\":0,\"status\":1,\"type\":3,\"updatedAt\":\"2022-08-15 16:40:00\",\"workflowId\":\"8c9498de-3ff5-11ee-b131-5a73e78fbd04\",\"workflowStatus\":1,\"workflowTaskNode\":\"发起人\",\"yyMode\":6,\"yyType\":2}}', 0, NULL, '2023-08-21 15:37:15', 59);
+INSERT INTO `sys_oper_log` (`oper_id`, `title`, `business_type`, `method`, `request_method`, `operator_type`, `oper_name`, `dept_name`, `oper_url`, `oper_ip`, `oper_location`, `oper_param`, `json_result`, `status`, `error_msg`, `oper_time`, `cost_time`) VALUES (279, '分校成立发起流程', 2, 'com.ruoyi.school.controller.SchoolBusController.startFlow()', 'GET', 1, 'admin', NULL, '/school/startFlow/30', '127.0.0.1', '', '{}', '{\"msg\":\"操作成功\",\"code\":200,\"data\":{\"address\":\"天津市滨海新区宝龙国际广场B座2406\",\"addressId\":0,\"adminId\":42,\"alias\":\"滨海校区\",\"area\":\"滨海新区\",\"areaCode\":\"120116\",\"brief\":\"这里是学校的简介，新途径赚大钱\",\"category\":\"school\",\"city\":\"天津市\",\"cityCode\":\"120000\",\"classId\":682,\"createdAt\":\"2022-08-15 16:40:00\",\"crmId\":682,\"date\":\"2022-04-15\",\"directlyId\":0,\"id\":\"30\",\"name\":\"天津滨海校区\",\"originId\":682,\"params\":{},\"pid\":0,\"province\":\"天津市\",\"provinceCode\":\"120000\",\"state\":0,\"status\":1,\"type\":3,\"updatedAt\":\"2022-08-15 16:40:00\",\"workflowId\":\"8d149e5d-3ff5-11ee-b131-5a73e78fbd04\",\"workflowStatus\":1,\"workflowTaskNode\":\"发起人\",\"yyMode\":6,\"yyType\":2}}', 0, NULL, '2023-08-21 15:37:16', 93);
+INSERT INTO `sys_oper_log` (`oper_id`, `title`, `business_type`, `method`, `request_method`, `operator_type`, `oper_name`, `dept_name`, `oper_url`, `oper_ip`, `oper_location`, `oper_param`, `json_result`, `status`, `error_msg`, `oper_time`, `cost_time`) VALUES (280, '分校成立发起流程', 2, 'com.ruoyi.school.controller.SchoolBusController.startFlow()', 'GET', 1, 'admin', NULL, '/school/startFlow/31', '127.0.0.1', '', '{}', '{\"msg\":\"操作成功\",\"code\":200,\"data\":{\"address\":\"天津市静海区新途径职教\",\"addressId\":0,\"adminId\":0,\"alias\":\"静海校区\",\"area\":\"静海区\",\"areaCode\":\"120118\",\"brief\":\"这里是学校的简介，新途径赚大钱\",\"category\":\"school\",\"city\":\"天津市\",\"cityCode\":\"120000\",\"classId\":893,\"createdAt\":\"2022-08-15 16:40:00\",\"crmId\":807,\"date\":\"2022-04-29\",\"deletedAt\":\"2022-04-29 10:56:00\",\"directlyId\":0,\"id\":\"31\",\"name\":\"天津静海校区\",\"originId\":807,\"params\":{},\"pid\":0,\"province\":\"天津市\",\"provinceCode\":\"120000\",\"state\":0,\"status\":1,\"type\":3,\"updatedAt\":\"2022-09-20 18:07:08\",\"workflowId\":\"8d699c3c-3ff5-11ee-b131-5a73e78fbd04\",\"workflowStatus\":1,\"workflowTaskNode\":\"发起人\",\"yyMode\":6,\"yyType\":2}}', 0, NULL, '2023-08-21 15:37:16', 127);
+INSERT INTO `sys_oper_log` (`oper_id`, `title`, `business_type`, `method`, `request_method`, `operator_type`, `oper_name`, `dept_name`, `oper_url`, `oper_ip`, `oper_location`, `oper_param`, `json_result`, `status`, `error_msg`, `oper_time`, `cost_time`) VALUES (281, '查看审批进度', 0, 'com.ruoyi.school.controller.SchoolBusController.HiFlowText()', 'GET', 1, 'admin', NULL, '/school/HiFlowText/27', '127.0.0.1', '', '{}', '{\"msg\":\"操作成功\",\"code\":200,\"data\":[]}', 0, NULL, '2023-08-21 15:37:21', 76);
+INSERT INTO `sys_oper_log` (`oper_id`, `title`, `business_type`, `method`, `request_method`, `operator_type`, `oper_name`, `dept_name`, `oper_url`, `oper_ip`, `oper_location`, `oper_param`, `json_result`, `status`, `error_msg`, `oper_time`, `cost_time`) VALUES (282, '审批', 2, 'com.ruoyi.school.controller.SchoolBusController.apSchool()', 'GET', 1, 'zg1', NULL, '/school/apSchool/27/next', '127.0.0.1', '', '{}', '{\"code\":200}', 0, NULL, '2023-08-21 15:37:37', 241);
+INSERT INTO `sys_oper_log` (`oper_id`, `title`, `business_type`, `method`, `request_method`, `operator_type`, `oper_name`, `dept_name`, `oper_url`, `oper_ip`, `oper_location`, `oper_param`, `json_result`, `status`, `error_msg`, `oper_time`, `cost_time`) VALUES (283, '查询分校成立审批列表', 0, 'com.ruoyi.school.controller.SchoolBusController.apList()', 'GET', 1, 'zg1', NULL, '/school/apList', '127.0.0.1', '', '{\"pageSize\":\"10\",\"pageNum\":\"1\"}', '{\"code\":200,\"msg\":\"查询成功\",\"rows\":[{\"address\":\"天津西青区新途径职教\",\"alias\":\"西青校区\",\"area\":\"西青区\",\"brief\":\"这里是学校的简介，新途径赚大钱\",\"category\":\"school\",\"city\":\"天津市\",\"date\":\"2022-01-20\",\"id\":\"28\",\"name\":\"天津西青校区\",\"params\":{},\"pid\":0,\"province\":\"天津市\",\"state\":0,\"status\":1,\"type\":3},{\"address\":\"天津市宝坻区津围线商业街4-11\",\"alias\":\"宝坻校区\",\"area\":\"宝坻区\",\"brief\":\"这里是学校的简介，新途径赚大钱\",\"category\":\"school\",\"city\":\"天津市\",\"date\":\"2020-12-28\",\"id\":\"29\",\"name\":\"天津宝坻校区\",\"params\":{},\"pid\":0,\"province\":\"天津市\",\"state\":0,\"status\":1,\"type\":3},{\"address\":\"天津市滨海新区宝龙国际广场B座2406\",\"alias\":\"滨海校区\",\"area\":\"滨海新区\",\"brief\":\"这里是学校的简介，新途径赚大钱\",\"category\":\"school\",\"city\":\"天津市\",\"date\":\"2022-04-15\",\"id\":\"30\",\"name\":\"天津滨海校区\",\"params\":{},\"pid\":0,\"province\":\"天津市\",\"state\":0,\"status\":1,\"type\":3},{\"address\":\"天津市静海区新途径职教\",\"alias\":\"静海校区\",\"area\":\"静海区\",\"brief\":\"这里是学校的简介，新途径赚大钱\",\"category\":\"school\",\"city\":\"天津市\",\"date\":\"2022-04-29\",\"id\":\"31\",\"name\":\"天津静海校区\",\"params\":{},\"pid\":0,\"province\":\"天津市\",\"state\":0,\"status\":1,\"type\":3}],\"total\":4}', 0, NULL, '2023-08-21 15:37:37', 39);
+INSERT INTO `sys_oper_log` (`oper_id`, `title`, `business_type`, `method`, `request_method`, `operator_type`, `oper_name`, `dept_name`, `oper_url`, `oper_ip`, `oper_location`, `oper_param`, `json_result`, `status`, `error_msg`, `oper_time`, `cost_time`) VALUES (284, '审批', 2, 'com.ruoyi.school.controller.SchoolBusController.apSchool()', 'GET', 1, 'zg1', NULL, '/school/apSchool/28/back', '127.0.0.1', '', '{}', '{\"code\":200}', 0, NULL, '2023-08-21 15:37:40', 231);
+INSERT INTO `sys_oper_log` (`oper_id`, `title`, `business_type`, `method`, `request_method`, `operator_type`, `oper_name`, `dept_name`, `oper_url`, `oper_ip`, `oper_location`, `oper_param`, `json_result`, `status`, `error_msg`, `oper_time`, `cost_time`) VALUES (285, '查询分校成立审批列表', 0, 'com.ruoyi.school.controller.SchoolBusController.apList()', 'GET', 1, 'zg1', NULL, '/school/apList', '127.0.0.1', '', '{\"pageSize\":\"10\",\"pageNum\":\"1\"}', '{\"code\":200,\"msg\":\"查询成功\",\"rows\":[{\"address\":\"天津市宝坻区津围线商业街4-11\",\"alias\":\"宝坻校区\",\"area\":\"宝坻区\",\"brief\":\"这里是学校的简介，新途径赚大钱\",\"category\":\"school\",\"city\":\"天津市\",\"date\":\"2020-12-28\",\"id\":\"29\",\"name\":\"天津宝坻校区\",\"params\":{},\"pid\":0,\"province\":\"天津市\",\"state\":0,\"status\":1,\"type\":3},{\"address\":\"天津市滨海新区宝龙国际广场B座2406\",\"alias\":\"滨海校区\",\"area\":\"滨海新区\",\"brief\":\"这里是学校的简介，新途径赚大钱\",\"category\":\"school\",\"city\":\"天津市\",\"date\":\"2022-04-15\",\"id\":\"30\",\"name\":\"天津滨海校区\",\"params\":{},\"pid\":0,\"province\":\"天津市\",\"state\":0,\"status\":1,\"type\":3},{\"address\":\"天津市静海区新途径职教\",\"alias\":\"静海校区\",\"area\":\"静海区\",\"brief\":\"这里是学校的简介，新途径赚大钱\",\"category\":\"school\",\"city\":\"天津市\",\"date\":\"2022-04-29\",\"id\":\"31\",\"name\":\"天津静海校区\",\"params\":{},\"pid\":0,\"province\":\"天津市\",\"state\":0,\"status\":1,\"type\":3}],\"total\":3}', 0, NULL, '2023-08-21 15:37:40', 26);
+INSERT INTO `sys_oper_log` (`oper_id`, `title`, `business_type`, `method`, `request_method`, `operator_type`, `oper_name`, `dept_name`, `oper_url`, `oper_ip`, `oper_location`, `oper_param`, `json_result`, `status`, `error_msg`, `oper_time`, `cost_time`) VALUES (286, '审批', 2, 'com.ruoyi.school.controller.SchoolBusController.apSchool()', 'GET', 1, 'zg1', NULL, '/school/apSchool/29/next', '127.0.0.1', '', '{}', '{\"code\":200}', 0, NULL, '2023-08-21 15:37:41', 231);
+INSERT INTO `sys_oper_log` (`oper_id`, `title`, `business_type`, `method`, `request_method`, `operator_type`, `oper_name`, `dept_name`, `oper_url`, `oper_ip`, `oper_location`, `oper_param`, `json_result`, `status`, `error_msg`, `oper_time`, `cost_time`) VALUES (287, '查询分校成立审批列表', 0, 'com.ruoyi.school.controller.SchoolBusController.apList()', 'GET', 1, 'zg1', NULL, '/school/apList', '127.0.0.1', '', '{\"pageSize\":\"10\",\"pageNum\":\"1\"}', '{\"code\":200,\"msg\":\"查询成功\",\"rows\":[{\"address\":\"天津市滨海新区宝龙国际广场B座2406\",\"alias\":\"滨海校区\",\"area\":\"滨海新区\",\"brief\":\"这里是学校的简介，新途径赚大钱\",\"category\":\"school\",\"city\":\"天津市\",\"date\":\"2022-04-15\",\"id\":\"30\",\"name\":\"天津滨海校区\",\"params\":{},\"pid\":0,\"province\":\"天津市\",\"state\":0,\"status\":1,\"type\":3},{\"address\":\"天津市静海区新途径职教\",\"alias\":\"静海校区\",\"area\":\"静海区\",\"brief\":\"这里是学校的简介，新途径赚大钱\",\"category\":\"school\",\"city\":\"天津市\",\"date\":\"2022-04-29\",\"id\":\"31\",\"name\":\"天津静海校区\",\"params\":{},\"pid\":0,\"province\":\"天津市\",\"state\":0,\"status\":1,\"type\":3}],\"total\":2}', 0, NULL, '2023-08-21 15:37:41', 34);
+INSERT INTO `sys_oper_log` (`oper_id`, `title`, `business_type`, `method`, `request_method`, `operator_type`, `oper_name`, `dept_name`, `oper_url`, `oper_ip`, `oper_location`, `oper_param`, `json_result`, `status`, `error_msg`, `oper_time`, `cost_time`) VALUES (288, '审批', 2, 'com.ruoyi.school.controller.SchoolBusController.apSchool()', 'GET', 1, 'zg1', NULL, '/school/apSchool/30/next', '127.0.0.1', '', '{}', '{\"code\":200}', 0, NULL, '2023-08-21 15:37:42', 155);
+INSERT INTO `sys_oper_log` (`oper_id`, `title`, `business_type`, `method`, `request_method`, `operator_type`, `oper_name`, `dept_name`, `oper_url`, `oper_ip`, `oper_location`, `oper_param`, `json_result`, `status`, `error_msg`, `oper_time`, `cost_time`) VALUES (289, '查询分校成立审批列表', 0, 'com.ruoyi.school.controller.SchoolBusController.apList()', 'GET', 1, 'zg1', NULL, '/school/apList', '127.0.0.1', '', '{\"pageSize\":\"10\",\"pageNum\":\"1\"}', '{\"code\":200,\"msg\":\"查询成功\",\"rows\":[{\"address\":\"天津市静海区新途径职教\",\"alias\":\"静海校区\",\"area\":\"静海区\",\"brief\":\"这里是学校的简介，新途径赚大钱\",\"category\":\"school\",\"city\":\"天津市\",\"date\":\"2022-04-29\",\"id\":\"31\",\"name\":\"天津静海校区\",\"params\":{},\"pid\":0,\"province\":\"天津市\",\"state\":0,\"status\":1,\"type\":3}],\"total\":1}', 0, NULL, '2023-08-21 15:37:42', 42);
+INSERT INTO `sys_oper_log` (`oper_id`, `title`, `business_type`, `method`, `request_method`, `operator_type`, `oper_name`, `dept_name`, `oper_url`, `oper_ip`, `oper_location`, `oper_param`, `json_result`, `status`, `error_msg`, `oper_time`, `cost_time`) VALUES (290, '查询分校成立审批列表', 0, 'com.ruoyi.school.controller.SchoolBusController.apList()', 'GET', 1, 'cw1', NULL, '/school/apList', '127.0.0.1', '', '{\"pageSize\":\"10\",\"pageNum\":\"1\"}', '{\"code\":200,\"msg\":\"查询成功\",\"rows\":[{\"address\":\"天津市南开区新途径职教\",\"alias\":\"南开校区\",\"area\":\"南开区\",\"brief\":\"这里是学校的简介，新途径必须大钱\",\"category\":\"school\",\"city\":\"天津市\",\"date\":\"2022-04-29\",\"id\":\"27\",\"name\":\"天津南开校区\",\"params\":{},\"pid\":0,\"province\":\"天津市\",\"state\":0,\"status\":1,\"type\":3},{\"address\":\"天津市宝坻区津围线商业街4-11\",\"alias\":\"宝坻校区\",\"area\":\"宝坻区\",\"brief\":\"这里是学校的简介，新途径赚大钱\",\"category\":\"school\",\"city\":\"天津市\",\"date\":\"2020-12-28\",\"id\":\"29\",\"name\":\"天津宝坻校区\",\"params\":{},\"pid\":0,\"province\":\"天津市\",\"state\":0,\"status\":1,\"type\":3},{\"address\":\"天津市滨海新区宝龙国际广场B座2406\",\"alias\":\"滨海校区\",\"area\":\"滨海新区\",\"brief\":\"这里是学校的简介，新途径赚大钱\",\"category\":\"school\",\"city\":\"天津市\",\"date\":\"2022-04-15\",\"id\":\"30\",\"name\":\"天津滨海校区\",\"params\":{},\"pid\":0,\"province\":\"天津市\",\"state\":0,\"status\":1,\"type\":3}],\"total\":3}', 0, NULL, '2023-08-21 15:37:54', 49);
+INSERT INTO `sys_oper_log` (`oper_id`, `title`, `business_type`, `method`, `request_method`, `operator_type`, `oper_name`, `dept_name`, `oper_url`, `oper_ip`, `oper_location`, `oper_param`, `json_result`, `status`, `error_msg`, `oper_time`, `cost_time`) VALUES (291, '审批', 2, 'com.ruoyi.school.controller.SchoolBusController.apSchool()', 'GET', 1, 'cw1', NULL, '/school/apSchool/27/next', '127.0.0.1', '', '{}', '{\"code\":200}', 0, NULL, '2023-08-21 15:37:56', 242);
+INSERT INTO `sys_oper_log` (`oper_id`, `title`, `business_type`, `method`, `request_method`, `operator_type`, `oper_name`, `dept_name`, `oper_url`, `oper_ip`, `oper_location`, `oper_param`, `json_result`, `status`, `error_msg`, `oper_time`, `cost_time`) VALUES (292, '查询分校成立审批列表', 0, 'com.ruoyi.school.controller.SchoolBusController.apList()', 'GET', 1, 'cw1', NULL, '/school/apList', '127.0.0.1', '', '{\"pageSize\":\"10\",\"pageNum\":\"1\"}', '{\"code\":200,\"msg\":\"查询成功\",\"rows\":[{\"address\":\"天津市宝坻区津围线商业街4-11\",\"alias\":\"宝坻校区\",\"area\":\"宝坻区\",\"brief\":\"这里是学校的简介，新途径赚大钱\",\"category\":\"school\",\"city\":\"天津市\",\"date\":\"2020-12-28\",\"id\":\"29\",\"name\":\"天津宝坻校区\",\"params\":{},\"pid\":0,\"province\":\"天津市\",\"state\":0,\"status\":1,\"type\":3},{\"address\":\"天津市滨海新区宝龙国际广场B座2406\",\"alias\":\"滨海校区\",\"area\":\"滨海新区\",\"brief\":\"这里是学校的简介，新途径赚大钱\",\"category\":\"school\",\"city\":\"天津市\",\"date\":\"2022-04-15\",\"id\":\"30\",\"name\":\"天津滨海校区\",\"params\":{},\"pid\":0,\"province\":\"天津市\",\"state\":0,\"status\":1,\"type\":3}],\"total\":2}', 0, NULL, '2023-08-21 15:37:56', 24);
+INSERT INTO `sys_oper_log` (`oper_id`, `title`, `business_type`, `method`, `request_method`, `operator_type`, `oper_name`, `dept_name`, `oper_url`, `oper_ip`, `oper_location`, `oper_param`, `json_result`, `status`, `error_msg`, `oper_time`, `cost_time`) VALUES (293, '审批', 2, 'com.ruoyi.school.controller.SchoolBusController.apSchool()', 'GET', 1, 'cw1', NULL, '/school/apSchool/29/back', '127.0.0.1', '', '{}', '{\"code\":200}', 0, NULL, '2023-08-21 15:37:57', 168);
+INSERT INTO `sys_oper_log` (`oper_id`, `title`, `business_type`, `method`, `request_method`, `operator_type`, `oper_name`, `dept_name`, `oper_url`, `oper_ip`, `oper_location`, `oper_param`, `json_result`, `status`, `error_msg`, `oper_time`, `cost_time`) VALUES (294, '查询分校成立审批列表', 0, 'com.ruoyi.school.controller.SchoolBusController.apList()', 'GET', 1, 'cw1', NULL, '/school/apList', '127.0.0.1', '', '{\"pageSize\":\"10\",\"pageNum\":\"1\"}', '{\"code\":200,\"msg\":\"查询成功\",\"rows\":[{\"address\":\"天津市滨海新区宝龙国际广场B座2406\",\"alias\":\"滨海校区\",\"area\":\"滨海新区\",\"brief\":\"这里是学校的简介，新途径赚大钱\",\"category\":\"school\",\"city\":\"天津市\",\"date\":\"2022-04-15\",\"id\":\"30\",\"name\":\"天津滨海校区\",\"params\":{},\"pid\":0,\"province\":\"天津市\",\"state\":0,\"status\":1,\"type\":3}],\"total\":1}', 0, NULL, '2023-08-21 15:37:57', 34);
+INSERT INTO `sys_oper_log` (`oper_id`, `title`, `business_type`, `method`, `request_method`, `operator_type`, `oper_name`, `dept_name`, `oper_url`, `oper_ip`, `oper_location`, `oper_param`, `json_result`, `status`, `error_msg`, `oper_time`, `cost_time`) VALUES (295, '查看审批进度', 0, 'com.ruoyi.school.controller.SchoolBusController.HiFlowText()', 'GET', 1, 'admin', NULL, '/school/HiFlowText/27', '127.0.0.1', '', '{}', '{\"msg\":\"操作成功\",\"code\":200,\"data\":[{\"activityId\":\"zg1\",\"businessKey\":\"27\",\"claimTime\":\"2023-08-21 15:37:37\",\"endTime\":\"2023-08-21 15:37:37\",\"executionId\":\"8c67e37b-3ff5-11ee-b131-5a73e78fbd04\",\"processDefinitionId\":\"fxcl:1:48476e94-3299-11ee-82f6-f22185ea3ea7\",\"processInstanceId\":\"8c674730-3ff5-11ee-b131-5a73e78fbd04\",\"startTime\":\"2023-08-21 15:37:15\",\"taskId\":\"8c6b17d1-3ff5-11ee-b131-5a73e78fbd04\",\"tenantId\":\"xtj\",\"time\":\"2023-08-21 15:37:15\",\"var\":{\"zg_group\":[\"zg_group\",\"super_group\"],\"approvalComment\":\"这里是我的审批意见，还能设置各种附件\",\"cwfzr_group\":[\"cw_group\",\"super_group\"],\"to\":\"next\"}},{\"activityId\":\"cw1\",\"businessKey\":\"27\",\"claimTime\":\"2023-08-21 15:37:56\",\"endTime\":\"2023-08-21 15:37:56\",\"executionId\":\"8c67e37b-3ff5-11ee-b131-5a73e78fbd04\",\"processDefinitionId\":\"fxcl:1:48476e94-3299-11ee-82f6-f22185ea3ea7\",\"processInstanceId\":\"8c674730-3ff5-11ee-b131-5a73e78fbd04\",\"startTime\":\"2023-08-21 15:37:37\",\"taskId\":\"999fd4d7-3ff5-11ee-b131-5a73e78fbd04\",\"tenantId\":\"xtj\",\"time\":\"2023-08-21 15:37:37\",\"var\":{\"zg_group\":[\"zg_group\",\"super_group\"],\"approvalComment\":\"这里是我的审批意见，还能设置各种附件\",\"cwfzr_group\":[\"cw_group\",\"super_group\"],\"to\":\"next\"}}]}', 0, NULL, '2023-08-21 15:38:11', 121);
+INSERT INTO `sys_oper_log` (`oper_id`, `title`, `business_type`, `method`, `request_method`, `operator_type`, `oper_name`, `dept_name`, `oper_url`, `oper_ip`, `oper_location`, `oper_param`, `json_result`, `status`, `error_msg`, `oper_time`, `cost_time`) VALUES (296, '查看审批进度', 0, 'com.ruoyi.school.controller.SchoolBusController.HiFlowText()', 'GET', 1, 'admin', NULL, '/school/HiFlowText/28', '127.0.0.1', '', '{}', '{\"msg\":\"操作成功\",\"code\":200,\"data\":[{\"activityId\":\"zg1\",\"businessKey\":\"28\",\"claimTime\":\"2023-08-21 15:37:39\",\"endTime\":\"2023-08-21 15:37:40\",\"executionId\":\"8c67e37a-3ff5-11ee-b131-5a73e78fbd04\",\"processDefinitionId\":\"fxcl:1:48476e94-3299-11ee-82f6-f22185ea3ea7\",\"processInstanceId\":\"8c674731-3ff5-11ee-b131-5a73e78fbd04\",\"startTime\":\"2023-08-21 15:37:15\",\"taskId\":\"8c6b17d0-3ff5-11ee-b131-5a73e78fbd04\",\"tenantId\":\"xtj\",\"time\":\"2023-08-21 15:37:15\",\"var\":{\"zg_group\":[\"zg_group\",\"super_group\"],\"approvalComment\":\"这里是我的审批意见，还能设置各种附件\",\"cwfzr_group\":[\"cw_group\",\"super_group\"],\"to\":\"back\"}}]}', 0, NULL, '2023-08-21 15:38:17', 51);
+INSERT INTO `sys_oper_log` (`oper_id`, `title`, `business_type`, `method`, `request_method`, `operator_type`, `oper_name`, `dept_name`, `oper_url`, `oper_ip`, `oper_location`, `oper_param`, `json_result`, `status`, `error_msg`, `oper_time`, `cost_time`) VALUES (297, '查看审批进度', 0, 'com.ruoyi.school.controller.SchoolBusController.HiFlowText()', 'GET', 1, 'admin', NULL, '/school/HiFlowText/29', '127.0.0.1', '', '{}', '{\"msg\":\"操作成功\",\"code\":200,\"data\":[{\"activityId\":\"zg1\",\"businessKey\":\"29\",\"claimTime\":\"2023-08-21 15:37:41\",\"endTime\":\"2023-08-21 15:37:41\",\"executionId\":\"8c9498e3-3ff5-11ee-b131-5a73e78fbd04\",\"processDefinitionId\":\"fxcl:1:48476e94-3299-11ee-82f6-f22185ea3ea7\",\"processInstanceId\":\"8c9498de-3ff5-11ee-b131-5a73e78fbd04\",\"startTime\":\"2023-08-21 15:37:15\",\"taskId\":\"8c94bff6-3ff5-11ee-b131-5a73e78fbd04\",\"tenantId\":\"xtj\",\"time\":\"2023-08-21 15:37:15\",\"var\":{\"zg_group\":[\"zg_group\",\"super_group\"],\"approvalComment\":\"这里是我的审批意见，还能设置各种附件\",\"cwfzr_group\":[\"cw_group\",\"super_group\"],\"to\":\"next\"}},{\"activityId\":\"cw1\",\"businessKey\":\"29\",\"claimTime\":\"2023-08-21 15:37:57\",\"endTime\":\"2023-08-21 15:37:57\",\"executionId\":\"8c9498e3-3ff5-11ee-b131-5a73e78fbd04\",\"processDefinitionId\":\"fxcl:1:48476e94-3299-11ee-82f6-f22185ea3ea7\",\"processInstanceId\":\"8c9498de-3ff5-11ee-b131-5a73e78fbd04\",\"startTime\":\"2023-08-21 15:37:41\",\"taskId\":\"9c60538a-3ff5-11ee-b131-5a73e78fbd04\",\"tenantId\":\"xtj\",\"time\":\"2023-08-21 15:37:41\",\"var\":{\"zg_group\":[\"zg_group\",\"super_group\"],\"approvalComment\":\"这里是我的审批意见，还能设置各种附件\",\"cwfzr_group\":[\"cw_group\",\"super_group\"],\"to\":\"back\"}}]}', 0, NULL, '2023-08-21 15:38:22', 50);
+INSERT INTO `sys_oper_log` (`oper_id`, `title`, `business_type`, `method`, `request_method`, `operator_type`, `oper_name`, `dept_name`, `oper_url`, `oper_ip`, `oper_location`, `oper_param`, `json_result`, `status`, `error_msg`, `oper_time`, `cost_time`) VALUES (298, '查看审批进度', 0, 'com.ruoyi.school.controller.SchoolBusController.HiFlowText()', 'GET', 1, 'admin', NULL, '/school/HiFlowText/30', '127.0.0.1', '', '{}', '{\"msg\":\"操作成功\",\"code\":200,\"data\":[{\"activityId\":\"zg1\",\"businessKey\":\"30\",\"claimTime\":\"2023-08-21 15:37:42\",\"endTime\":\"2023-08-21 15:37:42\",\"executionId\":\"8d14c572-3ff5-11ee-b131-5a73e78fbd04\",\"processDefinitionId\":\"fxcl:1:48476e94-3299-11ee-82f6-f22185ea3ea7\",\"processInstanceId\":\"8d149e5d-3ff5-11ee-b131-5a73e78fbd04\",\"startTime\":\"2023-08-21 15:37:16\",\"taskId\":\"8d14c575-3ff5-11ee-b131-5a73e78fbd04\",\"tenantId\":\"xtj\",\"time\":\"2023-08-21 15:37:16\",\"var\":{\"zg_group\":[\"zg_group\",\"super_group\"],\"approvalComment\":\"这里是我的审批意见，还能设置各种附件\",\"cwfzr_group\":[\"cw_group\",\"super_group\"],\"to\":\"next\"}}]}', 0, NULL, '2023-08-21 15:38:27', 52);
+INSERT INTO `sys_oper_log` (`oper_id`, `title`, `business_type`, `method`, `request_method`, `operator_type`, `oper_name`, `dept_name`, `oper_url`, `oper_ip`, `oper_location`, `oper_param`, `json_result`, `status`, `error_msg`, `oper_time`, `cost_time`) VALUES (299, '查看审批进度', 0, 'com.ruoyi.school.controller.SchoolBusController.HiFlowText()', 'GET', 1, 'admin', NULL, '/school/HiFlowText/31', '127.0.0.1', '', '{}', '{\"msg\":\"操作成功\",\"code\":200,\"data\":[]}', 0, NULL, '2023-08-21 15:38:31', 37);
 COMMIT;
 
 -- ----------------------------
@@ -2501,15 +2723,15 @@ COMMIT;
 DROP TABLE IF EXISTS `sys_post`;
 CREATE TABLE `sys_post` (
   `post_id` bigint NOT NULL AUTO_INCREMENT COMMENT '岗位ID',
-  `post_code` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '岗位编码',
-  `post_name` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '岗位名称',
+  `post_code` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '岗位编码',
+  `post_name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '岗位名称',
   `post_sort` int NOT NULL COMMENT '显示顺序',
-  `status` char(1) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '状态（0正常 1停用）',
-  `create_by` varchar(64) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '创建者',
+  `status` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '状态（0正常 1停用）',
+  `create_by` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '创建者',
   `create_time` datetime DEFAULT NULL COMMENT '创建时间',
-  `update_by` varchar(64) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '更新者',
+  `update_by` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '更新者',
   `update_time` datetime DEFAULT NULL COMMENT '更新时间',
-  `remark` varchar(500) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '备注',
+  `remark` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '备注',
   PRIMARY KEY (`post_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='岗位信息表';
 
@@ -2529,19 +2751,19 @@ COMMIT;
 DROP TABLE IF EXISTS `sys_role`;
 CREATE TABLE `sys_role` (
   `role_id` bigint NOT NULL AUTO_INCREMENT COMMENT '角色ID',
-  `role_name` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '角色名称',
-  `role_key` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '角色权限字符串',
+  `role_name` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '角色名称',
+  `role_key` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '角色权限字符串',
   `role_sort` int NOT NULL COMMENT '显示顺序',
-  `data_scope` char(1) COLLATE utf8mb4_unicode_ci DEFAULT '1' COMMENT '数据范围（1：全部数据权限 2：自定数据权限 3：本部门数据权限 4：本部门及以下数据权限）',
+  `data_scope` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT '1' COMMENT '数据范围（1：全部数据权限 2：自定数据权限 3：本部门数据权限 4：本部门及以下数据权限）',
   `menu_check_strictly` tinyint(1) DEFAULT '1' COMMENT '菜单树选择项是否关联显示',
   `dept_check_strictly` tinyint(1) DEFAULT '1' COMMENT '部门树选择项是否关联显示',
-  `status` char(1) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '角色状态（0正常 1停用）',
-  `del_flag` char(1) COLLATE utf8mb4_unicode_ci DEFAULT '0' COMMENT '删除标志（0代表存在 2代表删除）',
-  `create_by` varchar(64) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '创建者',
+  `status` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '角色状态（0正常 1停用）',
+  `del_flag` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT '0' COMMENT '删除标志（0代表存在 2代表删除）',
+  `create_by` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '创建者',
   `create_time` datetime DEFAULT NULL COMMENT '创建时间',
-  `update_by` varchar(64) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '更新者',
+  `update_by` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '更新者',
   `update_time` datetime DEFAULT NULL COMMENT '更新时间',
-  `remark` varchar(500) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '备注',
+  `remark` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '备注',
   PRIMARY KEY (`role_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=100 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='角色信息表';
 
@@ -2605,23 +2827,23 @@ DROP TABLE IF EXISTS `sys_user`;
 CREATE TABLE `sys_user` (
   `user_id` bigint NOT NULL AUTO_INCREMENT COMMENT '用户ID',
   `dept_id` bigint DEFAULT NULL COMMENT '部门ID',
-  `user_name` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '用户账号',
-  `nick_name` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '用户昵称',
-  `user_type` varchar(2) COLLATE utf8mb4_unicode_ci DEFAULT '00' COMMENT '用户类型（00系统用户）',
-  `email` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '用户邮箱',
-  `phonenumber` varchar(11) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '手机号码',
-  `sex` char(1) COLLATE utf8mb4_unicode_ci DEFAULT '0' COMMENT '用户性别（0男 1女 2未知）',
-  `avatar` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '头像地址',
-  `password` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '密码',
-  `status` char(1) COLLATE utf8mb4_unicode_ci DEFAULT '0' COMMENT '帐号状态（0正常 1停用）',
-  `del_flag` char(1) COLLATE utf8mb4_unicode_ci DEFAULT '0' COMMENT '删除标志（0代表存在 2代表删除）',
-  `login_ip` varchar(128) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '最后登录IP',
+  `user_name` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '用户账号',
+  `nick_name` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '用户昵称',
+  `user_type` varchar(2) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT '00' COMMENT '用户类型（00系统用户）',
+  `email` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '用户邮箱',
+  `phonenumber` varchar(11) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '手机号码',
+  `sex` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT '0' COMMENT '用户性别（0男 1女 2未知）',
+  `avatar` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '头像地址',
+  `password` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '密码',
+  `status` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT '0' COMMENT '帐号状态（0正常 1停用）',
+  `del_flag` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT '0' COMMENT '删除标志（0代表存在 2代表删除）',
+  `login_ip` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '最后登录IP',
   `login_date` datetime DEFAULT NULL COMMENT '最后登录时间',
-  `create_by` varchar(64) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '创建者',
+  `create_by` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '创建者',
   `create_time` datetime DEFAULT NULL COMMENT '创建时间',
-  `update_by` varchar(64) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '更新者',
+  `update_by` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '更新者',
   `update_time` datetime DEFAULT NULL COMMENT '更新时间',
-  `remark` varchar(500) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '备注',
+  `remark` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '备注',
   PRIMARY KEY (`user_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=104 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='用户信息表';
 
