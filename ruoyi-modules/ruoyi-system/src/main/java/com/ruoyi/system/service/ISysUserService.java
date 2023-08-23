@@ -203,4 +203,11 @@ public interface ISysUserService
      * @return 结果
      */
     public String importUser(List<SysUser> userList, Boolean isUpdateSupport, String operName);
+
+    /**
+     * 获取多部门ID集合
+     * @param userId
+     * @return 结果
+     */
+    public List<Long> getDeptIds(Long userId);
 }
