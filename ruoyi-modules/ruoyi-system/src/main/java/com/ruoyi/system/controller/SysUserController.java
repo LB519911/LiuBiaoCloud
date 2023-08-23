@@ -152,13 +152,16 @@ public class SysUserController extends BaseController {
         Set<String> roles = permissionService.getRolePermission(user);
         // 权限集合
         Set<String> permissions = permissionService.getMenuPermission(user);
-        //多部门集合
+        //多部门集合ID
         List<Long> deptIds = userService.getDeptIds(SecurityUtils.getUserId());
+        //多部门集合
+        List<SysDept> sysDepts = deptService.selectDeptByIds(deptIds);
         AjaxResult ajax = AjaxResult.success();
         ajax.put("user", user);
         ajax.put("roles", roles);
         ajax.put("permissions", permissions);
         ajax.put("deptIds", deptIds);
+        ajax.put("sysDepts", sysDepts);
         return ajax;
     }
 
